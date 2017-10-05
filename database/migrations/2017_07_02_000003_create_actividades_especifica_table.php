@@ -22,12 +22,9 @@ class CreateActividadesEspecificaTable extends Migration
             $table->string('lugar');
             $table->timestamps();
 
-            // Añadimos la clave foránea con Fabricante.
-fabricante_id
-// Acordarse de añadir al array protected $fillable
-del fichero de modelo "Avion.php" la nueva columna:
-// protected $fillable =
-array('modelo','longitud','capacidad','velocidad','alcance','fabricante_id');
+            // Añadimos la clave foránea con Fabricante.fabricante_id
+// Acordarse de añadir al array protected $fillabledel fichero de modelo "Avion.php" la nueva columna:
+// protected $fillable = array('modelo','longitud','capacidad','velocidad','alcance','fabricante_id');
 $table->integer('fabricante_id')->unsigned();
 // Indicamos cual es la clave foránea de esta tabla:
 $table->foreign('fabricante_id')->references('id')->on('fabricantes');

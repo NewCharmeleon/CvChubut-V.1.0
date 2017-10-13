@@ -15,13 +15,13 @@ class CreateActividadesTable extends Migration
     {
       Schema::create('actividades', function (Blueprint $table) {
           $table->increments('id');
-          $table->integer('id_tipo_act')->unsigned()->index();
+          $table->integer('id_act_tipo')->unsigned();
           $table->string('nombre');
           $table->string('descripcion');
-          $table->integer('id_act_esp')->unsigned()->index();
+          $table->integer('id_act_esp')->unsigned();
           $table->timestamps();
 
-          $table->foreign('id_tipo_act')->references('id')->on('actividades_tipo')
+          $table->foreign('id_act_tipo')->references('id')->on('actividades_tipo')
               ->onUpdate('cascade')->onDelete('cascade');
           $table->foreign('id_act_esp')->references('id')->on('actividades_especifica')
                   ->onUpdate('cascade')->onDelete('cascade');

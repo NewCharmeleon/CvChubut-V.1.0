@@ -14,8 +14,9 @@ class CreatePersonasTable extends Migration
     public function up()
     {
         Schema::create('personas', function (Blueprint $table) {
-            $table->integer('id_user')->unsigned();
-            $table->primary('id_user');
+            //$table->integer('id_user')->unsigned();
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
             $table->string('nombre');
             //$table->integer('id_user')->unsigned();
             $table->string('dni', 9)->unique();
@@ -24,7 +25,8 @@ class CreatePersonasTable extends Migration
             $table->date('fecha_nac');
             $table->string('telefono', 15);
             $table->timestamps();
-            $table->foreign('id_user')->references('id')->on('users')
+
+            $table->foreign('user_id')->references('id')->on('users')
               ->onUpdate('cascade')->onDelete('cascade');
 
           //  $table->foreign('user_id')->references('id')->on('users')

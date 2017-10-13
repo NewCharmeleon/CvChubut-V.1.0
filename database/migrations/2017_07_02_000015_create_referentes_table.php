@@ -2,7 +2,8 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-class CreateOferentesTable extends Migration
+
+class CreateReferentesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -11,15 +12,16 @@ class CreateOferentesTable extends Migration
      */
     public function up()
     {
-      Schema::create('oferentes', function (Blueprint $table) {
+      Schema::create('referentes', function (Blueprint $table) {
           $table->increments('id');
-          $table->unsignedInteger('id_persona')->nullable()->index();
-          $table->integer('id_actividad')->unsigned();
+          $table->integer('persona_id')->unsigned();
+          $table->integer('actividad_id')->unsigned();
           $table->timestamps();
 
-          $table->foreign('id_persona')->references('id_user')->on('personas')
+          $table->foreign('persona_id')->references('id')->on('personas')
               ->onUpdate('cascade')->onDelete('cascade');
-          $table->foreign('id_actividad')->references('id')->on('actividades')
+
+          $table->foreign('actividad_id')->references('id')->on('actividades')
                     ->onUpdate('cascade')->onDelete('cascade');
       });
     }
@@ -30,6 +32,6 @@ class CreateOferentesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('oferentes');
+        Schema::drop('referentes');
     }
 }

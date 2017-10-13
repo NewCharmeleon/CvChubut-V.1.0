@@ -3,29 +3,34 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Actividad;
-use App\actividadesTipo;
-use App\ActividadEspecifica;
 
 class ActividadEspecifica extends Model
 {
   protected $table = 'actividades_especifica';
-  /**
-   * The attributes that are mass assignable.
-   *
-   * @var array
-   */
-  protected $fillable = [
+  //Campos llenado masivo
+  protected $fillable = array(
       'nombre', 'fecha_desde', 'fecha_hasta', 'instancia', 'puesto_mencion',
-      'inst_referente', 'inst_oferente', 'lugar','descripcion',
-  ];
-  //metodo static con valores por defecto para crear
-  public static function form(){
-    $fecha = mktime(date("Y"), date("m"), date("d"));
-    $tipoAct = 'Actividad'->'id_tipo_act';
-    return ['nombre' => '', 'tipo_actividad' => '','fecha_desde' =>$fecha, 'fecha_hasta' =>$fecha,
-    'instancia' => '', 'puesto_mencion' =>'','inst_referente' => '',
-    'inst_oferente' => '', 'lugar' =>'','descripcion' =>''];
+      'inst_referente', 'inst_oferente', 'lugar','actividad_id', 'estudiante_id'
+  );
+  protected $hidden = ['created_at','updated_at'];
+
+
+  //Relacion 1 a N
+  //actividad_especifica pertenece a actividad(Intelectuales, deportivas, etc)
+  public function actividad()
+  {
+  // 1 actividad puede tener muchos actividades especificas
+    return $this->belongsTo('App\Actividad');
 
   }
+  //Relacion N a 1
+  //muchas actividad_especifica pertenecen a 1 estudiante
+  public function actividades_especifica()
+  {
+  
+    return $this->belongsTo('App\Estudiante');
+
+  }
+
+
 }

@@ -3,9 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-//use App\Actividad;
-use App\actividadesTipo;
-//use App\ActividadEspecifica;
 
 class ActividadTipo extends Model
 {
@@ -15,13 +12,18 @@ class ActividadTipo extends Model
    *
    * @var array
    */
-  protected $fillable = [
-      'descripcion'
-  ];
-  //metodo static con valores por defecto para crear
-  public static function form(){
+   //Campos para llenado masivo
+  protected $fillable = array('descripcion');
 
-    return ['descripcion' =>''];
+  protected $hidden =['created_at', 'updated_at'];
+
+  //Relacion 1 a N
+  //actividad_tipo puede tener muchas actividades
+  public function actividad()
+  {
+  // 1 actividad puede tener muchos actividades especificas
+    return $this->hasMany('App\Actividad');
 
   }
+
 }

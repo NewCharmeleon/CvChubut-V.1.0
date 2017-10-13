@@ -6,18 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Carrera extends Model
 {
+    //Nombre de la tabla
    protected $table = 'carreras';
-   protected $fillable = [
-        'descripcion'
-    ];
+   //Campos para llenado masivo
+   protected $fillable = array('descripcion');
+   //Campos que no seran devueltos por la consulta
+   protected $hidden = ['created_at','updated_at'];
 
-	//metodo static con valores por defecto para crear
-	public static function form(){
-	  return ['descripcion' => ''];
+    //Relacion 1 a N
+    //1 carrera puede tener muchos estudiantes
+    public function estudiantes()
+    {
 
-    public function estudiantes(){
-        return $this->hasMany('App\Estudiante');
-      }
-	}
+      return $this->hasMany('App\Estudiante');
+
+    }
+
 
 }

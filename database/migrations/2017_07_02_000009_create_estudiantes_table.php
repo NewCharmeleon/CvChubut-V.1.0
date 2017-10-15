@@ -18,6 +18,7 @@ class CreateEstudiantesTable extends Migration
             $table->integer('persona_id')->unsigned();
             $table->integer('carrera_id')->unsigned();
             $table->integer('actividad_id')->unsigned();
+            $table->integer('legajo_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('persona_id')->references('id')->on('personas')
@@ -28,6 +29,9 @@ class CreateEstudiantesTable extends Migration
 
             $table->foreign('actividad_id')->references('id')->on('actividades')
                   ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->foreign('legajo_id')->references('id')->on('legajos')
+                        ->onUpdate('cascade')->onDelete('cascade');
 
 
         });

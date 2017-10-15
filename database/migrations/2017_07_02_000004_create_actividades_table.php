@@ -15,16 +15,16 @@ class CreateActividadesTable extends Migration
     {
       Schema::create('actividades', function (Blueprint $table) {
           $table->increments('id');
-          $table->integer('id_act_tipo')->unsigned();
+          $table->integer('act_tipo_id')->unsigned();
           $table->string('nombre');
           $table->string('descripcion');
-          $table->integer('id_act_esp')->unsigned();
+          //$table->integer('act_esp_id')->unsigned();
           $table->timestamps();
 
-          $table->foreign('id_act_tipo')->references('id')->on('actividades_tipo')
+          $table->foreign('act_tipo_id')->references('id')->on('actividades_tipo')
               ->onUpdate('cascade')->onDelete('cascade');
-          $table->foreign('id_act_esp')->references('id')->on('actividades_especifica')
-                  ->onUpdate('cascade')->onDelete('cascade');
+        //  $table->foreign('act_esp_id')->references('id')->on('actividades_especifica')
+        //          ->onUpdate('cascade')->onDelete('cascade');
       });
     }
 

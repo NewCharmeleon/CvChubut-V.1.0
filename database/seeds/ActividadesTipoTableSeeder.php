@@ -11,6 +11,19 @@ class ActividadesTipoTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+      //Creamos instancia de Faker
+      $faker = Faker::create();
+
+      //Creamos bucle para cubrir N ActividadesEspecificaTableSeeder
+
+      for ($i=0; $i<9; $i++)
+      {
+          //llamamos al Metodo Create del Modelo para crear una nueva fillable
+          ActividadTipo::create(
+            [
+              'descripcion'=>$faker->text($maxNbChars = 255)
+            ]
+          );
+      }
     }
 }

@@ -13,6 +13,8 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
+    //Provider para usuarios en español
+    $faker->addProvider(new Faker\Provider\es_ES\Person($faker));
     static $password;
 
     return [

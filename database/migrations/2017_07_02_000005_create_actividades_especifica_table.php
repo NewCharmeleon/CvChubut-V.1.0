@@ -12,7 +12,7 @@ class CreateActividadesEspecificaTable extends Migration
         Schema::create('actividades_especifica', function (Blueprint $table) {
 
             $table->increments('id');
-            //$table->integer('actividad_id')->unsigned();
+            $table->integer('act_id')->unsigned();
             //$table->integer('estudiante_id')->unsigned();
             $table->string('nombre');
             $table->date('fecha_desde');
@@ -29,7 +29,7 @@ class CreateActividadesEspecificaTable extends Migration
 // protected $fillable = array('modelo','longitud','capacidad','velocidad','alcance','fabricante_id');
 //$table->integer('fabricante_id')->unsigned();
 //Indicamos cual es la clave foránea de esta tabla:
-            //$table->foreign('actividad_id')->references('id')->on('actividades');
+            $table->foreign('act_id')->references('id')->on('actividades');
             //$table->foreign('estudiante_id')->references('id')->on('estudiantes');
 
         });

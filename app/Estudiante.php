@@ -10,7 +10,7 @@ class Estudiante extends Model
   protected $table = 'estudiantes';
   //Campos para llenado masivo
   protected $fillable = [
-    'user_id','persona_id', 'carrera_id', 'actividad_id', 'legajo_id'
+    'persona_id', 'carrera_id', 'actividad_id', 'legajo_id'
   ];
   //Campos que no se devuelven en la consulta
   protected $hidden = ['created_at','updated_at'];

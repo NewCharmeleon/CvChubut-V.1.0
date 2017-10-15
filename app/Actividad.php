@@ -11,7 +11,7 @@ class Actividad extends Model
   protected $table = 'actividades';
 //Campos para llenado masivo
   protected $fillable = [
-      'nombre', 'descripcion',
+      'act_tipo_id','nombre', 'descripcion',
   ];
   //atributos que no se devuelven en las consultas
   protected $hidden = ['created_at','updated_at'];

@@ -9,8 +9,8 @@ class ActividadEspecifica extends Model
   protected $table = 'actividades_especifica';
   //Campos llenado masivo
   protected $fillable = array(
-      'nombre', 'fecha_desde', 'fecha_hasta', 'instancia', 'puesto_mencion',
-      'inst_referente', 'inst_oferente', 'lugar','actividad_id', 'estudiante_id'
+      'act_id','nombre', 'fecha_desde', 'fecha_hasta', 'instancia', 'puesto_mencion',
+      'inst_referente', 'inst_oferente', 'lugar'
   );
   protected $hidden = ['created_at','updated_at'];
 
@@ -23,14 +23,14 @@ class ActividadEspecifica extends Model
     return $this->belongsTo('App\Actividad');
 
   }
-  //Relacion N a 1
+  /*//Relacion N a 1
   //muchas actividad_especifica pertenecen a 1 estudiante
   public function actividades_especifica()
   {
-  
+
     return $this->belongsTo('App\Estudiante');
 
-  }
+  }*/
 
 
 }

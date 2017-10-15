@@ -21,9 +21,7 @@ class ActividadTipo extends Model
   //actividad_tipo puede tener muchas actividades
   public function actividad()
   {
-  // 1 actividad puede tener muchos actividades especificas
+    // 1 actividad puede tener muchos actividades especificas
     return $this->hasMany('App\Actividad');
-
   }
-
 }

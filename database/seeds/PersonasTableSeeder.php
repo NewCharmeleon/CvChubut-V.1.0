@@ -23,13 +23,13 @@ class PersonasTableSeeder extends Seeder
       //llamamos al Metodo Create del Modelo para crear una nueva fillable
       Persona::create(
       [
-        'user_id'=>$faker->unique()->numberBetween($min=1, $cuantos),
+        'user_id'=>$faker->unique($reset = true)->numberBetween($min=1, $cuantos),
         'nombre'=>$faker->name(),
-        'dni'=>$faker->unique()->numberBetween($min = 10000000, $max = 45000000),
+        'dni'=>$faker->unique($reset = true)->numberBetween($min = 10000000, $max = 45000000),
         'nacionalidad'=>$faker->word(),
         'direccion'=>$faker->word(),
         'fecha_nac'=>$faker->date($format = 'Y-m-d', $max = 'now'),
-        'telefono'=>$faker->unique()->numberBetween($min = 2804000000, $max = 2804999999)
+        'telefono'=>$faker->unique($reset = true)->numberBetween($min = 2804000000, $max = 2804999999)
       ]);
     }
   }

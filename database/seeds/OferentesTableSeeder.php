@@ -26,8 +26,8 @@ class OferentesTableSeeder extends Seeder
       //llamamos al Metodo Create del Modelo para crear una nueva fillable
       Oferente::create(
       [
-        'persona_id'=>$faker->unique()->numberBetween($min=1, $cuantos),
-        'actividad_id'=>$faker->unique()->numberBetween($min=1, $cuantos1)
+        'persona_id'=>$faker->unique($reset = true)->numberBetween($min=1, $cuantos),
+        'actividad_id'=>$faker->unique($reset = true)->numberBetween($min=1, $cuantos1)
       ]);
     }
   }

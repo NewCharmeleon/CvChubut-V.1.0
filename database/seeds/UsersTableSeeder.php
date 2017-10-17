@@ -21,9 +21,9 @@ class UsersTableSeeder extends Seeder
       //llamamos al Metodo Create del Modelo para crear una nueva fillable
       User::create(
       [
-        'name'=>$faker->unique()->userName(),
-        'email'=>$faker->unique()->freeEmail(),
-        'password'=>$faker->unique()->password()
+        'name'=>$faker->unique($reset = true)->userName(),
+        'email'=>$faker->unique($reset = true)->freeEmail(),
+        'password'=>$faker->unique($reset = true)->password()
       ]);
     }
   }

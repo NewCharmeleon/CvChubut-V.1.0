@@ -14,7 +14,8 @@ class PersonaController extends Controller
   public function index()
   {
     //Se Mostrara todas las personas
-    return "Mostrando todas las personas";
+    //return "Mostrando todas las personas";
+    return response()->json(['status'=>'ok', 'data'=>Persona::all()], 200);
   }
 
   /**
@@ -36,6 +37,7 @@ class PersonaController extends Controller
   public function store(Request $request)
   {
     //
+
   }
 
   /**
@@ -47,7 +49,19 @@ class PersonaController extends Controller
   public function show($id)
   {
     //Se Mostrara una personas determinada
-    return "Mostrando persona con id: $id";
+    //return "Mostrando persona con id: $id";
+    $persona=Persona::find($id);
+
+    //En caso de que no Exista tal usuario devolvemos un ErrorException
+    if (!$persona){
+      //Es recomendable devolver un array "errors" con los errores encontrados
+      //y su respectiva cabecera HTTP 404--El mensaje puede ser personalizado
+      return
+      response()->json(['errors'=>array(['code'=>404, 'message'=>'No se encuentra
+      ninguna Persona con ese id.'])], 404);
+    }
+    return
+    response()->json(['status'=>'ok', 'data'=>$persona], 200);
   }
 
   /**

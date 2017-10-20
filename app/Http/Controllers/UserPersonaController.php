@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+//Agregamos los dos modelos a usuario
+use App\User;
+use App\Persona;
+
 
 class UserPersonaController extends Controller
 {
@@ -11,10 +15,30 @@ class UserPersonaController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
+   //Configuramos en el constructor del controlador la autenticacion
+   //usando el Middleware auth.basic pero solamante a store, update y destroy.
+
+  public function __construct(){
+    $this->middleware('auth.basic',['only'=>['store','update','destroy']]);
+  }
+
   public function index($idPersona)
   {
     //Se Muestra el tipo de Usuario de una Persona determinada
-    return "Mostrando la Persona con Usuario id: $idPerson";
+    //return "Mostrando la Persona con Usuario id: $idPerson";
+    $persona=Persona::find($idPersona);
+    if (! $persona){
+      //Es recomendable devolver un array "errors" con los errores encontrados
+      //y su respectiva cabecera HTTP 404--El mensaje puede ser personalizado
+      return
+      response()->json(['errors'=>array(['code'=>404, 'message'=>'No se encuentra
+      ningun Persona con ese id.'])], 404);
+    }
+    //Recomendable devolver un objeto con propiedad "data" con el array de
+    //resultados dentro de esa propiedad.
+    return
+    response()->json(['status'=>'ok', 'data'=>$persona->users()->get()], 200);
+    response()->json(['status'=>'ok', 'data'=>$persona->users()], 200);
   }
 
   /**

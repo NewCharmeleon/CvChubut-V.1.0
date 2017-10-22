@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//Modelo que necesitamos
+use App\Persona;
+//Clase Response para crear la respuesta especial con la cabecera de
+//localizacion en el metodo Store()
 use Illuminate\Http\Request;
 
 class ReferenteActEspController extends Controller

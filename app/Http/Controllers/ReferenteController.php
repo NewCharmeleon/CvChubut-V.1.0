@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//Modelo que necesitamos
+use App\Referente;
+//Clase Response para crear la respuesta especial con la cabecera de
+//localizacion en el metodo Store()
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ReferenteController extends Controller
 {
@@ -14,7 +18,12 @@ class ReferenteController extends Controller
   public function index()
   {
     //Se Mostrara todas los referentes
-    return "Mostrando todos los referentes";
+    //return "Mostrando todos los referentes";
+    $referentes=Cache::remember('cachereferentes',15/60, function(){
+      return Referente::simplePaginate(5);
+    });
+    return response()->json(['status'=>'ok', 'siguiente'=>$referentes->nextPageUrl(),'anterior'=>$referentes->previousPageUrl(),'data'=>$referentes->items()],200);
+
   }
 
   /**

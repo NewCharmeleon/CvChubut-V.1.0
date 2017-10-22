@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//Modelo que necesitamos
+use App\Carrera;
+//Clase Response para crear la respuesta especial con la cabecera de
+//localizacion en el metodo Store()
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class CarreraController extends Controller
 {
@@ -14,7 +18,12 @@ class CarreraController extends Controller
   public function index()
   {
     //Se Mostrara todas las carreras
-    return "Mostrando todas las carreras";
+    //return "Mostrando todas las carreras";
+    $carreras=Cache::remember('cachecarreras',15/60, function(){
+      return Carrera::simplePaginate(5);
+    });
+    return response()->json(['status'=>'ok', 'siguiente'=>$carreras->nextPageUrl(),'anterior'=>$carreras->previousPageUrl(),'data'=>$carreras->items()],200);
+
   }
 
   /**

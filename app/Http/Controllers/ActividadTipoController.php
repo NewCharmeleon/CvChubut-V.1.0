@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//Modelo que necesitamos
+use App\ActividadTipo;
+//Clase Response para crear la respuesta especial con la cabecera de
+//localizacion en el metodo Store()
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ActividadTipoController extends Controller
 {
@@ -14,7 +18,12 @@ class ActividadTipoController extends Controller
   public function index()
   {
     //Se Mostrara todos los tipos de actividades generales
-    return "Mostrando tipos de actividades generales";
+    //return "Mostrando tipos de actividades generales";
+    $actividadesTipo=Cache::remember('cacheactividadesTipo',15/60, function(){
+      return ActividadTipo::simplePaginate(5);
+    });
+    return response()->json(['status'=>'ok', 'siguiente'=>$actividadesTipo->nextPageUrl(),'anterior'=>$actividadesTipo->previousPageUrl(),'data'=>$actividadesTipo->items()],200);
+
   }
 
   /**

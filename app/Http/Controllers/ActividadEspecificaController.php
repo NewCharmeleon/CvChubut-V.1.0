@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//Modelo que necesitamos
+use App\ActividadEspecifica;
+//Clase Response para crear la respuesta especial con la cabecera de
+//localizacion en el metodo Store()
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ActividadEspecificaController extends Controller
 {
@@ -14,7 +18,12 @@ class ActividadEspecificaController extends Controller
   public function index()
   {
     //Se Mostrara todas las actividades especificas
-    return "Mostrando todas las actividades especificas";
+    //return "Mostrando todas las actividades especificas";
+    $actividadesEspecificas=Cache::remember('cacheusers',15/60, function(){
+      return ActividadEspecifica::simplePaginate(5);
+    });
+    return response()->json(['status'=>'ok', 'siguiente'=>$actividadesEspecificas->nextPageUrl(),'anterior'=>$actividadesEspecificas->previousPageUrl(),'data'=>$actividadesEspecificas->items()],200);
+
   }
 
   /**

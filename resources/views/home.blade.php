@@ -7,14 +7,27 @@
     <div class="col-lg-8 col-lg-offset-2">
       <div class="panel panel-default">
         <div class="panel-heading">Tablero de Usuario</div>
-          <div class="btn-group btn-group-lg">
+          <div class="btn-group btn-group-md">
 
               <button type="button" class="btn btn-default btn-lg">
                 <span class="glyphicon glyphicon-user"></span><a href="{{ url('api/v1.0/usuarios') }}">Usuarios</button></a>
             <button type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-user"></span>Personas</button>
+                <span class="glyphicon glyphicon-user"></span><a href="{{ url('api/v1.0/personas') }}">Personas</button></a>
             <button type="button" class="btn btn-default">
-              <span class="glyphicon glyphicon-user"></span>Estudiantes</button>
+              <span class="glyphicon glyphicon-user"></span><a href="{{ url('api/v1.0/estudiantes') }}">Estudiantes</button></a>
+            <button type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-user"></span><a href="{{ url('api/v1.0/oferentes') }}">Oferentes</button></a>
+            <button type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-user"></span><a href="{{ url('api/v1.0/referentes') }}">Referentes</button></a>
+            <button type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-user"></span><a href="{{ url('api/v1.0/estudiantes') }}">Estudiantes</button></a>
+            <button type="button" class="btn btn-default">
+              <br>
+              <span class="glyphicon glyphicon-user"></span><a href="{{ url('api/v1.0/actividadesTipo') }}">Tipo de Actividades</button></a>
+            <button type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-user"></span><a href="{{ url('api/v1.0/actividades') }}">Actividades Generales</button></a>
+            <button type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-user"></span><a href="{{ url('api/v1.0/actividadesEspecifica') }}">Actividad Especificas</button></a>
           </div>
         </div>
         <div class="panel-body">

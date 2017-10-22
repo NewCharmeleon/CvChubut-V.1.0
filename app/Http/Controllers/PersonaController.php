@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//Modelo que necesitamos
+use App\Persona;
+//Clase Response para crear la respuesta especial con la cabecera de
+//localizacion en el metodo Store()
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PersonaController extends Controller
 {
@@ -15,7 +19,12 @@ class PersonaController extends Controller
   {
     //Se Mostrara todas las personas
     //return "Mostrando todas las personas";
-    return response()->json(['status'=>'ok', 'data'=>Persona::all()], 200);
+    //return response()->json(['status'=>'ok', 'data'=>Persona::all()], 200);
+    $personas=Cache::remember('cachepersonas',15/60, function(){
+      return Persona::simplePaginate(5);
+    });
+    return response()->json(['status'=>'ok', 'siguiente'=>$personas->nextPageUrl(),'anterior'=>$personas->previousPageUrl(),'data'=>$personas->items()],200);
+
   }
 
   /**

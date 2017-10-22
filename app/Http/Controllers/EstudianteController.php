@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//Modelo que necesitamos
+use App\Estudiante;
+//Clase Response para crear la respuesta especial con la cabecera de
+//localizacion en el metodo Store()
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class EstudianteController extends Controller
 {
@@ -14,7 +18,12 @@ class EstudianteController extends Controller
   public function index()
   {
     //Se Mostrara todos los estudiantes
-    return "Mostrando todos los estudiantes";
+    //return "Mostrando todos los estudiantes";
+    $estudiantes=Cache::remember('cacheestudiantes',15/60, function(){
+      return Estudiante::simplePaginate(5);
+    });
+    return response()->json(['status'=>'ok', 'siguiente'=>$estudiantes->nextPageUrl(),'anterior'=>$estudiantes->previousPageUrl(),'data'=>$estudiantes->items()],200);
+
   }
 
   /**

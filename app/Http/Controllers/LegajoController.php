@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//Modelo que necesitamos
+use App\Legajo;
+//Clase Response para crear la respuesta especial con la cabecera de
+//localizacion en el metodo Store()
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class LegajoController extends Controller
 {
@@ -14,7 +18,12 @@ class LegajoController extends Controller
   public function index()
   {
     //Se Mostrara todos los legajos
-    return "Mostrando todas los legajos";
+    //return "Mostrando todas los legajos";
+    $legajos=Cache::remember('cachelegajos',15/60, function(){
+      return Legajo::simplePaginate(5);
+    });
+    return response()->json(['status'=>'ok', 'siguiente'=>$legajos->nextPageUrl(),'anterior'=>$legajos->previousPageUrl(),'data'=>$legajos->items()],200);
+
   }
 
   /**

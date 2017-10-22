@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//Modelo que necesitamos
+use App\Oferente;
+//Clase Response para crear la respuesta especial con la cabecera de
+//localizacion en el metodo Store()
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class OferenteController extends Controller
 {
@@ -14,7 +18,12 @@ class OferenteController extends Controller
   public function index()
   {
     //Se Mostrara todos los oferentes
-    return "Mostrando todos los oferentes";
+    //return "Mostrando todos los oferentes";
+    $oferentes=Cache::remember('cacheoferentes',15/60, function(){
+      return Oferente::simplePaginate(5);
+    });
+    return response()->json(['status'=>'ok', 'siguiente'=>$oferentes->nextPageUrl(),'anterior'=>$oferentes->previousPageUrl(),'data'=>$oferentes->items()],200);
+
   }
 
   /**

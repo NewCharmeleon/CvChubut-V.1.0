@@ -8,6 +8,7 @@ use App\User;
 //Clase Response para crear la respuesta especial con la cabecera de
 //localizacion en el metodo Store()
 use Response;
+use Illuminate\Support\Facades\Cache;
 
 class UserController extends Controller
 {
@@ -20,7 +21,7 @@ class UserController extends Controller
    //usando el Middleware auth.basic pero solamante a store, update y destroy.
 
   public function __construct(){
-    $this->middleware('auth.basic',['only'=>['create','store','update','destroy']]);
+    $this->middleware('auth.basic',['only'=>['show','create','store','update','destroy']]);
   }
 
   public function index()
@@ -30,7 +31,10 @@ class UserController extends Controller
     //return "Mostrando todos los usuarios";
     //Recomendable devolver un objeto con propiedad "data" con el array de
     //resultados dentro de esa propiedad.
-    response()->json(['status'=>'ok', 'data'=>User::all()], 200);
+    $users=Cache::remember('cacheusers',15/60, function(){
+      return User::simplePaginate(5);
+    });
+    return response()->json(['status'=>'ok', 'siguiente'=>$users->nextPageUrl(),'anterior'=>$users->previousPageUrl(),'data'=>$users->items()],200);
 
   }
 

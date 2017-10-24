@@ -20,7 +20,7 @@ class ActividadTipoController extends Controller
     //Se Mostrara todos los tipos de actividades generales
     //return "Mostrando tipos de actividades generales";
     $actividadesTipo=Cache::remember('cacheactividadesTipo',15/60, function(){
-      return ActividadTipo::simplePaginate(5);
+      return ActividadTipo::simplePaginate(10);
     });
     return response()->json(['status'=>'ok', 'siguiente'=>$actividadesTipo->nextPageUrl(),'anterior'=>$actividadesTipo->previousPageUrl(),'data'=>$actividadesTipo->items()],200);
 
@@ -55,10 +55,20 @@ class ActividadTipoController extends Controller
    */
   public function show($id)
   {
-    //Se Mostrara un tipo de Actividad General determinado
-    return "Mostrando tipo de actividad general con id: $id";
-  }
+    //Se Mostrara un tipo de Actividad determinado
+    //return "Mostrando tipo de actividad general con id: $id";
+    $actividadesTipo=ActividadTipo::findOrFail($id);
 
+    //En caso de que no Exista tal usuario devolvemos un ErrorException
+    if (!$actividadesTipo){
+      //Es recomendable devolver un array "errors" con los errores encontrados
+      //y su respectiva cabecera HTTP 404--El mensaje puede ser personalizado
+      return
+      response()->json(['errors'=>array(['code'=>404, 'message'=>'No se encuentra ningun Tipo de Actividad con ese id.'])], 404);
+    }
+    return
+    response()->json(['status'=>'ok', 'data'=>$actividadesTipo], 200);
+  }
   /**
    * Show the form for editing the specified resource.
    *

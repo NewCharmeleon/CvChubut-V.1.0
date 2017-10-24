@@ -20,7 +20,7 @@ class ActividadController extends Controller
     //Se Mostrara todas las actividades generales
     //return "Mostrando todas las actividades generales";
     $actividades=Cache::remember('cacheactividades',15/60, function(){
-      return Actividad::simplePaginate(5);
+      return Actividad::simplePaginate(10);
     });
     return response()->json(['status'=>'ok', 'siguiente'=>$actividades->nextPageUrl(),'anterior'=>$actividades->previousPageUrl(),'data'=>$actividades->items()],200);
 
@@ -56,7 +56,18 @@ class ActividadController extends Controller
   public function show($id)
   {
     //Se Mostrara una Actividad General determinada
-    return "Mostrando actividad general con id: $id";
+    //return "Mostrando actividad general con id: $id";
+    $actividades=Actividad::findOrFail($id);
+
+    //En caso de que no Exista tal actividad devolvemos un ErrorException
+    if (!$actividades){
+      //Es recomendable devolver un array "errors" con los errores encontrados
+      //y su respectiva cabecera HTTP 404--El mensaje puede ser personalizado
+      return
+      response()->json(['errors'=>array(['code'=>404, 'message'=>'No se encuentra ninguna Actividad General con ese id.'])], 404);
+    }
+    return
+    response()->json(['status'=>'ok', 'data'=>$actividades], 200);
   }
 
   /**

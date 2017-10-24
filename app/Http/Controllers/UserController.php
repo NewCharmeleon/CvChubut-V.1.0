@@ -32,7 +32,7 @@ class UserController extends Controller
     //Recomendable devolver un objeto con propiedad "data" con el array de
     //resultados dentro de esa propiedad.
     $users=Cache::remember('cacheusers',15/60, function(){
-      return User::simplePaginate(5);
+      return User::simplePaginate(10);
     });
     return response()->json(['status'=>'ok', 'siguiente'=>$users->nextPageUrl(),'anterior'=>$users->previousPageUrl(),'data'=>$users->items()],200);
 
@@ -108,10 +108,10 @@ class UserController extends Controller
     //Se Mostrara un usuario determinado
     //return "Mostrando usuario con id: $id";
     //Recomendable buscar un Usuario por id
-    $user=User::find($id);
+    $users=User::findOrFail($id);
 
     //En caso de que no Exista tal usuario devolvemos un ErrorException
-    if (!$user){
+    if (!$users){
       //Es recomendable devolver un array "errors" con los errores encontrados
       //y su respectiva cabecera HTTP 404--El mensaje puede ser personalizado
       return
@@ -119,7 +119,7 @@ class UserController extends Controller
       ningun Usuario con ese id.'])], 404);
     }
     return
-    response()->json(['status'=>'ok', 'data'=>$user], 200);
+    response()->json(['status'=>'ok', 'data'=>$users], 200);
 
   }
   /**

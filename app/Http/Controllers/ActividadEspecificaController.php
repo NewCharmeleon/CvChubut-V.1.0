@@ -20,7 +20,7 @@ class ActividadEspecificaController extends Controller
     //Se Mostrara todas las actividades especificas
     //return "Mostrando todas las actividades especificas";
     $actividadesEspecificas=Cache::remember('cacheusers',15/60, function(){
-      return ActividadEspecifica::simplePaginate(5);
+      return ActividadEspecifica::simplePaginate(10);
     });
     return response()->json(['status'=>'ok', 'siguiente'=>$actividadesEspecificas->nextPageUrl(),'anterior'=>$actividadesEspecificas->previousPageUrl(),'data'=>$actividadesEspecificas->items()],200);
 
@@ -56,7 +56,18 @@ class ActividadEspecificaController extends Controller
   public function show($id)
   {
     //Se Mostrara una Actividad especifica determinada
-    return "Mostrando actividad especifica con id: $id";
+    //return "Mostrando actividad especifica con id: $id";
+    $actividadesEspecificas=ActividadEspecifica::findOrFail($id);
+
+    //En caso de que no Exista tal actividad especifica devolvemos un ErrorException
+    if (!$actividadesEspecificas){
+      //Es recomendable devolver un array "errors" con los errores encontrados
+      //y su respectiva cabecera HTTP 404--El mensaje puede ser personalizado
+      return
+      response()->json(['errors'=>array(['code'=>404, 'message'=>'No se encuentra ninguna Actividad Especifica con ese id.'])], 404);
+    }
+    return
+    response()->json(['status'=>'ok', 'data'=>$actividadesEspecificas], 200);
   }
 
   /**

@@ -20,7 +20,7 @@ class ReferenteController extends Controller
     //Se Mostrara todas los referentes
     //return "Mostrando todos los referentes";
     $referentes=Cache::remember('cachereferentes',15/60, function(){
-      return Referente::simplePaginate(5);
+      return Referente::simplePaginate(10);
     });
     return response()->json(['status'=>'ok', 'siguiente'=>$referentes->nextPageUrl(),'anterior'=>$referentes->previousPageUrl(),'data'=>$referentes->items()],200);
 
@@ -56,7 +56,18 @@ class ReferenteController extends Controller
   public function show($id)
   {
     //Se Mostrara un referente determinado
-    return "Mostrando referente con id: $id";
+    //return "Mostrando referente con id: $id";
+    $referentes=Referente::findOrFail($id);
+
+    //En caso de que no Exista tal Referente devolvemos un ErrorException
+    if (!$referentes){
+      //Es recomendable devolver un array "errors" con los errores encontrados
+      //y su respectiva cabecera HTTP 404--El mensaje puede ser personalizado
+      return
+      response()->json(['errors'=>array(['code'=>404, 'message'=>'No se encuentra ningun Referente con ese id.'])], 404);
+    }
+    return
+    response()->json(['status'=>'ok', 'data'=>$referentes], 200);
   }
 
   /**

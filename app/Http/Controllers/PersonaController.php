@@ -21,7 +21,7 @@ class PersonaController extends Controller
     //return "Mostrando todas las personas";
     //return response()->json(['status'=>'ok', 'data'=>Persona::all()], 200);
     $personas=Cache::remember('cachepersonas',15/60, function(){
-      return Persona::simplePaginate(5);
+      return Persona::simplePaginate(10);
     });
     return response()->json(['status'=>'ok', 'siguiente'=>$personas->nextPageUrl(),'anterior'=>$personas->previousPageUrl(),'data'=>$personas->items()],200);
 

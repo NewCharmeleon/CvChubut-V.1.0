@@ -20,7 +20,7 @@ class LegajoController extends Controller
     //Se Mostrara todos los legajos
     //return "Mostrando todas los legajos";
     $legajos=Cache::remember('cachelegajos',15/60, function(){
-      return Legajo::simplePaginate(5);
+      return Legajo::simplePaginate(10);
     });
     return response()->json(['status'=>'ok', 'siguiente'=>$legajos->nextPageUrl(),'anterior'=>$legajos->previousPageUrl(),'data'=>$legajos->items()],200);
 
@@ -56,7 +56,20 @@ class LegajoController extends Controller
   public function show($id)
   {
     //Se Mostrara un legajo determinado
-    return "Mostrando informacion de legajo con id: $id";
+    //return "Mostrando informacion de legajo con id: $id";
+    //Se Mostrara un oferente determinado
+    //return "Mostrando oferente con id: $id";
+    $legajos=Legajo::findOrFail($id);
+
+    //En caso de que no Exista tal legajo devolvemos un ErrorException
+    if (!$legajos){
+      //Es recomendable devolver un array "errors" con los errores encontrados
+      //y su respectiva cabecera HTTP 404--El mensaje puede ser personalizado
+      return
+      response()->json(['errors'=>array(['code'=>404, 'message'=>'No se encuentra ningun Legajo con ese id.'])], 404);
+    }
+    return
+    response()->json(['status'=>'ok', 'data'=>$legajos], 200);
   }
 
   /**

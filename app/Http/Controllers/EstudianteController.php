@@ -20,7 +20,7 @@ class EstudianteController extends Controller
     //Se Mostrara todos los estudiantes
     //return "Mostrando todos los estudiantes";
     $estudiantes=Cache::remember('cacheestudiantes',15/60, function(){
-      return Estudiante::simplePaginate(5);
+      return Estudiante::simplePaginate(10);
     });
     return response()->json(['status'=>'ok', 'siguiente'=>$estudiantes->nextPageUrl(),'anterior'=>$estudiantes->previousPageUrl(),'data'=>$estudiantes->items()],200);
 
@@ -56,10 +56,20 @@ class EstudianteController extends Controller
   public function show($id)
   {
     //Se Mostrara un estudiante determinada
-    return "Mostrando estudiante con id: $id";
-  }
+    //return "Mostrando estudiante con id: $id";
+    $estudiantes=Estudiante::findOrFail($id);
 
-  /**
+    //En caso de que no Exista tal estudiante devolvemos un ErrorException
+    if (!$estudiantes){
+      //Es recomendable devolver un array "errors" con los errores encontrados
+      //y su respectiva cabecera HTTP 404--El mensaje puede ser personalizado
+      return
+      response()->json(['errors'=>array(['code'=>404, 'message'=>'No se encuentra ningun Estudiante con ese id.'])], 404);
+    }
+    return
+    response()->json(['status'=>'ok', 'data'=>$estudiantes], 200);
+  }
+    /**
    * Show the form for editing the specified resource.
    *
    * @param  int  $id

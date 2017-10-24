@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Oferente;
+use App\ActividadEspecifica;
+use App\ActividadTipo;
+use App\Actividad;
 
 class OferenteActEspController extends Controller
 {
@@ -14,7 +18,20 @@ class OferenteActEspController extends Controller
   public function index($idOferente)
   {
     //Se Muestra todas las actividades especificas de un Oferente determinado
-    return "Mostrando las actividades especificas del Oferente con Id: $idOferente";
+    //return "Mostrando las actividades especificas del Oferente con Id: $idOferente";
+    //Procedemos a devolver todas las actividades especificas de un Oferente determinado
+    $oferente=Oferente::findOrFail($idOferente);
+    if (! $oferente)
+    {
+      //Devolvemos un array "errors" con los errores encontrados y cabecera HTTP 404.
+      return
+        response()->json(['errors'=>array(['code'=>404, 'message'=>'No se encuentra
+        un Oferente con ese Id.'])], 404);
+    }
+    return
+      response()->json(['status'=>'ok','data'=>$oferente->actividad_id->get()], 200);
+      //response()->json(['status'=>'ok','data'=>$oferente->actividades], 200);
+
   }
 
   /**
@@ -33,7 +50,7 @@ class OferenteActEspController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(Request $request)
+  public function store(Request $request, $oferente_id)
   {
     //
   }

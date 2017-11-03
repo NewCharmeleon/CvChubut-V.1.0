@@ -62,7 +62,7 @@ class ActividadTipoActividadEspecificaController extends Controller
       //$actividadesTipo=ActividadTipo::find($idActividadTipo);
       //  $actividadesEspecifica=$actividades->actividadesEspecifica()->get();
   //  $actividad=$actividadTipo->where('actividades_especifica.act_id',$idActividad)->get();
-  if (!$actividad){//->isEmpty()){
+  if ((!$actividad)&&($actividad->actividades_especificas==null)){//->isEmpty()){
     //Es recomendable devolver un array "errors" con los errores encontrados
     //y su respectiva cabecera HTTP 404--El mensaje puede ser personalizado
     return

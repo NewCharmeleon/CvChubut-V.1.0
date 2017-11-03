@@ -57,7 +57,7 @@ class ActividadEspecificaController extends Controller
   {
     //Se Mostrara una Actividad especifica determinada
     //return "Mostrando actividad especifica con id: $id";
-    $actividadesEspecificas=ActividadEspecifica::findOrFail($id);
+    $actividadesEspecificas=ActividadEspecifica::find($id);
 
     //En caso de que no Exista tal actividad especifica devolvemos un ErrorException
     if (!$actividadesEspecificas){

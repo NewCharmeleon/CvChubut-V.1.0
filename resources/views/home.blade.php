@@ -10,7 +10,7 @@
           <div class="btn-group btn-group-default">
 
               <button type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-user"></span><a href="{{ url('api/v1.0/usuarios') }}"><b>Usuarios</b></button></a>
+                <span class="glyphicon glyphicon-user"></span><a href="{{ route('api/v1.0/usuarios') }}"><b>Usuarios</b></button></a>
             <button type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-user"></span><a href="{{ url('api/v1.0/personas') }}"><n>Personas</n></button></a>
             <button type="button" class="btn btn-default">
@@ -32,6 +32,7 @@
         </div>
         <div class="panel-body">
                   Bienvenido {{ Auth::user()->username }}!
+                  {{dd($html)}}
         </div>
       </div>
     </div>

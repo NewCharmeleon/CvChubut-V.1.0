@@ -19,21 +19,24 @@ Route::get('/user', function (Request $request) {
 //versionado del Api
 Route::group(array('prefix'=>'/v1.0'),function(){
     //Rutas que redirigen al api segun los parametros del URI que se invoque...xD
-  Route::resource('actividades','ActividadController');
-  Route::resource('actividadesEspecifica','ActividadEspecificaController');
-  Route::resource('actividadesTipo','ActividadTipoController');
+  Route::resource('actividades','ActividadController',['only'=>['index', 'show']]);
+  Route::resource('actividadesEspecifica','ActividadEspecificaController',['only'=>['index', 'show']]);
+  Route::resource('actividadesTipo','ActividadTipoController',['only'=>['index', 'show']]);
   Route::resource('carreras','CarreraController',['only'=>['index', 'show']]);
-  Route::resource('estudiantes','EstudianteController');
+  Route::resource('estudiantes','EstudianteController',['only'=>['index', 'show']]);
   Route::resource('legajos','LegajoController',['only'=>['index', 'show']]);
-  Route::resource('oferentes','OferenteController');
-  Route::resource('personas','PersonaController');
-  Route::resource('usuarios','UserController');
-  Route::resource('referentes','ReferenteController');
+  Route::resource('oferentes','OferenteController',['only'=>['index', 'show']]);
+  Route::resource('personas','PersonaController',['only'=>['index', 'show']]);
+  Route::resource('usuarios','UserController',['only'=>['index', 'show']]);
+  Route::resource('referentes','ReferenteController',['only'=>['index', 'show']]);
   //Rutas que redirigen a recursos anidados
   Route::resource('estudiantes.actividadEspecifica','EstudianteActEspController',
   ['except'=>['edit', 'show', 'create']]);
   Route::resource('oferentes.actividadEspecifica','OferenteActEspController');
   Route::resource('referentes.actividadEspecifica','ReferenteActEspController');
-  Route::resource('usuarios.personas','UserPersonaController');
+  Route::resource('usuarios.role.personas','UserPersonaController');
+  //Nuevas rutas anidadas
+  Route::resource('actividadesTipo.actividades.actividadesEspecifica','ActividadTipoActividadEspecificaController',
+  ['except'=>['show']]);
   }
 );

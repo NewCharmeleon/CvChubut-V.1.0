@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Oferente;
 //Clase Response para crear la respuesta especial con la cabecera de
 //localizacion en el metodo Store()
+use View;
 use Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+
 
 class OferenteController extends Controller
 {
@@ -21,13 +23,23 @@ class OferenteController extends Controller
    }
   public function index()
   {
-    //Se Mostrara todos los oferentes
+    $view = View::make('welcome', [
+            'data' => 'Hello World !'
+        ]);
+
+        $html = $view->render();
+        // or cast the content into a string
+        // $html = (string) $view;
+    /*//Se Mostrara todos los oferentes
     //return "Mostrando todos los oferentes";
     $oferentes=Cache::remember('cacheoferentes',15/60, function(){
       return Oferente::simplePaginate(10);
     });
-    return response()->json(['status'=>'ok', 'siguiente'=>$oferentes->nextPageUrl(),'anterior'=>$oferentes->previousPageUrl(),'data'=>$oferentes->items()],200);
-
+    return response()->json(['status'=>'ok',
+                              'siguiente'=>$oferentes->nextPageUrl(),
+                              'anterior'=>$oferentes->previousPageUrl(),
+                              'data'=>$oferentes->items()],200);
+*/
   }
 
   /**

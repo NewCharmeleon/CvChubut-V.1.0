@@ -57,7 +57,7 @@ class ActividadTipoController extends Controller
   {
     //Se Mostrara un tipo de Actividad determinado
     //return "Mostrando tipo de actividad general con id: $id";
-    $actividadesTipo=ActividadTipo::findOrFail($id);
+    $actividadesTipo=ActividadTipo::find($id);
 
     //En caso de que no Exista tal usuario devolvemos un ErrorException
     if (!$actividadesTipo){

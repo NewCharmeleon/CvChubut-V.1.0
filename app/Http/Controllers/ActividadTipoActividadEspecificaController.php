@@ -50,12 +50,24 @@ class ActividadTipoActividadEspecificaController extends Controller
       response()->json(['errors'=>array(['code'=>404, 'message'=>'No se encuentra
       actividades especificas del tipo: '.$idActividad])], 404);
     }
+    //$prueba=DB::table('')
     //$actividad=$actividadTipo.$actividadEspecifica;
-    $actividad=$actividadEspecifica->where('act_tipo_id',$idActividadTipo)&&$actividadTipo->where('actividades_tipo.id',$idActividad);
+    //$actividad=$actividadEspecifica->where('act_tipo_id',$idActividadTipo);
+    $actividad=ActividadTipo::with('actividades.actividades_especifica')->get();
+    //->where('actividades.act_tipo_id',$idActividadTipo)->get();
+    //->where('actividades_especificas.act_id',$idActividad)->get();
+    //->where('act_tipo_id', $idActividadTipo)->whereIn('act_id', $idActividad)->get();
+    //$actividadTipo->where('actividades_tipo.id',$idActividad);
       //$actividadesTipo=ActividadTipo::find($idActividadTipo);
       //  $actividadesEspecifica=$actividades->actividadesEspecifica()->get();
   //  $actividad=$actividadTipo->where('actividades_especifica.act_id',$idActividad)->get();
-      return
+  if ($actividad->isEmpty()){
+    //Es recomendable devolver un array "errors" con los errores encontrados
+    //y su respectiva cabecera HTTP 404--El mensaje puede ser personalizado
+    return
+    response()->json(['errors'=>array(['code'=>404, 'message'=>'No existen actividades especificas
+    de actividades generales con id:'.$idActividad.'del tipo: '.$idActividad])], 404);
+  }  return
     response()->json(['status'=>'ok', 'data'=>$actividad], 200);
     }
       /*

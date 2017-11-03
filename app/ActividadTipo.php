@@ -19,15 +19,15 @@ class ActividadTipo extends Model
 
   //Relacion 1 a N
   //actividad_tipo puede tener muchas actividades
-  public function actividad()
+  public function actividades()
   {
     // 1 actividad puede tener muchos actividades especificas
-    return $this->hasMany('App\Actividad');
+    return $this->hasMany('App\Actividad','act_tipo_id');
   }
-  public function actividadEspecifica()
+  /*public function actividadEspecifica()
   {
     // 1 actividad puede tener muchos actividades especificas
-    return $this;
-  }
+    return $this->;
+  }*/
 
 }

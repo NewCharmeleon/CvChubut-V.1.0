@@ -16,10 +16,10 @@ class ActividadEspecifica extends Model
 
   //Relacion 1 a N
   //actividad_especifica pertenece a actividad(Intelectuales, deportivas, etc)
-  public function actividad()
+  public function actividades()
   {
     // 1 actividad puede tener muchos actividades especificas
-    return $this->belongsTo('App\Actividad');
+    return $this->belongsTo('App\Actividad', 'foreign_key','act_id');
   }
   /*//Relacion N a 1
   //muchas actividad_especifica pertenecen a 1 estudiante

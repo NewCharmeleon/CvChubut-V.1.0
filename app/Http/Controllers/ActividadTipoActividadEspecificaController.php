@@ -95,7 +95,12 @@ class ActividadTipoActividadEspecificaController extends Controller
   public function create($idPersona)
   {
       //Se muestra formulario para cargar un Usuario a la Persona: $idPersona
-     return "Mostrando formulario para cargar un Usuario y Rol especifico a la Persona: $idPersona";
+      return response()
+                ->json([
+                    'form' => ActividadTipo::form(),
+                    'option' => []
+                ]);
+     //return "Mostrando formulario para cargar un Usuario y Rol especifico a la Persona: $idPersona";
   }
   /**
    * Store a newly created resource in storage.

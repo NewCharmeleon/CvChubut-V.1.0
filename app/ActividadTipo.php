@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Actividad;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,10 +20,11 @@ class ActividadTipo extends Model
 
   //Relacion 1 a N
   //actividad_tipo puede tener muchas actividades
+
   public function actividades()
   {
     // 1 actividad puede tener muchos actividades especificas
-    return $this->hasMany('App\Actividad','act_tipo_id');
+    return $this->hasMany('Actividad::class');
   }
   /*public function actividadEspecifica()
   {

@@ -34,7 +34,12 @@ class ActividadController extends Controller
   public function create()
   {
     //Se Mostrara un formulario para la carga de actividades generales
-    return "Mostrando formulario para crear una actividad general";
+    return response()
+                ->json([
+                    'form' => Actividad::form(),
+                    'option' => []
+                ]);
+      //return "Mostrando formulario para crear una actividad general";
   }
     /**
      * Store a newly created resource in storage.

@@ -27,7 +27,7 @@ class ActividadesTableSeeder extends Seeder
       [
         'act_tipo_id'=>$faker->numberBetween($min=1, $cuantos),
         'nombre'=>$faker->word(),
-        'descripcion'=>$faker->text($maxNbChars = 250)
+        'descripcion'=>$faker->paragraph(1),
       ]);
     }
   }

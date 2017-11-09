@@ -21,7 +21,7 @@ class CarrerasTableSeeder extends Seeder
       //llamamos al Metodo Create del Modelo para crear una nueva fillable
       Carrera::create(
       [
-        'descripcion'=>$faker->realText($maxNbChars = 255)
+        'descripcion'=>$faker->realText($maxNbChars = 50)
       ]);
     }
   }

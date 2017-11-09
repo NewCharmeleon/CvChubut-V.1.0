@@ -21,7 +21,7 @@ class ActividadesTipoTableSeeder extends Seeder
       //llamamos al Metodo Create del Modelo para crear una nueva fillable
       ActividadTipo::create(
       [
-        'descripcion'=>$faker->realText($maxNbChars = 250)
+        'descripcion'=>$faker->realText($maxNbChars = 50),
       ]);
     }
   }

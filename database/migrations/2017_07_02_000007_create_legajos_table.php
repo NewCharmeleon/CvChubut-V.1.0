@@ -15,7 +15,7 @@ class CreateLegajosTable extends Migration
   {
     Schema::create('legajos', function (Blueprint $table) {
       $table->increments('id');
-      $table->string('descripcion');
+      $table->string('descripcion', 1000);
       $table->timestamps();
     });
   }

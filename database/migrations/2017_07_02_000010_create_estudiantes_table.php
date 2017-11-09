@@ -1,5 +1,9 @@
 <?php
 
+use App\Persona;
+use App\Carrera;
+use App\Actividad;
+use App\Legajo;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;

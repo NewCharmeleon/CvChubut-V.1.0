@@ -34,7 +34,12 @@ class ActividadEspecificaController extends Controller
   public function create()
   {
     //Se Mostrara un formulario para la carga de actividades especificas
-    return "Mostrando formulario para crear una actividad especifica";
+    return response()
+                ->json([
+                    'form' => ActividadEspecifica::form(),
+                    'option' => []
+                ]);
+    //return "Mostrando formulario para crear una actividad especifica";
   }
     /**
      * Store a newly created resource in storage.

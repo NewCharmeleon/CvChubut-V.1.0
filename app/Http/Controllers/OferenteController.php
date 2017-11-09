@@ -23,14 +23,18 @@ class OferenteController extends Controller
    }
   public function index()
   {
+
+
+    /*
+
     $view = View::make('welcome', [
             'data' => 'Hello World !'
         ]);
 
         $html = $view->render();
         // or cast the content into a string
-        // $html = (string) $view;
-    /*//Se Mostrara todos los oferentes
+        // $html = (string) $view;*/
+        //Se Mostrara todos los oferentes
     //return "Mostrando todos los oferentes";
     $oferentes=Cache::remember('cacheoferentes',15/60, function(){
       return Oferente::simplePaginate(10);
@@ -39,7 +43,7 @@ class OferenteController extends Controller
                               'siguiente'=>$oferentes->nextPageUrl(),
                               'anterior'=>$oferentes->previousPageUrl(),
                               'data'=>$oferentes->items()],200);
-*/
+
   }
 
   /**

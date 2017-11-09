@@ -15,7 +15,7 @@ class CreateActividadesTipoTable extends Migration
   {
     Schema::create('actividades_tipo', function (Blueprint $table) {
       $table->increments('id');
-      $table->string('descripcion');
+      $table->string('descripcion', 1000);
       $table->timestamps();
     });
   }

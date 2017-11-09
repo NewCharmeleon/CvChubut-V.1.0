@@ -2,12 +2,13 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Actividad;
+//use Illuminate\Database\Eloquent\Model;
 
-class Referente extends Model
+class Referente extends Persona
 {
   protected $table = 'referentes';
-  //Campos para llenado masivo
+  /*//Campos para llenado masivo
   protected $fillable = array('persona_id', 'actividad_id');
   //Campos que no se devuelven en la consulta
   protected $hidden = ['created_at','updated_at'];
@@ -19,11 +20,12 @@ class Referente extends Model
     return $this->hasOne('App\User');
   }*/
   //1 referente tiene info de 1 persona
-  public function persona() {
+  /*public function persona() {
     return $this->hasOne('App\Persona');
   }
+  */
   //1 referente puede tener muchas actividades especificas
   public function actividades(){
-    return $this->hasMany('App\Actividad');
+    return $this->hasMany('Actividad::class');
   }
 }

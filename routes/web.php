@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+//Rutas que todas vuelven al Home...SPAxD
+Route::any('{all}', function () {
+     return view('home');
+})->where(['all' => '.*']);

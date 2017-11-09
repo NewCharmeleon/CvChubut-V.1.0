@@ -1,6 +1,8 @@
 <?php
 
 namespace App;
+use App\ActividadTipo;
+use App\ActividadEspecifica;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,13 +25,19 @@ class Actividad extends Model
   public function actividades_especifica()
   {
     // 1 actividad puede tener muchos actividades especificas
-    return $this->hasMany('App\ActividadEspecifica','act_id');
+    return $this->hasMany('ActividadEspecifica::class');
   }
   // Relación de actividad con actividades tipo
   //1 actividad pertenece a un tipo de actividad
-  public function actividades_tipo()
+  public function actividad_tipo()
   {
     // 1 actividad pertenece a un tipo de actividad especifica
-    return $this->belongsTo('App\ActividadTipo','foreign_key','act_tipo_id');
+    return $this->belongsTo('ActividadTipo::class');
+  }
+  public static function form(){
+    return [
+      'act_tipo_id' => $ActividadTipo->nombre,
+      'nombre' =>'',
+      'descripcion' => ''];
   }
 }

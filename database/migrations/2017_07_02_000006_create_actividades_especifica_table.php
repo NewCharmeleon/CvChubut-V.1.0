@@ -1,4 +1,5 @@
 <?php
+use App\Actividad;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;

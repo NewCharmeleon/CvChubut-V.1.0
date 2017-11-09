@@ -9,6 +9,8 @@ use App\Role;
 class User extends Authenticatable
 {
   use Notifiable;
+
+  const PASSWORD_DEFAULT = '123456';
   /**
    * The attributes that are mass assignable.
    *
@@ -23,6 +25,10 @@ class User extends Authenticatable
    * @var array
    */
   protected $hidden = [
-    'password','remember_token'
+    'password','remember_token','timestamps' 
   ];
+  public function passwordDefault(){
+    return $this->password ==  User::PASSWORD_DEFAULT;
+  }
+
 }

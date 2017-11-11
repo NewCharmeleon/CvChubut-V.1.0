@@ -19,7 +19,7 @@
               <span class="glyphicon glyphicon-user"></span><a href="{{ url('api/v1.0/oferentes') }}">Oferentes</button></a>
             <button type="button" class="btn btn-default">
               <span class="glyphicon glyphicon-user"></span><a href="{{ url('api/v1.0/referentes') }}">Referentes</button></a>
-            
+
 
             <button type="button" class="btn btn-default btn-lg">
               <span class="glyphicon glyphicon-user"></span><a href="{{ url('api/v1.0/actividadesTipo') }}">Tipo de Actividades</button></a>
@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="panel-body">
-                  Bienvenido {{ Auth::user()->username }}!
+                  Bienvenido !
                   <img src="http://www.unixstickers.com/image/cache/data/buttons/png/php_logo-600x600.png" alt="Logo PHP">
         </div>
       </div>

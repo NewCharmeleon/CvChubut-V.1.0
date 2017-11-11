@@ -42,7 +42,10 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'administrador', 'Administrador', 'Usuario con permisos de gestion de datos', NULL, NULL),
 (2, 'secretaria', 'Secretaria', 'Usuario con permisos de lectura de Estudiantes y Actividades.', NULL, NULL),
-(3, 'estudiante', 'Estudiante', 'Usuario con Permisos de Gestion de Actividades.', NULL, NULL);
+(3, 'estudiante', 'Estudiante', 'Usuario con Permisos de Gestion de Actividades.', NULL, NULL),
+(4, 'referente', 'Referente', 'Usuario con permisos de Gestion de Actividades brindadas', NULL, NULL),
+(5, 'oferente', 'Oferente', 'Usuario con permisos de Gestion de Actividades para brindar.', NULL, NULL),
+(6, 'publico', 'Publico', 'Usuario con Permisos de Lectura de Datos Basicos.', NULL, NULL);
 
 --
 -- Índices para tablas volcadas

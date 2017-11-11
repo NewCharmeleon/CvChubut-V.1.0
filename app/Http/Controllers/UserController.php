@@ -19,9 +19,9 @@ class UserController extends Controller
    */
    //Configuramos en el constructor del controlador la autenticacion
    //usando el Middleware auth.basic pero solamante a store, update y destroy.
-
+   //para que solicite autorizacion para efectuar el metodo
   public function __construct(){
-    $this->middleware('auth.basic',['only'=>['show','create','store','update','destroy']]);
+    $this->middleware('auth.basic',['only'=>['']]);
   }
 
   public function index()
@@ -49,25 +49,24 @@ class UserController extends Controller
     //return "peticion post recibida.";
     //Comprobacion de llegada completa de los datos
   /*  if (!$request->input('username') || !$request->input('email') ||
-     !$request->input('password'));
-    {*/
-    $rules = [
-                'name' => 'required',
+     !$request->input('password'));*/
+
+    $reglas = [
+                'username' => 'required',
                 'email' => 'required|email|unique:users',
-                'password' => 'required|min:6'
+                //'password' => 'required|min:6'
     ];
-    $this->validate($request, $rules);
+    $this->validate($request, $reglas);
 
     $campos = $request->all();
-    $campos['password'] = bcrypt($request->password);
+    $campos['password'] = bcrypt(passwordDefault());
 
     $nuevoUsuario=User::create($campos);
-    return response()->json(['status'=>'ok','data'=>$nuevoUsuario],201);
+    return response()->json(['data'=>$nuevoUsuario],201);
         //Devolvemos un array llamado "errors" con los errores encontrados y
         //cabecera HTTP 422 Unprocessable Entity -utilizada para errores de
         //validacion
-      //  return response()->json(['errors'=>array(['code'=>422, 'message'=>'Faltan
-        //datos necesarios para el proceso de alta.'])], 422);
+    //return response()->json(['errors'=>array(['code'=>422, 'message'=>'Faltan datos necesarios para el proceso de alta.'])], 422);
 
         //Insertamos una fila en User con el metodo create pasando todos legajos
         //los datos recibidos
@@ -92,8 +91,7 @@ class UserController extends Controller
       //Es recomendable devolver un array "errors" con los errores encontrados
       //y su respectiva cabecera HTTP 404--El mensaje puede ser personalizado
       return
-      response()->json(['errors'=>array(['code'=>404, 'message'=>'No se encuentra
-      ningun Usuario con ese id.'])], 404);
+      response()->json(['errors'=>array(['code'=>404, 'message'=>'No se encuentra ningun Usuario con id: '.$id.'.'])], 404);
     }
     return
     response()->json(['status'=>'ok', 'data'=>$usuarios], 200);
@@ -116,13 +114,13 @@ class UserController extends Controller
       ];
       $this->validate($request, $reglas);
 
-      if ($request->has('name')){
-        $user->name = $request->name;
-      }
+      //if ($request->has('username')){
+      //  $user->username = $request->name;
+      //}
       if ($request->has('email') && $user->email != $request->email){
         $user->email = $request->email;
       }
-      if($request->has('password')){
+      if($request->has('password') && $user->password != $request->password){
         $user->password = bcrypt($request->password);
       }
 
@@ -131,7 +129,7 @@ class UserController extends Controller
           para actualizar al Usuario','code'=> 422],422);
       }
       $user->save();
-      return response()->json(['status'=>'ok','data'=>$user],200);
+      return response()->json(['data'=>$user],200);
   }
 
   /**

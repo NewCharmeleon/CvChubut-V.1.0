@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 //Modelo que necesitamos
-use App\Referente;
+use App\Persona;
+use App\Role;
+use App\User;
 //Clase Response para crear la respuesta especial con la cabecera de
 //localizacion en el metodo Store()
 use Illuminate\Http\Request;
@@ -19,10 +21,17 @@ class ReferenteController extends Controller
   {
     //Se Mostrara todas los referentes
     //return "Mostrando todos los referentes";
-    $referentes=Cache::remember('cachereferentes',15/60, function(){
+    /*$referentes=Cache::remember('cachereferentes',15/60, function(){
       return Referente::simplePaginate(10);
-    });
-    return response()->json(['status'=>'ok', 'siguiente'=>$referentes->nextPageUrl(),'anterior'=>$referentes->previousPageUrl(),'data'=>$referentes->items()],200);
+    });*/
+    $role='3';
+    $rol=User::where('role_user.users_id','=','personas.user_id')->get();//->whereIn("role_user.role_id","=", '3')->get();
+    //$rol= Role::where("role_id", "=", '3')->get();
+    dd($rol);
+    //$referentes=Persona::where("user_id", "=" , $rol);
+    //dd($referentes);
+    //$referentes = Referente::has('roles.id=3');
+    return response()->json(['status'=>'ok', 'siguiente'=>$rol->nextPageUrl(),'anterior'=>$rol->previousPageUrl(),'data'=>$rol->items()],200);
 
   }
 

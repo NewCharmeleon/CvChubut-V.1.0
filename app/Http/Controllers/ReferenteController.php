@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 //Modelo que necesitamos
-use App\Persona;
+use App\Referente;
 use App\Role;
-use App\User;
 //Clase Response para crear la respuesta especial con la cabecera de
 //localizacion en el metodo Store()
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+//use App\Http\Controllers\Entrust;
 
 class ReferenteController extends Controller
 {
@@ -21,11 +21,26 @@ class ReferenteController extends Controller
   {
     //Se Mostrara todas los referentes
     //return "Mostrando todos los referentes";
+
+    $rol='referente';
+    $referente=Role::with('users')->where('roles.name',$rol)->get();
+    if ($referente->isEmpty()){
+      return
+      response()->json(['errors'=>array(['code'=>404, 'message'=>'No Hay Usuarios con rol Referente
+      '.$rol])], 404);
+    }
+      //Es recomendable devolver un array "errors" con los errores encontrados
+      //y su respectiva cabecera HTTP 404--El mensaje puede ser personalizado
+    return response()->json(['status'=>'ok', 'data'=>$referente], 200);
     /*$referentes=Cache::remember('cachereferentes',15/60, function(){
       return Referente::simplePaginate(10);
     });*/
-    $role='3';
-    $rol=Role::with('usuarios','role_user')->where('roles.id',$role)->get();//->whereIn("role_user.role_id","=", '3')->get();
+    //$role=Entrust::hasRole('referente');
+  //  dd ('$role');
+
+  //**  $rol=Role::with('users.personas')->where('name','referente')->get();
+  //*return User::with('roles')->where('role.name',$rol)->simplePaginate(10);
+     //return $referente;//Role::with('users')->where('roles.name',$rol)->get();//->whereIn("role_user.role_id","=", '3')->get();
     //1$rol=User::with('roles')->where('users.user_id',$role);
     //$rol= Role::where("role_id", "=", '3')->get();
     //dd($rol);
@@ -33,7 +48,7 @@ class ReferenteController extends Controller
     //dd($referentes);
     //$referentes = Referente::has('roles.id=3');
     //return response()->json(['status'=>'ok', 'siguiente'=>$rol->nextPageUrl(),'anterior'=>$rol->previousPageUrl(),'data'=>$rol->items()],200);
-    response()->json(['status'=>'ok', 'data'=>$rol], 200);
+    //response()->json(['status'=>'ok', 'data'=>$rol], 200);
   }
 
   /**

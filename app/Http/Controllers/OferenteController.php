@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 //Modelo que necesitamos
 use App\Oferente;
+use App\Role;
 //Clase Response para crear la respuesta especial con la cabecera de
 //localizacion en el metodo Store()
 use View;
@@ -36,13 +37,22 @@ class OferenteController extends Controller
         // $html = (string) $view;*/
         //Se Mostrara todos los oferentes
     //return "Mostrando todos los oferentes";
-    $oferentes=Cache::remember('cacheoferentes',15/60, function(){
+  /****  $oferentes=Cache::remember('cacheoferentes',15/60, function(){
       return Oferente::simplePaginate(10);
     });
     return response()->json(['status'=>'ok',
                               'siguiente'=>$oferentes->nextPageUrl(),
                               'anterior'=>$oferentes->previousPageUrl(),
-                              'data'=>$oferentes->items()],200);
+                              'data'=>$oferentes->items()],200);*/
+      $rol='oferente';
+      $oferente=Role::with('users')->where('roles.name',$rol)->get();
+      if ($oferente->isEmpty()){
+          return
+            response()->json(['errors'=>array(['code'=>404, 'message'=>'No Hay Usuarios con rol Oferente'.$rol])], 404);
+      }
+      //Es recomendable devolver un array "errors" con los errores encontrados
+      //y su respectiva cabecera HTTP 404--El mensaje puede ser personalizado
+      return response()->json(['status'=>'ok', 'data'=>$oferente], 200);
 
   }
 

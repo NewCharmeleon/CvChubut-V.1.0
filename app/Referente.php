@@ -29,5 +29,7 @@ class Referente extends Persona
   public function actividades(){
     return $this->hasMany('Actividad::class');
   }
-  
+  public function roles(){
+    return $this->hasOne(Role::class);//with('users.personas')->where('name','referente')->get());
+  }
 }

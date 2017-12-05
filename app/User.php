@@ -61,6 +61,6 @@ class User extends Authenticatable
   }
 
   public function personas(){
-    return $this->hasOne('Personas::class');
+    return $this->hasOne('App\Persona');
   }
 }

@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Http\Controllers\Entrust;
 class Persona extends Model
 {
   //

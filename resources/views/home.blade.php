@@ -31,7 +31,10 @@
         </div>
         <div class="panel-body">
                   Bienvenido !
+                  
                   <img src="http://www.unixstickers.com/image/cache/data/buttons/png/php_logo-600x600.png" alt="Logo PHP">
+
+
         </div>
       </div>
     </div>

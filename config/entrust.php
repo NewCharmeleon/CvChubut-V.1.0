@@ -1,15 +1,13 @@
 <?php
 
 /**
- *Modificada las tablas para el sistema...gracias...
  * This file is part of Entrust,
  * a role & permission management solution for Laravel.
  *
  * @license MIT
  * @package Zizaco\Entrust
  */
-use App\Permission;
-use App\Role;
+
 return [
 
     /*
@@ -21,8 +19,7 @@ return [
     | the role if it is in a different namespace.
     |
     */
-    'role' => Role::class,
-    //'App\Role',
+    'role' => '\App\Role',
 
     /*
     |--------------------------------------------------------------------------
@@ -43,8 +40,7 @@ return [
     | Update the permission if it is in a different namespace.
     |
     */
-    'permission' => Permission::class,
-    //'App\Permission',
+    'permission' => '\App\Permission',
 
     /*
     |--------------------------------------------------------------------------

@@ -10,6 +10,7 @@ use App\User;
 use Response;
 use Illuminate\Support\Facades\Cache;
 
+
 class UserController extends Controller
 {
   /**
@@ -32,11 +33,31 @@ class UserController extends Controller
     //Recomendable devolver un objeto con propiedad "data" con el array de
     //resultados dentro de esa propiedad.
     $users=Cache::remember('cacheusers',15/60, function(){
-      return User::simplePaginate(10);
+      return User::with('roles')->simplePaginate(10);
     });
     return response()->json(['status'=>'ok', 'siguiente'=>$users->nextPageUrl(),'anterior'=>$users->previousPageUrl(),'data'=>$users->items()],200);
+//$user = User::find(1);
 
-  }
+//obteniendo los menus asociados al User
+/*foreach ($user->role as $role) {
+//obteniendo los datos de un rol específico
+echo $role->id;
+echo $role->name;
+//obteniendo datos de la tabla pivot por permiso
+echo $role->pivot->permision_id;
+echo $role->pivot->id;*/
+
+
+
+//obteniendo los permisos asociados al User
+/*foreach ($user->permission as $permission) {
+//obteniendo los datos de un permiso específico
+echo $permission->display_name;
+//obteniendo datos de la tabla pivot por permiso
+echo $permission->pivot->role_id;
+echo $permission->pivot->id;*/
+}
+
 
   /**
    * Show the form for creating a new resource.

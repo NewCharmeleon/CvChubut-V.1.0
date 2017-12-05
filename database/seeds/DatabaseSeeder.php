@@ -1,5 +1,9 @@
 <?php
-
+//use App\User;
+//use App\Referente;
+//use App\Oferente;
+//use App\Estudiante;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Database\Seeder;
 
 
@@ -13,17 +17,30 @@ class DatabaseSeeder extends Seeder
   public function run()
   {
     //Borramos los datos de las tablas para no tener problemas con datos erroneos
-    User::truncate();
-    Actividades::truncate();
-    ActividadEspecifica::truncate();
-    ActividadTipo::truncate();
-    Carrera::truncate();
-    Estudiante::truncate();
-    Legajo::truncate();
+    $this->truncateTables([
+      'referentes',
+      'oferentes',
+      'estudiantes',
+      'personas',
+      'carreras',
+      'legajos',
+      'actividades_especifica',
+      'actividades_tipo',
+      'actividades',
+      'users',
+        ]);
+  /*  Referente::truncate();
     Oferente::truncate();
+    Estudiante::truncate();
     Persona::truncate();
-    Referente::truncate();
-    RolPermiso::truncate();
+    Carrera::truncate();
+    Legajo::truncate();
+    ActividadEspecifica::truncate();
+    Actividades::truncate();
+    ActividadTipo::truncate();
+    User::truncate();*/
+
+    //RolPermiso::truncate();
     //Llamamos en orden a los Seeders para el poblado masivo de las tablas
     $this->call(UsersTableSeeder::class);
     $this->call(ActividadesTipoTableSeeder::class);
@@ -35,5 +52,17 @@ class DatabaseSeeder extends Seeder
     $this->call(EstudiantesTableSeeder::class);
     $this->call(OferentesTableSeeder::class);
     $this->call(ReferentesTableSeeder::class);
+
+
+  }
+  public function truncateTables(array $tables)
+  {
+      DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+
+      foreach ($tables as $table) {
+          DB::table($table)->truncate();
+      }
+
+      DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
   }
 }

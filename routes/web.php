@@ -1,4 +1,5 @@
 <?php
+use App\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('test', function(){
+  $role = App\Role::with('usuarios')->get();//firts();
+  $roles = $role->roles()->first();
+  $pivot = $roles->pivot;
+  return $pivot->usuarios;
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Actividad;
+use App\User;
 //use Illuminate\Database\Eloquent\Model;
 
 class Referente extends Persona
@@ -28,4 +29,5 @@ class Referente extends Persona
   public function actividades(){
     return $this->hasMany('Actividad::class');
   }
+  
 }

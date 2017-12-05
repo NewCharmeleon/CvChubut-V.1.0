@@ -25,14 +25,15 @@ class ReferenteController extends Controller
       return Referente::simplePaginate(10);
     });*/
     $role='3';
-    $rol=User::where('role_user.users_id','=','personas.user_id')->get();//->whereIn("role_user.role_id","=", '3')->get();
+    $rol=Role::with('usuarios','role_user')->where('roles.id',$role)->get();//->whereIn("role_user.role_id","=", '3')->get();
+    //1$rol=User::with('roles')->where('users.user_id',$role);
     //$rol= Role::where("role_id", "=", '3')->get();
-    dd($rol);
+    //dd($rol);
     //$referentes=Persona::where("user_id", "=" , $rol);
     //dd($referentes);
     //$referentes = Referente::has('roles.id=3');
-    return response()->json(['status'=>'ok', 'siguiente'=>$rol->nextPageUrl(),'anterior'=>$rol->previousPageUrl(),'data'=>$rol->items()],200);
-
+    //return response()->json(['status'=>'ok', 'siguiente'=>$rol->nextPageUrl(),'anterior'=>$rol->previousPageUrl(),'data'=>$rol->items()],200);
+    response()->json(['status'=>'ok', 'data'=>$rol], 200);
   }
 
   /**

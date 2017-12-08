@@ -79,7 +79,12 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Bienvenidos a Cv-Chubut!!!
+                    Bienvenidos a Cv-Chubut
+
+                </div>
+
+                <div class="">
+                  <h2>  @if(! Auth::guest() ) {{ Auth::user()->username }} @endif</h2>
                 </div>
 
                 <div class="links">

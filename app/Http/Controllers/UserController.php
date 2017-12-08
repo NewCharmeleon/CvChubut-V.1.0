@@ -9,10 +9,23 @@ use App\User;
 //localizacion en el metodo Store()
 use Response;
 use Illuminate\Support\Facades\Cache;
-
+//use View;
 
 class UserController extends Controller
 {
+
+  public function index_view()
+  {
+    $usuarios = User::get();
+    $vista = view('usuario.index', compact('usuarios'));
+
+    return response()->json( $vista->render() );
+
+  }
+
+
+
+
   /**
    * Display a listing of the resource.
    *
@@ -65,13 +78,14 @@ echo $permission->pivot->id;*/
    * @return \Illuminate\Http\Response
    */
 
+  /*para usuario persona va esooo
   public function store(Request $request)
   {
     //return "peticion post recibida.";
     //Comprobacion de llegada completa de los datos
-  /*  if (!$request->input('username') || !$request->input('email') ||
+    if (!$request->input('username') || !$request->input('email') ||
      !$request->input('password'));*/
-
+/*
     $reglas = [
                 'username' => 'required',
                 'email' => 'required|email|unique:users',
@@ -100,6 +114,7 @@ echo $permission->pivot->id;*/
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
+/*estooo tambieeennnn
   public function show($id)
   {
     //Se Mostrara un usuario determinado
@@ -126,6 +141,7 @@ echo $permission->pivot->id;*/
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
+  /*kladsjfkljjfadks
   public function update(Request $request, $id)
   {
       $user = User::findOrFail($id);
@@ -151,7 +167,7 @@ echo $permission->pivot->id;*/
       }
       $user->save();
       return response()->json(['data'=>$user],200);
-  }
+  }*/
 
   /**
    * Remove the specified resource from storage.
@@ -159,11 +175,12 @@ echo $permission->pivot->id;*/
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
+  /*pofiopigpipof
   public function destroy($id)
   {
       $user = User::findOrFail($id);
       $user->delete();
       return response()->json(['status'=>'ok','data'=>$user],200);
 
-  }
+  }*/
 }

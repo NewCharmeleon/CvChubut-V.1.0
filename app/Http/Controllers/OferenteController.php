@@ -45,7 +45,7 @@ class OferenteController extends Controller
                               'anterior'=>$oferentes->previousPageUrl(),
                               'data'=>$oferentes->items()],200);*/
       $rol='oferente';
-      $oferente=Role::with('users')->where('roles.name',$rol)->get();
+      $oferente=Role::with('users')->where('roles.name',$rol)->paginate(15);
       if ($oferente->isEmpty()){
           return
             response()->json(['errors'=>array(['code'=>404, 'message'=>'No Hay Usuarios con rol Oferente'.$rol])], 404);
@@ -61,18 +61,8 @@ class OferenteController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function create()
-  {
-    //Se Mostrara un formulario para la carga de oferentes
-    return "Mostrando formulario para crear un oferente";
-  }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-  public function store(Request $request, $persona_id)
+
+/*para cargar el rol admin  public function store(Request $request, $persona_id)
   {
     //Guardamos una Persona como un nuevo Oferente
     //Comprobamos que recibimos todos los parametros
@@ -93,7 +83,7 @@ class OferenteController extends Controller
           'application/json');
             return $response;
     }
-  }
+  }*/
 
   /**
    * Display the specified resource.
@@ -125,31 +115,5 @@ class OferenteController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function edit($id)
-  {
-    //Se mostrara un formulario para editar un oferente determinada
-    return "Mostrando formulario para editar oferente con id: $id";
-  }
-  /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-  public function update(Request $request, $id)
-  {
-    //
-  }
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function destroy($id)
-  {
-      //
-  }
 }

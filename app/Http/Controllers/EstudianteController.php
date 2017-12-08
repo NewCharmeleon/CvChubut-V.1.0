@@ -26,7 +26,7 @@ class EstudianteController extends Controller
     return response()->json(['status'=>'ok', 'siguiente'=>$estudiantes->nextPageUrl(),'anterior'=>$estudiantes->previousPageUrl(),'data'=>$estudiantes->items()],200);
     */
     $rol='estudiante';
-    $estudiante=Role::with('users')->where('roles.name',$rol)->get();
+    $estudiante=Role::with('users')->where('roles.name',$rol)->paginate(15);
     if ($estudiante->isEmpty()){
         return
           response()->json(['errors'=>array(['code'=>404, 'message'=>'No Hay Usuarios con rol Estudiante'.$rol])], 404);
@@ -41,28 +41,7 @@ class EstudianteController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function create()
-  {
-    //Se Mostrara un formulario para la carga de estudiantes
-    return "Mostrando formulario para cargar un estudiante";
-  }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-  public function store(Request $request)
-  {
-    //
-  }
 
-  /**
-   * Display the specified resource.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
   public function show($id)
   {
     //Se Mostrara un estudiante determinada
@@ -85,31 +64,4 @@ class EstudianteController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function edit($id)
-  {
-    //Se mostrara un formulario para editar un estudiante determinado
-    return "Mostrando formulario para editar estudiante con id: $id";
-  }
-  /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-  public function update(Request $request, $id)
-  {
-    //
-  }
-
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function destroy($id)
-  {
-      //
-    }
 }

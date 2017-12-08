@@ -23,7 +23,7 @@ class ReferenteController extends Controller
     //return "Mostrando todos los referentes";
 
     $rol='referente';
-    $referente=Role::with('users')->where('roles.name',$rol)->get();
+    $referente=Role::with('users')->where('roles.name',$rol)->paginate(15);
     if ($referente->isEmpty()){
       return
       response()->json(['errors'=>array(['code'=>404, 'message'=>'No Hay Usuarios con rol Referente
@@ -56,76 +56,26 @@ class ReferenteController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function create()
-  {
-    //Se Mostrara un formulario para la carga de referentes
-    return "Mostrando formulario para cargar un referente";
-  }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-  public function store(Request $request)
-  {
-    //
-  }
-
-  /**
-   * Display the specified resource.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
   public function show($id)
   {
     //Se Mostrara un referente determinado
     //return "Mostrando referente con id: $id";
-    $referentes=Referente::findOrFail($id);
+    $referentes=Role::with('users')->where('roles.name','referente')->get();
+    //$referente=array_where($referentes, function('data', $id){
+      return $data->findOrFail($id);
+    ;
+    //dd($referente);
+  //  $referentes=Referente::findOrFail($id);
 
     //En caso de que no Exista tal Referente devolvemos un ErrorException
-    if (!$referentes){
+    if (!$referente){
       //Es recomendable devolver un array "errors" con los errores encontrados
       //y su respectiva cabecera HTTP 404--El mensaje puede ser personalizado
       return
-      response()->json(['errors'=>array(['code'=>404, 'message'=>'No se encuentra ningun Referente con ese id.'])], 404);
+      response()->json(['errors'=>array(['code'=>404, 'message'=>'No se encuentra ningun Referente con id:',$id])], 404);
     }
     return
-    response()->json(['status'=>'ok', 'data'=>$referentes], 200);
+    response()->json(['status'=>'ok', 'data'=>$referente], 200);
   }
 
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function edit($id)
-  {
-    //Se mostrara un formulario para editar un referente determinado
-    return "Mostrando formulario para editar referente con id: $id";
-  }
-  /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-  public function update(Request $request, $id)
-  {
-    //
-  }
-
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function destroy($id)
-  {
-      //
-  }
 }

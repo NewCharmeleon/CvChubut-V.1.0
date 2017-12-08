@@ -12,19 +12,18 @@ use App\Role;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
-Route::get('test', function(){
-  $role = App\Role::with('usuarios')->get();//firts();
-  $roles = $role->roles()->first();
-  $pivot = $roles->pivot;
-  return $pivot->usuarios;
-});
-Auth::routes();
+});*/
 
-Route::get('/home', 'HomeController@index');
+Auth::routes();
+Route::get('/', 'HomeController@index');
 //Rutas que todas vuelven al Home...SPAxD
-Route::any('{all}', function () {
+/*Route::any('{all}', function () {
      return view('home');
-})->where(['all' => '.*']);
+})->where(['all' => '.*']);*/
+
+Route::get('usuarios/index',"UserController@index_view")->name('usuarios.index');
+
+
+Route::get('/form', ['as' => 'form', 'uses' => 'FormController@index']);

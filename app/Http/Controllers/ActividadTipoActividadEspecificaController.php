@@ -70,8 +70,9 @@ class ActividadTipoActividadEspecificaController extends Controller
     de actividades generales con id:'.$idActividad.'del tipo: '.$idActividadTipo])], 404);
     }
   return
-    response()->json(['status'=>'ok', 'data'=>$actividad], 200);
-  }
+    response()->json(['status'=>'ok', 'siguiente'=>$actividad->nextPageUrl(),'anterior'=>$actividad->previousPageUrl(),'data'=>$actividad], 200);
+  }//adesEspecificas->nextPageUrl(),'anterior'=>$actividadesEspecificas->previousPageUrl(),'data'=>$actividadesEspecificas->items()],200);
+
       /*
     if (! $actividadesEspecifica){
       //Es recomendable devolver un array "errors" con los errores encontrados

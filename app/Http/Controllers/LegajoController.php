@@ -31,28 +31,7 @@ class LegajoController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function create()
-  {
-    //Se Mostrara un formulario para la carga de informacion de un legajo
-    return "Mostrando formulario para cargar informacion de un legajo";
-  }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-  public function store(Request $request)
-  {
-    //
-  }
 
-  /**
-   * Display the specified resource.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
   public function show($id)
   {
     //Se Mostrara un legajo determinado
@@ -78,31 +57,4 @@ class LegajoController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function edit($id)
-  {
-    //Se mostrara un formulario para editar informacion de un legajo determinada
-    return "Mostrando formulario para editar informacion del legajo con id: $id";
-  }
-  /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-  public function update(Request $request, $id)
-  {
-    //
-  }
-
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function destroy($id)
-  {
-      //
-  }
 }

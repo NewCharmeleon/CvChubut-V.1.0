@@ -38,8 +38,8 @@
                     <div class="" id="load-view">
 
                     </div>
+                      <img src=  {{ asset('imagenes/logoUDC.png') }}>
 
-                  <img src="http://www.unixstickers.com/image/cache/data/buttons/png/php_logo-600x600.png" alt="Logo PHP">
 
 
         </div>
@@ -55,7 +55,7 @@
 
     $('a.link').click(function(e) {
       e.preventDefault();
-      
+
       $.get( e.target.href,function (response) {
         $('#load-view').html(response);
       });

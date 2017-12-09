@@ -11,8 +11,19 @@
     <title>{{ config('app.name', 'Cv-Chubut') }}</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+    <!--<link href="/css/app.css" rel="stylesheet">-->
+    <!-- Custom CSS -->
+  @section('styles_laravel')
 
+  <!-- Bootstrap Core CSS -->
+  <link media="all" type="text/css" rel="stylesheet" href="/assets/css/bootstrap.css">
+  <link media="all" type="text/css" rel="stylesheet" href="/assets/css/app.css">
+
+  <!-- Fonts -->
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+  @show
+
+  @yield('mis_estilos')
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([

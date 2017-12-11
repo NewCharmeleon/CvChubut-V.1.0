@@ -60,22 +60,36 @@ class ReferenteController extends Controller
   {
     //Se Mostrara un referente determinado
     //return "Mostrando referente con id: $id";
-    $referentes=Role::with('users')->where('roles.name','referente')->get();
+    //$referentes=Role::with('users')->where('roles.name','referente')->get();
     //$referente=array_where($referentes, function('data', $id){
-      return $data->findOrFail($id);
-    ;
+    //  return $data->findOrFail($id);
+
     //dd($referente);
   //  $referentes=Referente::findOrFail($id);
 
     //En caso de que no Exista tal Referente devolvemos un ErrorException
-    if (!$referente){
+  /*  if (!$referente){
       //Es recomendable devolver un array "errors" con los errores encontrados
       //y su respectiva cabecera HTTP 404--El mensaje puede ser personalizado
       return
       response()->json(['errors'=>array(['code'=>404, 'message'=>'No se encuentra ningun Referente con id:',$id])], 404);
     }
     return
+    response()->json(['status'=>'ok', 'data'=>$referente], 200);*/
+    //Se Mostrara un oferente determinado
+    //return "Mostrando oferente con id: $id";
+    $referente=Referente::find($id);
+
+    //En caso de que no Exista tal usuario devolvemos un ErrorException
+    if (!$referente){
+      //Es recomendable devolver un array "errors" con los errores encontrados
+      //y su respectiva cabecera HTTP 404--El mensaje puede ser personalizado
+      return
+      response()->json(['errors'=>array(['code'=>404, 'message'=>'No se encuentra ningun Referente con ese id.'])], 404);
+    }
+    return
     response()->json(['status'=>'ok', 'data'=>$referente], 200);
+    response()->json(['body' => View::make('referente.$id')->render()]);
   }
 
 }

@@ -114,7 +114,7 @@ echo $permission->pivot->id;*/
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-/*estooo tambieeennnn
+//estooo tambieeennnn
   public function show($id)
   {
     //Se Mostrara un usuario determinado

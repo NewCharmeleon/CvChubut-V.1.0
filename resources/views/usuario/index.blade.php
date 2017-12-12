@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Id</th>
       <th>Nombre</th>
       <th>Rol</th>
       <th>Acciones</th>
@@ -13,8 +14,9 @@
   <tbody>
     @foreach ($usuarios as $id => $usuario)
       <tr>
+        <td>{{ $usuario->id }}</td>
         <td>{{ $usuario->username }}</td>
-        <td>{{ $usuario->role->display_name }}</td>
+        
         <td>
           <button type="button"  class="btn btn-sm btn-danger click" value="{{ $id }}" name="button">Seleccionar</button>
         </td>

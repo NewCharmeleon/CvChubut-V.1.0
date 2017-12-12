@@ -60,10 +60,12 @@ class User extends Authenticatable
   public function roles(){
     return $this->belongsToMany('App\Role');
   }
-  /*public function getRole()	{
-    $role = Auth::user()->load('roles');
-    return $role;
-	}*/
+  public function getRole()	{
+    //$role = Auth::user()->load('roles');
+    //return $role;
+    return $this->roles();
+  }
+  
 
   public function personas(){
     return $this->hasOne('App\Persona');

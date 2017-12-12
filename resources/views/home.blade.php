@@ -26,7 +26,7 @@
                       <h2>  @if(! Auth::guest() )
                         <div>
                          {{ Auth::user()->username }}
-                         {{ Auth::user()->role}}
+                         {{ Auth::user()->getRole}}
                         </div>
                       @endif
                     </h2>

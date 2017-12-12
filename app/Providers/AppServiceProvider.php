@@ -13,7 +13,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Call to Entrust::getRole
+          \Blade::directive('getRole', function($expression) {
+              return "<?php if (\\Entrust::getRole({$expression})) : ?>";
+          });
+
+          \Blade::directive('endgetRole', function($expression) {
+              return "<?php endif; // Entrust::getRole ?>";
+          });
     }
 
     /**

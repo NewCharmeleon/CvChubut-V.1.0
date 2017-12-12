@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 //Modelo que necesitamos
 use App\User;
+use App\Role;
 //Clase Response para crear la respuesta especial con la cabecera de
 //localizacion en el metodo Store()
 use Response;
@@ -13,10 +14,11 @@ use Illuminate\Support\Facades\Cache;
 
 class UserController extends Controller
 {
+  protected $request;
 
   public function index_view()
   {
-    $usuarios = User::with('roles', 'display_name')->get();
+    $usuarios = User::with('roles')->get();
     $vista = view('usuario.index', compact('usuarios'));
 
     return response()->json( $vista->render() );
@@ -46,7 +48,12 @@ class UserController extends Controller
     //Recomendable devolver un objeto con propiedad "data" con el array de
     //resultados dentro de esa propiedad.
     $users=Cache::remember('cacheusers',15/60, function(){
+      //$roles = Role::pluck('id','display_name');
+      //Auth::user()->load('roles');
+      //$plucked = $collection->pluck('name', 'product_id');
+
       return User::with('roles')->simplePaginate(10);
+      //return User::with('roles',$roles)->simplePaginate(10);
     });
     return response()->json(['status'=>'ok', 'siguiente'=>$users->nextPageUrl(),'anterior'=>$users->previousPageUrl(),'data'=>$users->items()],200);
 //$user = User::find(1);
@@ -120,7 +127,9 @@ echo $permission->pivot->id;*/
     //Se Mostrara un usuario determinado
     //return "Mostrando usuario con id: $id";
     //Recomendable buscar un Usuario por id
-    $usuarios=User::find($id);
+    $usuarios=User::with('roles')->find($id);
+    //$plucked = $usuarios->pluck('id','username','display_name');
+    //$plucked->all();
 
     //En caso de que no Exista tal usuario devolvemos un ErrorException
     if (!$usuarios){

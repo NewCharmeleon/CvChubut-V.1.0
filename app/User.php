@@ -3,6 +3,7 @@
 namespace App;
 use App\Role;
 use App\Persona;
+use App\Auth;
 use App\Http\Requests\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -59,6 +60,10 @@ class User extends Authenticatable
   public function roles(){
     return $this->belongsToMany('App\Role');
   }
+  /*public function getRole()	{
+    $role = Auth::user()->load('roles');
+    return $role;
+	}*/
 
   public function personas(){
     return $this->hasOne('App\Persona');

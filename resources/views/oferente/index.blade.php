@@ -1,20 +1,22 @@
 <div class="">
 
-<h4> Usuarios </h4>
+<h4> Oferentes </h4>
 
 <table>
   <thead>
     <tr>
       <th>Id</th>
-      <th>Nombre</th>
+      <th>Persona</th>
+      <th>Actividad</th>
       <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
-    @foreach ($usuarios as $id => $usuario)
+    @foreach ($oferentes as $id => $oferente)
       <tr>
-        <td>{{ $usuario->id }}</td>
-        <td>{{ $usuario->username }}</td>
+        <td>{{ $oferente->id }}</td>
+        <td>{{ $oferente->persona_id }}</td>
+        <td>{{ $oferente->actividad_id}}</td>
         <td>
           <button type="button"  class="btn btn-sm btn-danger click" value="{{ $id }}" name="button">Crear</button>
           <button type="button"  class="btn btn-sm btn-danger click" value="{{ $id }}" name="button">Editar</button>

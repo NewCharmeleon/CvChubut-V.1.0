@@ -65,7 +65,7 @@ class User extends Authenticatable
     //return $role;
     return $this->roles();
   }
-  
+
 
   public function personas(){
     return $this->hasOne('App\Persona');

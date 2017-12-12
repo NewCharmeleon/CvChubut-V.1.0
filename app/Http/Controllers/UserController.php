@@ -19,6 +19,7 @@ class UserController extends Controller
   public function index_view()
   {
     $usuarios = User::with('roles')->get();
+    //$roles = Role::get();
     $vista = view('usuario.index', compact('usuarios'));
 
     return response()->json( $vista->render() );

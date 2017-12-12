@@ -7,6 +7,7 @@
     <tr>
       <th>Id</th>
       <th>Nombre</th>
+      <th>Rol</th>
       <th>Acciones</th>
     </tr>
   </thead>
@@ -15,6 +16,7 @@
       <tr>
         <td>{{ $usuario->id }}</td>
         <td>{{ $usuario->username }}</td>
+        <td>{{ $usuario->role}}</td>
         <td>
           <button type="button"  class="btn btn-sm btn-danger click" value="{{ $id }}" name="button">Crear</button>
           <button type="button"  class="btn btn-sm btn-danger click" value="{{ $id }}" name="button">Editar</button>

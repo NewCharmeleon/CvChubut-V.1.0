@@ -18,7 +18,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:api');
 
 //versionado del Api
-Route::group(array('prefix'=>'/v1.0'),function(){
+/*Route::group(array('prefix'=>'/v1.0'),function(){
   Route::get('/form', ['as' => 'form', 'uses' => 'FormController@index']);
     //Rutas que redirigen al api segun los parametros del URI que se invoque...xD
   //Actividad
@@ -57,3 +57,4 @@ Route::group(array('prefix'=>'/v1.0'),function(){
   ['except'=>['show']]);
   }
 );
+*/

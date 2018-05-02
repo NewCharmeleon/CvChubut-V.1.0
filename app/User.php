@@ -1,73 +1,62 @@
-<?php
+<?php namespace App;
 
-namespace App;
-use App\Role;
-use App\Persona;
-use App\Auth;
-use App\Http\Requests\Request;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Esensi\Model\Contracts\ValidatingModelInterface;
+use Esensi\Model\Traits\ValidatingModelTrait;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\Model;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
-//use App\Role;
-//use App\Permission;
+use Acoustep\EntrustGui\Contracts\HashMethodInterface;
+use Hash;
 
-class User extends Authenticatable
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract, ValidatingModelInterface, HashMethodInterface
 {
-  use Notifiable;
-  use EntrustUserTrait; //hacemos uso del trait en la clase User para hacer uso de sus métodos
+  use Authenticatable, CanResetPassword, ValidatingModelTrait, EntrustUserTrait;
 
+    protected $throwValidationExceptions = true;
 
-  const PASSWORD_DEFAULT = '123456';
-  const ROLE_DEFAULT = '6';
-   protected $table = 'users';
-  /**
-   * The attributes that are mass assignable.
-   *
-   * @var array
-   */
-  protected $fillable = [
-    'username','email','password',
-  ];
-  /**
-   * The attributes that should be hidden for arrays.
-   *
-   * @var array
-   */
-  protected $hidden = [
-    'password','remember_token','timestamps',
-  ];
-  public function passwordDefault(){
-    return $this->password ==  User::PASSWORD_DEFAULT;
-  }
-  public function roleDefault(){
-    return $this->user->role == Role::ROLE_DEFAULT;
-  }
-  /*public function roles(){
-    return $this->belongsToMany('App\Role','permission_role_user')
-                ->whitPivot('permission_id','id');
-  }
-  public function permisos(){
-    return $this->belongsToMany('App\Permision','permission_role_user')
-                ->withPivot('role_id', 'id');
-  }*/
-  /*public function roles(){
-    return $this->belongsToMany(Role::class, 'user_id')
-      ->withPivot('user_id','role_id','name','display_name')
-      ->using(RolePivot::class);
-  }*/
-  //establecemos las relaciones con el modelo Role, ya que un usuario puede tener varios roles
-    //y un rol lo pueden tener varios usuarios
-  public function roles(){
-    return $this->belongsToMany('App\Role');
-  }
-  public function getRole()	{
-    //$role = Auth::user()->load('roles');
-    //return $role;
-    return $this->roles();
-  }
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['username', 'email', 'password'];
 
-  public function personas(){
-    return $this->hasOne('App\Persona');
-  }
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = ['password', 'remember_token'];
+
+    protected $hashable = ['password'];
+
+    protected $rulesets = [
+
+        'creating' => [
+            'email'      => 'required|email|unique:users',
+            'password'   => 'required',
+        ],
+
+        'updating' => [
+            'email'      => 'required|email|unique:users',
+            'password'   => '',
+        ],
+    ];
+
+    public function entrustPasswordHash() 
+    {
+        $this->password = Hash::make($this->password);
+        $this->save();
+    }
+
 }

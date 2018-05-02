@@ -1,33 +1,23 @@
-<?php
+<?php namespace App;
 
-namespace App;
+use Esensi\Model\Contracts\ValidatingModelInterface;
+use Esensi\Model\Traits\ValidatingModelTrait;
 use Zizaco\Entrust\EntrustRole;
-//use App\User;
-//use Illuminate\Database\Eloquent\Model;
-class Role extends EntrustRole
+
+class Role extends EntrustRole implements ValidatingModelInterface
 {
+  use ValidatingModelTrait;
+
+  protected $throwValidationExceptions = true;
+
   protected $fillable = [
     'name',
     'display_name',
-    'description'
-];
+    'description',
+  ];
 
-//establecemos las relacion de muchos a muchos con el modelo User, ya que un rol
-//lo pueden tener varios usuarios y un usuario puede tener varios roles
-/*public function usuarios(){
-  return $this->belongsToMany('App\User','permission_role')
-              ->whitPivot('user_id','role_id')
-              ->using(permission_role::class);  }
-public function permisos(){
-  return $this->belongsToMany('Permission:class','permission_role')
-  ->whitPivot('user_id','role_id')
-  ->using(permission_role::class);
-}*/
-//establecemos las relacion de muchos a muchos con el modelo User, ya que un rol
-   //lo pueden tener varios usuarios y un usuario puede tener varios roles
- public function users(){
-    return $this->belongsToMany('App\User');
-  }
-  
-
+  protected $rules = [
+    'name'      => 'required|unique:roles',
+    'display_name'      => 'required|unique:roles',
+  ];
 }

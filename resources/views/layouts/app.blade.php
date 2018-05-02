@@ -16,8 +16,8 @@
   @section('styles_laravel')
 
   <!-- Bootstrap Core CSS -->
-  <link media="all" type="text/css" rel="stylesheet" href="/assets/css/bootstrap.css">
-  <link media="all" type="text/css" rel="stylesheet" href="/assets/css/app.css">
+  <link media="all" type="text/css" rel="stylesheet" href="{{ url('assets/css/bootstrap.css') }}">
+  <link media="all" type="text/css" rel="stylesheet" href="{{ url('assets/css/app.css') }}">
 
   <!-- Fonts -->
   <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>

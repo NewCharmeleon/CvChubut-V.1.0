@@ -19,13 +19,22 @@ class ActividadEspecificaController extends Controller
   {
     //Se Mostrara todas las actividades especificas
     //return "Mostrando todas las actividades especificas";
+    /*ejemplo para apirestfull
     $actividadesEspecificas=Cache::remember('cacheusers',15/60, function(){
       return ActividadEspecifica::simplePaginate(10);
     });
     return response()->json(['status'=>'ok', 'siguiente'=>$actividadesEspecificas->nextPageUrl(),'anterior'=>$actividadesEspecificas->previousPageUrl(),'data'=>$actividadesEspecificas->items()],200);
-
-  }
-
+    */
+    /*$actividadEspecifica=Cache::remember('cacheactividadEspecifica', 15/60, function(){
+      return ActividadEspecifica::simplePaginate(10);
+    });*/
+      $actividadEspecifica=actividadEspecifica::all();
+      return view('actividadEspecifica.index', compact('actividadEspecifica'));
+    }
+    
+  
+ 
+       
   /**
    * Show the form for creating a new resource.
    *
@@ -33,13 +42,13 @@ class ActividadEspecificaController extends Controller
    */
   public function create()
   {
-    //Se Mostrara un formulario para la carga de actividades especificas
+    /*//Se Mostrara un formulario para la carga de actividades especificas
     return response()
                 ->json([
                     'form' => ActividadEspecifica::form(),
                     'option' => []
                 ]);
-    //return "Mostrando formulario para crear una actividad especifica";
+    //return "Mostrando formulario para crear una actividad especifica";*/
   }
     /**
      * Store a newly created resource in storage.
@@ -65,7 +74,7 @@ class ActividadEspecificaController extends Controller
     $actividadesEspecificas=ActividadEspecifica::find($id);
 
     //En caso de que no Exista tal actividad especifica devolvemos un ErrorException
-    if (!$actividadesEspecificas){
+    /*if (!$actividadesEspecificas){
       //Es recomendable devolver un array "errors" con los errores encontrados
       //y su respectiva cabecera HTTP 404--El mensaje puede ser personalizado
       return
@@ -73,6 +82,7 @@ class ActividadEspecificaController extends Controller
     }
     return
     response()->json(['status'=>'ok', 'data'=>$actividadesEspecificas], 200);
+    */
   }
 
   /**

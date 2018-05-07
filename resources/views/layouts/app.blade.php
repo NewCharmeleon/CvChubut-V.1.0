@@ -19,11 +19,11 @@
   <link media="all" type="text/css" rel="stylesheet" href="{{ url('assets/css/bootstrap.css') }}">
   <link media="all" type="text/css" rel="stylesheet" href="{{ url('assets/css/app.css') }}">
 
-  <!-- Fonts -->
+  <!-- Fonts 
   <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
   @show
 
-  @yield('mis_estilos')
+  @yield('mis_estilos')-->
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([

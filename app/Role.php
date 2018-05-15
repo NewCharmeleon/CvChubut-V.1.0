@@ -1,4 +1,5 @@
-<?php namespace App;
+<?php 
+namespace App;
 use App\User;
 use Esensi\Model\Contracts\ValidatingModelInterface;
 use Esensi\Model\Traits\ValidatingModelTrait;
@@ -20,7 +21,7 @@ class Role extends EntrustRole implements ValidatingModelInterface
     'name'      => 'required|unique:roles',
     'display_name'      => 'required|unique:roles',
   ];
-  public function usuarios() {
+  /*public function usuarios() {
         return $this->belongsToMany('usuarios', 'roles');
-    }
+    }*/
 }

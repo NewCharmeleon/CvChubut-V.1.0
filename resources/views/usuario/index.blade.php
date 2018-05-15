@@ -16,7 +16,7 @@
        <th>Id</th>
        <th>Nombre</th>
         <th>Email</th>
-       <th>Role</th>
+       <th>Rol</th>
       </tr>
     </thead>
    <tbody>

@@ -18,10 +18,10 @@ class UserController extends Controller
 
   public function index()
   { 
-    $usuarios=User::orderBy('id');//->paginate(5);
+    $usuarios=User::orderBy('id')->paginate(5);
     //$roles = $usuarios->roles->pluck('id','display_name');
     //$roles = $this->roles()->all();
-      return view('usuario.index', compact('usuarios'));
+      return view('usuario.index', compact($usuarios,'usuarios'));
 
   }
 
@@ -124,8 +124,8 @@ echo $permission->pivot->id;
     //Se Mostrara un usuario determinado
     //return "Mostrando usuario con id: $id";
     //Recomendable buscar un Usuario por id
-    $usuarios=User::find($id);
-    return view('usuario.show', compact($usuarios,'usuarios'));
+    $usuario=User::find($id);
+    return view('usuario.show', compact($usuario,'usuario'));
     //$plucked = $usuarios->pluck('id','username','display_name');
     //$plucked->all();
 

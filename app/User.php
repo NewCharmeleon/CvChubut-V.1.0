@@ -1,4 +1,5 @@
-<?php namespace App;
+<?php 
+namespace App;
 use App\Role;
 use Esensi\Model\Contracts\ValidatingModelInterface;
 use Esensi\Model\Traits\ValidatingModelTrait;
@@ -59,8 +60,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         $this->password = Hash::make($this->password);
         $this->save();
     }
-    public function roles() {
+    /*public function roles() {
         return $this->belongsToMany('roles', 'usuarios');
-    }
+    }*/
 
 }

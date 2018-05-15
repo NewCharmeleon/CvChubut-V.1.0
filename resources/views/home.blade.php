@@ -23,22 +23,3 @@
   
 @endsection
 
-@section('scripts')
-<script type="text/javascript">
-  $(function ($) {
-
-    $('a.link').click(function(e) {
-      e.preventDefault();
-
-      $.get( e.target.href,function (response) {
-        $('#load-view').html(response);
-      });
-
-    });
-
-
-
-
-  });
-</script>
-@endsection

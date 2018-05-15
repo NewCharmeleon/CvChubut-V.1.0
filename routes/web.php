@@ -30,10 +30,11 @@ Route::group(array('prefix'=>'/v1.0'),function(){
     //Rutas que redirigen al api segun los parametros del URI que se invoque...xD
   //Usuarios
   Route::resource('usuarios','UserController',['only'=>['index', 'show']]);
+  //de prueba Route::get('users', ['uses' => 'UsersController@index', 'as' => 'entrust-gui::users.index']);
   //Actividad
   Route::resource('actividades','ActividadController',['only'=>['index', 'show']]);
   //Actividades Especificas
-  Route::resource('actividadesEspecifica','ActividadEspecificaController',['only'=>['index', 'show']]);
+  Route::resource('actividadesEspecifica','ActividadEspecificaController');
   //Actividades Tipo
   Route::resource('actividadesTipo','ActividadTipoController',['only'=>['index', 'show']]);
   /*//Carreras

@@ -16,18 +16,14 @@ class UserController extends Controller
 {
   protected $request;
 
-  public function index_view()
-  {
-    $usuarios = User::with('roles')->get();
-    //$roles = Role::get();
-    $vista = view('usuario.index', compact('usuarios'));
-
-    return response()->json( $vista->render() );
+  public function index()
+  { 
+    $usuarios=User::orderBy('id');//->paginate(5);
+    //$roles = $usuarios->roles->pluck('id','display_name');
+    //$roles = $this->roles()->all();
+      return view('usuario.index', compact('usuarios'));
 
   }
-
-
-
 
   /**
    * Display a listing of the resource.
@@ -41,7 +37,7 @@ class UserController extends Controller
     $this->middleware('auth.basic',['only'=>['']]);
   }
 
-  public function index()
+  /*public function index()
   {
     //Se Mostrara todos los usuarios
 
@@ -76,8 +72,8 @@ echo $role->pivot->id;*/
 echo $permission->display_name;
 //obteniendo datos de la tabla pivot por permiso
 echo $permission->pivot->role_id;
-echo $permission->pivot->id;*/
-}
+echo $permission->pivot->id;
+}*/
 
 
   /**
@@ -128,19 +124,20 @@ echo $permission->pivot->id;*/
     //Se Mostrara un usuario determinado
     //return "Mostrando usuario con id: $id";
     //Recomendable buscar un Usuario por id
-    $usuarios=User::with('roles')->find($id);
+    $usuarios=User::find($id);
+    return view('usuario.show', compact($usuarios,'usuarios'));
     //$plucked = $usuarios->pluck('id','username','display_name');
     //$plucked->all();
 
     //En caso de que no Exista tal usuario devolvemos un ErrorException
-    if (!$usuarios){
+    /*if (!$usuarios){
       //Es recomendable devolver un array "errors" con los errores encontrados
       //y su respectiva cabecera HTTP 404--El mensaje puede ser personalizado
       return
       response()->json(['errors'=>array(['code'=>404, 'message'=>'No se encuentra ningun Usuario con id: '.$id.'.'])], 404);
     }
     return
-    response()->json(['status'=>'ok', 'data'=>$usuarios], 200);
+    response()->json(['status'=>'ok', 'data'=>$usuarios], 200);*/
 
   }
 

@@ -1,67 +1,47 @@
-<div class="">
+@extends('layouts.app')
 
-<h4> Usuarios </h4>
+@section ('title')Usuarios @stop
+  
+@section ('content')
+<div class="panel panel-success col-md-10 col-md-offset-1">
+  @include('layouts.menu')
+  <br><br><br>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Nombre</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="col-md-10 col-md-offset-1 well">
+  <table class="table table-striped">
+    <caption><h4><b><u>Listado de Usuarios</u></b></h4></caption>
+    <thead>
+     <tr>
+       <th>Id</th>
+       <th>Nombre</th>
+        <th>Email</th>
+       <th>Role</th>
+      </tr>
+    </thead>
+   <tbody>
     @foreach ($usuarios as $id => $usuario)
       <tr>
         <td>{{ $usuario->id }}</td>
         <td>{{ $usuario->username }}</td>
-        <td>
-          <button type="button"  class="btn btn-sm btn-danger click" value="{{ $id }}" name="button">Crear</button>
-          <button type="button"  class="btn btn-sm btn-danger click" value="{{ $id }}" name="button">Editar</button>
-          <button type="button"  class="btn btn-sm btn-danger click" value="{{ $id }}" name="button">Eliminar</button>
+        <td>{{ $usuario->email }}</td>
+        <td>@foreach($usuario->roles as $role)
+                {{ $role->display_name }}
+          @endforeach
         </td>
-      </tr>
+        <td> 
+          <div class="mbr-section-btn pull-right">
+            <a href="{{ route('usuarios.show',$usuario->id) }}" > <i class="glyphicon glyphicon-eye-open"></i> </a>
+        </td>
+                         
     @endforeach
   </tbody>
 </table>
-
-
-
-
-
-
-
-
-
+@role('admin')
+        <div>
+                         
+             <a class="link btn btn-default" href="{{ url('admin/users') }}"> <i class="glyphicon glyphicon-user"></i>Administrar Usuarios</a>
+</div> 
+@endrole
 </div>
-
-
-
-
-
-<script type="text/javascript">
-  $(function ($) {
-
-
-    var usuarios= <?php echo json_encode($usuarios ); ?>;
-//esto por ajax con botones dependiendo del usuario y mostrarlo
-    $('tbody').click('tr td .click',function (e) {
-      e.preventDefault();
-       var id = e.target.value;
-       alert( usuarios[id].username );
-       usuarios.splice(id,1);
-//esto arma los botones con javascript y la informacion
-       $('tbody').empty();
-       $('tbody').append(
-          usuarios.map(function ( usuario,key) {
-            return "<tr><td>"+usuario.username+"</td><td><button type='button'  class='btn btn-sm btn-danger click' value='"+key+"' name='button'>Seleccionar</button></td></tr>"
-          }).toString()
-
-       );
-
-    });
-
-
-
-  });
-</script>
+@stop

@@ -1,61 +1,39 @@
-<html>
-<head>
-    <title>Formulario con Combobox</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet" >
-    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.js"></script>
-</head>
-<body>
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-<div class="container col-md-4 col-md-offset-4">
 
-    <form>
-        <div class="btn-group" role="group" aria-label="...">
-            <h2>Comboboxes</h2>
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                    Seleccione una opción
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    @foreach($actividadEspecificas as $actividadEspecifica)
-                    <li><a href="{{$actividadEspecifica->id}}">{{$actividadEspecifica->name}}</a></li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <h2>Checkboxes</h2>
-            @foreach($actividadEspecificas as $actividadEspecifica)
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="{{$actividadEspecifica->id}}">
-                    {{$actividadEspecifica->name}}
-                </label>
-            </div>
-            @endforeach
-        </div>
-        <div class="form-group">
-            <h2>Radios</h2>
-            @foreach($actividadEspecificas as $actividadEspecifica)
-            <label class="radio-inline">
-                <input type="radio" name="{{$actividadEspecifica->name}}" id="{{$actividadEspecifica->id}}" value="{{$actividadEspecifica->id}}"> {{$actividadEspecifica->name}}
-            </label>
-            @endforeach
-        </div>
-
-        <div class="form-group">
-            <h2>Select</h2>
-            <select class="form-control">
-                @foreach($actividadEspecificas as $actividadEspecifica)
-                <option>{{$actividadEspecifica->name}}</option>
-                @endforeach
-            </select>
-        </div>
-
-    </form>
+      
+<div class="form-group col-md-8 col-md-offset-2">
+    <label for="nombre">Nombre</label>
+    <input type="input" class="form-control" id="nombre" placeholder="Nombre" name="nombre" value="{{ (Session::has('errors')) ? old('nombre', '') : $actividadEspecifica->nombre }}">
+</div>   
+<div class="form-group col-md-8 col-md-offset-2">
+    <label for="fechaDesde">Fecha de Inicio</label>
+    <input type="input" class="form-control" id="fechaDesde" placeholder="Fecha de Inicio" name="fechaDesde" value="{{ (Session::has('errors')) ? old('fechaDesde', '') : $actividadEspecifica->fecha_desde }}">
+</div>     
+<div class="form-group col-md-8 col-md-offset-2">
+    <label for="fechaFin">Fecha de Fin</label>
+    <input type="input" class="form-control" id="fechaFin" placeholder="Fecha de Fin" name="fechaFin" value="{{ (Session::has('errors')) ? old('fechaFin', '') : $actividadEspecifica->fecha_hasta }}">
+</div>   
+ <div class="form-group col-md-8 col-md-offset-2">
+    <label for="instancia">Instancia</label>
+    <input type="input" class="form-control" id="instancia" placeholder="Instancia" name="instancia" value="{{ (Session::has('errors')) ? old('instancia', '') : $actividadEspecifica->instancia }}">
+</div>      
+<div class="form-group col-md-8 col-md-offset-2">
+    <label for="puestoMencion">Puesto o Mencion</label>
+    <input type="input" class="form-control" id="puestoMencion" placeholder="Puesto/Mencion" name="puestoMencion" value="{{ (Session::has('errors')) ? old('puestoMencion', '') : $actividadEspecifica->puesto_mencion }}">
 </div>
-</body>
-</html>
+<div class="form-group col-md-8 col-md-offset-2">
+    <label for="referente">Institucion Referente</label>
+    <input type="input" class="form-control" id="referente" placeholder="Institucion Referente" name="referente" value="{{ (Session::has('errors')) ? old('referente', '') : $actividadEspecifica->inst_referente }}">
+</div>
+<div class="form-group col-md-8 col-md-offset-2">
+    <label for="oferente">Institucion Oferente</label>
+    <input type="input" class="form-control" id="oferente" placeholder="Institucion Oferente" name="oferente" value="{{ (Session::has('errors')) ? old('oferente', '') : $actividadEspecifica->inst_oferente }}">
+</div>
+<div class="form-group col-md-8 col-md-offset-2">
+    <label for="lugar">Lugar</label>
+    <input type="input" class="form-control" id="lugar" placeholder="Lugar" name="lugar" value="{{ (Session::has('errors')) ? old('lugar', '') : $actividadEspecifica->lugar }}">
+</div>
+
+
+

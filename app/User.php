@@ -1,5 +1,5 @@
 <?php namespace App;
-
+use App\Role;
 use Esensi\Model\Contracts\ValidatingModelInterface;
 use Esensi\Model\Traits\ValidatingModelTrait;
 use Illuminate\Auth\Authenticatable;
@@ -11,10 +11,11 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Acoustep\EntrustGui\Contracts\HashMethodInterface;
 use Hash;
 
+
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract, ValidatingModelInterface, HashMethodInterface
 {
   use Authenticatable, CanResetPassword, ValidatingModelTrait, EntrustUserTrait;
-
+  
     protected $throwValidationExceptions = true;
 
     /**
@@ -57,6 +58,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         $this->password = Hash::make($this->password);
         $this->save();
+    }
+    public function roles() {
+        return $this->belongsToMany('roles', 'usuarios');
     }
 
 }

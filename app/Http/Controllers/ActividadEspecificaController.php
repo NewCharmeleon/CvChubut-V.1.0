@@ -27,9 +27,9 @@ class ActividadEspecificaController extends Controller
     */
     /*$actividadEspecifica=Cache::remember('cacheactividadEspecifica', 15/60, function(){
       return ActividadEspecifica::simplePaginate(10);
-    });*/
-      $actividadEspecifica=actividadEspecifica::all();
-      return view('actividadEspecifica.index', compact('actividadEspecifica'));
+    });*/ 
+      $actividadEspecifica=actividadEspecifica::orderBy('id','DESC')->paginate(5);
+      return view('actividadEspecifica.index', compact($actividadEspecifica,'actividadEspecifica'));
     }
     
   
@@ -49,6 +49,9 @@ class ActividadEspecificaController extends Controller
                     'option' => []
                 ]);
     //return "Mostrando formulario para crear una actividad especifica";*/
+   $actividadEspecifica = new ActividadEspecifica();
+    return view('actividadEspecifica.create')->with('actividadEspecifica', $actividadEspecifica);
+    //return view('actividadEspecifica.create');
   }
     /**
      * Store a newly created resource in storage.
@@ -58,7 +61,51 @@ class ActividadEspecificaController extends Controller
      */
   public function store(Request $request)
   {
-    //
+    // Realizamos la validación de datos recibidos del formulario.
+    $rules=array(
+      'act_id'=>'required', // Username es único en la tabla users
+      'nombre'=>'required|min:30', // Username es único en la tabla users
+      'fecha_desde'=>'required',
+      'fecha_hasta'=>'required',
+      'instancia'=>'required',
+      'puesto_mencion'=>'required',
+      'inst_referente'=>'required',
+      'inst_oferente'=>'required',
+      'lugar'=>'required',
+      );
+     
+    // Llamamos a Validator pasándole las reglas de validación.
+    $validator=Validator::make($request->all(),$rules);
+    /* //no se $this->validate($request, [
+            'title' => 'required',
+            'description' => 'required',
+        ]);*/
+    // Si falla la validación redireccionamos de nuevo al formulario
+    // enviando la variable Input (que contendrá todos los Input recibidos)
+    // y la variable errors que contendrá los mensajes de error de validator.
+    if ($validator->fails())
+    {
+      return Redirect::to('actividadEspecifica.create')
+      ->withInput()
+      ->withErrors($validator->messages());
+    }
+
+    // Si la validación es OK, estamos listos para almacenar en la base de datos los datos.
+    ActividadEspecifica::create(array(
+      'act_id'=>$request->input('act_id'),
+      'nombre'=>$request->input('nombre'),
+      'fecha_desde'=>$request->input('fecha_desde'),
+      'fecha_hasta'=>$request->input('fecha_hasta'),
+      'instancia'=>$request->input('instancia'),
+      'puesto_mencion'=>$request->input('puesto_mencion'),
+      'inst_referente'=>$request->input('inst_referente'),
+      'inst_oferente'=>$request->input('inst_oferente'),
+      'lugar'=>$request->input('lugar'),
+      ));
+    
+    // Redireccionamos a users
+    return Redirect::to('actividadEspecifica.index');
+    
   }
 
   /**
@@ -71,7 +118,9 @@ class ActividadEspecificaController extends Controller
   {
     //Se Mostrara una Actividad especifica determinada
     //return "Mostrando actividad especifica con id: $id";
-    $actividadesEspecificas=ActividadEspecifica::find($id);
+    $actividadEspecifica=ActividadEspecifica::find($id);
+    return view('actividadEspecifica.show', compact($actividadEspecifica,'actividadEspecifica'));
+    //->with('actividadEspecifica', $actividadEspecifica);
 
     //En caso de que no Exista tal actividad especifica devolvemos un ErrorException
     /*if (!$actividadesEspecificas){
@@ -94,7 +143,10 @@ class ActividadEspecificaController extends Controller
   public function edit($id)
   {
     //Se mostrara un formulario para editar una Actividad especifica determinada
-    return "Mostrando formulario para editar actividad especifica con id: $id";
+    //return "Mostrando formulario para editar actividad especifica con id: $id";
+    $actividadEspecifica = ActividadEspecifica::find($id);
+        return view('actividadEspecifica.edit',compact($actividadEspecifica,'actividadEspecifica'));
+    //return view(ActividadEspecifica.edit);
   }
   /**
     * Update the specified resource in storage.
@@ -105,7 +157,40 @@ class ActividadEspecificaController extends Controller
     */
   public function update(Request $request, $id)
   {
-    //
+     $rules=array(
+      'act_id'=>'required', // Username es único en la tabla users
+      'nombre'=>'required|min:30', // Username es único en la tabla users
+      'fecha_desde'=>'required',
+      'fecha_hasta'=>'required',
+      'instancia'=>'required',
+      'puesto_mencion'=>'required',
+      'inst_referente'=>'required',
+      'inst_oferente'=>'required',
+      'lugar'=>'required',
+      );
+     
+    // Llamamos a Validator pasándole las reglas de validación.
+    $validator=Validator::make($request->all(),$rules);
+    /* //no se $this->validate($request, [
+            'title' => 'required',
+            'description' => 'required',
+        ]);*/
+    // Si falla la validación redireccionamos de nuevo al formulario
+    // enviando la variable Input (que contendrá todos los Input recibidos)
+    // y la variable errors que contendrá los mensajes de error de validator.
+    if ($validator->fails())
+    {
+      return Redirect::to('actividadEspecifica.create')
+      ->withInput()
+      ->withErrors($validator->messages());
+    }
+
+    // Si la validación es OK, estamos listos para almacenar en la base de datos los datos.
+    ActividadEspecifica::update(($request->all()));
+    
+    // Redireccionamos a users
+    return Redirect::to('actividadesEspecificas.index')->with('success','Actividad actualizada satisfactoriamente');
+       
   }
 
   /**
@@ -116,6 +201,7 @@ class ActividadEspecificaController extends Controller
    */
   public function destroy($id)
   {
-      //
+       ActividadEspecifica::find($id)->delete();
+        return Redirect::to('actividadEspecifica.index')->with('success','Actividad borrada satisfactoriamente');
   }
 }

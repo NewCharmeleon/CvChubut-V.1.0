@@ -39,11 +39,15 @@
         <td>{{ $actividadEspecifica->inst_oferente}}</td>
         <td>{{ $actividadEspecifica->lugar}}</td>
         <td>
-          <button type="button"  class="btn btn-sm btn-danger click" value="{{ $id }}" name="button">Crear</button>
-          <button type="button"  class="btn btn-sm btn-danger click" value="{{ $id }}" name="button">Editar</button>
-          <button type="button"  class="btn btn-sm btn-danger click" value="{{ $id }}" name="button">Eliminar</button>
-        </td>
-      </tr>
+          <div class="mbr-section-btn pull-right">
+            <a href="{{ route('actividadesEspecifica.show',$actividadEspecifica->id) }}" > <i class="glyphicon glyphicon-eye-open"></i> </a>
+             </td>
+             <td>
+                <a href="{{ route('actividadesEspecifica.edit',$actividadEspecifica->id) }}" alt="Editar Publicacion"> <i class="glyphicon glyphicon-edit" ></i> </a>
+              </td>
+              <td>
+                <a href="{{ route('actividadesEspecifica.destroy',$actividadEspecifica->id) }}" alt="Eliminar Publicacion"> <i class="glyphicon glyphicon-trash"></i> </a>
+              </td>
     @endforeach
   </tbody>
 </table>

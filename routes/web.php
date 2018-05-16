@@ -36,7 +36,7 @@ Route::group(array('prefix'=>'/v1.0'),function(){
   //Actividades Especificas
   Route::resource('actividadesEspecifica','ActividadEspecificaController');
   //Actividades Tipo
-  Route::resource('actividadesTipo','ActividadTipoController',['only'=>['index', 'show']]);
+  Route::resource('actividadesTipo','ActividadTipoController');
   /*//Carreras
   Route::resource('carreras','CarreraController',['only'=>['index', 'show']]);
   //Estudiantes

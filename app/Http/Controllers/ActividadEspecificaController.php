@@ -64,7 +64,7 @@ class ActividadEspecificaController extends Controller
     // Realizamos la validación de datos recibidos del formulario.
     $rules=array(
       'act_id'=>'required', // Username es único en la tabla users
-      'nombre'=>'required|min:30', // Username es único en la tabla users
+      'nombre'=>'required|min:5', // Username es único en la tabla users
       'fecha_desde'=>'required',
       'fecha_hasta'=>'required',
       'instancia'=>'required',

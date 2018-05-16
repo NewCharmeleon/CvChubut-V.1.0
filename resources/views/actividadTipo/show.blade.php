@@ -1,30 +1,38 @@
 @extends('layouts.app')
 
-@section ('title')Ver Actividad @stop
+@section ('title')Ver Tipos de Actividades @stop
 
 @section('content')
-
-<div class="panel panel-success col-md-10 col-md-offset-1">
-    <div>   
-    @include('layouts.menu')
-    </div>
-    <br>
-    <div class="panel-heading col-md-8 col-md-offset-2">
-        <h3 class="panel-title">Ver Actividad:</h3>
-    </div>
-    <div class="panel-body col-md-8 col-md-offset-2">
+<div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-success">
+        <div>   
+            @include('layouts.menu')
+        </div>
+        <br>
+        <div class="panel-heading">
+           <h3 class="panel-title">Ver Actividad:</h3>
+        </div>
+        <div class="panel-body">
             <div>
-            <strong>Tipo:</strong>
-            {{ $actividadEspecifica->tipo }}
+                 <strong>Id:</strong>
+                     {{ $actividadTipo->id }}
             </div>
             <div>
-
+                <strong>Tipo:</strong>
+                    
+            </div>
+            <div>
                 <strong>Nombre:</strong>
-                {{ $actividadEspecifica->nombre }}
+                    {{ $actividadTipo->nombre }}
             </div>
+            <div>
+                <strong>Descripcion:</strong>
+                   {{ $actividadTipo->descripcion }}
+            </div>
+
     </div>
-    <div class="panel-footer col-md-8 col-md-offset-2">
-        <a class="btn btn-primary" href="{{ route('actividadesEspecifica.index') }}"> Volver</a>
+    <div class="panel-footer">
+        <a class="btn btn-primary" href="{{ route('actividadesTipo.index') }}"> Volver</a>
     </div>
-    
+</div>    
 @endsection

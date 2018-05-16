@@ -43,6 +43,8 @@
             <div class="row">
               <a class="link btn btn-default" href="{{ url('api/v1.0/oferentes') }}"> <i class="glyphicon glyphicon-user"></i>Oferentes</a>
               <a class="link btn btn-default" href="{{ url('api/v1.0/referentes') }}"> <i class="glyphicon glyphicon-user"></i>Referentes</a>
+              <a class="link btn btn-default" href="{{ url('v1.0/actividades') }}"><i class="glyphicon glyphicon-education"></i>Actividades Generales</a>
+              <a class="link btn btn-default" href="{{ url('v1.0/actividadesEspecifica') }}"> <i class="glyphicon glyphicon-education"></i>Actividades Especificas</a>
             </div>
         @endrole
 

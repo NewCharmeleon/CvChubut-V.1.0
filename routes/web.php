@@ -25,7 +25,7 @@ Route::get('/', 'HomeController@index');
 
 //Route::get('usuarios/index',"UserController@index_view")->name('usuarios.index');
 //versionado del Api
-Route::group(array('prefix'=>'/v1.0'),function(){
+/*Route::group(array('prefix'=>'/v1.0'),function(){
   Route::get('/form', ['as' => 'form', 'uses' => 'FormController@index']);
     //Rutas que redirigen al api segun los parametros del URI que se invoque...xD
   //Usuarios
@@ -37,7 +37,7 @@ Route::group(array('prefix'=>'/v1.0'),function(){
   Route::resource('actividadesEspecifica','ActividadEspecificaController');
   //Actividades Tipo
   Route::resource('actividadesTipo','ActividadTipoController');
-  /*//Carreras
+  //Carreras
   Route::resource('carreras','CarreraController',['only'=>['index', 'show']]);
   //Estudiantes
   Route::resource('estudiantes','EstudianteController',['only'=>['index', 'show']]);
@@ -51,7 +51,8 @@ Route::group(array('prefix'=>'/v1.0'),function(){
   Route::resource('usuarios','UserController',['only'=>['index', 'show']]);
   //Referentes
   Route::resource('referentes','ReferenteController',['only'=>['index', 'show']]);
- */
-});
+ 
+});*/
 
-Route::get('/form', ['as' => 'form', 'uses' => 'FormController@index']);
+/*Route::get('/form', ['as' => 'form', 'uses' => 'FormController@index']);
+*/

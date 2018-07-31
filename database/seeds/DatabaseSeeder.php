@@ -16,7 +16,9 @@ class DatabaseSeeder extends Seeder
    */
   public function run()
   {
-    //Borramos los datos de las tablas para no tener problemas con datos erroneos
+    //Desactivamos la Revision de Claves Foraneas para evitar errores en el llenado masivo
+    DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+    /*//Borramos los datos de las tablas para no tener problemas con datos erroneos
     $this->truncateTables([
       'referentes',
       'oferentes',
@@ -28,7 +30,7 @@ class DatabaseSeeder extends Seeder
       'actividades_tipo',
       'actividades',
       'users',
-        ]);
+        ]);*/
   /*  Referente::truncate();
     Oferente::truncate();
     Estudiante::truncate();
@@ -42,19 +44,17 @@ class DatabaseSeeder extends Seeder
 
     //RolPermiso::truncate();
     //Llamamos en orden a los Seeders para el poblado masivo de las tablas
+    $this->call(CarrerasTableSeeder::class);
     $this->call(UsersTableSeeder::class);
     $this->call(ActividadesTipoTableSeeder::class);
-    $this->call(ActividadesTableSeeder::class);
-    $this->call(ActividadesEspecificaTableSeeder::class);
-    $this->call(LegajosTableSeeder::class);
-    $this->call(CarrerasTableSeeder::class);
-    $this->call(PersonasTableSeeder::class);
-    $this->call(EstudiantesTableSeeder::class);
-    $this->call(OferentesTableSeeder::class);
-    $this->call(ReferentesTableSeeder::class);
+    $this->call(ModalidadTableSeeder::class);
+    
+    //Volvemos a activar la Revision de Claves Foraneas
+    DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
 
 
   }
+  /*
   public function truncateTables(array $tables)
   {
       DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
@@ -64,5 +64,5 @@ class DatabaseSeeder extends Seeder
       }
 
       DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
-  }
+  }*/
 }

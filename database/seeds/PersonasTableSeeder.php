@@ -16,7 +16,7 @@ class PersonasTableSeeder extends Seeder
   {
     //Creamos instancia de Faker
     $faker = Faker::create('es_ES');
-    //Averiguamos cuantas Actividades Tipo tenemos
+    //Averiguamos cuantas Usuarios tenemos
     $cuantos=User::all()->count();
     for ($i=0; $i<9; $i++)
     {

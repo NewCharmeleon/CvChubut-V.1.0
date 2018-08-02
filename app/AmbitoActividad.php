@@ -1,15 +1,14 @@
 <?php
 
 namespace App;
-use App\Actividad;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ActividadTipo extends Model
+class AmbitoActividad extends Model
 {
     //nombre de la Tabla a la cual referencia el Modelo
 
-    protected $table = 'actividades_tipo';
+    protected $table = 'ambitos_actividades';
 
     //atributos a llenar del Modelo
 
@@ -23,11 +22,11 @@ class ActividadTipo extends Model
     //establecemos las relaciones a otros Modelos
     public function actividades()
     {
-        return $this->hasMany(Actividad::class, 'actividad_tipo_id');
+        return $this->hasMany(Actividad::class, 'ambitos_actividades_id');
     }
 
     //establecemos los Accesors y Mutators a utilizar para la estandarizacion de los datos en la BBDD
-    //Accesor de atributo Nombre automatico cuando llamamos a $actividades_tipo->nombre;
+    //Accesor de atributo Nombre automatico cuando llamamos a $ambitos_actividades->nombre;
     public function getNombreAttribute(){
         
         //guardamos el valor del atributo en una variable
@@ -39,14 +38,15 @@ class ActividadTipo extends Model
         //devolvemos el valor del attributo ya tratado
         return $nombre;
     }
-    //Accesor de atributo Descripcion automatico cuando llamamos a $actividades_tipo->descripcion;
+    //Accesor de atributo Descripcion automatico cuando llamamos a $ambitos_actividades->descripcion;
     public function getDescripcionAttribute(){
         
         //guardamos el valor del atributo en una variable
         $descripcion = $this->attributes['descripcion'];
         //reemplazamos los guiones por espacios para una mejor lectura del dato
         $descripcion = str_replace('_', ' ', $descripcion);
-        
+        //convertimos la primera letra del valor en mayuscula
+        $descripcion = ucfirst( $descripcion);
         //devolvemos el valor del attributo ya tratado
         return $descripcion;
     }
@@ -77,5 +77,4 @@ class ActividadTipo extends Model
         //asignamos el valor al atributo del Modelo
         $this->attributes['descripcion'] = $value;
     }
-
 }

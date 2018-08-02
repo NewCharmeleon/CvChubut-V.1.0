@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCarrerasTable extends Migration
+class CreateInstitucionesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateCarrerasTable extends Migration
      */
     public function up()
     {
-        Schema::create('carreras', function (Blueprint $table){
-            
+        Schema::create('instituciones', function(Blueprint $table)
+        {
+          
             $table
                 ->increments('id');
 
@@ -22,12 +23,17 @@ class CreateCarrerasTable extends Migration
                 ->string('nombre');
                 
             $table
-                ->integer('cantidad_materias')
-                ->default(0);
+                ->string('localidad');
                 
-            $table->timestamps();    
+            $table
+                ->string('provincia');
+                
+            $table
+                ->timestamps();    
+
+
         });
-    }
+    }    
 
     /**
      * Reverse the migrations.
@@ -36,6 +42,6 @@ class CreateCarrerasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExist('carreras');
+        Schema::dropIfExists('instituciones');
     }
 }

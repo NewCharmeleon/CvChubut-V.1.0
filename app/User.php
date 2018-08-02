@@ -83,7 +83,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         //, separados en el caracter '@'
         $username = explode( '@', $this->email   );
         //tomamos el primer string del array y lo asignamos al atributo dni de la persona. 
-        $this->username = $username[0].$this->persona->dni;
+        $this->username = $username[0];
         $this->save();
     }
 

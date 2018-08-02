@@ -47,7 +47,9 @@ class DatabaseSeeder extends Seeder
     $this->call(CarrerasTableSeeder::class);
     $this->call(UsersTableSeeder::class);
     $this->call(ActividadesTipoTableSeeder::class);
-    $this->call(ModalidadTableSeeder::class);
+    $this->call(ModalidadesTableSeeder::class);
+    $this->call(AmbitoActividadTableSeeder::class);
+    $this->call(TiposParticipacionesTableSeeder::class);
     
     //Volvemos a activar la Revision de Claves Foraneas
     DB::statement('SET FOREIGN_KEY_CHECKS = 1;');

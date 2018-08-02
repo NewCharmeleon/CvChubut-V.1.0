@@ -38,6 +38,6 @@ class CreateActividadesTipoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExist('actividades_tipo');
+        Schema::dropIfExists('actividades_tipo');
     }
 }

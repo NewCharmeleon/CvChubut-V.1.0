@@ -16,9 +16,12 @@ class Carrera extends Model
         'nombre',
         'cantidad_materias'
     ];
-
+    
+    //atributos que no se devuelven en las consultas
+    protected $hidden = ['created_at','updated_at'];
+    
     //establecemos las relaciones a otros Modelos
-    public function persona()
+    public function personas()
     {
         return $this->hasMany(Persona::class, 'carrera_id');
     }
@@ -28,7 +31,7 @@ class Carrera extends Model
     public function getNombreAttribute(){
         
         //guardamos el valor del atributo en una variable
-        $nombre = $this->attributtes['nombre'];
+        $nombre = $this->attributes['nombre'];
         //reemplazamos los guiones por espacios para una mejor lectura del dato
         $nombre = str_replace('_', ' ', $nombre);
         //convertimos la primera letra de cada palabra en mayuscula
@@ -39,14 +42,14 @@ class Carrera extends Model
 
     //Mutator de atributo Nombre a utilizar automaticamente
     //cuando se usan los metodos create()-update()-save()
-    public function setNombreAttribute( $nombre = ""){
+    public function setNombreAttribute( $value = ""){
         
         //reemplazamos los espacios en guiones del valor recibido
-        $nombre = str_replace( ' ','_', $nombre);
+        $value = str_replace( ' ','_', $value);
         //convertimos el valor recibido a minusculas
-        $nombre = strtolower( $nombre );
+        $value = strtolower( $value );
         //asignamos el valor al atributo del Modelo
-        $this->attributes['nombre'] = $nombre;
+        $this->attributes['nombre'] = $value;
 
     }
 

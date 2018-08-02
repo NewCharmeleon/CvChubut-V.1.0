@@ -70,20 +70,21 @@ class UsersTableSeeder extends Seeder
     $user = User::create([
       'username' => 'administrador_udc',
       'email' => 'administrador@udc.edu.ar',
-      'password' = '12456'
+      'password' => '12456'
     ]);
-    /*Metodo a revisar para crear Personas Administradores  
+    
+    //Metodo a revisar para crear Personas Administradores  
     //llamamos al Metodo Create del Modelo mediante nuevo Fillable
     $persona = Persona::create([
       'nombre_apellido' => $faker->firstName." ".$faker->lastName,
       'dni' => '1357911',
       'nacionalidad' => 'Argentina',
       'fecha_nac' => $faker->date('d-m-Y'),
-      'telefono' => ''.
+      'telefono' => "",
       'carrera_id' => null,
       'user_id' => $user->id
     ]);
-    */
+    
     //Se llama al Metodo para hashear el password
     $user->hashPassword();
     //Se asigna el Rol Administrador al Usuario
@@ -97,18 +98,19 @@ class UsersTableSeeder extends Seeder
       'email' => 'secretaria@udc.edu.ar',
       'password' => '123456',
     ]);
-    /*Metodo a revisar para crear Personas Secretaria  
+    
+    //Metodo a revisar para crear Personas Secretaria  
     //llamamos al Metodo Create del Modelo mediante nuevo Fillable
     $persona = Persona::create([
       'nombre_apellido' => $faker->firstName." ".$faker->lastName,
-      'dni' => '246810',
+      'dni' => '1357911',
       'nacionalidad' => 'Argentina',
       'fecha_nac' => $faker->date('d-m-Y'),
-      'telefono' => ''.
+      'telefono' => "",
       'carrera_id' => null,
       'user_id' => $user->id
     ]);
-    */
+    
 
     //Se llama al Metodo para hashear el password
     $user->hashPassword();
@@ -123,18 +125,18 @@ class UsersTableSeeder extends Seeder
       'password' => '123456',
     ]);
 
-    /*Metodo a revisar para crear Personas Alumnos  
+    //Metodo a revisar para crear Personas Alumnos  
     //llamamos al Metodo Create del Modelo mediante nuevo Fillable
     $persona = Persona::create([
       'nombre_apellido' => $faker->firstName." ".$faker->lastName,
-      'dni' => '123456',
+      'dni' => '1357911',
       'nacionalidad' => 'Argentina',
       'fecha_nac' => $faker->date('d-m-Y'),
-      'telefono' => ''.
-      'carrera_id' => Carrera::first()->id,
+      'telefono' => "",
+      'carrera_id' => null,
       'user_id' => $user->id
     ]);
-    */
+    
 
     //Se llama al Metodo para hashear el password
     $user->hashPassword();

@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ParticipacionTipo extends Model
+class TipoParticipacion extends Model
 {
    //nombre de la Tabla a la cual referencia el Modelo
 
-   protected $table = 'participaciones_tipos';
+   protected $table = 'tipos_participaciones';
 
    //atributos a llenar del Modelo
 

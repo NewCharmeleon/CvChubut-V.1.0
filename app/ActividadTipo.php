@@ -9,7 +9,7 @@ class ActividadTipo extends Model
 {
     //nombre de la Tabla a la cual referencia el Modelo
 
-    protected $table = 'actividades_tipo';
+    protected $table = 'actividades_tipos';
 
     //atributos a llenar del Modelo
 

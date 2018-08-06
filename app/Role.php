@@ -2,6 +2,7 @@
 namespace App;
 use App\User;
 
+
 //use Esensi\Model\Contracts\ValidatingModelInterface;
 //use Esensi\Model\Traits\ValidatingModelTrait;
 use Zizaco\Entrust\EntrustRole;
@@ -22,7 +23,5 @@ class Role extends EntrustRole
     'name'      => 'required|unique:roles',
     'display_name'      => 'required|unique:roles',
   ];
-  /*public function usuarios() {
-        return $this->belongsToMany('usuarios', 'roles');
-    }*/
+ 
 }

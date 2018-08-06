@@ -42,28 +42,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     protected $hashable = ['password'];
 
-    /*protected $rulesets = [
-
-        'creating' => [
-            'email'      => 'required|email|unique:users',
-            'password'   => 'required',
-        ],
-
-        'updating' => [
-            'email'      => 'required|email|unique:users',
-            'password'   => '',
-        ],
-    ];
-
-    public function entrustPasswordHash() 
-    {
-        $this->password = Hash::make($this->password);
-        $this->save();
-    }
-    /*public function roles() {
-        return $this->belongsToMany('roles', 'usuarios');
-    }*/
-
     //Metodo publico para utilizar por defecto el Dni de la Persona a cargar como Usuario
     public function hashPassword()
     {

@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
-class ActividadesTipoTableSeeder extends Seeder
+use App\ActividadTipo;
+use Faker\Factory as Faker;
+class ActividadesTiposTableSeeder extends Seeder
 {
    /**
      * Run the database seeds.

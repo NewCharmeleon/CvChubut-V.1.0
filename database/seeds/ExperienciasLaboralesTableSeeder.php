@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use App\ExperienciaLaboral;
 use App\Persona;
 
 class ExperienciasLaboralesTableSeeder extends Seeder

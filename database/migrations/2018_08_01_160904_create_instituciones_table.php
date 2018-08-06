@@ -27,6 +27,9 @@ class CreateInstitucionesTable extends Migration
                 
             $table
                 ->string('provincia');
+            
+                $table
+                ->string('pais');    
                 
             $table
                 ->timestamps();    

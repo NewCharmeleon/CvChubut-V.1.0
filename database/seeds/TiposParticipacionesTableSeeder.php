@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\TipoParticipacion;
+use Faker\Factory as Faker;
 
-class ParticipacionesTiposTableSeeder extends Seeder
+class TiposParticipacionesTableSeeder extends Seeder
 {
    /**
      * Run the database seeds.
@@ -11,7 +13,7 @@ class ParticipacionesTiposTableSeeder extends Seeder
      */
     public function run()
     {
-        ParticipacionTipo::truncate();
+        TipoParticipacion::truncate();
 
         //Creamos instancia de Faker
         $faker = Faker::create('es_Es');
@@ -19,7 +21,7 @@ class ParticipacionesTiposTableSeeder extends Seeder
         for ($i = 0; $i < 25; $i++)
         {
             //llamamos al Metodo Create del Modelo
-            ParticipacionTipo::create(
+            TipoParticipacion::create(
             [
                 'nombre' => $faker->realText(20),
                 'descripcion' => $faker->realText(50),

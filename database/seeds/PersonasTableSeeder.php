@@ -25,11 +25,10 @@ class PersonasTableSeeder extends Seeder
       Persona::create(
       [
         'user_id'=>$faker->unique($reset = true)->numberBetween($min=1, $cuantos),
-        var_dump('user_id');
         'nombre_apellido'=>$faker->name(),
         'dni'=>$faker->unique($reset = true)->numberBetween($min = 10000000, $max = 45000000),
         'nacionalidad'=>$faker->word(),
-        'direccion'=>$faker->word(),
+        //'direccion'=>$faker->word(),
         'fecha_nac'=>$faker->date($format = 'Y-m-d', $max = 'now'),
         'telefono'=>$faker->unique($reset = true)->numberBetween($min = 2804000000, $max = 2804999999)
       ]);

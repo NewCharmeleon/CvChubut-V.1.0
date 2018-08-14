@@ -17,6 +17,7 @@ class Actividad extends Model
        'institucion_id',
        'persona_id',
        'nombre',
+       'actividad_tipo_id',
        'ambito_actividad_id',
        'tipo_participacion_id',
        'modalidad_id',
@@ -34,18 +35,27 @@ class Actividad extends Model
    {
        return $this->belongsTo(Institucion::class, 'institucion_id');
    }
+   
    public function persona()
    {
        return $this->belongsTo(Persona::class, 'persona_id');
    }
+   
+   public function actividadTipo()
+   {
+        return $this->belongsTo(ActividadTipo::class, 'actividad_tipo_id');
+   }
+   
    public function ambitoActividad()
    {
        return $this->belongsTo(AmbitoActividad::class, 'ambito_actividad_id');
    }
+   
    public function participacionTipo()
    {
        return $this->belongsTo(TipoParticipacion::class, 'participacion_tipo_id');
    }
+   
    public function modalidad()
    {
        return $this->belongsTo(Modalidad::class, 'modalidad_id');

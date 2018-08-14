@@ -39,6 +39,14 @@ class CreateActividadesTable extends Migration
                 ->string('nombre')->unique();
 
             $table
+                ->integer('actividad_tipo_id')
+                ->unsigned(); 
+            $table
+                ->foreign('actividad_tipo_id')
+                ->references('id')
+                ->on('actividades_tipos');  
+
+            $table
                 ->integer('ambito_actividad_id')
                 ->unsigned(); 
             $table

@@ -53,6 +53,7 @@ class DatabaseSeeder extends Seeder
     $this->call(InstitucionesTableSeeder::class);
     $this->call(ActividadesTableSeeder::class);
     $this->call(UsersTableSeeder::class);
+    $this->call(PersonasTableSeeder::class);
     
     //Volvemos a activar la Revision de Claves Foraneas
     DB::statement('SET FOREIGN_KEY_CHECKS = 1;');

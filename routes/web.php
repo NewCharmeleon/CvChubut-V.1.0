@@ -1,5 +1,5 @@
 <?php
-use App\Role;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +22,96 @@ Route::get('/', 'HomeController@index');
 /*Route::any('{all}', function () {
      return view('home');
 })->where(['all' => '.*']);*/
+
+//Grupo de rutas para todos los roles filtrada por middleware
+Route::group(['middleware' => ['role:Administrador|Secretaria|Estudiante']], function (){
+  
+  Route::get('perfil', 'UsuarioController@perfil')->name('perfil');
+  Route::get('perfil/edit'. 'UsuarioController@perfil_edit')->name('perfil.edit');
+  Route::resource('usuarios', 'UsuarioController', ['only' => ['update']]);
+});
+
+//Rutas para el grupo Administrador filtrado por middleware
+Route::group(['middleware' => ['role:Administrador']], function (){
+  //Rutas para el acceso a los Metodos del Controlador de Usuarios
+  //para el manejo del Crud exceptuando el Metodo update que es propio del mismo.
+  Route::resource('usuarios', 'UsuarioController', ['except'=> ['update']]);
+});
+
+//Rutas para el grupo Administrador y Secretaria filtradas por middleware
+Route::group(['middleware' => ['role:Administrador|Secretaria']], function (){
+  
+
+  //Estudiantes
+  Route::get('estudiantes/agregar', 'EstudianteController@agregar_estudiantes_show')->name('agregar.estudiantes.show');
+  Route::post('estudiantes/agregar'. 'EstudianteController@agregar_estudiantes_store')->name('agregar.estudiantes.store');
+  
+  ///Estudiante Resources
+  Route::resource('estudiantes', 'EstudianteController', ['except' => ['destroy']]);
+  
+  //Carreras
+  Route::resource('carreras', 'CarreraController', ['except' => ['destroy']]);
+
+  //Actividades Tipo
+  Route::resource('actividades/tipos', 'ActividadTipoController', ['except' => ['destroy'],
+    'names' => ['index' => 'actividades.tipos.index',
+                'create' => 'actividades.tipos.create', 
+                'edit' => 'actividades.tipos.edit', 
+                'store' => 'actividades.tipos.store',
+                'update' => 'actividades.tipos.update',
+                'show' => 'actividades.tipos.show']
+                ]
+  );
+
+  //Modalidades
+  Route::resource('modalidades', 'ModalidadController', ['except' => ['destroy']]);
+
+  //Ambitos de Actividades
+  Route::resource('ambitos/actividades', 'AmbitoActividadController', ['except' => ['destroy'],
+    'names' => ['index' => 'ambitos.actividades.index',
+                'create' => 'ambitos.actividades.create', 
+                'edit' => 'ambitos.actividades.edit', 
+                'store' => 'ambitos.actividades.store',
+                'update' => 'ambitos.actividades.update',
+                'show' => 'ambitos.actividades.show']
+                ]
+  );
+
+  //Tipos de Participacion
+  Route::resource('tipos/participaciones', 'TipoParticipacionController', ['except' => ['destroy'],
+    'names' => ['index' => 'tipos.participaciones.index',
+                'create' => 'tipos.participaciones.create', 
+                'edit' => 'tipos.participaciones.edit', 
+                'store' => 'tipos.participaciones.store',
+                'update' => 'tipos.participaciones.update',
+                'show' => 'tipos.participaciones.show']
+                ]
+  );
+});
+
+/*
+//Rutas para el Rol Estudiante
+Route::group(['middleware' => ['role:Estudiante']], function (){
+  
+  Route::post('experiencias/laborales/{id}/mostrar/cv', 'ExperienciaLaboralController@mostrar_cv')->name('experiencias.laborales.mostrar.cv');
+  Route::post('experiencias/laborales/{id}/ocultar/cv', 'ExperienciaLaboralController@ocultar_cv')->name('experiencias.laborales.ocultar.cv');
+  
+  //Rutas de Experiencias Laborales del Estudiante
+  Route::resource('experiencias/laborales', 'ExperienciaLaboralController',
+    [
+      'names' => [
+        'index'=> 'experiencias.laborales.index',
+        'create'=> 'experiencias.laborales.create',
+        'edit'=> 'experiencias.laborales.edit',
+        'store'=> 'experiencias.laborales.store',
+        'update'=> 'experiencias.laborales.update',
+        'show'=> 'experiencias.laborales.show',
+        'destroy'=> 'experiencias.laborales.destroy',
+      ],
+    ]);    
+});
+*/
+
 
 //Route::get('usuarios/index',"UserController@index_view")->name('usuarios.index');
 //versionado del Api

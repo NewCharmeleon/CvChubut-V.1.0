@@ -6,7 +6,6 @@
 
   <div class="panel-body">
     @if (! Auth::guest() )
-    dd(Auth::user)
       <h2>
         Bienvenido !! <b>{{ Auth::user()->persona->nombre_apellido }} </b>
       <h2>  

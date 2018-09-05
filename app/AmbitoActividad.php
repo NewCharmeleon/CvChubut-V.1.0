@@ -22,7 +22,7 @@ class AmbitoActividad extends Model
     //establecemos las relaciones a otros Modelos
     public function actividades()
     {
-        return $this->hasMany(Actividad::class, 'ambitos_actividades_id');
+        return $this->hasMany(Actividad::class, 'ambito_actividad_id');
     }
 
     //establecemos los Accesors y Mutators a utilizar para la estandarizacion de los datos en la BBDD

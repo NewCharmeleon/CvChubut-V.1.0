@@ -21,6 +21,7 @@ class Carrera extends Model
     protected $hidden = ['created_at','updated_at'];
     
     //establecemos las relaciones a otros Modelos
+    
     public function personas()
     {
         return $this->hasMany(Persona::class, 'carrera_id');

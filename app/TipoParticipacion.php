@@ -12,17 +12,18 @@ class TipoParticipacion extends Model
 
    //atributos a llenar del Modelo
 
-   protected $fillable = [
+   protected $fillable = array(
        'nombre',
        'descripcion'
-   ];
+   );
    //atributos ocultos
    protected $hidden =['created_at', 'updated_at'];
 
    //establecemos las relaciones a otros Modelos
+   //un Tipo de participacion puede tener muchas Actividades
    public function actividades()
    {
-       return $this->hasMany(Actividad::class, 'participaciones_tipos_id');
+       return $this->hasMany(Actividad::class, 'tipo_participacion_id');
    }
 
    //establecemos los Accesors y Mutators a utilizar para la estandarizacion de los datos en la BBDD

@@ -17,7 +17,7 @@ class ActividadesTiposTableSeeder extends Seeder
         //Creamos instancia de Faker
         $faker = Faker::create('es_Es');
         //Creamos un bucle para cubrir N Actividades
-        for ($i = 0; $i < 25; $i++)
+        for ($i = 0; $i < 10; $i++)
         {
             //llamamos al Metodo Create del Modelo
             ActividadTipo::create(

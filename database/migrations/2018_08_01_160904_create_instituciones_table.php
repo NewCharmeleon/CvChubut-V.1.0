@@ -20,16 +20,22 @@ class CreateInstitucionesTable extends Migration
                 ->increments('id');
 
             $table
-                ->string('nombre');
+                ->string('nombre', 250);
                 
             $table
-                ->string('localidad');
+                ->string('localidad')
+                ->nullable()
+                ->default( null );
                 
             $table
-                ->string('provincia');
+                ->string('provincia')
+                ->nullable()
+                ->default( null );
             
                 $table
-                ->string('pais');    
+                ->string('pais')
+                ->nullable()
+                ->default( null );    
                 
             $table
                 ->timestamps();    

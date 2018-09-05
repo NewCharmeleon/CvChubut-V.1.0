@@ -21,9 +21,9 @@ class Institucion extends Model
     ];
 
    //establecemos las relaciones a otros Modelos
-   public function actividad()
+   public function actividades()
    {
-       return $this->hasOne(Actividad::class, 'institucion_id');
+       return $this->hasMany(Actividad::class, 'institucion_id');
    }
 
    //establecemos los Accesors y Mutators a utilizar para la estandarizacion de los datos en la BBDD
@@ -42,35 +42,38 @@ class Institucion extends Model
    //Accesor de atributo Localidad automatico cuando llamamos a $experiencialaboral->nombre;
    public function getLocalidadAttribute(){
        
-    //guardamos el valor del atributo en una variable
-    $localidad = $this->attributes['localidad'];
-    //reemplazamos los guiones por espacios para una mejor lectura del dato
-    $localidad = str_replace('_', ' ', $localidad);
-    //convertimos la primera letra del valor en mayuscula
-    //devolvemos el valor del attributo ya tratado
-    return ucfirst($localidad);
+        //guardamos el valor del atributo en una variable
+        $localidad = $this->attributes['localidad'];
+        //reemplazamos los guiones por espacios para una mejor lectura del dato
+        $localidad = str_replace('_', ' ', $localidad);
+        //convertimos la primera letra del valor en mayuscula
+        $localidad = ucwords($localidad);
+        //devolvemos el valor del attributo ya tratado
+        return empty($localidad) ? '--' : $localidad;
     }
      //Accesor de atributo Provincia automatico cuando llamamos a $experiencialaboral->nombre;
    public function getProvinciaAttribute(){
        
-    //guardamos el valor del atributo en una variable
-    $provincia = $this->attributes['provincia'];
-    //reemplazamos los guiones por espacios para una mejor lectura del dato
-    $provincia = str_replace('_', ' ', $provincia);
-    //convertimos la primera letra del valor en mayuscula
-    //devolvemos el valor del attributo ya tratado
-    return ucfirst($provincia);
+        //guardamos el valor del atributo en una variable
+        $provincia = $this->attributes['provincia'];
+        //reemplazamos los guiones por espacios para una mejor lectura del dato
+        $provincia = str_replace('_', ' ', $provincia);
+        //convertimos la primera letra del valor en mayuscula
+        $provincia = ucwords($provincia);
+        //devolvemos el valor del attributo ya tratado
+        return empty($provincia) ? '--' : $provincia;
     }
      //Accesor de atributo Pais automatico cuando llamamos a $experiencialaboral->nombre;
    public function getPaisAttribute(){
        
     //guardamos el valor del atributo en una variable
-    $pais = $this->attributes['pais'];
-    //reemplazamos los guiones por espacios para una mejor lectura del dato
-    $pais = str_replace('_', ' ', $pais);
-    //convertimos la primera letra del valor en mayuscula
-    //devolvemos el valor del attributo ya tratado
-    return ucfirst($pais);
+        $pais = $this->attributes['pais'];
+        //reemplazamos los guiones por espacios para una mejor lectura del dato
+        $pais = str_replace('_', ' ', $pais);
+        //convertimos la primera letra del valor en mayuscula
+        $pais = ucwords($pais);
+        //devolvemos el valor del attributo ya tratado
+        return empty($pais) ? '--' : $pais;
     }
      
 

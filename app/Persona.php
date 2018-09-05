@@ -36,6 +36,10 @@ class Persona extends Model
         return $this->hasMany(ExperienciaLaboral::class, 'persona_id');
     }
 
+    public function actividades()
+    {
+        return $this->hasMany(Actividad::class, 'persona_id');
+    }
 
     //setter 
     // nombre y apellido

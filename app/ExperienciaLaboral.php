@@ -61,36 +61,36 @@ class ExperienciaLaboral extends Model
     //Accesor de atributo Fecha_Ini en Show automatico cuando llamamos a $experiencialaboral->fecha_ini;
     public function getFechaIniShowAttribute(){
        
-    //guardamos el valor del atributo en una variable
-    $fecha_de_inicio = $this->attributes['fecha_ini'];
-    
-    if( !empty( $fecha_de_inicio ) ){
-        $fecha_de_inicio = Carbon::parse($fecha_de_inicio);
-        $fecha_de_inicio = $fecha_de_inicio->format('d-m-Y');
-    }else{
-        $fecha_de_inicio = "No posee fecha registrada";
-    }
-          
-    
-    //devolvemos el valor del attributo ya tratado
-    return $fecha_de_inicio;
+        //guardamos el valor del atributo en una variable
+        $fecha_de_inicio = $this->attributes['fecha_ini'];
+        
+        if( !empty( $fecha_de_inicio ) ){
+            $fecha_de_inicio = Carbon::parse($fecha_de_inicio);
+            $fecha_de_inicio = $fecha_de_inicio->format('d-m-Y');
+        }else{
+            $fecha_de_inicio = "No posee fecha registrada";
+        }
+            
+        
+        //devolvemos el valor del attributo ya tratado
+        return $fecha_de_inicio;
     }
     //Accesor de atributo Fecha_Ini en Form automatico cuando llamamos a $experiencialaboral->fecha_ini;
     public function getFechaIniFormAttribute(){
        
-        //guardamos el valor del atributo en una variable
-     $fecha_de_inicio = $this->attributes['fecha_ini'];
-    
-     if( !empty( $fecha_de_inicio ) ){
-        $fecha_de_inicio = Carbon::parse($fecha_de_inicio);
-        $fecha_de_inicio = $fecha_de_inicio->format('d-m-Y');
-     }else{
-        $fecha_de_inicio = null;
-    }
-          
-    
-    //devolvemos el valor del attributo ya tratado
-    return $fecha_de_inicio;
+            //guardamos el valor del atributo en una variable
+        $fecha_de_inicio = $this->attributes['fecha_ini'];
+        
+        if( !empty( $fecha_de_inicio ) ){
+            $fecha_de_inicio = Carbon::parse($fecha_de_inicio);
+            $fecha_de_inicio = $fecha_de_inicio->format('d-m-Y');
+        }else{
+            $fecha_de_inicio = null;
+        }
+            
+        
+        //devolvemos el valor del attributo ya tratado
+        return $fecha_de_inicio;
     }
 
     //Accesor de atributo Fecha_Fin en Show automatico cuando llamamos a $experiencialaboral->fecha_fin;
@@ -111,11 +111,11 @@ class ExperienciaLaboral extends Model
         return $fecha_de_finalizacion;
         }
 
-        //Accesor de atributo Fecha_Fin en Form automatico cuando llamamos a $experiencialaboral->fechafin;
-        public function getFechaFinFormAttribute(){
+    //Accesor de atributo Fecha_Fin en Form automatico cuando llamamos a $experiencialaboral->fechafin;
+    public function getFechaFinFormAttribute(){
            
             //guardamos el valor del atributo en una variable
-         $fecha_de_finalizacion = $this->attributes['fecha_ini'];
+         $fecha_de_finalizacion = $this->attributes['fecha_fin'];
         
          if( !empty( $fecha_de_finalizacion ) ){
             $fecha_de_finalizacion = Carbon::parse($fecha_de_finalizacion);
@@ -131,53 +131,53 @@ class ExperienciaLaboral extends Model
     //Accesor de atributo Empleador automatico cuando llamamos a $experiencialaboral->empleador;
    public function getEmpleadorAttribute(){
        
-    //guardamos el valor del atributo en una variable
-    $empleador = $this->attributes['empleador'];
-    //reemplazamos los guiones por espacios para una mejor lectura del dato
-    $empleador = str_replace('_', ' ', $empleador);
-    //convertimos la primera letra del valor en mayuscula
-    //devolvemos el valor del attributo ya tratado
-    return ucwords($empleador);
+        //guardamos el valor del atributo en una variable
+        $empleador = $this->attributes['empleador'];
+        //reemplazamos los guiones por espacios para una mejor lectura del dato
+        $empleador = str_replace('_', ' ', $empleador);
+        //convertimos la primera letra del valor en mayuscula
+        //devolvemos el valor del attributo ya tratado
+        return ucwords($empleador);
     }
     //Accesor de atributo Provincia automatico cuando llamamos a $experiencialaboral->provincia;
    public function getProvinciaAttribute(){
        
-    //guardamos el valor del atributo en una variable
-    $provincia = $this->attributes['provincia'];
-    //reemplazamos los guiones por espacios para una mejor lectura del dato
-    $provincia = str_replace('_', ' ', $provincia);
-    //convertimos la primera letra del valor en mayuscula
-    //devolvemos el valor del attributo ya tratado
-    return ucwords($provincia);
+        //guardamos el valor del atributo en una variable
+        $provincia = $this->attributes['provincia'];
+        //reemplazamos los guiones por espacios para una mejor lectura del dato
+        $provincia = str_replace('_', ' ', $provincia);
+        //convertimos la primera letra del valor en mayuscula
+        //devolvemos el valor del attributo ya tratado
+        return ucwords($provincia);
     }
     //Accesor de atributo Localidad automatico cuando llamamos a $experiencialaboral->localidad;
    public function getLocalidadAttribute(){
        
-    //guardamos el valor del atributo en una variable
-    $localidad = $this->attributes['localidad'];
-    //reemplazamos los guiones por espacios para una mejor lectura del dato
-    $localidad = str_replace('_', ' ', $localidad);
-    //convertimos la primera letra del valor en mayuscula
-    //devolvemos el valor del attributo ya tratado
-    return ucwords($localidad);
+        //guardamos el valor del atributo en una variable
+        $localidad = $this->attributes['localidad'];
+        //reemplazamos los guiones por espacios para una mejor lectura del dato
+        $localidad = str_replace('_', ' ', $localidad);
+        //convertimos la primera letra del valor en mayuscula
+        //devolvemos el valor del attributo ya tratado
+        return ucwords($localidad);
     }
      //Accesor de atributo Localidad automatico cuando llamamos a $experiencialaboral->referencia;
    public function getReferenciaAttribute(){
        
-    //guardamos el valor del atributo en una variable
-    $referencia = $this->attributes['referencia'];
-    //reemplazamos los guiones por espacios para una mejor lectura del dato
-    $referencia = str_replace('_', ' ', $referencia);
-    //convertimos la primera letra del valor en mayuscula
-    //devolvemos el valor del attributo ya tratado
-    return ucwords($referencia);
+        //guardamos el valor del atributo en una variable
+        $referencia = $this->attributes['referencia'];
+        //reemplazamos los guiones por espacios para una mejor lectura del dato
+        $referencia = str_replace('_', ' ', $referencia);
+        //convertimos la primera letra del valor en mayuscula
+        //devolvemos el valor del attributo ya tratado
+        return ucwords($referencia);
     }
 
     //Accesor de atributo Rentado automatico cuando llamamos a $experencialaboral->rentado;
     public function getRentadoShowAttribute(){
        
         //devolvemos el valor del attributo ya tratado
-        return ( $this->attibutes['rentado'] ) ? 'Si': 'No';
+        return ( $this->attributes['rentado'] ) ? 'Si': 'No';
     } 
     //
     public function btn_mostrar(){
@@ -185,6 +185,11 @@ class ExperienciaLaboral extends Model
         $check = $this->mostrar_cv ? 'checked' : '';
 
         return "<input type='checkbox' ". $check . " class='mostrar_ocultar' data-size='small'/>";
+    }
+
+    //Query que se va a solicitar repetidas veces
+    public function scopeMostrarExperienciasLaboralesUsuario ( $query, $persona ){
+        return $query->where('mostrar_cv', true)->where('persona_id', $persona->id)->orderBy('fecha_ini')->get();
     }
 
 
@@ -207,28 +212,28 @@ class ExperienciaLaboral extends Model
    //cuando se usan los metodos create()-update()-save()
    public function setEmpleadorAttribute( $value = ""){
        
-    //sacamos los espacios en el valor recibido
-    $value = trim( $value );
-    //reemplazamos los espacios en guiones del valor recibido
-    $value = str_replace( ' ','_', $value);
-    //convertimos el valor recibido a minusculas
-    $value = strtolower( $value );
-    //asignamos el valor al atributo del Modelo
-    $this->attributes['empleador'] = $value;
+        //sacamos los espacios en el valor recibido
+        $value = trim( $value );
+        //reemplazamos los espacios en guiones del valor recibido
+        $value = str_replace( ' ','_', $value);
+        //convertimos el valor recibido a minusculas
+        $value = strtolower( $value );
+        //asignamos el valor al atributo del Modelo
+        $this->attributes['empleador'] = $value;
 
     }
     //Mutator de atributo Localidad a utilizar automaticamente
     //cuando se usan los metodos create()-update()-save()
     public function setLocalidadAttribute( $value = ""){
        
-    //sacamos los espacios en el valor recibido
-    $value = trim( $value );
-    //reemplazamos los espacios en guiones del valor recibido
-    $value = str_replace( ' ','_', $value);
-    //convertimos el valor recibido a minusculas
-    $value = strtolower( $value );
-    //asignamos el valor al atributo del Modelo
-    $this->attributes['localidad'] = $value;
+        //sacamos los espacios en el valor recibido
+        $value = trim( $value );
+        //reemplazamos los espacios en guiones del valor recibido
+        $value = str_replace( ' ','_', $value);
+        //convertimos el valor recibido a minusculas
+        $value = strtolower( $value );
+        //asignamos el valor al atributo del Modelo
+        $this->attributes['localidad'] = $value;
 
     }
     //Mutator de atributo Provincia a utilizar automaticamente

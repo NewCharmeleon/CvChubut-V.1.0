@@ -19,17 +19,17 @@ class InstitucionesTableSeeder extends Seeder
         //Creamos instancia de Faker
         $faker = Faker::create('es_ES');
        
-        //Creamos bucle para cubrir N Experiencias Laborales
-        for ($i=0;$i <10; $i++)
+        //Creamos bucle para cubrir N Instituciones
+        for ($i=0;$i <=30; $i++)
         {
             //llamamos al Metodo Create del Modelo
             Institucion::create(
             [
 
-                'nombre' => $faker->realText($maxNBChars = 30),
-                'localidad' => $faker->realText($maxNBChars = 50),
-                'provincia' => $faker->realText($maxNBChars = 50),
-                'pais' => $faker->realText($maxNBChars = 50),
+                'nombre' => $faker->realText(200),
+                'localidad' => $faker->city,
+                'provincia' => $faker->state,
+                'pais' => $faker->country,
                 
             ]);
         };

@@ -41,7 +41,6 @@ class CreatePersonasTable extends Migration
             $table
                 ->integer('user_id')
                 ->unsigned();
-                
             $table
                 ->foreign('user_id')
                 ->references('id')
@@ -51,8 +50,7 @@ class CreatePersonasTable extends Migration
                 ->integer('carrera_id')
                 ->unsigned()
                 ->nullable()
-                ->default(null);
-                
+                ->default( null );
             $table
                 ->foreign('carrera_id')
                 ->references('id')

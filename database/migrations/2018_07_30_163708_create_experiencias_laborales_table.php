@@ -28,12 +28,12 @@ class CreateExperienciasLaboralesTable extends Migration
             $table
                 ->date('fecha_ini')
                 ->nullable()
-                ->default(null);
+                ->default( null );
             
             $table
                 ->date('fecha_fin')
                 ->nullable()
-                ->default(null);
+                ->default( null );
 
             $table
                 ->string('empleador');
@@ -53,12 +53,11 @@ class CreateExperienciasLaboralesTable extends Migration
 
             $table
                 ->boolean('mostrar_cv')
-                ->default(true);    
+                ->default( true );    
                 
             $table
                 ->integer('persona_id')
                 ->unsigned();
-                
             $table
                 ->foreign('persona_id')
                 ->references('id')

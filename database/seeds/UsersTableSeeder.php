@@ -47,17 +47,17 @@ class UsersTableSeeder extends Seeder
       [
         'name' => "Administrador",
         'display_name' => "Administrador",
-        'description' => "Persona con permisos para controlar el Sistema"
+        'description' => "Usuario con  privilegios para gestionar, administrar y controlar todo lo relativo a la información de los alumnos ( gestión de su formación y trayectoria laboral, etc ). Además, brindara herramientas para el análisis de las ofertas no formal" 
       ], 
       [
         'name' => "Secretaria",
         'display_name' => "Secretaria",
-        'description' => "Persona con permisos para gestionar los Estudiantes y/o Personas"
+        'description' => "Usuario con opciones de visualización de todos los datos, reportes, informes y búsquedas"
       ],
       [
         'name' => "Estudiante",
         'display_name' => "Estudiante UDC",
-        'description' => "persona con permisos para ver y editar su perfil junto a sus Actividades"
+        'description' => "persona con permisos para controlar el sistema"
       ],
     ];
     //var_dump($roles);
@@ -72,7 +72,7 @@ class UsersTableSeeder extends Seeder
     $user = User::create([
       'username' => 'administrador_udc',
       'email' => 'administrador@udc.edu.ar',
-      'password' => '12456'
+      'password' => '123456'
     ]);
     //var_dump($user);
     
@@ -83,7 +83,7 @@ class UsersTableSeeder extends Seeder
       'dni' => '1357911',
       'nacionalidad' => 'Argentina',
       'fecha_nac' => $faker->date('d-m-Y'),
-      'telefono' => "",
+      'telefono' => "2804-111111",
       'user_id' => $user->id,
       'carrera_id' => null
       
@@ -108,10 +108,10 @@ class UsersTableSeeder extends Seeder
     //llamamos al Metodo Create del Modelo mediante nuevo Fillable
     $persona = Persona::create([
       'nombre_apellido' => $faker->firstName." ".$faker->lastName,
-      'dni' => '1357911',
+      'dni' => '24681011',
       'nacionalidad' => 'Argentina',
       'fecha_nac' => $faker->date('d-m-Y'),
-      'telefono' => "",
+      'telefono' => "2804-222222",
       'user_id' => $user->id,
       'carrera_id' => null
     ]);
@@ -134,10 +134,10 @@ class UsersTableSeeder extends Seeder
     //llamamos al Metodo Create del Modelo mediante nuevo Fillable
     $persona = Persona::create([
       'nombre_apellido' => $faker->firstName." ".$faker->lastName,
-      'dni' => '1357911',
+      'dni' => '31457911',
       'nacionalidad' => 'Argentina',
       'fecha_nac' => $faker->date('d-m-Y'),
-      'telefono' => "",
+      'telefono' => "2804-333333",
       'user_id' => $user->id,
       'carrera_id' => null
       

@@ -53,6 +53,8 @@ class Modalidad extends Model
    //cuando se usan los metodos create()-update()-save()
    public function setNombreAttribute( $value = ""){
        
+       //sacamos los espacios al valor recibido
+       $value = trim($value);
        //reemplazamos los espacios en guiones del valor recibido
        $value = str_replace( ' ','_', $value);
        //convertimos el valor recibido a minusculas

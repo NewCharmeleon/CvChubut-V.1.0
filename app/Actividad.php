@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use App\ActividadTipo;
+use App\ActividadEspecifica;
 
 class Actividad extends Model
 {
@@ -14,18 +16,22 @@ class Actividad extends Model
    //atributos a llenar del Modelo
 
    protected $fillable = [
-       'institucion_id',
-       'persona_id',
-       'nombre',
-       'actividad_tipo_id',
-       'ambito_actividad_id',
-       'tipo_participacion_id',
-       'modalidad_id',
-       'fecha_ini',
-       'fecha_fin',
-       'duracion',
-       'referente',
-       'lugar'
+        'nombre',   
+        'lugar',
+        'fecha_inicio',
+        'fecha_fin',
+        'mostrar_cv',
+        'institucion_id',
+        'persona_id',
+        'actividad_tipo_id',
+        'ambito_actividad_id',
+        'tipo_participacion_id',
+        'modalidad_id'
+        
+        /*Campos a verificar
+        'duracion',
+        'referente',*/
+       
        
    ];
    //atributos que no se devuelven en las consultas
@@ -51,9 +57,9 @@ class Actividad extends Model
        return $this->belongsTo(AmbitoActividad::class, 'ambito_actividad_id');
    }
    
-   public function participacionTipo()
+   public function tipo_participacion()
    {
-       return $this->belongsTo(TipoParticipacion::class, 'participacion_tipo_id');
+       return $this->belongsTo(TipoParticipacion::class, 'tipo_participacion_id');
    }
    
    public function modalidad()
@@ -70,9 +76,21 @@ class Actividad extends Model
        //reemplazamos los guiones por espacios para una mejor lectura del dato
        $nombre = str_replace('_', ' ', $nombre);
        //convertimos la primera letra del valor en mayuscula
-       $nombre = ucfirst( $nombre);
+       $nombre = ucwords( $nombre);
        //devolvemos el valor del attributo ya tratado
        return $nombre;
+   }
+   //Accesor de atributo Lugar automatico cuando llamamos a $experiencialaboral->provincia;
+   public function getLugarAttribute(){
+       
+        //guardamos el valor del atributo en una variable
+        $lugar = $this->attributes['lugar'];
+        //reemplazamos los guiones por espacios para una mejor lectura del dato
+        $lugar = str_replace('_', ' ', $lugar);
+        //convertimos la primera letra del valor en mayuscula
+        $lugar = ucwords($lugar);
+        //devolvemos el valor del attributo ya tratado
+        return empty($lugar)? '--': $lugar;
    }
    /*//Accesor de atributo Duracion automatico cuando llamamos a $experiencialaboral->nombre;
    public function getDuracionAttribute(){
@@ -87,27 +105,27 @@ class Actividad extends Model
     }*/
     
     //Accesor de atributo Fecha_Ini en Show automatico cuando llamamos a $experiencialaboral->fecha_ini;
-    public function getFechaIniShowAttribute(){
-       
-    //guardamos el valor del atributo en una variable
-    $fecha_de_inicio = $this->attributes['fecha_ini'];
-    
-    if( !empty( $fecha_de_inicio ) ){
-        $fecha_de_inicio = Carbon::parse($fecha_de_inicio);
-        $fecha_de_inicio = $fecha_de_inicio->format('d-m-Y');
-    }else{
-        $fecha_de_inicio = "No posee fecha registrada";
-    }
-          
-    
-    //devolvemos el valor del attributo ya tratado
-    return $fecha_de_inicio;
-    }
-    //Accesor de atributo Fecha_Ini en Form automatico cuando llamamos a $experiencialaboral->fecha_ini;
-    public function getFechaIniFormAttribute(){
+    public function getFechaInicioShowAttribute(){
        
         //guardamos el valor del atributo en una variable
-     $fecha_de_inicio = $this->attributes['fecha_ini'];
+        $fecha_de_inicio = $this->attributes['fecha_inicio'];
+        
+        if( !empty( $fecha_de_inicio ) ){
+            $fecha_de_inicio = Carbon::parse($fecha_de_inicio);
+            $fecha_de_inicio = $fecha_de_inicio->format('d-m-Y');
+        }else{
+            $fecha_de_inicio = "No posee fecha registrada";
+        }
+            
+        
+        //devolvemos el valor del attributo ya tratado
+        return $fecha_de_inicio;
+    }
+    //Accesor de atributo Fecha_Ini en Form automatico cuando llamamos a $experiencialaboral->fecha_ini;
+    public function getFechaInicioFormAttribute(){
+       
+        //guardamos el valor del atributo en una variable
+     $fecha_de_inicio = $this->attributes['fecha_inicio'];
     
      if( !empty( $fecha_de_inicio ) ){
         $fecha_de_inicio = Carbon::parse($fecha_de_inicio);
@@ -137,26 +155,29 @@ class Actividad extends Model
         
         //devolvemos el valor del attributo ya tratado
         return $fecha_de_finalizacion;
-        }
-        //Accesor de atributo Fecha_Fin en Form automatico cuando llamamos a $experiencialaboral->fechafin;
-        public function getFechaFinFormAttribute(){
-           
-            //guardamos el valor del atributo en una variable
-         $fecha_de_finalizacion = $this->attributes['fecha_ini'];
+    }
+    //Accesor de atributo Fecha_Fin en Form automatico cuando llamamos a $experiencialaboral->fechafin;
+    public function getFechaFinFormAttribute(){
         
-         if( !empty( $fecha_de_finalizacion ) ){
-            $fecha_de_finalizacion = Carbon::parse($fecha_de_finalizacion);
-            $fecha_de_finalizacion = $fecha_de_finalizacion->format('d-m-Y');
-         }else{
-            $fecha_de_finalizacion = null;
-        }
+        //guardamos el valor del atributo en una variable
+        $fecha_de_finalizacion = $this->attributes['fecha_fin'];
+    
+        if( !empty( $fecha_de_finalizacion ) ){
+        $fecha_de_finalizacion = Carbon::parse($fecha_de_finalizacion);
+        $fecha_de_finalizacion = $fecha_de_finalizacion->format('d-m-Y');
+        }else{
+        $fecha_de_finalizacion = null;
+    }
               
         
         //devolvemos el valor del attributo ya tratado
         return $fecha_de_finalizacion;
     }
+    
+    
+    /*Accesors a verificar
     //Accesor de atributo Referente automatico cuando llamamos a $experiencialaboral->empleador;
-   public function getReferenteAttribute(){
+    public function getReferenteAttribute(){
        
     //guardamos el valor del atributo en una variable
     $referente = $this->attributes['referente'];
@@ -166,18 +187,43 @@ class Actividad extends Model
     //devolvemos el valor del attributo ya tratado
     return ucwords($referente);
     }
-    //Accesor de atributo Lugar automatico cuando llamamos a $experiencialaboral->provincia;
-   public function getLugarAttribute(){
-       
-    //guardamos el valor del atributo en una variable
-    $lugar = $this->attributes['lugar'];
-    //reemplazamos los guiones por espacios para una mejor lectura del dato
-    $lugar = str_replace('_', ' ', $lugar);
-    //convertimos la primera letra del valor en mayuscula
-    //devolvemos el valor del attributo ya tratado
-    return ucwords($lugar);
+    */
+    
+    //Boton Mostrar Cv
+    public function btn_mostrar(){
+
+        $check = $this->mostrar_cv ? 'checked' : '';
+
+        return "<input type='checkbox' " . $check . " class='mostrar_ocultar' data-size='small'/>";
+
     }
-      
+
+    //Scopes de querys que se solicitan muchas veces
+    function scopeActividadesDelUsuario($query){
+        
+        return $query
+                ->orderBy('fecha_inicio', 'desc')
+                ->where('persona_id', auth()->user()->persona->id);
+    }
+
+    function scopeMostrarActividades($query){
+
+        return $query
+                ->orderBy('fecha_inicio', 'desc')
+                ->where('persona_id', auth()->user()->persona->id)
+                ->where('mostrar_cv', true)
+                ->get();
+    }
+
+    function scopeMostrarActividadesUsuario($query, $persona){
+
+        return $query
+                ->orderBy('fecha_inicio', 'desc')
+                ->where('persona_id', $persona->id)
+                ->where('mostrar_cv', true)
+                ->get();
+
+    }
 
 
    //Mutator de atributo Nombre a utilizar automaticamente
@@ -194,6 +240,20 @@ class Actividad extends Model
        $this->attributes['nombre'] = $value;
 
    }
+   //Mutator de atributo Lugar a utilizar automaticamente
+   //cuando se usan los metodos create()-update()-save()
+   public function setLugarAttribute( $value = ""){
+       
+        //sacamos los espacios en el valor recibido
+        $value = trim( $value );
+        //reemplazamos los espacios en guiones del valor recibido
+        $value = str_replace( ' ','_', $value);
+        //convertimos el valor recibido a minusculas
+        $value = strtolower( $value );
+        //asignamos el valor al atributo del Modelo
+        $this->attributes['lugar'] = $value;
+
+    }
    /*
    //Mutator de atributo Duracion a utilizar automaticamente
    //cuando se usan los metodos create()-update()-save()
@@ -214,14 +274,14 @@ class Actividad extends Model
     
     //Mutator de atributo Fecha de Inicio a utilizar automaticamente
     //cuando se usan los metodos create()-update()-save()
-    public function setFechaIniAttribute($value = '01-01-1910'){
+    public function setFechaInicioAttribute($value = '01-01-1910'){
        
         //modificamos el formato del valor del atributo en una variable
         $value = Carbon::parse($value);
         $value = $value->format('Y-m-d');
 
         //asignamos el valor formateado al atributo del Modelo
-        $this->attributes['fecha_ini'] = $value;
+        $this->attributes['fecha_inicio'] = $value;
     }
     //Mutator de atributo Fecha de Fin a utilizar automaticamente
     //cuando se usan los metodos create()-update()-save()
@@ -237,6 +297,7 @@ class Actividad extends Model
         //asignamos el valor formateado al atributo del Modelo
         $this->attributes['fecha_fin'] = $value;    
     }
+    /*Mutator a verificar
     //Mutator de atributo Referente a utilizar automaticamente
    //cuando se usan los metodos create()-update()-save()
     public function setReferenteAttribute( $value = ""){
@@ -250,19 +311,6 @@ class Actividad extends Model
         //asignamos el valor al atributo del Modelo
         $this->attributes['referente'] = $value;
  
-    }
-    //Mutator de atributo Lugar a utilizar automaticamente
-   //cuando se usan los metodos create()-update()-save()
-    public function setLugarAttribute( $value = ""){
-       
-        //sacamos los espacios en el valor recibido
-        $value = trim( $value );
-        //reemplazamos los espacios en guiones del valor recibido
-        $value = str_replace( ' ','_', $value);
-        //convertimos el valor recibido a minusculas
-        $value = strtolower( $value );
-        //asignamos el valor al atributo del Modelo
-        $this->attributes['lugar'] = $value;
- 
-    }
+    }*/
+    
 }

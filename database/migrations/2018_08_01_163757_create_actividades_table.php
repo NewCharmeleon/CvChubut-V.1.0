@@ -16,11 +16,31 @@ class CreateActividadesTable extends Migration
      public function up()
     {
         Schema::create('actividades', function (Blueprint $table) {
-            $table
-                ->increments('id');
             
             $table
+                ->increments('id');
+
+            $table
+                ->string('nombre');
+            
+            $table
+                ->string('lugar');
+            
+            $table
+                ->date('fecha_inicio');
+                            
+            $table
+                ->date('fecha_fin')
+                ->nullable()
+                ->default( null );
+
+            $table
+                ->boolean('mostrar_cv')
+                ->default( true );
+
+            $table
                 ->integer('institucion_id')
+                ->nullable()
                 ->unsigned();
             $table
                 ->foreign('institucion_id')
@@ -36,10 +56,8 @@ class CreateActividadesTable extends Migration
                 ->on('personas');       
 
             $table
-                ->string('nombre')->unique();
-
-            $table
                 ->integer('actividad_tipo_id')
+                ->nullable()
                 ->unsigned(); 
             $table
                 ->foreign('actividad_tipo_id')
@@ -48,6 +66,7 @@ class CreateActividadesTable extends Migration
 
             $table
                 ->integer('ambito_actividad_id')
+                ->nullable()
                 ->unsigned(); 
             $table
                 ->foreign('ambito_actividad_id')
@@ -56,6 +75,7 @@ class CreateActividadesTable extends Migration
                 
             $table
                 ->integer('tipo_participacion_id')
+                ->nullable()
                 ->unsigned(); 
             $table
                 ->foreign('tipo_participacion_id')
@@ -64,34 +84,25 @@ class CreateActividadesTable extends Migration
             
             $table
                 ->integer('modalidad_id')
+                ->nullable()
                 ->unsigned(); 
             $table
                 ->foreign('modalidad_id')
                 ->references('id')
                 ->on('modalidades');     
             
-            $table
-                ->date('fecha_ini')
-                ->nullable()
-                ->default(null);
-            
-            $table
-                ->date('fecha_fin')
-                ->nullable()
-                ->default(null);
-
+            /*a verificar
             $table
                 ->integer('duracion')
                 ->unsigned()
                 ->default(0);
-
+            */
+            /*a verificar 2
             $table
                 ->string('referente')
                 ->default('');
-                
-            $table
-                ->string('lugar')
-                ->default('');
+            */   
+            
             
             $table
                 ->timestamps();

@@ -24,7 +24,7 @@ class CarrerasTableSeeder extends Seeder
             Carrera::create(
             [
                 'nombre' => $faker->realText($maxNbChars = 50),
-                'cantidad_materias' => $faker->numberBetween(2,10)
+                'cantidad_materias' => $faker->numberBetween(2,30)
             ]);
         }
     }

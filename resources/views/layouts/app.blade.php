@@ -5,13 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!--Favicon de la Uni-->
+    <link rel="icon" href="{{asset('favicon.png') }}" sizes="16x16">
+    <link rel="icon" href="{{asset('favicon.png') }}" sizes="32x32">
+
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!--Titulo-->
     <title>{{ config('app.name') }} | @yield('title')</title>
 
-    <!-- Styles -->
+    <!-- All Styles -->
 
     <!-- Bootstrap CSS -->
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
@@ -208,13 +213,17 @@
         }
         body p {
              margin: 0 auto;
-        }      
+        }   
+        body{
+            font-size: 15px;
+        }   
 
         .navbar-udc {
           background: #2196F3;
           border: 0;
-          min-height: 53px;
-              display: table;
+          width: 100%;
+          //min-height: 53px;
+          display: inline-table;
         }
         .navbar-udc .container-fluid {
               display: grid;
@@ -250,7 +259,7 @@
         #nab-menu-min ul li a:hover {
             background-color: #ee7f00;
             color: white;
-            min-height: 53px;
+            //min-height: 53px;
             vertical-align: middle;
         }
 
@@ -334,7 +343,7 @@
             background: #F44336 ;
         }
         .btn-danger:hover,.btn-danger:focus  {
-            background: #E57373 !important;;
+            background: #E57373 !important;
         }
 
         .btn:after {
@@ -541,6 +550,7 @@
                         <i class="glyphicon glyphicon-log-out"></i>
                             Cerrar sesi&oacute;n
                     </a>
+                    
                 <li>
             </ul>
             @endif
@@ -549,11 +559,11 @@
             <ul class="list-unstyled components" style="border-bottom:none;padding-top:5px;">
                 <li><a href="#">Home</a></li>
                 <li>
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Paginas</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li><a href="#">Page</a></li>
-                        <li><a href="#">Page</a></li>
-                        <li><a href="#">Page</a></li>
+                        <li><a href="#">Pagina</a></li>
+                        <li><a href="#">Pagina</a></li>
+                        <li><a href="#">Pagina</a></li>
                     </ul>
 
             </ul>

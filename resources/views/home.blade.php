@@ -6,9 +6,33 @@
 
   <div class="panel-body">
     @if (! Auth::guest() )
-      <h2>
-        Bienvenido !! <b>{{ Auth::user()->persona->nombre_apellido }} </b>
-      <h2>  
+      <h3>
+        Bienvenido {{ Auth::user()->rol_object->name }}!!! <b>
+        <a href="{{ route('perfil') }}" >
+        {{ Auth::user()->persona->nombre_apellido }} </b>
+        </a>
+        </b> 
+        <br>
+        <small> <b>Tablero de Gesti&oacute;n del Sistema de Cv Chubut de la Universidad del Chubut</b>
+        </small>
+      </h3> 
+
+      @role(['Estudiante'])
+        @include('actividad.partials.content')
+      @endrole
+
+      @role(['Administrador', 'Secretaria'])
+
+        <div class="alert alert-info">
+          <h4>
+            {{ Auth::user()->rol_object->description }}
+          </h4>
+        </div>
+
+        <div style="text-align:center;opacity: 0.1;">
+          <img src="{{ asset('imagenes/logo-navbar.png') }}" width="650px">
+        </div> 
+      @endrole     
     @else
    
       <div class="row">
@@ -36,7 +60,9 @@
             campos a medida que avanza en su formaci&ocute;n y/o trayectoria laboral. 
           </p>
           <div style="text-align: center;">
+            <!--A verificar
             <a href="#" class="btn btn-default" > Ingresar sin cuenta </a>
+            -->
           </div>  
         </div>
       </div>  

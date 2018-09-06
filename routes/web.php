@@ -87,12 +87,24 @@ Route::group(['middleware' => ['role:Administrador|Secretaria']], function (){
                 'show' => 'tipos.participaciones.show']
                 ]
   );
+
+  //Instituciones
+  Route::resource('instituciones', 'InstitucionController');
+
 });
 
-/*
 //Rutas para el Rol Estudiante
 Route::group(['middleware' => ['role:Estudiante']], function (){
   
+ 
+  //Rutas para mostrar o no mostrar las actividades realizadas por el Estudiante
+  Route::post('actividades/{id}/mostrar/cv', 'ActividadController@mostrar_cv')->name('actividades.mostrar.cv');
+  Route::post('actividades/{id}/ocultar/cv', 'ActividadLaboralController@ocultar_cv')->name('actividades.ocultar.cv');
+  
+  //Rutas de Actividades del Estudiante
+  Route::resource('actividades', 'ActividadController');
+
+  //Rutas para mostrar o no mostrar las experiencias laborales en el Cv
   Route::post('experiencias/laborales/{id}/mostrar/cv', 'ExperienciaLaboralController@mostrar_cv')->name('experiencias.laborales.mostrar.cv');
   Route::post('experiencias/laborales/{id}/ocultar/cv', 'ExperienciaLaboralController@ocultar_cv')->name('experiencias.laborales.ocultar.cv');
   
@@ -110,7 +122,7 @@ Route::group(['middleware' => ['role:Estudiante']], function (){
       ],
     ]);    
 });
-*/
+
 
 
 //Route::get('usuarios/index',"UserController@index_view")->name('usuarios.index');

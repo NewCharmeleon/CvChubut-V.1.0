@@ -78,6 +78,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $this->roles->first()->display_name;
     }
+    //Accesor que devuelve la descripcion del primer Rol hallado del Usuario
+    public function getRolObjectAttribute()
+    {
+        return $this->roles->first();
+    }
     //Accesor que devuelve el nombre del Usuario
     public function getUsernameAttribute()
     {

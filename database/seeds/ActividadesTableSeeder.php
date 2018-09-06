@@ -60,7 +60,8 @@ class ActividadesTableSeeder extends Seeder
                 'actividad_tipo_id' => $faker->randomElement( $actividadesTipo ),
                 'ambito_actividad_id' => $faker->randomElement( $ambitoActividades ),
                 'tipo_participacion_id' => $faker->randomElement( $tiposParticipaciones ),
-                'modalidad_id' => $faker->randomElement( $modalidades ),                'duracion' => $faker->numberBetween(2,10),
+                'modalidad_id' => $faker->randomElement( $modalidades ),                
+                //'duracion' => $faker->numberBetween(2,10),
                 //'referente' => $faker->realText($maxNBChars = 50),
                 
                 

@@ -149,7 +149,7 @@ class UsersTableSeeder extends Seeder
     //Se asigna el Rol Alumno al Usuario
     $user->attachRole(Role::where('name', 'LIKE', 'Estudiante')->get()->first()->id);
 
-
+     // var_dump($user);
     //carga de Alumnos de prueba mediante Arreglo
 
     $alumnos = [

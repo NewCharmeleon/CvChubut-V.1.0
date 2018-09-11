@@ -40,7 +40,7 @@
         </tbody>
     </table>
     <div class="center">
-      {{ $usurios->links() }}
+      {{ $usuarios->links() }}
     </div>
   <div class="panel-header">
     <a href="{{ route('usuarios.create') }}" class="btn btn-primary"> Nuevo </a>  

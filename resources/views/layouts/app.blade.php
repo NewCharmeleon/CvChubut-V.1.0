@@ -673,8 +673,8 @@
                     else if ( pattern == "^[0-3]?[0-9].[0-3]?[0-9].(?:[0-9]{2})?[0-9]{2}$" ){
                         msg = "El campo solo acepta fecha con formato dd--mm-aaaa";
                     }
-                    else if ( pattern == "^[(]\\d{3}[)]\\d{4}[-]\\d{3}$" ){
-                        msg = "El campo solo acepta el formato (999)9999-9999";
+                    else if ( pattern == "^[(]\\d{3}[)]\\[-]d{3}[-]\\d{4}$" ){
+                        msg = "El campo solo acepta el formato (999)-999-9999";
                     }
                     else if ( pattern == "[a-z0-9._%+-]+@udc.edu.ar"){
                         msg = "El campo solo acepta Email de la UDC";

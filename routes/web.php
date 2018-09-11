@@ -27,7 +27,7 @@ Route::get('/', 'HomeController@index');
 Route::group(['middleware' => ['role:Administrador|Secretaria|Estudiante']], function (){
   
   Route::get('perfil', 'UsuarioController@perfil')->name('perfil');
-  Route::get('perfil/edit'. 'UsuarioController@perfil_edit')->name('perfil.edit');
+  Route::get('perfil/edit', 'UsuarioController@perfil_edit')->name('perfil.edit');
   Route::resource('usuarios', 'UsuarioController', ['only' => ['update']]);
 });
 
@@ -99,7 +99,7 @@ Route::group(['middleware' => ['role:Estudiante']], function (){
  
   //Rutas para mostrar o no mostrar las actividades realizadas por el Estudiante
   Route::post('actividades/{id}/mostrar/cv', 'ActividadController@mostrar_cv')->name('actividades.mostrar.cv');
-  Route::post('actividades/{id}/ocultar/cv', 'ActividadLaboralController@ocultar_cv')->name('actividades.ocultar.cv');
+  Route::post('actividades/{id}/ocultar/cv', 'ActividadController@ocultar_cv')->name('actividades.ocultar.cv');
   
   //Rutas de Actividades del Estudiante
   Route::resource('actividades', 'ActividadController');

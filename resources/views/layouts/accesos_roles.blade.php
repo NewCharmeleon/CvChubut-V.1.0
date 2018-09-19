@@ -29,7 +29,7 @@
                         </li>
                     @endrole
                     @role(['Secretaria','Administrador'])
-
+                    <li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-education"></i> Estudiantes <span class="caret"></span></a>
                             <ul class="dropdown-menu link-acceso">
@@ -46,9 +46,27 @@
                                 <li><a href="{{  route('carreras.create') }}">  <i class="glyphicon glyphicon-plus"></i>  Nueva </a></li>
                             </ul>
                         </li>
-
+                    
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-th-list"></i> Tipo de Actividades <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-blackboard"></i> Instituciones <span class="caret"></span></a>
+                            <ul class="dropdown-menu link-acceso">
+                                <li><a href="{{  route('instituciones.index')  }}"> <i class="glyphicon glyphicon-list-alt"></i> Listados  </a></li>
+                                <li><a href="{{  route('instituciones.create') }}">  <i class="glyphicon glyphicon-plus"></i>  Nuevo </a></li>
+                            </ul>
+                        </li>
+                    <br>
+                    </li>
+                    <br><br>
+                    <li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-modal-window"></i> Ambitos de Actividades <span class="caret"></span></a>
+                            <ul class="dropdown-menu link-acceso">
+                                <li><a href="{{  route('ambitos.actividades.index')  }}"> <i class="glyphicon glyphicon-list-alt"></i> Listados  </a></li>
+                                <li><a href="{{  route('ambitos.actividades.create') }}">  <i class="glyphicon glyphicon-plus"></i>  Nuevo </a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-th-list"></i> Tipos de Actividades <span class="caret"></span></a>
                             <ul class="dropdown-menu link-acceso">
                                 <li><a href="{{  route('actividades.tipos.index')  }}"> <i class="glyphicon glyphicon-list-alt"></i> Listados  </a></li>
                                 <li><a href="{{  route('actividades.tipos.create') }}">  <i class="glyphicon glyphicon-plus"></i>  Nuevo </a></li>
@@ -64,32 +82,13 @@
                         </li>
 
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-modal-window"></i> Ambitos de Actividades <span class="caret"></span></a>
-                            <ul class="dropdown-menu link-acceso">
-                                <li><a href="{{  route('ambitos.actividades.index')  }}"> <i class="glyphicon glyphicon-list-alt"></i> Listados  </a></li>
-                                <li><a href="{{  route('ambitos.actividades.create') }}">  <i class="glyphicon glyphicon-plus"></i>  Nuevo </a></li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-blackboard"></i> Instituciones <span class="caret"></span></a>
-                            <ul class="dropdown-menu link-acceso">
-                                <li><a href="{{  route('instituciones.index')  }}"> <i class="glyphicon glyphicon-list-alt"></i> Listados  </a></li>
-                                <li><a href="{{  route('instituciones.create') }}">  <i class="glyphicon glyphicon-plus"></i>  Nuevo </a></li>
-                            </ul>
-                        </li>
-
-
-
-
-                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-bookmark"></i> Tipos de Participaciones <span class="caret"></span></a>
                             <ul class="dropdown-menu link-acceso">
                                 <li><a href="{{  route('tipos.participaciones.index')  }}"> <i class="glyphicon glyphicon-list-alt"></i> Listados  </a></li>
                                 <li><a href="{{  route('tipos.participaciones.create') }}">  <i class="glyphicon glyphicon-plus"></i>  Nuevo </a></li>
                             </ul>
                         </li>
-
+                    </li>
                     @endrole
 
                     @role(['Estudiante'])

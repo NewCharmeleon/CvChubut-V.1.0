@@ -4,7 +4,7 @@
   
 @section ('content')
 
-    <form action="{{ route('usuarios.stor') }}" method="POST" lang="es" class="form-horizontal">
+    <form action="{{ route('usuarios.store') }}" method="POST" lang="es" class="form-horizontal">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"> Usuario <small> Nuevo </small> </h3>

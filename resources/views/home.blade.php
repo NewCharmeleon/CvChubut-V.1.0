@@ -16,10 +16,9 @@
         <small> <b>Tablero de Gesti&oacute;n del Sistema Cv-Chubut de la Universidad del Chubut</b>
         </small>
       </h3> 
-
-      {{--@role(['Estudiante'])
+      @role(['Estudiante'])
         @include('actividad.partials.content')
-      @endrole--}}
+      @endrole
 
       @role(['Administrador', 'Secretaria'])
 

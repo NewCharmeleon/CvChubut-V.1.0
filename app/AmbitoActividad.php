@@ -27,15 +27,12 @@ class AmbitoActividad extends Model
 
     //establecemos los Accesors y Mutators a utilizar para la estandarizacion de los datos en la BBDD
     //Accesor de atributo Nombre automatico cuando llamamos a $ambitos_actividades->nombre;
-    public function getNombreAttribute(){
-        
-        //guardamos el valor del atributo en una variable
-        $nombre = $this->attributes['nombre'];
-        //reemplazamos los guiones por espacios para una mejor lectura del dato
+    public function getNombreAttribute()
+    {
+        $nombre = $this->attributes["nombre"];
         $nombre = str_replace('_', ' ', $nombre);
-        //convertimos la primera letra de cada palabra en mayuscula
-        $nombre = ucwords( $nombre);
-        //devolvemos el valor del attributo ya tratado
+        $nombre = ucwords($nombre);
+
         return $nombre;
     }
     //Accesor de atributo Descripcion automatico cuando llamamos a $ambitos_actividades->descripcion;

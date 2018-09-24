@@ -129,9 +129,10 @@ class UsersTableSeeder extends Seeder
       'email' => 'alumno@udc.edu.ar',
       'password' => '123456',
     ]);
-      
+     // dd("hola");
     //Metodo a revisar para crear Personas Alumnos  
     //llamamos al Metodo Create del Modelo mediante nuevo Fillable
+    //dd($carrera->id);
     $persona = Persona::create([
       'nombre_apellido' => $faker->firstName." ".$faker->lastName,
       'dni' => '31457911',
@@ -139,11 +140,12 @@ class UsersTableSeeder extends Seeder
       'fecha_nac' => $faker->date('d-m-Y'),
       'telefono' => "2804-333333",
       'user_id' => $user->id,
-      'carrera_id' => null
+     
+      'carrera_id' => Carrera::get()->first(),
       
     ]);
     
-
+      //dd("holis");
     //Se llama al Metodo para hashear el password
     $user->hashPassword();
     //Se asigna el Rol Alumno al Usuario

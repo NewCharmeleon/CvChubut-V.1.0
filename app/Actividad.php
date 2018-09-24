@@ -47,12 +47,12 @@ class Actividad extends Model
        return $this->belongsTo(Persona::class, 'persona_id');
    }
    
-   public function actividadTipo()
+   public function actividad_tipo()
    {
         return $this->belongsTo(ActividadTipo::class, 'actividad_tipo_id');
    }
    
-   public function ambitoActividad()
+   public function ambito_actividad()
    {
        return $this->belongsTo(AmbitoActividad::class, 'ambito_actividad_id');
    }
@@ -199,30 +199,29 @@ class Actividad extends Model
     }
 
     //Scopes de querys que se solicitan muchas veces
-    function scopeActividadesDelUsuario($query){
-        
+    function scopeActividadesDelUsuario($query)
+    {
         return $query
-                ->orderBy('fecha_inicio', 'desc')
-                ->where('persona_id', auth()->user()->persona->id);
+        ->orderBy('fecha_inicio', 'desc')
+        ->where('persona_id', auth()->user()->persona->id);
     }
 
-    function scopeMostrarActividades($query){
-
+    function scopeMostrarActividades($query)
+    {
         return $query
-                ->orderBy('fecha_inicio', 'desc')
+                ->orderBy('fecha_inicio','desc')
                 ->where('persona_id', auth()->user()->persona->id)
-                ->where('mostrar_cv', true)
+                ->where('mostrar_cv',true)
                 ->get();
     }
 
-    function scopeMostrarActividadesUsuario($query, $persona){
-
+    function scopeMostrarActividadesUsuario($query, $persona)
+    {
         return $query
-                ->orderBy('fecha_inicio', 'desc')
+                ->orderBy('fecha_inicio','desc')
                 ->where('persona_id', $persona->id)
-                ->where('mostrar_cv', true)
+                ->where('mostrar_cv',true)
                 ->get();
-
     }
 
 

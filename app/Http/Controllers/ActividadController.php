@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+//use App\User;
 use App\Actividad;
 use App\Modalidad;
 use App\Institucion;
@@ -25,16 +25,18 @@ class ActividadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //Metodo para mostrar las Actividades solo al Estudiante
-        if( auth()->user()->hasRole(['Estudiante'])){
-            return view('actividad.index');
+    public function index(){
+      
+        if(  auth()->user()->hasRole(['Estudiante'])  ){
+            //usuario logueado
+            $user = \Auth::user();
+            //persona del usuario
+             $persona = $user->persona;
+
+             return view('actividad.index', compact('persona'));
         }
         abort(403);
-
-        
-    }
+      }
 
     //Metodo para crear un usuario
     public function create()
@@ -79,8 +81,8 @@ class ActividadController extends Controller
     {
         $instituciones = Institucion::OrderBy('nombre')->get()->pluck('nombre', 'id')->toArray();
         $actividades_tipo = ActividadTipo::OrderBy('nombre')->get()->pluck('nombre', 'id')->toArray();
-        $ambito_actividades = AmbitoActividad::OrderBy('nombre')->get()->pluck('nombre', 'id')->toArray();
-        $tipos_participacion = TipoParticipacion::OrderBy('nombre')->get()->pluck('nombre', 'id')->toArray();
+        $ambitos_actividades = AmbitoActividad::OrderBy('nombre')->get()->pluck('nombre', 'id')->toArray();
+        $tipos_participaciones = TipoParticipacion::OrderBy('nombre')->get()->pluck('nombre', 'id')->toArray();
         $modalidades = Modalidad::OrderBy('nombre')->get()->pluck('nombre', 'id')->toArray();
         $hoy = Carbon::now();
 
@@ -91,7 +93,7 @@ class ActividadController extends Controller
             $actividad = Actividad::findOrFail( $id );
             //si es una Actividad del usuario
             if($user->persona->id == $actividad->persona_id){
-                return view('actividad.formulario.edit', compact('instituciones', 'actividades_tipos', 'ambito_actividades', 'tipo_participaciones', 'modalidades', 'hoy', 'actividad'));
+                return view('actividad.formulario.edit', compact('instituciones', 'actividades_tipos', 'ambitos_actividades', 'tipos_participaciones', 'modalidades', 'hoy', 'actividad'));
             }
 
         }

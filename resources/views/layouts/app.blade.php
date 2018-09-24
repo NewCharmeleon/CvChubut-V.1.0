@@ -25,15 +25,14 @@
     <link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,300">
 
     <!-- Plugins -->
-    <link type="text/css" rel="stylesheet" href="{{ asset('asset/css/bootstrap-datetimepicker.min.css') }}">
-
-    <link type="text/css" rel="stylesheet" href="{{ asset('asset/css/template/picnic.min.css') }}">
-
-    <link type="text/css" rel="stylesheet" href="{{ asset('asset/css/template/plugins.min.css') }}">
-   
-    <link type="text/css" rel="stylesheet" href="{{ asset('asset/css/bootstrap-switch.css') }}">
+     <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}">
     
-   
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/template/picnic.min.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/template/plugins.min.css') }}" >
+    
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/bootstrap-switch.css') }}">
+
+
     
     <!-- Custom CSS -->
     @yield('mis_estilos')

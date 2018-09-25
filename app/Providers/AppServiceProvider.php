@@ -12,6 +12,7 @@ use App\Modalidad;
 use App\Carbon\Carbon;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
 
 class AppServiceProvider extends ServiceProvider
 {

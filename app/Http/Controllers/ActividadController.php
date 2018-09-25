@@ -28,12 +28,12 @@ class ActividadController extends Controller
     public function index(){
       
         if(  auth()->user()->hasRole(['Estudiante'])  ){
-            //usuario logueado
+            /*//usuario logueado
             $user = \Auth::user();
             //persona del usuario
-             $persona = $user->persona;
+             $persona = $user->persona;*/
 
-             return view('actividad.index', compact('persona'));
+             return view('actividad.index');
         }
         abort(403);
       }
@@ -262,7 +262,7 @@ class ActividadController extends Controller
      //Metodo para mostrar el Cv
      public function mostrar_cv($id)
      {
-        $ajax = request()-ajax();
+        $ajax = request()->ajax();
         $user = \Auth::user();
 
         if ($user->hasRole('Estudiante')){
@@ -310,7 +310,7 @@ class ActividadController extends Controller
      //Metodo para ocultar el Cv
     public function ocultar_cv($id)
     {
-        $ajax = request()-ajax();
+        $ajax = request()->ajax();
         $user = \Auth::user();
 
         if ($user->hasRole('Estudiante')){

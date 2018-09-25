@@ -18,7 +18,7 @@
     <div class="form-group has-feedback  {{ ( $errors->has('lugar') )?   'has-error' : ''}}   ">  
         <label for="lugar" class="control-label col-sm-3"> Lugar <sup>*</sup></label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="lugar" id="lugar"  placeholder="Lugares" value="{{ (Session::has('errors')) ? old('lugar', null) : ( isset($actividad)? $actividad->lugar: null ) }}" required >
+            <input type="text" class="form-control" name="lugar" id="lugar"  placeholder="Lugar" value="{{ (Session::has('errors')) ? old('lugar', null) : ( isset($actividad)? $actividad->lugar: null ) }}" required >
             @if ($errors->has('lugar')) 
                 @foreach ( $errors->get('lugar') as $error )
                     <p class="help-block"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -68,7 +68,7 @@
 
                <select name="institucion_id" id="institucion_id" placeholder="Institución" class="form-control">
 
-                 @foreach ($instituciones+[ null => 'Instituciones'] as  $id => $institucion_select )
+                 @foreach ($instituciones+[ null => 'Institución'] as  $id => $institucion_select )
                     
                     <option value="{{ $id }}"  
                     
@@ -101,10 +101,11 @@
                 </select>
             </div>
 
-            <label for="" style="margin-top:25px;" ><input type="checkbox" name="institucion_check" id="institucion_check" value="1" @if( old('institucion_check') == true ) checked @endif> No aparece la Instituci&ocute;n? click aqui </label>   
-            <div class="" id="nueva-institucion" style="margin-top:10px; display:none;">
-                <label for="control-label" style="">Registrar la Instituci$oacute;n </label>
-                   </div>  
+            <label for="" style="margin-top:25px; width:55%;" ><input type="checkbox" name="institucion_check" id="institucion_check" value="1" @if( old('institucion_check') == true ) checked @endif> No esta la Instituci&oacute;n? click aqui</label>   
+            <div class="" id="nueva-institucion" style="margin-top:10px; display:none; border: dotted;">
+                <label for="control-label" style=""><u>Registra aqui la Instituci&oacute;n para su carga</u> </label>
+                    @include('institucion.partials.form_compartido')      
+            </div>  
 
             @if ($errors->has('institucion_id')) 
                 @foreach ( $errors->get('institucion_id') as $error )
@@ -217,7 +218,7 @@
             
 <div class="row">
     <div class="form-group   {{ ( $errors->has('tipo_participacion_id') )?   'has-error' : ''}}   ">  
-        <label for="tipo_participacion_id" class="control-label col-sm-3"> Tipo de Participaci%oacute;n <sup>*</sup></label>
+        <label for="tipo_participacion_id" class="control-label col-sm-3"> Tipo de Participaci&oacute;n <sup>*</sup></label>
         <div class="col-sm-6">
 
             <select class="form-control" name="tipo_participacion_id" id="tipo_participacion_id" placeholder="Tipo de Participación" required>

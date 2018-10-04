@@ -8,7 +8,7 @@
     <div class="panel-body">
     
       <caption><h4><b><u>Listado de Instituciones</u></b></h4></caption>
-      <a href="{{ route('institucion.create')  }}" class="btn btn-primary">  Nueva  </a>
+      <a href="{{ route('instituciones.create')  }}" class="btn btn-primary">  Nueva  </a>
 
       <table class="table table-hover">
         
@@ -26,14 +26,14 @@
           <tr>
              
             
-             <td>{{ $modalidad->nombre }}</td>
-             <td>{{ $modalidad->localidad }}</td>
-             <td>{{ $modalidad->provincia }}</td>
-             <td>{{ $modalidad->pais }}</td>
+             <td>{{ $institucion->nombre }}</td>
+             <td>{{ $institucion->localidad }}</td>
+             <td>{{ $institucion->provincia }}</td>
+             <td>{{ $institucion->pais }}</td>
              <td>
                   <a href="{{ route('instituciones.show',$institucion->id) }}" > <i class="glyphicon glyphicon-eye-open model-acction"></i> </a>
                   <a href="{{ route('instituciones.edit',$institucion->id) }}" > <i class="glyphicon glyphicon-edit model-acction" ></i></a>
-                  <a href="#" onclick="event.preventDefault(); document.getElementById('form-institucion-{{} $institucion->id}}').submit();">
+                  <a href="#" onclick="event.preventDefault(); document.getElementById('form-institucion-{{ $institucion->id }}').submit();">
                     <i class="glyphicon glyphicon-trash model-acction"> </i>
                   </a> 
 

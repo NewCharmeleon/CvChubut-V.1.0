@@ -44,8 +44,9 @@ class DatabaseSeeder extends Seeder
 
     //RolPermiso::truncate();
     //Llamamos en orden a los Seeders para el poblado masivo de las tablas
-    $this->call(CarrerasTableSeeder::class);
+    
     $this->call(UsersTableSeeder::class);
+    $this->call(CarrerasTableSeeder::class);
     $this->call(ActividadesTiposTableSeeder::class);
     $this->call(ModalidadesTableSeeder::class);
     $this->call(AmbitosActividadesTableSeeder::class);

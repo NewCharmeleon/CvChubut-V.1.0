@@ -22,7 +22,7 @@ class Carrera extends Model
     
     //establecemos las relaciones a otros Modelos
     
-    public function personas()
+    public function persona()
     {
         return $this->hasMany(Persona::class, 'carrera_id');
     }

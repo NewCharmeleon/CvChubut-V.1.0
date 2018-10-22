@@ -54,7 +54,7 @@
         <div class="col-sm-8">
            <p class="text-show"> {{  $actividad->actividad_tipo->nombre  }}  </p> 
         </div>
-        <label for="actividad_tipo_descripcion" class="control-label col-sm-3"> Descripci$oacute;n </label>
+        <label for="actividad_tipo_descripcion" class="control-label col-sm-3"> Descripci&oacute;n </label>
         <div class="col-sm-8">
            <p class="text-show"> {{  $actividad->actividad_tipo->descripcion  }}  </p> 
         </div>

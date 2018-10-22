@@ -132,7 +132,7 @@
                 {{--  si hay experiencia laboral y no error --}}
                 @elseif(  isset($experiencia_laboral  ) )
                 {{--  el valor de mostrar si es Rentado --}}
-                    @if( $$experiencia_laboral->rentado == true )
+                    @if( $experiencia_laboral->rentado == true )
                        checked
                     @endif
                 @else
@@ -149,7 +149,7 @@
                 {{--  si hay experiencia laboral y no error --}}
                 @elseif(  isset($experiencia_laboral  ) )
                 {{--  el valor de mostrar si es Rentado --}}
-                    @if( $$experiencia_laboral->rentado == false )
+                    @if( $experiencia_laboral->rentado == false )
                        checked
                     @endif
                 @endif    

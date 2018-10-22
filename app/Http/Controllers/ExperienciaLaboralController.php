@@ -58,53 +58,46 @@ class ExperienciaLaboralController extends Controller
     
 
     //Metodo para mostrar una Experiencia Laboral determinada
-    public function show($id){
+    public function show($id)
+    {
 
-        //verificamos si tiene el Rol Estudiante 
-        //sino arrojamos Error 403
-        if( !auth()->user()->hasRole(['Estudiante'])){
-            
+        if (\Auth::user()->hasRole('Estudiante')) {
+
             $persona = \Auth::user()->persona;
-            //guardamos la Experiencia Laboral de la persona solicitado en una variable
             $experiencia_laboral = ExperienciaLaboral::where('id', $id)->where('persona_id', $persona->id)->get()->first();
 
-            //Si no existen Experiencias Laborales Cargadas
-            if (count($experiencia_laboral) == 0)
-            {
+            if (count($experiencia_laboral) == 0) {
                 abort(403);
-            }    
-        }else{
-           
-            //devolvemos la Vista con las variables y sus datos 
-            return view('experiencia_laboral.formulario.show', compact('persona', 'experiencia_laboral'));
-    
+            }
+
+        } else {
+
         }
-            
+
+        return view('experiencia_laboral.formulario.show', compact('persona', 'experiencia_laboral'));
+
     }
 
     //Metodo para editar una Experiencia Laboral determinada
     public function edit($id)
     {
-         //verificamos si tiene el Rol Estudiante 
-        //sino arrojamos Error 403
-        if( !auth()->user()->hasRole(['Estudiante'])){
-            
+        if (\Auth::user()->hasRole('Estudiante')) {
+
             $persona = \Auth::user()->persona;
-            //guardamos la Experiencia Laboral de la persona solicitado en una variable
             $experiencia_laboral = ExperienciaLaboral::where('id', $id)->where('persona_id', $persona->id)->get()->first();
 
-            //Si no existen Experiencias Laborales Cargadas
-            if (count($experiencia_laboral) == 0)
-            {
+            if (count($experiencia_laboral) == 0) {
                 abort(403);
-            }    
-        }else{
-           
-            $hoy = Carbon::now();
-            //devolvemos la Vista con las variables y sus datos 
-            return view('experiencia_laboral.formulario.edit', compact('persona', 'experiencia_laboral', 'hoy'));
-    
+            }
+
+        } else {
+
         }
+
+        $hoy = Carbon::now();
+
+        return view('experiencia_laboral.formulario.edit', compact('persona', 'experiencia_laboral', 'hoy'));
+
     }
 
     //Metodo para actualizar una Experiencia Laboral determinada

@@ -4,6 +4,7 @@
     @role(['Estudiante'])
         <div class="" style="margin:10px 0px 0px 0px">
             <a href="{{ route('actividades.create') }}" class="btn btn-primary"> Nueva </a>  
+            <a href="{{ route('curriculum.pdf')  }}" class="btn btn-primary" target="_blank">  Exportar a PDF  </a>
       
 
         </div>

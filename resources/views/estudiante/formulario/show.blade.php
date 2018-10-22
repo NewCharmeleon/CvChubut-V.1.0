@@ -1,23 +1,27 @@
 @extends('layouts.app')
 
-@section ('title', 'Actividades : ver')
+@section ('title', 'Estudiantes : ver')
   
 @section ('content')
 
     
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"> {{ $actividad->nombre }} <small> Ver </small> </h3>
+            <h3 class="panel-title"> {{ $persona->nombre_apellido }} <small> Ver </small> </h3>
         </div>
         <div class="panel-body")
                 <form action="" class="form-horizontal">
-                    @include('actividad.partials.show')
+                    @include('estudiante.partials.show')
                 </form>
         </div>        
         <div class="panel-footer">
-            <a class="btn btn-primary" href="{{ route('actividades.index') }}"> Volver</a>  
-            <a class="btn btn-warning" href="{{ route('actividades.edit', $actividad->id) }}"> Editar</a>
+            <a class="btn btn-primary" href="{{ url('/') }}"> Volver</a>  
+            <a class="btn btn-warning" href="{{ route('estudiantes.edit', $user->id) }}"> Editar</a>
         </div>
     </div>
        
-@endsection  
+@endsection 
+
+@section('script')
+
+@endsection

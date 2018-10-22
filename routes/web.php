@@ -44,7 +44,7 @@ Route::group(['middleware' => ['role:Administrador|Secretaria']], function (){
 
   //Estudiantes
   Route::get('estudiantes/agregar', 'EstudianteController@agregar_estudiantes_show')->name('agregar.estudiantes.show');
-  Route::post('estudiantes/agregar'. 'EstudianteController@agregar_estudiantes_store')->name('agregar.estudiantes.store');
+  Route::post('estudiantes/agregar', 'EstudianteController@agregar_estudiantes_store')->name('agregar.estudiantes.store');
   
   ///Estudiante Resources
   Route::resource('estudiantes', 'EstudianteController', ['except' => ['destroy']]);
@@ -96,7 +96,14 @@ Route::group(['middleware' => ['role:Administrador|Secretaria']], function (){
 //Rutas para el Rol Estudiante
 Route::group(['middleware' => ['role:Estudiante']], function (){
   
+  //Ruta para mostrar las actividades del Estudiante
+  //actividades
+  Route::resource('actividades', 'ActividadController');
+
+  //Ruta para obtener el Curriculum en PDF
+  Route::get('curriculum/pdf','ActividadController@generar_pdf')->name('curriculum.pdf');
  
+
   //Rutas para mostrar o no mostrar las actividades realizadas por el Estudiante
   Route::post('actividades/{id}/mostrar/cv', 'ActividadController@mostrar_cv')->name('actividades.mostrar.cv');
   Route::post('actividades/{id}/ocultar/cv', 'ActividadController@ocultar_cv')->name('actividades.ocultar.cv');

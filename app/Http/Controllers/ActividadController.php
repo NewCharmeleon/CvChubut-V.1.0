@@ -14,6 +14,7 @@ use App\ExperienciaLaboral;
 use Carbon\Carbon;
 
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -80,7 +81,7 @@ class ActividadController extends Controller
     public function edit($id)
     {
         $instituciones = Institucion::OrderBy('nombre')->get()->pluck('nombre', 'id')->toArray();
-        $actividades_tipo = ActividadTipo::OrderBy('nombre')->get()->pluck('nombre', 'id')->toArray();
+        $actividades_tipos = ActividadTipo::OrderBy('nombre')->get()->pluck('nombre', 'id')->toArray();
         $ambitos_actividades = AmbitoActividad::OrderBy('nombre')->get()->pluck('nombre', 'id')->toArray();
         $tipos_participaciones = TipoParticipacion::OrderBy('nombre')->get()->pluck('nombre', 'id')->toArray();
         $modalidades = Modalidad::OrderBy('nombre')->get()->pluck('nombre', 'id')->toArray();
@@ -354,4 +355,16 @@ class ActividadController extends Controller
         //sino se redirige al index
         return redirect()->route('actividades.index');
     }
+
+    //Metodo para generar PDF
+    public function generar_pdf(){
+
+        $estudiante = \Auth::user()->persona;
+        $actividades = Actividad::MostrarActividadesUsuario($estudiante);
+        $experiencias_laborales = ExperienciaLaboral::MostrarExperienciasLaboralesUsuario($estudiante);
+    
+        $pdf = \PDF::loadView('actividad.pdf', compact('estudiante', 'actividades','experiencias_laborales'));
+        return $pdf->stream('curriculum.pdf');    
+    
+      }
 }    

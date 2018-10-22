@@ -165,10 +165,11 @@ return [
         //Acoustep\EntrustGui\EntrustGuiServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-        
+        //Agregamos el paquete para crear PDF de Barry
+        //Barryvdh\DomPDF\ServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         /*
@@ -180,6 +181,7 @@ return [
         /*
          * Application Service Providers...
          */
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -229,7 +231,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
-
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+        //Agregamos el aliase del DomPDF
+        
     ],
 
 ];

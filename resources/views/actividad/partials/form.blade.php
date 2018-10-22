@@ -66,9 +66,9 @@
 
             <div id="select-institucion">
 
-               <select name="institucion_id" id="institucion_id" placeholder="Institución" class="form-control">
+               <select name="institucion_id" id="institucion_id" placeholder="Seleccione Institución" class="form-control">
 
-                 @foreach ($instituciones+[ null => 'Institución'] as  $id => $institucion_select )
+                 @foreach ($instituciones+[ null => 'Seleccione Institución'] as  $id => $institucion_select )
                     
                     <option value="{{ $id }}"  
                     
@@ -123,9 +123,9 @@
         <label for="actividad_tipo_id" class="control-label col-sm-3"> Tipo de Actividad <sup>*</sup></label>
         <div class="col-sm-6">
 
-            <select class="form-control" name="actividad_tipo_id" id="actividad_tipo_id" placeholder="Tipos de Actividades" required>
+            <select class="form-control" name="actividad_tipo_id" id="actividad_tipo_id" placeholder="Seleccione Tipo" required>
 
-                 @foreach ($actividades_tipos+[ null => 'Tipos de Actividades'] as  $id => $actividad_tipo_select )
+                 @foreach ($actividades_tipos+[ null => 'Seleccione Tipo'] as  $id => $actividad_tipo_select )
                     
                     <option value="{{ $id }}"  
                     
@@ -172,9 +172,9 @@
         <label for="ambito_actividad_id" class="control-label col-sm-3"> Ambito de Actividad <sup>*</sup></label>
         <div class="col-sm-6">
 
-            <select class="form-control" name="ambito_actividad_id" id="ambito_actividad_id" placeholder="Ambito de Actividades" required>
+            <select class="form-control" name="ambito_actividad_id" id="ambito_actividad_id" placeholder="Seleccione Ambito" required>
 
-                 @foreach ($ambitos_actividades+[ null => 'Ambito de Actividades'] as  $id => $ambito_actividad_select )
+                 @foreach ($ambitos_actividades+[ null => 'Seleccione Ambito'] as  $id => $ambito_actividad_select )
                     
                     <option value="{{ $id }}"  
                     
@@ -221,9 +221,9 @@
         <label for="tipo_participacion_id" class="control-label col-sm-3"> Tipo de Participaci&oacute;n <sup>*</sup></label>
         <div class="col-sm-6">
 
-            <select class="form-control" name="tipo_participacion_id" id="tipo_participacion_id" placeholder="Tipo de Participación" required>
+            <select class="form-control" name="tipo_participacion_id" id="tipo_participacion_id" placeholder="Seleccione Tipo" required>
 
-                 @foreach ($tipos_participaciones+[ null => 'Tipos de Participacion'] as  $id => $tipo_participacion_select )
+                 @foreach ($tipos_participaciones+[ null => 'Seleccione Tipo'] as  $id => $tipo_participacion_select )
                     
                     <option value="{{ $id }}"  
                     
@@ -270,9 +270,9 @@
         <label for="modalidad_id" class="control-label col-sm-3"> Modalidad <sup>*</sup></label>
         <div class="col-sm-6">
 
-            <select class="form-control" name="modalidad_id" id="modalidad_id" placeholder="Modalidad" required>
+            <select class="form-control" name="modalidad_id" id="modalidad_id" placeholder="Seleccione Modalidad" required>
 
-                 @foreach ($modalidades+[ null => 'Modalidades'] as  $id => $modalidad_select )
+                 @foreach ($modalidades+[ null => 'Seleccione Modalidad'] as  $id => $modalidad_select )
                     
                     <option value="{{ $id }}"  
                     
@@ -327,7 +327,7 @@
                 {{--  si hay actividad y no error --}}
                 @elseif(  isset($actividad  ) )
                 {{--  el valor de mostrala modalidad --}}
-                    @if( $$actividad->mostrar_cv == true )
+                    @if( $actividad->mostrar_cv == true )
                        checked
                     @endif
                 @else
@@ -344,7 +344,7 @@
                 {{--  si hay actividad y no error --}}
                 @elseif(  isset($actividad  ) )
                 {{--  el valor de mostrala modalidad --}}
-                    @if( $$actividad->mostrar_cv == false )
+                    @if( $actividad->mostrar_cv == false )
                        checked
                     @endif
                 @endif    

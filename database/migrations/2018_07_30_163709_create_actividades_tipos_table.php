@@ -22,9 +22,8 @@ class CreateActividadesTiposTable extends Migration
                 ->unique();
              
             $table
-                ->string('descripcion')
-                ->nullable()
-                ->default('');
+                ->text('descripcion')
+                ->nullable();
                 
             $table
                 ->timestamps();    

@@ -18,6 +18,8 @@
              <th>Nombre y Apellido </th>
              <th>D.N.I. </th>
              <th>Carrera </th>
+             <th>Cantidad de Materias</th>
+             <th>Cantidad de Materias Aprobadas </th>
              <th>Acciones</th>
          </tr>
         </thead>
@@ -29,7 +31,8 @@
              <td>{{ $estudiante->persona->nombre_apellido }}</td>
              <td>{{ $estudiante->persona->dni }}</td>
              <td>{{ isset ($estudiante->persona->carrera ) ? $estudiante->persona->carrera->nombre : 'No registrada.' }}</td>
-             
+             <td>{{ isset ($estudiante->persona->carrera ) ? $estudiante->persona->carrera->cantidad_materias : 'No registradas.' }}</td>
+             <td>{{ isset ($estudiante->persona->carrera ) ? $estudiante->persona->carrera->materias_aprobadas : 'Materias Aprobadas No Registradas.' }}</td>
              <td>
                   <a href="{{ route('estudiantes.show',$estudiante->id) }}" > <i class="glyphicon glyphicon-eye-open model-acction"></i> </a>
                   <a href="{{ route('estudiantes.edit',$estudiante->id) }}" > <i class="glyphicon glyphicon-edit model-acction" ></i></a>

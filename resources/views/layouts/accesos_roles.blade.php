@@ -1,12 +1,13 @@
 <nav class="navbar navbar-udc navbar-default" style="">
     <div class="navbar-header">
 
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nab-menu-min" aria-expanded="false" aria-controls="navbar">
+       <button id="toggle-menu" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nab-menu-min" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
+       
 
         <a class="navbar-brand" href="{{ url('/') }}">
             <i class="glyphicon glyphicon-home"></i>
@@ -16,7 +17,7 @@
     <div class="container-fluid">
         <div id="nab-menu-min" class="navbar-collapse collapse">
 
-            <ul class="nav navbar-nav">
+            <ul id="menu-li" class="nav navbar-nav">
                 <!-- roles y accesos -->
 
                     @role(['Administrador'])
@@ -29,6 +30,7 @@
                         </li>
                     @endrole
                     @role(['Secretaria','Administrador'])
+                    
                     <li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-education"></i> Estudiantes <span class="caret"></span></a>
@@ -89,9 +91,19 @@
                             </ul>
                         </li>
                     </li>
+                   
+	
                     @endrole
 
                     @role(['Estudiante'])
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-blackboard"></i> Carreras <span class="caret"></span></a>
+                            <ul class="dropdown-menu link-acceso">
+                            <li><a href="{{  route('carrera.perfil')   }}"> <i class="glyphicon glyphicon-list-alt"></i> Ver Carrera  </a></li>
+                            <li><a href="{{  route('carrera.perfil.edit') }}">  <i class="glyphicon glyphicon-edit model-acction" ></i>  Editar cantidad de Materias Aprobadas </a></li>
+                            </ul>
+                        </li>
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-pushpin"></i> Actividades <span class="caret"></span></a>

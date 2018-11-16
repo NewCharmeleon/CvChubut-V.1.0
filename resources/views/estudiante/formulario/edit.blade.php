@@ -5,12 +5,15 @@
 @section ('content')
 
     <form action="{{ route('estudiantes.update', $user->id ) }}" method="POST" lang="es" class="form-horizontal">
+        
         <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title"> {{ $persona->nombre_apellido }} <small> Editar </small> </h3>
             </div>
-            <div class="panel-body")
-                 <input type"hidden" name="method" value="put">
+            <div class="panel-body")>
+                 
+                 <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                  @include('estudiante.partials.form')
             </div>        
             <div class="panel-footer">

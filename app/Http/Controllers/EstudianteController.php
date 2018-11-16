@@ -94,20 +94,20 @@ class EstudianteController extends Controller
        abort(403); 
     }
 
-    //Metodo para actualizar un Ambito de Actividad determinada
+    //Metodo para actualizar un Estudiante determinado
     public function update($id, Request $request)
     {
-       
+        $user = User::findOrFail($id);
 
         //Definimos las reglas de validacion
         $rules = [
 
-            'email' => 'email|required|unique:users, email|email_udc_valid',
+            'email' => 'email|required|email_udc_valid',
             'nombre_apellido' => 'required|max:255|min:4|solo_letras',
-            'dni' => 'required|max:10|min:8|dni_unique:' . '',
+            'dni' => 'required|max:10|min:8',
             'fecha_nac' => 'required|date_format:d-m-Y|mayor_de_edad',
             'nacionalidad' => 'nullable|nacionalidad_exist',
-            'carrera_id' => 'required|exist:carrera,id',
+            'carrera_id' => 'required|exists:carreras,id',
             'telefono' => 'nullable|min:13|max:15|telefono_valid',
             
         
@@ -158,7 +158,7 @@ class EstudianteController extends Controller
             'dni' => 'required|max:10|min:8|dni_unique:' . '',
             'fecha_nac' => 'required|date_format:d-m-Y|mayor_de_edad',
             'nacionalidad' => 'nullable|nacionalidad_exist',
-            'carrera_id' => 'required|exist:carrera,id',
+            'carrera_id' => 'required|exists:carrera,id',
             'telefono' => 'nullable|min:13|max:15|telefono_valid',
             
         

@@ -1,4 +1,4 @@
-
+{!!  csrf_field()  !!}
 <div class="row">
     <div class="form-group has-feedback  {{ ( $errors->has('email') )?   'has-error' : ''}}   ">  
         <label for="email" class="control-label col-sm-3"> Email <sup>*</sup> </label>
@@ -67,4 +67,11 @@
             </div>
         </div>
     </div>
+
+   
+
+    
+</div>
+
+
 @endif  

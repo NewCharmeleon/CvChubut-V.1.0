@@ -22,3 +22,16 @@
     <br>
     <p><b>El Estudiante No posee Carrera Registrada</b><p>
 @endif
+@if( isset( $persona->carrera->nombre ) )
+    <div class="row">
+        <div class="form-group">  
+            <label for="materias_aprobadas" class="control-label col-sm-3"> Cantidad de Materias Aprobadas </label>
+            <div class="col-sm-6">
+            <p class="text-show"> {{  $persona->materias_aprobadas }} de {{  $persona->carrera->cantidad_materias }}  </p> 
+            </div>
+        </div>
+    </div>
+@else
+    <br>
+    <p><b>El Estudiante No posee Cantidad de Materias Aprobadas Registradas</b><p>
+@endif

@@ -22,7 +22,7 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 
     <!-- Fonts -->
-    <link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,300">
+    //<link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,300">
 
     <!-- Plugins -->
      <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}">
@@ -60,7 +60,6 @@
             position: fixed;
             top: 0;
             width: 100%;
-
         }
         .btn {
             margin: 10px 0 10px 0;
@@ -77,7 +76,6 @@
             display: none;
             color: #fff;
             transition: all 0.3s;
-
             z-index: 1; /* Stay on top */
             top: 0; /* Stay at the top */
             left: 0;
@@ -85,22 +83,18 @@
             padding-top: 109px;
             position: fixed;
         }
-
         #sidebar .sidebar-header {
             padding: 20px;
             background: #2196F3;
         }
-
         #sidebar ul.components {
             padding: 20px 0;
             border-bottom: 1px solid #47748b;
         }
-
         #sidebar ul p {
             color: #fff;
             padding: 10px;
         }
-
         #sidebar ul li a {
             padding: 10px;
             font-size: 1.1em;
@@ -116,7 +110,8 @@
             background: #999;
         }
 
-        @media (max-width: 787px) {
+
+        @media (max-width: 788px) {
             #avatar {
                 display: none;
             }
@@ -137,8 +132,7 @@
                 width: 150px;
             }
         }
-
-         @media (max-width: 787px) {
+        @media (max-width: 788px) {
             #sidebar {
                 display: none;               
             }
@@ -147,11 +141,111 @@
             }
            
         }
+        @role(['Secretaria','Administrador'])
+    @media (min-width: 787px) {
+        .navbar-header {
+            float: left;
+         //   margin-top: -4%;
+        }
+        #nab-menu-min {
+            display: none !important;
+            height: auto !important;
+            padding-bottom: 0;
+            overflow: visible !important;
+        }
+         #toggle-menu {
+            display: block !important;
+            height: auto !important;
+            //padding-bottom: 0;
+            overflow: visible !important;
+            //float: left;
+        }
+        #nab-menu-min.in {
+            display: block !important;
+            height: auto !important;
+            padding-bottom: 0;
+            overflow: visible !important;
+        }
+        
+        /*.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse, .navbar-static-top .navbar-collapse {
+	padding-right: 2%;
+	padding-left: 26%;
+}*/
+    }
+    @media (min-width: 796px) {
+       /* .navbar-toggle {
+            display: block !important;
+            
+        }*/
+        /*.navbar-udc .navbar-header {
+            float: right !important;
+            width: 100%;
+            
+        }*/
+        /*.navbar-header {
+            float: none;
+            margin-top: -4%;
+        }*/
+        /*#nab-menu-min.in {
+            display: block !important;
+            height: auto !important;
+            padding-bottom: 0;
+            overflow: visible !important;
+        }*/
+        /* #nab-menu-min {
+            display: none !important;
+            height: auto !important;
+            padding-bottom: 0;
+            overflow: visible !important;
+        }*/
+        /* #toggle-menu {
+            display: block !important;
+            //height: auto !important;
+            padding-bottom: 0;
+            overflow: visible !important;
+        }*/
+    }
+    
+    @endrole
+     @role(['Estudiante'])
+    @media (max-width: 787px) {
+       /* .navbar-header {
+            float: left;
+         //   margin-top: -4%;
+        }
+        #nab-menu-min {
+            display: none !important;
+            height: auto !important;
+            padding-bottom: 0;
+            overflow: visible !important;
+        }
+        /* #toggle-menu {
+            display: block !important;
+            height: auto !important;
+            //padding-bottom: 0;
+            overflow: visible !important;
+            //float: left;
+        }*/
+       /* #nab-menu-min.in {
+            display: none !important;
+            height: auto !important;
+            padding-bottom: 0;
+            overflow: visible !important;
+        }
+        
+        /*.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse, .navbar-static-top .navbar-collapse {
+	padding-right: 2%;
+	padding-left: 26%;
+}*/
+    //}
+    @endrole
+
         .avatar{
             width: 80px;
             height: 80px;
             border-radius: 50%;
         }
+        
         @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
         /* Variables */
         /* Mixins */
@@ -425,7 +519,7 @@
     .center{
         text-align: center;
     }
-
+    
 
     </style>
 </head>
@@ -440,7 +534,7 @@
                     <!-- Collapsed Hamburger -->
 
                     @if(! Auth::guest() )
-                    <button type="button" class="navbar-toggle" id="menu-minimizado">
+                    <button type="button" class="navbar-toggle" id="menu-minimizado" data-target="#nab-perfil-min">
                         <span class="sr-only">Toggle Navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -458,7 +552,7 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav" style="margin-left:20%;">
+                    <ul class="nav navbar-nav" style="margin-left:7%;">
                        @if (!Auth::guest())
                             <li>
                                 <div style="min-width: 200px;">
@@ -467,8 +561,11 @@
                                     </div>
 
                                     <div>
-                                        <p> @if(Auth::user()->hasRole('Estudiante')) @if( isset( Auth::user()->persona->carrera->nombre ))
-                                        {{ Auth::user()->persona->carrera->nombre }} @endif @endif </p> 
+                                        <p> @if(Auth::user()->hasRole('Estudiante'))
+                                                 @if( isset( Auth::user()->persona->carrera->nombre ))
+                                                    {{ Auth::user()->persona->carrera->nombre }} 
+                                                 @endif 
+                                            @endif </p> 
                                         <p> {{ Auth::user()->email }}</p>
                                     </div>
 
@@ -603,19 +700,114 @@
         
         $(function($){
             
+           @role(['Secretaria','Administrador'])
+                    
+                //$('#nab-menu-min').toggle();
+                //$('#nab-menu-min').addClass('in');
+                //$('#nab-menu-min').attr("aria-expanded", "false");
+                //$('#menu-li').css("display", "none");
+                //$('#menu-li').toggle();
+                //$('#nab-menu-min').addClass('in');
+                //if ($('#mtoggle-menu').hide()){
+                    $('#toggle-menu').show();
+                    //$('#menu-li').css("display", "block !important");
+                //}else{
+                    //$('#toggle-menu').show();
+                   // $('#menu-li').css("display", "block !important");
+                    //$('#menu-li').css("display", "block");
+                    //$('#menu-li').removeClass('hide');
+               
+                //}
+                 //$('#sidebar').addClass('active');
+                //$('#sidebar.active').css('display', 'none');
+                /*function(d) {
+                    var e = a(this);
+                    e.attr("data-target") || d.preventDefault();
+                    var f = b(e),
+                        g = f.data("bs.collapse"),
+                        h = g ? "toggle" : e.data();
+                    c.call(f, h)
+
+                }*/
+                //$(document).ready(function(){
+	            	//$(window).resize( function()
+                    //{
+                        //$('.navbar-collapse.collapse.in').css('display','block! Important');
+                        //$('#menu-minimizado').click(function(){
+                        //if ( !$('#nab-menu-min').hasClass('collapsed') )
+                       // {
+                            //$('#nab-menu-min').addClass('collapsed');
+                            // $('#menu-li').css("display", "none !important");
+                           // $('#menu-li').addClass('hide');
+                            //$('#menu-li').css("display", "block !important");
+                       // }
+                    //});
+                //}) ;   
+                //$('#nab-menu-min').addClass('collapsed');
+           @endrole
+             @role(['Estudiante'])
+                   // $('#toggle-menu').show();
+                    //$('#menu-li').css("display", "block");
+                //$('#nab-menu-min').toggle();
+                //$('#nab-menu-min').addClass('in');
+                //$('#nab-menu-min').attr("aria-expanded", "false");
+                //$('#menu-li').css("display", "none");
+                //$('#menu-li').toggle();
+                //$('#menu-li').show();
+                //$('#nab-menu-min').css("display", "block");
+                
+               //$('#toggle-menu').hide();
+                 //$('#sidebar').addClass('active');
+                //$('#sidebar.active').css('display', 'none');
+                /*function(d) {
+                    var e = a(this);
+                    e.attr("data-target") || d.preventDefault();
+                    var f = b(e),
+                        g = f.data("bs.collapse"),
+                        h = g ? "toggle" : e.data();
+                    c.call(f, h)
+
+                }*/
+                //$(document).ready(function(){
+	            	//$(window).resize( function()
+                    //{
+                        //$('.navbar-collapse.collapse.in').css('display','block! Important');
+                        //$('#menu-minimizado').click(function(){
+                        //if ( !$('#nab-menu-min').hasClass('collapsed') )
+                       // {
+                            //$('#nab-menu-min').addClass('collapsed');
+                            // $('#menu-li').css("display", "none !important");
+                           // $('#menu-li').addClass('hide');
+                            //$('#menu-li').css("display", "block !important");
+                       // }
+                    //});
+                //}) ;   
+                //$('#nab-menu-min').addClass('collapsed');
+           @endrole
+
             $('#menu-minimizado').click(function(){
                 if( $('#sidebar').hasClass('active') ){
-                    $('#sidebar').removeClass('active')
+                    $('#sidebar').removeClass('active');
+                    //$('#menu-li').css("display", "block");
+                   // $('#menu-li').removeClass('hide');
                 }else{
-                    $('#sidebar').addClass('active')
+                    $('#sidebar').addClass('active');
+                    //$('#menu-li').css("display", "block");
+                    //$('#menu-li').removeClass('hide');
+               
                 }
             });
 
             $('#content').click(function(){
                 if( $('#sidebar').hasClass('active') ){
-                    $('#sidebar').removeClass('active')
+                    $('#sidebar').removeClass('active');
+                    //$('#menu-li').css("display", "block");
+                    //$('#menu-li').removeClass('hide');
+                    //$('#nab-menu-min').show();
+                   // $('#menu-li').show();
                 }
             });
+            
 
             $('.close-error').click(function( e ){
                 $(e.target).parent().remove();
@@ -625,7 +817,7 @@
             
             $('.telefono').mask('(999)9999-999', {placeholder: '(999)9999-9999' });
            
-            $('.email-udc').mask('#@udc.edu.ar', {reverse: true, selectOnFocus: true});
+            $('#email-udc').mask('#@udc.edu.ar', {reverse: true, selectOnFocus: true});
 
             $('integer-positivo').mask('9999');
 

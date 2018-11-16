@@ -20,6 +20,7 @@ class Persona extends Model
         'telefono',
         'user_id',
         'carrera_id',
+        
     ];
 
     public function usuario()
@@ -104,13 +105,8 @@ class Persona extends Model
         return $value;
     }
 
-    public function getNacionalidadAttribute()
-    {
-        //tratamiento del valor
-        $value = $this->attributes['nacionalidad'];
-        //sin nacionalidad
-        return   (  empty($value)      )? 'no tiene nacionalidad registrada' :$value;
-    }
+    
+    
 
 
     public static function nacionalidades (){

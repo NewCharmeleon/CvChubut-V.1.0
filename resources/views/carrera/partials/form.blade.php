@@ -14,6 +14,8 @@
     </div>
 </div>
 
+
+
 <div class="row">
     <div class="form-group has-feedback  {{ ( $errors->has('cantidad_materias') )?   'has-error' : ''}}   ">  
         <label for="cantidad_materias" class="control-label col-sm-3"> Cantidad de Materias </label>
@@ -28,4 +30,3 @@
         </div>
     </div>
 </div>  
-

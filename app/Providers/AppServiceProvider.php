@@ -8,8 +8,8 @@ use App\Persona;
 use App\Actividad;
 use App\Modalidad;
 
-
-use App\Carbon\Carbon;
+use Carbon\Carbon;
+//use App\Carbon\Carbon;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;

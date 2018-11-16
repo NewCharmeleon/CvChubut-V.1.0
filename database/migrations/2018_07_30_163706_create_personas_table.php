@@ -55,6 +55,7 @@ class CreatePersonasTable extends Migration
                 ->foreign('carrera_id')
                 ->references('id')
                 ->on('carreras');
+           
 
             $table
                 ->timestamps();    

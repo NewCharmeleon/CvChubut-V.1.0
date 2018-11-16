@@ -96,6 +96,15 @@ Route::group(['middleware' => ['role:Administrador|Secretaria']], function (){
 //Rutas para el Rol Estudiante
 Route::group(['middleware' => ['role:Estudiante']], function (){
   
+  //Ruta para ver la propia Carrera
+  
+
+  Route::get('carrera/perfil', 'CarreraController@carrera_perfil')->name('carrera.perfil');
+  Route::get('carrera/perfil/edit', 'CarreraController@carrera_perfil_edit')->name('carrera.perfil.edit');
+  //Ruta para Agregar Materias Aprobadas para los Estudiantes
+  Route::get('carrera/agregar', 'CarreraController@agregar_materias_aprobadas_show')->name('agregar.materias_aprobadas.show');
+  Route::post('carrera/agregar', 'CarreraController@agregar_materias_aprobadas_store')->name('agregar.materias_aprobadas.store');
+  
   //Ruta para mostrar las actividades del Estudiante
   //actividades
   Route::resource('actividades', 'ActividadController');

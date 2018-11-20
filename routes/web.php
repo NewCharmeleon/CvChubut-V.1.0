@@ -18,6 +18,14 @@
 
 Auth::routes();
 Route::get('/', 'HomeController@index');
+//dd("hola0");
+/*Route::any('/data', function (){
+  dd("hola");
+  return Datatables::eloquent(App\Carrera::query())->make(true);
+  //return datatables()->eloquent(Carrera::query())->toJson();
+  //return datatables(User::all())->toJson();
+})->name('carreras.data');*/
+Route::any('/data', 'DatatablesController@anyData')->name('carreras.data');
 //Rutas que todas vuelven al Home...SPAxD
 /*Route::any('{all}', function () {
      return view('home');

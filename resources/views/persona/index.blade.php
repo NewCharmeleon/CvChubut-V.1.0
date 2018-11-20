@@ -2,7 +2,7 @@
 
 <h4> Usuarios </h4>
 
-<table>
+<table id='datatable'>
   <thead>
     <tr>
       <th>Id</th>

@@ -26,7 +26,10 @@ class CreateModalidadesTable extends Migration
                 ->string('descripcion')
                 ->nullable()
                 ->default('');
-                
+             
+            $table
+            ->softDeletes(); //Columna para soft delete
+              
             $table
                 ->timestamps();    
         });

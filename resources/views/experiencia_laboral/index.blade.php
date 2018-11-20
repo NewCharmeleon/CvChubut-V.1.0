@@ -16,7 +16,7 @@
         </div>
       @endrole        
       
-      <table class="table table-hover">
+      <table id='datatable' class="table table-hover">
         
         <thead>
          <tr>

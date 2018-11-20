@@ -7,7 +7,7 @@ use App\Carrera;
 //de localizacion en el Metodo Store() 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Illuminte\Support\Facades\Input;
+use Illuminate\Support\Facades\Input;
 
 class CarreraController extends Controller
 {
@@ -132,7 +132,7 @@ class CarreraController extends Controller
        
 
         
-        
+       // dd($request);
         //variables temporales para tomar los datos del Request y Setearlos
         //antes de la actualizacion
         $nombre_original = $request->nombre;
@@ -145,15 +145,15 @@ class CarreraController extends Controller
 
         //actualizamos el dato del request con la variable ya modificado con los Setters
         $request->merge(['nombre' => $nombre_para_validacion]);
-
+        //dd($request);
         //Definimos las reglas de validacion
         $validaciones = \Validator::make($request->all(),
         [
-            'nombre' => 'required|max:250|min:3|unique:carreras, nombre,' . $id,
-            'cantidad_materias' => 'required|max:50|min:1|numeric',
+            'nombre' => 'required|max:250|min:3|unique:carreras,nombre,' . $id,
+            'cantidad_materias' => 'required|min:1|numeric',
         ]);
 
-        
+       // dd($request);
         //actualizamos el dato del request con la variable original ya validada correctamente
         $request->merge(['nombre' => $nombre_original]);
          //preguntamos si hay errores
@@ -165,12 +165,12 @@ class CarreraController extends Controller
                 ->withInput(Input::all());
 
         }
-        
+        //dd($request);
 
         //Actualizamos la Carrera
         $carrera = Carrera::findOrFail($id);
         $carrera->update($request->all());
-
+       // dd($carrera);
         //Finalizada la actualizacion con el Request
         //volvemos al Index
         
@@ -181,6 +181,7 @@ class CarreraController extends Controller
     //Metodo para Guardar los datos del Ambito de Actividad determinada
     public function store(Request $request)
     {
+       
         //variables temporales para tomar los datos del Request y Setearlos
         //antes de la actualizacion
         $nombre_original = $request->nombre;
@@ -197,8 +198,8 @@ class CarreraController extends Controller
         //Definimos las reglas de validacion
         $validaciones = \Validator::make($request->all(),
         [
-            'nombre' => 'required|max:250|min:3|unique:carreras, nombre,' . $id,
-            'cantidad_materias' => 'required|max:50|min:1|numeric',
+            'nombre' => 'required|max:250|min:3|unique:carreras,nombre,' . $id,
+            'cantidad_materias' => 'required|max:255|min:1|numeric',
         ]);
 
         
@@ -214,7 +215,7 @@ class CarreraController extends Controller
 
         }
         
-
+        
         //Creamos la Carrera
         $carrera = Carrera::create($request->all() );
         

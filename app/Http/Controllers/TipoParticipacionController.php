@@ -80,7 +80,7 @@ class TipoParticipacionController extends Controller
         //Definimos las reglas de validacion
         $rules = [
 
-            'nombre' => 'required|solo_letras|max:250|min:3|unique:ambios_actividades, nombre,' . $id,
+            'nombre' => 'required|solo_letras|max:250|min:3|unique:tipos_participaciones,nombre,' . $id,
             'descripcion' => 'max:250|min:3',
             
         
@@ -134,7 +134,7 @@ class TipoParticipacionController extends Controller
         //Definimos las reglas de validacion
         $rules = [
 
-            'nombre' => 'required|solo_letras|max:250|min:3|unique:ambios_actividades, nombre,' . $id,
+            'nombre' => 'required|solo_letras|max:250|min:3|unique:tipos_participaciones,nombre,' . $id,
             'descripcion' => 'max:250|min:3',
             
         

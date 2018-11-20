@@ -16,7 +16,7 @@ class CarrerasTableSeeder extends Seeder
         Carrera::truncate();
 
         //Creamos instancia de Faker
-        $faker = Faker::create('es_Es');
+       // $faker = Faker::create('es_Es');
         $carreras = [
             ['nombre' => 'Licenciatura en Enfermeria', 'cantidad_materias' => '33'], 
             ['nombre' => 'Licenciatura en Administración de Áreas Naturales', 'cantidad_materias' => '52'],

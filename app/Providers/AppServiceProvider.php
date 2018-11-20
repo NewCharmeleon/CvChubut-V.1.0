@@ -48,6 +48,8 @@ class AppServiceProvider extends ServiceProvider
             //tomamos la longitud del valor recibido
             $longitud_original = strlen($value);
 
+            //reemplazamos los espacios por nada
+            $value = str_replace(' ', '', $value);
             //reemplazamos los numeros por nada
             $value = preg_replace('/[0-9]+/', '', $value);
             //reemplazamos el signo $ por nada

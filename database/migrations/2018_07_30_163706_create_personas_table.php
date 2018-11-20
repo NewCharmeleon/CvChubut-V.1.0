@@ -56,7 +56,9 @@ class CreatePersonasTable extends Migration
                 ->references('id')
                 ->on('carreras');
            
-
+            $table
+            ->softDeletes(); //Columna para soft delete
+          
             $table
                 ->timestamps();    
 

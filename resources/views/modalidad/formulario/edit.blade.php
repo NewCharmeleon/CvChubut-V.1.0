@@ -9,7 +9,8 @@
                 <h3 class="panel-title"> {{ $modalidad->nombre }} <small> Editar </small></h3>
             </div>
             <div class="panel-body")
-                <input type="hidden" name="_method" value="put">
+                <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 @include('modalidad.partials.form')
             </div>
             <div class="panel-footer">

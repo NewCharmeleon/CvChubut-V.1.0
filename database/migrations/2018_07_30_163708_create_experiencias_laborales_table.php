@@ -62,7 +62,10 @@ class CreateExperienciasLaboralesTable extends Migration
                 ->foreign('persona_id')
                 ->references('id')
                 ->on('personas');
-                
+         
+            $table
+            ->softDeletes(); //Columna para soft delete
+              
             $table
                 ->timestamps();    
 

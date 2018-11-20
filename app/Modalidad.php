@@ -3,12 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+//agregado para el borrado logico
+use SoftDeletes;
 
 class Modalidad extends Model
 {
    //nombre de la Tabla a la cual referencia el Modelo
 
    protected $table = 'modalidades';
+
+   //atributo para usar el SoftDelete
+   protected $dates = ['deleted_at'];
 
    //atributos a llenar del Modelo
 

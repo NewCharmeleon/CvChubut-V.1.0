@@ -3,13 +3,15 @@
 
 @section('content')
  <form action="{{  route('carreras.update', $carrera->id )      }}" method="POST" lang="es" class="form-horizontal">
+    <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="panel panel-default">
         <div class="panel-heading">
            <h3 class="panel-title">  {{ $user->persona->nombre_apellido }} <small>  Perfil de Carrera  </small> </h3>
         </div>
         <div class="panel-body">
            
-                <input type="hidden" name="_method" value="put">
+                 
                 <!-- bandera que sirve para redirigir al perfil -->
                 <input type="hidden" name="perfil" value="true">
                 

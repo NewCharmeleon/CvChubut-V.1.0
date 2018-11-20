@@ -8,6 +8,7 @@
         <div class="panel-heading">
             <h3 class="panel-title"> {{ $carrera->nombre }} <small> Ver </small></h3>
         </div>
+        
 
         <div class="panel-body")
             <form action="" class="form-horizontal"> 

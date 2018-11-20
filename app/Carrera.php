@@ -3,13 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+//agregado para el borrado logico
+use SoftDeletes;
 
 class Carrera extends Model
 {
     //nombre de la Tabla a la cual referencia el Modelo
 
     protected $table = 'carreras';
-
+    //atributo para usar el SoftDelete
+    
+    protected $dates = ['deleted_at'];
     //atributos a llenar del Modelo
 
     protected $fillable = [
@@ -23,9 +27,9 @@ class Carrera extends Model
     
     //establecemos las relaciones a otros Modelos
     
-    public function persona()
+    public function personas()
     {
-        return $this->hasMany(Persona::class, 'carrera_id');
+        return $this->hasMany('App\Persona');
     }
 
     //establecemos los Accesors y Mutators a utilizar para la estandarizacion de los datos en la BBDD

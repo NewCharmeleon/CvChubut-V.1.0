@@ -27,7 +27,9 @@ class CreateTiposParticipacionesTable extends Migration
                 ->nullable()
                 ->default('');
                 
-                
+            $table
+            ->softDeletes(); //Columna para soft delete
+              
             $table->timestamps();    
         });
     }

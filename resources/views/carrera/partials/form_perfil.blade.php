@@ -3,7 +3,7 @@
 
 @yield('campos_extras')
 
-@include('carrera.partials.form')
+@include('carrera.partials.show')
  <div class="row">
         <div class="form-group   {{ ( $errors->has('materias_aprobadas') )?   'has-error' : ''}}   ">  
             <label for="materias_aprobadas" class="control-label col-sm-3">Materias Aprobadas </label>

@@ -10,7 +10,8 @@
               <h3 class="panel-title"> {{ $user->persona->nombre_apellido }} <small> Editar </small> </h3>
             </div>
             <div class="panel-body")
-                 <input type"hidden" name="method" value="put">
+                 <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                  @include('usuario.partials.form_user')
             </div>        
             <div class="panel-footer">

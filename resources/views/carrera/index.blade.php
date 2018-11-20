@@ -10,7 +10,7 @@
       <caption><h4><b><u>Listado de Carreras</u></b></h4></caption>
       <a href="{{ route('carreras.create')  }}" class="btn btn-primary">  Nueva  </a>
 
-      <table class="table table-hover">
+      <table class="table" id="table">
         
         <thead>
          <tr>
@@ -49,5 +49,9 @@
    </div>
 
   </div>
-
+  <script>
+    $(document).ready(function() {
+      $('#table').DataTable();
+  } );
+   </script>
 @endsection

@@ -27,14 +27,14 @@ class ExperienciasLaboralesTableSeeder extends Seeder
             ExperienciaLaboral::create(
             [
 
-                'puesto' => $faker->realText($maxNBChars = 30),
+                'puesto' => $faker->jobTitle(),
                 'descripcion_de_tareas' => $faker->realText($maxNBChars = 100),
                 'fecha_ini' => $faker->date($format = 'Y-m-d', $max = 'now'),
                 'fecha_fin' => $faker->date($format = 'Y-m-d', $max = 'fecha_ini'),
-                'empleador' => $faker->realText($maxNBChars = 50),
-                'localidad' => $faker->realText($maxNBChars = 50),
-                'provincia' => $faker->realText($maxNBChars = 50),
-                'referencia' => $faker->realText($maxNBChars = 50),
+                'empleador' => $faker->company(),
+                'localidad' => $faker->city(),
+                'provincia' => $faker->state(),
+                'referencia' => $faker->name(),
                 'rentado' => $faker->boolean(),
                 'persona_id' => $faker->numberBetween($min=0, $cuantos),
             ]);

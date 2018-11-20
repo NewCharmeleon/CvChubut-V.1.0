@@ -49,9 +49,9 @@ class ActividadesTableSeeder extends Seeder
             //llamamos al Metodo Create del Modelo
             Actividad::create(
             [
-                
-                'nombre' =>$faker->name(),
-                'lugar' => $faker->word(),
+                'nombre' =>$faker->catchPhrase(),
+                //'nombre' =>$faker->name(),
+                'lugar' => $faker->streetAddress(),
                 'fecha_inicio' => $faker->date('d-m-Y', $max = 'now'),
                 'fecha_fin' => $faker->date('d-m-Y'),
                 'mostrar_cv' => $faker->randomElement( array ( true, false )),

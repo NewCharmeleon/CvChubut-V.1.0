@@ -33,6 +33,9 @@ class CreateUsersTable extends Migration
       ->rememberToken();
 
       $table
+      ->softDeletes(); //Columna para soft delete
+
+      $table
       ->timestamps();
     });
   }

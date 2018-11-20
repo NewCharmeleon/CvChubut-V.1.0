@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+//agregado para el borrado logico
+use SoftDeletes;
 
 class ExperienciaLaboral extends Model
 {
@@ -11,6 +13,8 @@ class ExperienciaLaboral extends Model
 
    protected $table = 'experiencias_laborales';
 
+   //atributo para usar el SoftDelete
+   protected $dates = ['deleted_at'];
    //atributos a llenar del Modelo
 
    protected $fillable = [

@@ -36,7 +36,10 @@ class CreateInstitucionesTable extends Migration
                 ->string('pais')
                 ->nullable()
                 ->default( null );    
-                
+            
+            $table
+            ->softDeletes(); //Columna para soft delete
+          
             $table
                 ->timestamps();    
 

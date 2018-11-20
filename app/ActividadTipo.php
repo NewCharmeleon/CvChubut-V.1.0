@@ -2,6 +2,8 @@
 
 namespace App;
 use App\Actividad;
+//agregado para el borrado logico
+use SoftDeletes;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,6 +12,9 @@ class ActividadTipo extends Model
     //nombre de la Tabla a la cual referencia el Modelo
 
     protected $table = 'actividades_tipos';
+
+    //atributo para usar el SoftDelete
+    protected $dates = ['deleted_at'];
 
     //atributos a llenar del Modelo
 

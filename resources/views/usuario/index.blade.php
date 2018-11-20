@@ -8,7 +8,7 @@
     <div class="panel-body")
 
       <caption><h4><b><u>Listado de Usuarios</u></b></h4></caption>
-      <table class="table table-hover">
+      <table id='datatable' class="table table-hover">
 
         <thead>
           <tr>

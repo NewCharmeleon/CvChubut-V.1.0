@@ -11,7 +11,7 @@
       <a href="{{ route('estudiantes.create')  }}" class="btn btn-primary">  Nueva  </a>
       <a href="{{ route('agregar.estudiantes.show')  }}" class="btn btn-primary">  Agregar Estudiantes  </a>
 
-      <table class="table table-hover">
+      <table id='datatable' class="table table-hover">
         
         <thead>
          <tr>

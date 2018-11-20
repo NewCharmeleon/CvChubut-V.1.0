@@ -26,7 +26,11 @@ class CreateCarrerasTable extends Migration
                 ->default(0);
                 $table
                 ->string('materias_aprobadas')
-                ->default('n/c');    
+                ->default('n/c');  
+            
+            $table
+            ->softDeletes(); //Columna para soft delete
+          
                 
             $table->timestamps();    
         });

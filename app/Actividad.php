@@ -6,12 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use App\ActividadTipo;
 use App\ActividadEspecifica;
-
+//agregado para el borrado logico
+use SoftDeletes;
 class Actividad extends Model
 {
-     //nombre de la Tabla a la cual referencia el Modelo
+    
+    //nombre de la Tabla a la cual referencia el Modelo
 
    protected $table = 'actividades';
+   
+   
+   //atributo para usar el SoftDelete
+   protected $dates = ['deleted_at'];
 
    //atributos a llenar del Modelo
 
@@ -41,7 +47,8 @@ class Actividad extends Model
    {
        return $this->belongsTo(Institucion::class, 'institucion_id');
    }
-   
+   //para mostrar hasta los borrados
+   //->withTrashed()
    public function persona()
    {
        return $this->belongsTo(Persona::class, 'persona_id');

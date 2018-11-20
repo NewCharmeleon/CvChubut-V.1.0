@@ -8,7 +8,8 @@
            <h3 class="panel-title">  Experiencia Laboral de <b>  {{ $persona->nombre_apellido  }}  </b>  puesto <b> {{ $experiencia_laboral->puesto }}    </b><small>  editar  </small> </h3>
         </div>
         <div class="panel-body">
-            <input type="hidden" name="_method" value="put">
+            <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
             @include('experiencia_laboral.partials.form')
         </div>
         <div class="panel-footer">

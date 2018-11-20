@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
     //Vaciamos las Tablas para evitar errores
     
     Role::truncate();
-    Carrera::truncate();
+    //Carrera::truncate();
     User::truncate();
     Persona::truncate();
     DB::table('role_user')->truncate();
@@ -133,6 +133,7 @@ class UsersTableSeeder extends Seeder
     //Metodo a revisar para crear Personas Alumnos  
     //llamamos al Metodo Create del Modelo mediante nuevo Fillable
     //dd($carrera->id);
+    $cuantos1=Carrera::all()->count();
     $persona = Persona::create([
       'nombre_apellido' => $faker->firstName." ".$faker->lastName,
       'dni' => '31457911',
@@ -141,9 +142,11 @@ class UsersTableSeeder extends Seeder
       'telefono' => "2804-333333",
       'user_id' => $user->id,
      
-      'carrera_id' => Carrera::get()->first(),
+      'carrera_id'=>$faker->numberBetween($min=1, $cuantos1),
+      
       
     ]);
+    //dd($persona->carrera_id);
     
       //dd("holis");
     //Se llama al Metodo para hashear el password
@@ -164,7 +167,8 @@ class UsersTableSeeder extends Seeder
         ], //persona
         "persona" => [
           "nombre_apellido" => "ABALLAY Belen Ayelen",
-          "dni" => "38804297"
+          "dni" => "38804297",
+          'carrera_id'=>$faker->numberBetween($min=1, $cuantos1),
         ]   
       ],
 
@@ -178,7 +182,8 @@ class UsersTableSeeder extends Seeder
         //persona
         "persona" => [
           "nombre_apellido" => "ABARZUA Delia Rocio",
-          "dni" => "39440366"
+          "dni" => "39440366",
+          'carrera_id'=>$faker->numberBetween($min=1, $cuantos1),
         ]
       ],
       [ 
@@ -190,7 +195,8 @@ class UsersTableSeeder extends Seeder
         ], //persona
         "persona" => [
           "nombre_apellido" => "ABRAHAM Bruno Stefano",
-          "dni" => "41525735"
+          "dni" => "41525735",
+          'carrera_id'=>$faker->numberBetween($min=1, $cuantos1),
         ]
       ]
 

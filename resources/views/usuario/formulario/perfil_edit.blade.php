@@ -9,7 +9,8 @@
         </div>
         <div class="panel-body">
            
-                <input type="hidden" name="_method" value="put">
+                <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <!-- bandera que sirve para redirigir al perfil -->
                 <input type="hidden" name="perfil" value="true">
                 

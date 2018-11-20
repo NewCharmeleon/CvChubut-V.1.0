@@ -10,7 +10,8 @@
               <h3 class="panel-title"> {{ $institucion->nombre }} <small> Editar </small> </h3>
             </div>
             <div class="panel-body")
-                 <input type"hidden" name="method" value="put">
+                 <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                  @include('institucion.partials.form')
             </div>        
             <div class="panel-footer">

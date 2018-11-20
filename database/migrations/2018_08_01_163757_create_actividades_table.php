@@ -103,7 +103,9 @@ class CreateActividadesTable extends Migration
                 ->default('');
             */   
             
-            
+            $table
+            ->softDeletes(); //Columna para soft delete
+
             $table
                 ->timestamps();
         });

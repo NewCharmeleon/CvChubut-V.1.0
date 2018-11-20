@@ -25,7 +25,10 @@ class CreateAmbitosActividadesTable extends Migration
             $table
                 ->text('descripcion')
                 ->nullable();
-                
+            
+            $table
+            ->softDeletes(); //Columna para soft delete
+              
                 
             $table->timestamps();    
         });

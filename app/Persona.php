@@ -6,11 +6,16 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 use Carbon\Carbon;
+//agregado para el borrado logico
+use SoftDeletes;
 
 class Persona extends Model
 {
 
     protected $table = "personas";
+
+    //atributo para usar el SoftDelete
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'nombre_apellido',
@@ -29,7 +34,7 @@ class Persona extends Model
     }
     public function carrera()
     {
-        return $this->belongsTo(Carrera::class, 'carrera_id');
+        return $this->belongsTo('App\Carrera', 'carrera_id');
     }
 
     public function experiencias_laborales()

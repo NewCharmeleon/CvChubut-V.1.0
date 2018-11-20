@@ -17,6 +17,9 @@ class EntrustSetupTables extends Migration
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
             $table->string('description')->nullable();
+            $table
+            ->softDeletes(); //Columna para soft delete
+
             $table->timestamps();
         });
 
@@ -39,6 +42,9 @@ class EntrustSetupTables extends Migration
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
             $table->string('description')->nullable();
+            $table
+             ->softDeletes(); //Columna para soft delete
+
             $table->timestamps();
         });
 

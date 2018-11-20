@@ -18,7 +18,7 @@
                 text-transform: uppercase;
             }
             .columna-derecha {
-                width: 40%;
+                width: 50%;
                 text-align: left;
             }
             .columna-izquierda {
@@ -162,7 +162,7 @@
         </div>
         
         <div class="col-sm-3">
-            <p> <b>Email</b> &nbsp; {{ $estudiante->email }}   </p>
+            <p> <b>Email</b> &nbsp;{{ $email }}</p>
             <p> <b> Nacionalidad</b> &nbsp;  {{ $estudiante->nacionalidad }}</p>
             <p> <b> Dni</b> &nbsp;  {{ $estudiante->dni }}</p>
             <p> <b>Nacido/a el </b> &nbsp; {{ $estudiante->fecha_nacimiento }} </p>
@@ -216,15 +216,15 @@
                     <tbody>
                         <tr>
                             <td class="columna-izquierda">
-                                    &nbsp;&nbsp;<u class="texto-secundario mayuscula">Lugar </u> &nbsp; {{ $actividad->lugar}}
+                                    &nbsp;&nbsp;<u class="texto-secundario mayuscula">Lugar: </u> &nbsp; {{ $actividad->lugar}}
                             </td>
                             <td class="columna-derecha">
-                                &nbsp;<u class="texto-secundario mayuscula">Tipo de Participaci&oacute;n</u> {{ $actividad->tipo_participacion->nombre }}
+                                <u class="texto-secundario mayuscula">Tipo de Participaci&oacute;n:</u> {{ $actividad->tipo_participacion->nombre }}
                             </td>
                         </tr>
                         <tr>
                             <td class="columna-izquierda">
-                                &nbsp;&nbsp;<u class="texto-secundario mayuscula">Modalidad </u> &nbsp; {{ $actividad->modalidad->nombre }}
+                                &nbsp;&nbsp;<u class="texto-secundario mayuscula">Modalidad: </u> &nbsp; {{ $actividad->modalidad->nombre }}
                             </td>
                             <td class="columna-derecha">
                                 &nbsp;{{ $actividad->modalidad->descripcion }}
@@ -232,7 +232,7 @@
                         </tr>
                         <tr>
                             <td class="columna-izquierda">
-                                &nbsp;&nbsp;<u class="texto-secundario mayuscula">Tipo </u> &nbsp; {{ $actividad->actividad_tipo->nombre }}
+                                &nbsp;&nbsp;<u class="texto-secundario mayuscula">Tipo: </u> &nbsp; {{ $actividad->actividad_tipo->nombre }}
                             </td>
                             <td class="columna-derecha">
                                 &nbsp;{{ $actividad->actividad_tipo->descripcion }}
@@ -240,7 +240,7 @@
                         </tr>
                         <tr>
                             <td class="columna-izquierda">
-                                &nbsp;&nbsp;<u class="texto-secundario mayuscula">&Aacute;mbito</u> &nbsp; {{ $actividad->ambito_actividad->nombre }}
+                                &nbsp;&nbsp;<u class="texto-secundario mayuscula">&Aacute;mbito:</u> &nbsp; {{ $actividad->ambito_actividad->nombre }}
                             </td>
                             <td class="columna-derecha">
                                 &nbsp;{{ $actividad->ambito_actividad->descripcion }}
@@ -248,7 +248,7 @@
                         </tr>
                         <tr>
                                 <td class="columna-izquierda">
-                                    &nbsp;&nbsp;<u class="texto-secundario mayuscula">Instituci&oacute;n </u> &nbsp; {{ $actividad->institucion->nombre }}
+                                    &nbsp;&nbsp;<u class="texto-secundario mayuscula">Instituci&oacute;n: </u> &nbsp; {{ $actividad->institucion->nombre }}
                                 </td>
                                 <td class="columna-derecha">
                                     &nbsp;{{ $actividad->institucion->localidad }} &nbsp;&nbsp;{{ $actividad->institucion->provincia }} &nbsp;&nbsp;{{ $actividad->institucion->pais }}

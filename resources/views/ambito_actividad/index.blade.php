@@ -10,7 +10,7 @@
       <caption><h4><b><u>Listado de Ambitos de Actividades</u></b></h4></caption>
       <a href="{{ route('ambitos.actividades.create')  }}" class="btn btn-primary">  Nueva  </a>
 
-      <table class="table table-hover">
+      <table id='datatable' class="table table-hover">
         
         <thead>
          <tr>

@@ -31,9 +31,10 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/template/plugins.min.css') }}" >
     
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/bootstrap-switch.css') }}">
-
-
-    
+    <script src="//code.jquery.com/jquery-1.12.3.js"></script>
+    <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
     <!-- Custom CSS -->
     @yield('mis_estilos')
   
@@ -602,9 +603,9 @@
                                                 Cerrar sesi&oacute;n
                                         </a>
 
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
+                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
                                     </li>
                                 </ul>
                             </li>
@@ -689,7 +690,7 @@
     <script src="{{  asset('assets/js/jquery.min.js')  }}"></script>
     <script src="{{  asset('assets/js/bootstrap.min.js')  }}"></script>
     <script src="{{  asset('assets/js/jquery.mask.min.js')  }}"></script>
-
+    
     <script src="{{ asset('assets/js/moment.js')  }}"></script>
     <script src="{{ asset('assets/js/moment_es.js')  }}"></script>
     <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js')  }}"></script>
@@ -697,7 +698,7 @@
     <script src="{{ asset('assets/js/bootstrap-switch.js')  }}"></script>
 
     <script>
-        
+       
         $(function($){
             
            @role(['Secretaria','Administrador'])
@@ -855,7 +856,7 @@
                     var pattern = e.target.pattern;
 
                     //Se reemplazan los mensajes de errores
-                    if( pattern == "^[a-zA-Z_áéíóúñ\\s]*$" ){
+                    if( pattern == "^\w+(\s\w+)*$"){//"^[a-zA-Z_áéíóúÁÉÍÓÚñÑ\\W\\s]*$" ){
                         msg = "El campo solo acepta letras";
                     }
                     else if ( pattern == "\\d{2}[.]\\d{3}[.]\\d{3}"){

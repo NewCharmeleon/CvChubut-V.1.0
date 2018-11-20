@@ -44,9 +44,9 @@ class DatabaseSeeder extends Seeder
 
     //RolPermiso::truncate();
     //Llamamos en orden a los Seeders para el poblado masivo de las tablas
-    
-    $this->call(UsersTableSeeder::class);
     $this->call(CarrerasTableSeeder::class);
+    $this->call(UsersTableSeeder::class);
+    
     $this->call(ActividadesTiposTableSeeder::class);
     $this->call(ModalidadesTableSeeder::class);
     $this->call(AmbitosActividadesTableSeeder::class);
@@ -55,7 +55,7 @@ class DatabaseSeeder extends Seeder
     $this->call(InstitucionesTableSeeder::class);
     $this->call(ActividadesTableSeeder::class);
     
-    //$this->call(PersonasTableSeeder::class);
+    $this->call(PersonasTableSeeder::class);
     
     //Volvemos a activar la Revision de Claves Foraneas
     DB::statement('SET FOREIGN_KEY_CHECKS = 1;');

@@ -3,7 +3,7 @@
 
 @yield('campo_extra')
 
-@include('carrera.partials.show')  <br><br><br>
+@include('carrera.partials.show')
 <div class="row">
     <div class="form-group">  
         <label for="" class="control-label col-sm-3"> Cantidad de Materias Aprobadas </label>

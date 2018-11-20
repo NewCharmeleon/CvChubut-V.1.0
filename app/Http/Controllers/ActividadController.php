@@ -360,10 +360,11 @@ class ActividadController extends Controller
     public function generar_pdf(){
 
         $estudiante = \Auth::user()->persona;
+        $email = \Auth::user()->email;
         $actividades = Actividad::MostrarActividadesUsuario($estudiante);
         $experiencias_laborales = ExperienciaLaboral::MostrarExperienciasLaboralesUsuario($estudiante);
-    
-        $pdf = \PDF::loadView('actividad.pdf', compact('estudiante', 'actividades','experiencias_laborales'));
+        
+        $pdf = \PDF::loadView('actividad.pdf', compact('estudiante', 'email', 'actividades','experiencias_laborales'));
         return $pdf->stream('curriculum.pdf');    
     
       }

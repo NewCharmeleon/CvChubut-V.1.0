@@ -10,7 +10,7 @@
       <caption><h4><b><u>Listado de Modalidades</u></b></h4></caption>
       <a href="{{ route('modalidades.create')  }}" class="btn btn-primary">  Nueva  </a>
 
-      <table class="table table-hover">
+      <table id='datatable' class="table table-hover">
         
         <thead>
          <tr>

@@ -10,7 +10,7 @@
       <caption><h4><b><u>Listado de Tipos de Participaci&oacute;n</u></b></h4></caption>
       <a href="{{ route('tipos.participaciones.create')  }}" class="btn btn-primary">  Nueva  </a>
 
-      <table class="table table-hover">
+      <table id='datatable' class="table table-hover">
         
         <thead>
          <tr>

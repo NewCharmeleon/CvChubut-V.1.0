@@ -37,15 +37,15 @@
     {{--dd($actividad->modalidad)--}}
     {{--dd($actividad->ambito_actividad)--}}
     {{--dd($actividad->institucion)--}}
-                <p> <label for=""> Nombre :   </label>{{ $actividad->nombre }}</p>
-                <p> <label for=""> Fecha de Inicio :   </label>{{ $actividad->fecha_inicio }}</p>
-                <p> <label for=""> Instituci&oacute;n :   </label>{{ $actividad->institucion->nombre }} / {{ $actividad->institucion->localidad }}  {{ $actividad->institucion->provincia }}  {{ $actividad->institucion->pais }}</p>
+                <p> <label for=""> Nombre:   </label> {{ $actividad->nombre }}</p>
+                <p> <label for=""> Fecha de Inicio:   </label> {{ $actividad->fecha_inicio }}</p>
+                <p> <label for=""> Instituci&oacute;n:   </label> {{ $actividad->institucion->nombre }}<br> {{ $actividad->institucion->localidad }} - {{ $actividad->institucion->provincia }} - {{ $actividad->institucion->pais }}</p>
             </div>
             <div class="col-sm-5">
 
-                <p> <label for=""> Modalidad :   </label>{{ $actividad->modalidad->nombre }}</p>
-                <p> <label for=""> Tipo de Participaci&oacute;n :   </label>{{ $actividad->tipo_participacion->nombre }}</p>
-                <p> <label for=""> &Aacute;mbito  :   </label>{{ $actividad->ambito_actividad->nombre }} / {{ $actividad->institucion->localidad }}  {{ $actividad->institucion->provincia }}  {{ $actividad->institucion->pais }}</p>
+                <p> <label for=""> Modalidad:   </label> {{ $actividad->modalidad->nombre }}</p>
+                <p> <label for=""> Tipo de Participaci&oacute;n:   </label> {{ $actividad->tipo_participacion->nombre }}</p>
+                <p> <label for=""> &Aacute;mbito:   </label> {{ $actividad->ambito_actividad->nombre }}
             </div>
             
         </div>

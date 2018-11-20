@@ -10,6 +10,8 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Model;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 //use Acoustep\EntrustGui\Contracts\HashMethodInterface;
+//agregado para el borrado logico
+use SoftDeletes;
 use Hash;
 
 
@@ -25,7 +27,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var string
      */
     protected $table = 'users';
-
+   
+    //atributo para usar el SoftDelete
+    protected $dates = ['deleted_at'];
     /**
      * The attributes that are mass assignable.
      *
@@ -41,6 +45,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     protected $hidden = ['password', 'remember_token'];
 
     protected $hashable = ['password'];
+
+    //Designamos las relaciones del Modelo
+    //Relacion con el Modelo Persona
+    public function persona()
+    {
+        return $this->hasOne( Persona::class ,'user_id');
+
+    }
 
     //Metodo publico para utilizar por defecto el Dni de la Persona a cargar como Usuario
     public function hashPassword()
@@ -65,13 +77,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         $this->save();
     }
 
-    //Designamos las relaciones del Modelo
-    //Relacion con el Modelo Persona
-    public function persona()
-    {
-        return $this->hasOne( Persona::class , 'user_id');
-
-    }
+    
     //Definicion de los Accesor al Modelo necesarios
     //Accesor que devuelve el Rol del Usuario
     public function getRolAttribute()
@@ -94,6 +100,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
         return $nombre_usuario;
     }
+
 
 
 }

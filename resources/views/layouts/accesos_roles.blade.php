@@ -56,9 +56,9 @@
                                 <li><a href="{{  route('instituciones.create') }}">  <i class="glyphicon glyphicon-plus"></i>  Nuevo </a></li>
                             </ul>
                         </li>
-                    <br>
+                    
                     </li>
-                    <br><br>
+                    
                     <li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-modal-window"></i> Ambitos de Actividades <span class="caret"></span></a>

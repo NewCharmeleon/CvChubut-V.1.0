@@ -10,10 +10,17 @@
         </div>
     @endrole
     {{--dd($actividades->links())--}}
+    
     @foreach ($actividades as $actividad) 
-        <div class="row" style="margin-top:15px; margin-right:0px; margin-left: 0px; box-shadow: 2px 2px 1px 0px #2196f3;">
-
-            <div class="pull-right" style="padding-right: 20px;">
+    <br>
+    <div class="card text-white bg-primary mb-3" >
+        <div class="card-header" style="background-color: #007bff !important;">
+                <h4 class="card-title" style="margin-left: 2%; width: 60%;">  <label for=""> Nombre:   </label> {{ $actividad->nombre }}</h4>
+                <!--p class="card-title" style="text-align: right; margin-right: 2%;">
+                     [{{ $actividad->fecha_inicio_show }}] - [{{ $actividad->fecha_fin_show }}]</p-->
+        </div>
+        <div class="card-body text-primary" style="margin-left: 2%;">
+               <div class="pull-right" style="padding-right: 20px;">
                 <a href="{{ route('actividades.show',$actividad->id) }}" > <i class="glyphicon glyphicon-eye-open model-acction"></i> </a>
                  <a href="{{ route('actividades.edit',$actividad->id) }}" > <i class="glyphicon glyphicon-edit model-acction"></i> </a>
             
@@ -30,25 +37,36 @@
                  <div class="btn-td" id="{{ $actividad->id }}">
                     {!! $actividad->btn_mostrar() !!}   
                 </div>
-             </div>
+            </div>
+            <div class="card-text">
+  
+                <div class="col-sm-5" style="margin-left: -1.3%;" >
+                <h5 class="card-title" > <label for="">&Aacute;mbito:  </label>{{ $actividad->ambito_actividad->nombre }}</h5>
+
+            
+                {{--dd($actividad->modalidad)--}}
+                {{--dd($actividad->ambito_actividad)--}}
+                {{--dd($actividad->institucion)--}}
+                    
+                    <p> <label for=""> Fecha de Inicio:   </label> {{ $actividad->fecha_inicio_show }}</p>
+                    <p> <label for=""> Fecha de Fin:   </label> {{ $actividad->fecha_fin_showfin }}</p>
+                    <p> <label for=""> Instituci&oacute;n:   </label> {{ $actividad->institucion->nombre }}<br> {{ $actividad->institucion->localidad }} - {{ $actividad->institucion->provincia }} - {{ $actividad->institucion->pais }}</p>
+                    <br>
+                </div>
+                <div class="col-sm-5" style="margin-left: -1.3%;">
+
+                    <p> <label for=""> Modalidad:   </label> {{ $actividad->modalidad->nombre }}</p>
+                    <p> <label for=""> Tipo de Participaci&oacute;n:   </label> {{ $actividad->tipo_participacion->nombre }}</p>
+                    </div>
+            </div>
+        </div>
+    
+    </div>
+
+            
     
 
-            <div class="col-sm-5">
-    {{--dd($actividad->modalidad)--}}
-    {{--dd($actividad->ambito_actividad)--}}
-    {{--dd($actividad->institucion)--}}
-                <p> <label for=""> Nombre:   </label> {{ $actividad->nombre }}</p>
-                <p> <label for=""> Fecha de Inicio:   </label> {{ $actividad->fecha_inicio }}</p>
-                <p> <label for=""> Instituci&oacute;n:   </label> {{ $actividad->institucion->nombre }}<br> {{ $actividad->institucion->localidad }} - {{ $actividad->institucion->provincia }} - {{ $actividad->institucion->pais }}</p>
-            </div>
-            <div class="col-sm-5">
-
-                <p> <label for=""> Modalidad:   </label> {{ $actividad->modalidad->nombre }}</p>
-                <p> <label for=""> Tipo de Participaci&oacute;n:   </label> {{ $actividad->tipo_participacion->nombre }}</p>
-                <p> <label for=""> &Aacute;mbito:   </label> {{ $actividad->ambito_actividad->nombre }}
-            </div>
             
-        </div>
 
     @endforeach
 
@@ -120,7 +138,7 @@
                     if ( error == true ){
 
                         //Se mantiene el Estado del Boton antes del cambio
-                        $(this).bootstrapSwitch('state', status);
+                        $(this).bootstrapSwitch('state', state);
                         return -1;
                     }
 

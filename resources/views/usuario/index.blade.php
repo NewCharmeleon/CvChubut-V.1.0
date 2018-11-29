@@ -1,20 +1,31 @@
 @extends('layouts.app')
 
 @section ('title', 'Usuarios')
-@section('styles')
-    <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-   
-   <link rel="stylesheet"  href=" https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
 
+@section('styles')
+    <link rel="stylesheet"  href="{{  asset('assets/css/bootstrap3-3-7.min.css')  }}">
+   
+   <link rel="stylesheet"  href="{{  asset('assets/css/dataTables1-10-19.bootstrap.min.css')  }}">
+   <link rel="stylesheet"  href="{{  asset('assets/css/buttons.dataTables.min.css')  }}">
+@endsection   
 @section('scripts')
-   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+   <script src="{{  asset('assets/js/jquery-3.3.1.js')  }}"></script>
+    <script src="{{  asset('assets/js/jquery.dataTables1-10-19.min.js')  }}"></script>
+    <script src="{{  asset('assets/js/dataTables1-10-19.bootstrap.min.js')  }}"></script>
+    <script src="{{  asset('assets/js/dataTables.buttons.min.js')  }}"></script>
+    <script src="{{  asset('assets/ajax/libs/jzip.min.js')  }}"></script>
+    <script src="{{  asset('assets/ajax/libs/pdfmake.min.js')  }}"></script>
+    <script src="{{  asset('assets/ajax/libs/vfs_fonts.js')  }}"></script>
+    <script src="{{  asset('assets/js/buttons.html5.min.js')  }}"></script>
+    <script src="{{  asset('assets/js/buttons.print.min.js')  }}"></script>
+        
+ 
+        
     <script>
        
     
-   $(document).ready(function() {
-        $('#data-table').DataTable( {
+   //$(document).ready(function() {
+       /* $('#data-table').DataTable( {
             
             //"dom": '<"top"i>rt<"bottom"flp><"clear">',
             "ordering": true,
@@ -26,6 +37,8 @@
                 "info": "Mostrando página _PAGE_ de _PAGES_",
                 "infoEmpty": "No existen datos disponibles",
                 "infoFiltered": "(filtrando datos de un _MAX_ total de items)",
+                 emptyTable: "No existen Usuarios para mostrar",
+                    zeroRecords: "No existen Usuarios para mostrar con ese parámetro de búsqueda",
                 "paginate": {
                     "first": "Primera página",
                     "previous": "Previa",
@@ -36,66 +49,113 @@
              
    
         });
-    }); 
+    }); */
 
-            /*$('#data-table').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: "/api/carreras", 
-                columns: [
-                { data: 'nombre' },
-                { data: 'cantidad_materias ' },
-                { data: 'acciones' }
-            ]
-            });
-           
-        });*/
-        //} );
-    </script>
+    $(document).ready(function() {
+        $('#data-table').DataTable( {
+            dom: 'Bfrtip',
+
+            buttons: [
+            {
+                extend:    'copyHtml5',
+                text:      '<i class="fa fa-copy bigger-110 pink"></i>',
+                titleAttr: 'Copiar al Portapapeles'
+            },
+            {
+                extend:    'excelHtml5',
+                text:      '<i class="fa fa-file-excel-o green"></i>',
+                titleAttr: 'Exportar a Excel'
+            },
+            {
+                extend:    'csvHtml5',
+                text:      '<i class="fa fa-database bigger-110 orange">',
+                titleAttr: 'Exportar a CSV'
+            },
+            {
+                extend:    'pdfHtml5',
+                text:      '<i class="fa fa-file-pdf-o red"></i>',
+                titleAttr: 'Exportar a PDF'
+            },
+            ,
+            {
+                extend:    'print',
+                text:      '<i class="fa fa-print bigger-110 grey"></i>',
+                titleAttr: 'Imprimir'
+            }
+                
+
+            ], 
+            "processing": true,
+            "serverSide": true,
+            "ajax": "{{ url('api/usuarios') }}", 
+            "columns": [
+            { data: 'persona.nombre_apellido', name: 'persona.nombre_apellido'  },
+            { data: 'roles[0].display_name', name: 'roles[0].display_name'  },
+            { data: 'btn'},
+            ],
+            "ordering": true,
+            "pagingType": "full_numbers",
+            "columnDefs": [ 
+                    { targets: 2, searchable: false },
+                    { targets: 2, orderable: false }, 
+                    { targets: 2, exportable: false }, 
+                   /* { targets: [1,2], searchable: true }, 
+                    { targets: '_all', searchable: false } */
+            ],
+            "language": {
+                "processing": "Procesando...",
+                "search": "Búsqueda",
+                "lengthMenu": "Mostrando _MENU_ registros por página",
+                "zeroRecords": "No hay datos para mostrar",
+                "info": "Mostrando página _PAGE_ de _PAGES_",
+                "infoEmpty": "No existen datos disponibles",
+                "infoFiltered": "(filtrando datos de un _MAX_ total de items)",
+                "emptyTable": "No existen Usuarios para mostrar",
+                "zeroRecords": "No existen Usuarios para mostrar con ese parámetro de búsqueda",
+                "paginate": {
+                    "first": "Primera página",
+                    "previous": "Previa",
+                    "next": "Siguiente",
+                    "last": "Última página",
+                }
+            }
+        });
+    });
+</script>
 @endsection    
 @section ('content')
 
-  <div class="panel panel-default">
-    <div class="panel-body")
+    
+    <div class="row col-xs-12" id="table-ace">
+        <div class="col-xs-12">
+                
+            <h2 class="header smaller lighter blue ">Listado de Usuarios
+            <small>
+                    <i class="ace-icon fa fa-angle-double-right"></i>
+                    <span class="label label-md label-primary arrowed-right">Ver Resultados</span></small></h2>
+                      
+               
+            <div class="pull-right">
+            <a href="{{ route('usuarios.create')  }}" class="btn btn-primary">  Nueva  </a>
+             </div>&nbsp;&nbsp;
+            <br>
 
-      <caption><h4><b><u>Listado de Usuarios</u></b></h4></caption>
-      <table class="table table-striped table-bordered table-hover" role="grid" style="width:100%" id="data-table">
-      
-
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Rol</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach ($usuarios as $id => $usuario)
-          <tr>
-            <td>{{ $usuario->persona->nombre_apellido }}</td>
-            <td>{{ $usuario->rol }}</td>
-            <td> 
-              <a href="{{ route('usuarios.show',$usuario->id) }}" > <i class="glyphicon glyphicon-eye-open model-acction"></i> </a>
-              <a href="{{ route('usuarios.edit',$usuario->id) }}" > <i class="glyphicon glyphicon-edit model-acction"></i> </a>
-            
-              <a href="#" onclick="event.preventDefault();document.getElementById('form-user-{{ $usuario->id }}').submit();">
-                <i class="glyphicon glyphicon-trash model-acction"></i>
-              </a>
-
-              <form action="{{ route('usuarios.destroy',$usuario->id) }}" method="POST" id="form-user-{{ $usuario->id }}">
-                <input type="hidden" name="_method" value="delete">
-                  {{ csrf_field() }}
-              </form>    
-            </td>
-          </tr>                  
-          @endforeach
-        </tbody>
-    </table>
-    <div class="center">
-      {{ $usuarios->links() }}
+            <!-- div.table-responsive -->  
+            <table id="data-table" class="table table-striped table-bordered table-hover dataTable no-footer" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Apellido y Nombre</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+        
+            </table>
+        </div>
     </div>
-  <div class="panel-header">
+    <br><br>
+  <!--div class="panel-header">
     <a href="{{ route('usuarios.create') }}" class="btn btn-primary"> Nuevo </a>  
-  </div>
+  </div-->
   
 @endsection  

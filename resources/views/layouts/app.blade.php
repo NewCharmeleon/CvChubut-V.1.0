@@ -19,10 +19,11 @@
     <!-- All Styles -->
 
     <!-- Bootstrap CSS -->
+    
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/font-awesome/font-awesome.min.css') }}" />
     <!-- Fonts -->
-    //<link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,300">
+    <link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,300">
 
     <!-- Plugins -->
      <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}">
@@ -32,6 +33,23 @@
     
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/bootstrap-switch.css') }}">
     
+    
+    <!-- ace styles Admin//ace.jeka.by/index.html//-->
+		<link rel="stylesheet" href="{{ asset('assets/css/ace.min.css') }}" class="ace-main-stylesheet" id="main-ace-style" />
+
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="{{ asset('assets/css/ace-part2.min.css') }}" class="ace-main-stylesheet" />
+		<![endif]-->
+		<link rel="stylesheet" href="{{ asset('assets/css/ace-skins.min.css') }}" />
+		<link rel="stylesheet" href="{{ asset('assets/css/ace-rtl.min.css') }}" />
+
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="{{ asset('assets/css/ace-ie.min.css') }}" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		
      <!-- Custom CSS -->
     @yield('mis_estilos')
   
@@ -62,6 +80,7 @@
         .btn {
             margin: 10px 0 10px 0;
         }
+        
         
         #logo {
             width: 270px;
@@ -151,18 +170,36 @@
             padding-bottom: 0;
             overflow: visible !important;
         }
-         #toggle-menu {
+        #nab-menu-min ul {
+            background: #438eb9 !important;
+             list-style-type: none;
+            width: 73%;
+}
+        .toggle-menu {
             display: block !important;
-            height: auto !important;
+            height: 30px !important;
             //padding-bottom: 0;
             overflow: visible !important;
-            //float: left;
+            height: 20px !important;
         }
         #nab-menu-min.in {
             display: block !important;
             height: auto !important;
             padding-bottom: 0;
             overflow: visible !important;
+            width: 130%;
+}
+        }
+        .navbar-udc div.navbar-header .navbar-toggle {
+
+            background: transparent !important;
+
+        }
+        .navbar-udc div.navbar-header a.navbar-brand {
+            color: white;
+            text-transform: uppercase;
+            font-weight: 800;
+            font-size: 20px !important;
         }
         
         /*.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse, .navbar-static-top .navbar-collapse {
@@ -265,8 +302,8 @@
         }
 
         #content{
-            padding-top: 119px;
-            min-height: 520px;
+            padding-top: 40px;
+            min-height: 600px;
             padding-left: 15px;
             padding-right: 15px;
         }
@@ -314,7 +351,7 @@
           border: 0;
           width: 100%;
           //min-height: 53px;
-          display: inline-table;
+          display: block;
         }
         .navbar-udc .container-fluid {
               display: grid;
@@ -517,6 +554,57 @@
     .center{
         text-align: center;
     }
+    .ace-nav > li {
+        line-height: 45px;
+        height: 45px;
+        border-left: 0;
+        padding: 0;
+        position: relative;
+        float: left;
+    }
+    .dataTables_wrapper .row:first-child {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        background-color: transparent;
+    }
+    #table-ace{
+         margin-top: 50px !important;
+         /*position: absolute;*/
+         overflow: auto;
+        
+    }
+    .navbar .navbar-nav > li:first-child {
+            border-width: 0px;
+    }
+    .navbar {
+        margin: 0;
+        padding-left: 0;
+        padding-right: 0;
+        border-width: 0;
+        border-radius: 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        max-height: 100px;
+        background: #438EB9;
+    }
+    .label, [data-tooltip]::after, button, .button, [type="submit"], .dropimage {
+    display: inline-block;
+    text-align: center;
+    margin: 0;
+    padding: .3em .9em;
+    vertical-align: middle;
+    background: #0074d91a;
+    color: #fff;
+    border: 0;
+    border-radius: .2em;
+    width: auto;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
     
 
     </style>
@@ -524,93 +612,8 @@
 <body>
 
     <header>
-
-        <nav class="navbar navbar-default navbar-static-top nav-top">
-            <div class="container">
-                <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-
-                    @if(! Auth::guest() )
-                    <button type="button" class="navbar-toggle" id="menu-minimizado" data-target="#nab-perfil-min">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @endif
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        <div>
-                            <img src="{{ asset('imagenes/logo-navbar.png') }}" id="logo" alt="logo universidad">
-                        </div>
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav" style="margin-left:7%;">
-                       @if (!Auth::guest())
-                            <li>
-                                <div style="min-width: 200px;">
-                                    <div style="text-align: center; padding-top:10px; padding-bottom:10px;">
-                                        <i class="glyphicon glyphicon-education"></i><b> {{ Auth::user()->persona->nombre_apellido }} </b>
-                                    </div>
-
-                                    <div>
-                                        <p> @if(Auth::user()->hasRole('Estudiante'))
-                                                 @if( isset( Auth::user()->persona->carrera->nombre ))
-                                                    {{ Auth::user()->persona->carrera->nombre }} 
-                                                 @endif 
-                                            @endif </p> 
-                                        <p> {{ Auth::user()->email }}</p>
-                                    </div>
-
-                                </div>
-                            </li>    
-                        @endif 
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    
-                                    <div style="height: 80px; ">
-                                        <img src="{{ asset('avatars/default-avatar.png') }}" alt="avatar" class="avatar" id="avatar">
-                                            <span class="caret"></span>
-                                    </div>
-                                </a>            
-                                    
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('perfil') }}">
-                                            <i class="glyphicon glyphicon-user"></i> Informaci&oacute;n Personal
-                                        </a>
-
-                                        <a href="{{ url('/logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            <i class="glyphicon glyphicon-log-out"></i>
-                                                Cerrar sesi&oacute;n
-                                        </a>
-
-                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        @include('layouts.navbarAce')
+        
     </header>
 
 
@@ -628,6 +631,15 @@
                                  @endif
                             </div>
                         @endif  
+                @else
+                    <h3> <i class="glyphicon glyphicon-education"></i>  CvChubut </h3>
+
+                    <div style="min-width: 220px;" class="sidebar-auth">
+                        
+                            <div>
+                                 <p>Sistema de Gesti&oacute;n</p>
+                            </div>
+                          
                 @endif
             </div>
 
@@ -659,7 +671,7 @@
                         <li><a href="#">Pagina</a></li>
                         <li><a href="#">Pagina</a></li>
                     </ul>
-
+                </li>
             </ul>
             
         </nav> 
@@ -674,7 +686,7 @@
 
     <footer>
         <div class="row">
-            <div style="float:left; margin-left:15px;">
+            <div style="position: absolute;margin-left:15px;">
                 <img src="{{ asset('imagenes/logoGobierno.png') }}" alt="logo-gobierno">
             </div>
             <div style="float:right; margin-right:15px;">
@@ -684,10 +696,15 @@
     </footer>
     
     <!-- Scripts -->
+    
     <script src="{{  asset('assets/js/jquery.min.js')  }}"></script>
     <script src="{{  asset('assets/js/bootstrap.min.js')  }}"></script>
     <script src="{{  asset('assets/js/jquery.mask.min.js')  }}"></script>
-    
+    <!-- ace settings handler -->
+    <script src="{{  asset('assets/js/ace-extra.min.js') }}"></script>
+    <!-- ace scripts -->
+    <script src="assets/js/ace-elements.min.js"></script>
+    <script src="assets/js/ace.min.js"></script>
     <script src="{{ asset('assets/js/moment.js')  }}"></script>
     <script src="{{ asset('assets/js/moment_es.js')  }}"></script>
     <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js')  }}"></script>

@@ -5,14 +5,23 @@
 @section('content')
 
   <div class="panel-body">
+  <br><br>
     @if (! Auth::guest() )
       <h3>
-        Bienvenido {{ Auth::user()->rol_object->name }}!!! <b>
-        <a href="{{ route('perfil') }}" >
-        {{ Auth::user()->persona->nombre_apellido }} </b>
-        </a>
-        </b> 
+       <b> Bienvenido 
+          <a href="{{ route('perfil') }}" >
+          {{ Auth::user()->persona->nombre_apellido }} </b>
+          </a>
+        </b> <span class="label label-info arrowed arrowed-in-right">{{ Auth::user()->rol_object->name }}</span>
+         
         <br>
+        <h1>
+								Tablero de Gesti&oacute;n Sistema CvChubut
+								<small>
+									<i class="ace-icon fa fa-angle-double-right"></i>
+									Inicio
+								</small>
+							</h1>
         <small> <b>Tablero de Gesti&oacute;n del Sistema Cv-Chubut de la Universidad del Chubut</b>
         </small>
       </h3> 

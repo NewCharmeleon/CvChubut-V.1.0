@@ -21,7 +21,7 @@ class ExperienciasLaboralesTableSeeder extends Seeder
         //Averiguamos cuantas Personas tenemos
         $cuantos=Persona::all()->count();
         //Creamos bucle para cubrir N Experiencias Laborales
-        for ($i=0;$i <10; $i++)
+        for ($i=0;$i <10000; $i++)
         {
             //llamamos al Metodo Create del Modelo
             ExperienciaLaboral::create(

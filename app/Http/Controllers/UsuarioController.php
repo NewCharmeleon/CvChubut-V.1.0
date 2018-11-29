@@ -33,7 +33,7 @@ class UsuarioController extends Controller
             return $query->where('id', '!=', $rol);
 
         })->with('persona')->orderBy('username')->paginate(10);
-
+        //dd($usuarios);
         return view('usuario.index', compact('usuarios'));
     }
     //Metodo para crear un usuario

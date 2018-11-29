@@ -13,6 +13,7 @@ use App\Carrera;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Input;
+use Faker\Factory as Faker;
 
 class EstudianteController extends Controller
 {
@@ -218,7 +219,9 @@ class EstudianteController extends Controller
     {
         
         if( auth()->user()->hasRole(['Administrador','Secretaria'])){
-            
+            $cuantos=Carrera::all()->count();
+            //Creamos instancia de Faker designando el lenguaje a utilizar
+            $faker = Faker::create('es_ES'); 
            ini_set('max_execution_time', '300');
            
            $validaciones = \Validator::make($request->all(), ['estudiante' => 'required']);
@@ -242,6 +245,8 @@ class EstudianteController extends Controller
                     $nombre_apellido = $dato[0] . " " . $dato[1];
                     $dni = $dato[2];
                     $email = $dato[3];
+                    //$carrera = $dato[4];
+                    
 
                     if (User::where('email', 'LIKE', $email)->get()->count() == 0 )
                     {
@@ -256,8 +261,10 @@ class EstudianteController extends Controller
                             //persona
                             "persona" => [
                                 "nombre_apellido" => $nombre_apellido, 
-                                "dni" => $dni
+                                "dni" => $dni,
+                                'carrera_id' => $faker->numberBetween($min=1, $cuantos),
                             ]
+                            
                         ];
                         //temporal de los datos de un usuario
                         $data_user = $estudiante['usuario'];

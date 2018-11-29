@@ -15,9 +15,9 @@ class TiposParticipacionesTableSeeder extends Seeder
     {
         TipoParticipacion::truncate();
         $tipos = [
-            ['nombre' => 'Expositor', 'descripcion' => 'Requiere que la presencia del participante sea fisica en el lugar'], 
-            ['nombre' => 'Asistente', 'descripcion' => 'Puede requerirse que la presencia del participante sea fisica o de manera virtual'],
-            ['nombre' => 'Ayudante', 'descripcion' => 'Requiere que la presencia del participante sea de manera virtual'],
+            ['nombre' => 'Expositor', 'descripcion' => 'El participante es la persona quien expone la actividad'], 
+            ['nombre' => 'Ayudante', 'descripcion' => 'El participante es la persona que brinda ayuda al Expositor'],
+            ['nombre' => 'Asistente', 'descripcion' => 'El participante es la persona que asiste a la actividad'],
             ];
         
     

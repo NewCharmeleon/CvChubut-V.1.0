@@ -66,9 +66,7 @@ class UsersTableSeeder extends Seeder
     foreach( $roles as $rol ) {
       Role::create($rol);
     }
-
     //Rol Administrador
-    //llamamos al Metodo Create del Modelo para crear un nuevo fillable
     $user = User::create([
       'username' => 'administrador_udc',
       'email' => 'administrador@udc.edu.ar',
@@ -94,14 +92,14 @@ class UsersTableSeeder extends Seeder
     $user->hashPassword();
     //Se asigna el Rol Administrador al Usuario
     $user->attachRole(Role::where('name', 'LIKE', 'Administrador')->get()->first()->id);
-
     
+    //Rol Secretaria
     //Rol Secretaria
     //llamamos al Metodo Create del Modelo para crear una Secretaria
     $user = User::create([
       'username' => 'secretaria_udc',
       'email' => 'secretaria@udc.edu.ar',
-      'password' => '123456',
+      'password' => '246810',
     ]);
     
     //Metodo a revisar para crear Personas Secretaria  
@@ -116,12 +114,75 @@ class UsersTableSeeder extends Seeder
       'carrera_id' => null
     ]);
     
-
     //Se llama al Metodo para hashear el password
     $user->hashPassword();
     //Se asigna el Rol Secretaria al Usuario
     $user->attachRole(Role::where('name', 'LIKE', 'Secretaria')->get()->first()->id);
 
+
+
+    //Rol Administrador x 100
+    for ($i=0; $i<100; $i++)
+    {//llamamos al Metodo Create del Modelo para crear un nuevo fillable
+      $userName=$faker->firstName;
+      $lastName=$faker->lastName;
+      $user = User::create([
+      'username' => "adm_".$userName,
+      'email' => $userName.$lastName."@udc.edu.ar",
+      //$faker->firstName."".$faker->lastName."@udc.edu.ar",
+      'password' => '123456'
+    ]);
+    //var_dump($user);
+    
+    //Metodo a revisar para crear Personas Administradores  
+    //llamamos al Metodo Create del Modelo mediante nuevo Fillable
+    $persona = Persona::create([
+      'nombre_apellido' => $userName." ".$lastName,
+      'dni' => $faker->unique($reset = true)->numberBetween($min = 10000000, $max = 45000000),
+      'nacionalidad' => 'Argentina',
+      'fecha_nac' => $faker->date('d-m-Y'),
+      'telefono' => $faker->unique($reset = true)->numberBetween($min = 2804000000, $max = 2804999999),
+      'user_id' => $user->id,
+      'carrera_id' => null
+      
+    ]);
+    //var_dump($persona);
+    
+    //Se llama al Metodo para hashear el password
+    $user->hashPassword();
+    //Se asigna el Rol Administrador al Usuario
+    $user->attachRole(Role::where('name', 'LIKE', 'Administrador')->get()->first()->id);
+
+    
+    //Rol Secretaria x 100
+    //llamamos al Metodo Create del Modelo para crear una Secretaria
+    $userName=$faker->firstName;
+    $lastName=$faker->lastName;
+    $user = User::create([
+      
+      'username' => "sec_".$userName,
+      'email' => $userName.$lastName."@udc.edu.ar",
+      'password' => '246810',
+    ]);
+    
+    //Metodo a revisar para crear Personas Secretaria  
+    //llamamos al Metodo Create del Modelo mediante nuevo Fillable
+    $persona = Persona::create([
+      'nombre_apellido' => $userName." ".$lastName,
+      'dni' => $faker->unique($reset = true)->numberBetween($min = 10000000, $max = 45000000),
+      'nacionalidad' => 'Argentina',
+      'fecha_nac' => $faker->date('d-m-Y'),
+      'telefono' => $faker->unique($reset = true)->numberBetween($min = 2804000000, $max = 2804999999),
+      'user_id' => $user->id,
+      'carrera_id' => null
+    ]);
+    
+
+    //Se llama al Metodo para hashear el password
+    $user->hashPassword();
+    //Se asigna el Rol Secretaria al Usuario
+    $user->attachRole(Role::where('name', 'LIKE', 'Secretaria')->get()->first()->id);
+    };
     //Rol Alumno por defecto
     //llamamos al Metodo Create del Modelo para crear un Alumno por defecto
     $user = User::create([
@@ -199,6 +260,7 @@ class UsersTableSeeder extends Seeder
           'carrera_id'=>$faker->numberBetween($min=1, $cuantos1),
         ]
       ]
+      
 
     ];
 
@@ -229,6 +291,8 @@ class UsersTableSeeder extends Seeder
 
 
     }
+
+    
     /*
       ABRIGO Estefania Tamara 35887126 etabrigo @udc . edu . ar
       ACEJO Julieta Mariela 30955258 jmacejo @udc . edu . ar

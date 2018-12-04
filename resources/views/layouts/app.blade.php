@@ -42,6 +42,7 @@
 		<![endif]-->
 		<link rel="stylesheet" href="{{ asset('assets/css/ace-skins.min.css') }}" />
 		<link rel="stylesheet" href="{{ asset('assets/css/ace-rtl.min.css') }}" />
+       
 
 		<!--[if lte IE 9]>
 		  <link rel="stylesheet" href="{{ asset('assets/css/ace-ie.min.css') }}" />
@@ -149,17 +150,23 @@
                 width: 150px;
             }
         }
-        @media (max-width: 788px) {
+        @media (max-width: 991px) {
             #sidebar {
                 display: none;               
             }
             #sidebar.active {
                 display: block;
             }
+            .navbar-toggle {
+
+    display: block;
+
+}
+            
            
         }
         @role(['Secretaria','Administrador'])
-    @media (min-width: 787px) {
+    @media (min-width: 991px) {
         .navbar-header {
             float: left;
          //   margin-top: -4%;
@@ -174,6 +181,7 @@
             background: #438eb9 !important;
              list-style-type: none;
             width: 73%;
+            z-index: auto;
 }
         .toggle-menu {
             display: block !important;
@@ -182,6 +190,7 @@
             overflow: visible !important;
             height: 20px !important;
         }
+       
         #nab-menu-min.in {
             display: block !important;
             height: auto !important;
@@ -243,7 +252,7 @@
     
     @endrole
      @role(['Estudiante'])
-    @media (max-width: 787px) {
+    @media (max-width: 991px) {
        /* .navbar-header {
             float: left;
          //   margin-top: -4%;
@@ -703,8 +712,8 @@
     <!-- ace settings handler -->
     <script src="{{  asset('assets/js/ace-extra.min.js') }}"></script>
     <!-- ace scripts -->
-    <script src="assets/js/ace-elements.min.js"></script>
-    <script src="assets/js/ace.min.js"></script>
+    <script src="{{ asset('assets/js/ace-elements.min.js')  }}"></script>
+    <script src="{{ asset('assets/js/ace.min.js')  }}"></script>
     <script src="{{ asset('assets/js/moment.js')  }}"></script>
     <script src="{{ asset('assets/js/moment_es.js')  }}"></script>
     <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js')  }}"></script>
@@ -725,6 +734,7 @@
                 //$('#nab-menu-min').addClass('in');
                 //if ($('#mtoggle-menu').hide()){
                     $('#toggle-menu').show();
+                    
                     //$('#menu-li').css("display", "block !important");
                 //}else{
                     //$('#toggle-menu').show();

@@ -98,7 +98,10 @@
             "columnDefs": [ 
                     { targets: 2, searchable: false },
                     { targets: 2, orderable: false }, 
-                    { targets: 2, exportable: false }, 
+                    { targets: 2, exportable: false },
+                    { targets: 1, searchable: false },
+                    { targets: 1, orderable: false }, 
+                    { targets: 1, exportable: false },  
                    /* { targets: [1,2], searchable: true }, 
                     { targets: '_all', searchable: false } */
             ],

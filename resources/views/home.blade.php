@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appAce')
 
 @section('title', 'Inicio')
  
@@ -22,8 +22,7 @@
 									Inicio
 								</small>
 							</h1>
-        <small> <b>Tablero de Gesti&oacute;n del Sistema Cv-Chubut de la Universidad del Chubut</b>
-        </small>
+        
       </h3> 
       @role(['Estudiante'])
         @include('actividad.partials.content')

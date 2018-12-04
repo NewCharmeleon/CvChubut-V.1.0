@@ -43,13 +43,13 @@
     @else
    
       <div class="row">
-        <div class="col-sm-6" style="border-right: 1px solid #000; ">
+        <div class="col-sm-6" style="border-right: 1px solid #000; margin-top:10%;">
           <h3> Iniciar Sesi&oacute;n <h3>
           <!-- login -->
           @include('auth.form_login')
         </div>
         <div class="col-sm-6">
-          <div style="padding-bottom: 35px;"></div>
+          <div style="padding-bottom: 35px; margin-top:20%;"></div>
           <!-- Texto de Bienvenido -->
           <p style="text-align: justify;">
             La trayectoria formativa de los estudiantes esta 

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appAce')
 
 @section ('title', 'Carreras')
     
@@ -84,6 +84,9 @@
             ],
                "processing": true,
                 "serverSide": true,
+                "bScrollCollapse" : true,
+                "scrollY": 300,
+                "scrollX": true,
                 "pagingType": "full_numbers",
                 "columnDefs": [ 
                     { targets: 2, searchable: false },
@@ -123,27 +126,9 @@
  @endsection 
 @section ('content')
 
-    <!--div class="panel panel-default ">
-    <div class="panel-body">
     
-      <caption><h4><b><u>Listado de Carreras</u></b></h4></caption>
-      <a href="{{ route('carreras.create')  }}" class="btn btn-primary">  Nueva  </a>
-
-      <table class="table table-striped table-bordered table-hover" role="grid" style="width:100%" id="data-table">
-        
-        <thead>
-         <tr>
-             <th>Nombre </th>
-             <th>Cantidad de Materias </th>
-             <th>Acciones </th>
-         </tr>
-        </thead>
-        
-      </table-->
-       <!--div class="center">
-        {{ $carreras->links() }}
-    </div-->
-    <div class="row col-xs-12" id="table-ace">
+      
+    <div class="row col-xs-12">
         <div class="col-xs-12">
                 
             <h2 class="header smaller lighter blue ">Listado de Carreras

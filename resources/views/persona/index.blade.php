@@ -84,6 +84,7 @@ $(document).ready(function() {
             ],
             "processing": true,
             "serverSide": true,
+            "bScrollCollapse" : true,
             "ajax": "{{ url('api/personas') }}", 
             "columns": [
             { data: 'id', name: 'id'  },

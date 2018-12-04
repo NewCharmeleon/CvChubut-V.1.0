@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appAce')
 
 @section ('title', 'Experiencia Laboral: nueva')
   
@@ -7,7 +7,10 @@
     <form action="{{ route('experiencias.laborales.store') }}" method="POST" lang="es" class="form-horizontal">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"> Experiencias Laborales <small> Nueva </small> </h3>
+                <h3 class="panel-title"> Experiencias Laborales <i class="ace-icon fa fa-angle-double-right"></i>
+									<span class="label label-xlg label-primary arrowed-right">Nueva</span>
+                                    </small>
+                                    </h3>
             </div>
             <div class="panel-body")
                

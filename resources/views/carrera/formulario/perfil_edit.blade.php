@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appAce')
 @section('title','Perfil de Carrera')
 
 @section('content')
@@ -7,7 +7,11 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="panel panel-default">
         <div class="panel-heading">
-           <h3 class="panel-title">  {{ $user->persona->nombre_apellido }} <small>  Perfil de Carrera  </small> </h3>
+           <h3 class="panel-title">  {{ $user->persona->nombre_apellido }} <h3>  Perfil de Carrera 
+            </i>
+									<span class="label label-xlg label-warning arrowed-right">Editar</span>
+                                    </small>
+                                    </h3>
         </div>
         <div class="panel-body">
            

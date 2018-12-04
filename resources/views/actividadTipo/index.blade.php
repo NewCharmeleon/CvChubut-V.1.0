@@ -1,10 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.appAce')
 
 @section ('title', 'Tipos de Actividades')
 
 @section('styles')
+
     <link rel="stylesheet"  href="{{  asset('assets/css/bootstrap3-3-7.min.css')  }}">
-   
+   //<link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+       // <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
    <link rel="stylesheet"  href="{{  asset('assets/css/dataTables1-10-19.bootstrap.min.css')  }}">
    <link rel="stylesheet"  href="{{  asset('assets/css/buttons.dataTables.min.css')  }}">
 @endsection   
@@ -84,6 +86,9 @@
             ],
                "processing": true,
                 "serverSide": true,
+                "bScrollCollapse" : true,
+                "scrollY": 300,
+                "scrollX": true,
                 "ajax": "{{ url('api/actividadesTipos') }}", 
                 "columns": [
                 { data: 'nombre', name: 'nombre'  },
@@ -123,7 +128,7 @@
     </script>
 @endsection    
 @section ('content')
-     <div class="row col-xs-12" id="table-ace">
+     <div class="row col-xs-12">
         <div class="col-xs-12">
                 
             <h2 class="header smaller lighter blue ">Listado de Tipos de Actividades
@@ -142,21 +147,19 @@
                        
         
         
-        <thead>
-         <tr>
-             <th>Nombre</th>
-             <th>Descripci&oacute;n</th>
-             <th>Acciones</th>
-         </tr>
-        </thead>
-        
-      </table>
-      <!--div class="center">
-        {{ $actividades_tipos->links() }}
-      </div-->
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripci&oacute;n</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                
+            </table>
       
-   </div>
-</div>
+      
+         </div>
+    </div>
 <br><br>
 
 @endsection

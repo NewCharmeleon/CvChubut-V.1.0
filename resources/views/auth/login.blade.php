@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appAce')
 @section('title', 'Iniciar sesi&ocute;n  en Sistema Cv-Chubut')
 
 @section('content')

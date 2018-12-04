@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appAce')
 
 @section ('title', 'Actividades : ver')
   
@@ -7,7 +7,11 @@
     
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"> {{ $actividad->nombre }} <small> Ver </small> </h3>
+            <h3 class="panel-title"> {{ $actividad->nombre }} 
+            <i class="ace-icon fa fa-angle-double-right"></i>
+									<span class="label label-xlg label-success arrowed-right">Ver</span>
+                                    </small>
+                                    </h3>
         </div>
         <div class="panel-body")
                 <form action="" class="form-horizontal">

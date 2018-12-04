@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appAce')
 
 @section ('title', 'Ambitos de Actividades')
 
@@ -84,6 +84,9 @@
 
             ],"processing": true,
             "serverSide": true,
+            "scrollY": 300,
+            "scrollX": true,
+            "bScrollCollapse" : true,
             "ajax": "{{ url('api/ambitosActividades') }}", 
             "columns": [
             { data: 'nombre', name: 'nombre'  },
@@ -123,7 +126,7 @@
 @section ('content')
 
    
-    <div class="row col-xs-12" id="table-ace">
+    <div class="row col-xs-12">
         <div class="col-xs-12">
                 
             <h2 class="header smaller lighter blue ">Listado de &Aacute;mbitos de Actividades

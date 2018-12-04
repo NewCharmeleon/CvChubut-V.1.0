@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("layouts.appAce")
 @section ('title', 'Carreras: Editar')
   
 @section ('content')
@@ -7,7 +7,11 @@
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
          <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"> {{ $carrera->nombre }} <small> Editar </small></h3>
+                <h3 class="panel-title"> {{ $carrera->nombre }} 
+               <i class="ace-icon fa fa-angle-double-right"></i>
+									<span class="label label-xlg label-warning arrowed-right">Editar</span>
+                                    </small>
+                                    </h3>
             </div>
             <div class="panel-body")
                 

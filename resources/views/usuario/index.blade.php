@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appAce')
 
 @section ('title', 'Usuarios')
 
@@ -7,6 +7,8 @@
    
    <link rel="stylesheet"  href="{{  asset('assets/css/dataTables1-10-19.bootstrap.min.css')  }}">
    <link rel="stylesheet"  href="{{  asset('assets/css/buttons.dataTables.min.css')  }}">
+    
+
 @endsection   
 @section('scripts')
    <script src="{{  asset('assets/js/jquery-3.3.1.js')  }}"></script>
@@ -87,6 +89,9 @@
             ], 
             "processing": true,
             "serverSide": true,
+            "bScrollCollapse" : true,
+            "scrollY": 300,
+            "scrollX": true,
             "ajax": "{{ url('api/usuarios') }}", 
             "columns": [
             { data: 'persona.nombre_apellido', name: 'persona.nombre_apellido'  },
@@ -125,11 +130,12 @@
         });
     });
 </script>
-@endsection    
+@endsection   
+
 @section ('content')
 
     
-    <div class="row col-xs-12" id="table-ace">
+    <div class="row col-xs-12" >
         <div class="col-xs-12">
                 
             <h2 class="header smaller lighter blue ">Listado de Usuarios
@@ -144,7 +150,7 @@
             <br>
 
             <!-- div.table-responsive -->  
-            <table id="data-table" class="table table-striped table-bordered table-hover dataTable no-footer" style="width:100%">
+            <table id="data-table" class="table table-striped table-bordered table-hover dataTable no-footer" style="width:100%;">
                 <thead>
                     <tr>
                         <th>Apellido y Nombre</th>

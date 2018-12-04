@@ -1,12 +1,15 @@
 
-@extends("layouts.app")
+@extends("layouts.appAce")
 @section ('title', 'Carreras: Ver')
   
 @section ('content')
     
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"> {{ $carrera->nombre }} <small> Ver </small></h3>
+            <h3 class="panel-title"> {{ $carrera->nombre }} 
+            <span class="label label-xlg label-success arrowed-right">Ver</span>
+                                    </small>
+                                    </h3>
         </div>
         
 

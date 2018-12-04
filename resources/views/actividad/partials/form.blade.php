@@ -101,11 +101,26 @@
                 </select>
             </div>
 
-            <label for="" style="margin-top:25px; width:55%;" ><input type="checkbox" name="institucion_check" id="institucion_check" value="1" @if( old('institucion_check') == true ) checked @endif> No esta la Instituci&oacute;n? click aqui</label>   
-            <div class="" id="nueva-institucion" style="margin-top:10px; display:none; border: dotted;">
+            <br>
+            <div>
+                    <span>No esta la Instituci&oacute;n? click aqui &nbsp;</span>
+ 
+                    <div data-toggle="buttons" class="btn-group btn-overlap btn-corner">
+                        <label class="btn btn-sm btn-white btn-info">
+                            <input type="checkbox" value="1" name="institucion_check" id="institucion_check" @if( old('institucion_check') == true ) checked @endif>
+                            <i class="icon-only ace-icon fa fa-download "></i>
+                        </label>
+                        <br>
+                        <div class="" id="nueva-institucion" style="left: 10px; margin-top:10px; display:none; border: dotted;">
                 <label for="control-label" style=""><u>Registra aqui la Instituci&oacute;n para su carga</u> </label>
-                    @include('institucion.partials.form_compartido')      
-            </div>  
+                    <div style="margin-left:15px">
+                        @include('institucion.partials.form_compartido')      
+                    </div>
+            </div> 
+
+                    
+                    </div>
+                </div>
 
             @if ($errors->has('institucion_id')) 
                 @foreach ( $errors->get('institucion_id') as $error )
@@ -317,38 +332,41 @@
 <div class="row">
     <div class="form-group has-feedback   {{ ( $errors->has('mostrar_cv') )?   'has-error' : ''}}   ">  
         <label for="mostrar_cv" class="control-label col-sm-3"> Mostrar en Cv? <sup>*</sup> </label>
-        <div class="">
+        <div class="radio">
             
-            <label for="mostrar_true" class="control-label col-xs-2" style="text-align: left;">Si
-                <input type="radio" name="mostrar_cv" id="mostrar_true" value="1"
-                @if ($errors->has('mostrar_cv') )
-                    @if( old('mostrar_cv') == true) checked 
-                    @endif 
-                {{--  si hay actividad y no error --}}
-                @elseif(  isset($actividad  ) )
-                {{--  el valor de mostrala modalidad --}}
-                    @if( $actividad->mostrar_cv == true )
-                       checked
+            <label for="mostrar_true"  class="control-label col-xs-2" style="text-align: left;" >
+            
+                <input name="mostrar_cv" type="radio" class="ace" id="mostrar_true" value="1"
+                    @if ($errors->has('mostrar_cv') )
+                        @if( old('mostrar_cv') == true) checked 
+                        @endif 
+                    {{--  si hay actividad y no error --}}
+                    @elseif(  isset($actividad  ) )
+                    {{--  el valor de mostrar la modalidad --}}
+                        @if( $actividad->mostrar_cv == true )
+                        checked
+                        @endif
+                    @else
+                        checked
                     @endif
-                @else
-                    checked
-                @endif
-                    >
-            </label>
+                    ><span class="lbl"> Si</span>
+                </label>
 
-            <label for="mostrar_false" class="control-label col-xs-2" style="text-align: left;">No
-                <input type="radio" name="mostrar_cv" id="mostrar_false" value="0"
+                
+
+            <label for="mostrar_false" class="control-label col-xs-2" style="text-align: left;">
+                <input name="mostrar_cv" type="radio" class="ace"  id="mostrar_false" value="0"
                 @if ($errors->has('mostrar_cv') )
                     @if( old('mostrar_cv') == false) checked 
                     @endif 
                 {{--  si hay actividad y no error --}}
                 @elseif(  isset($actividad  ) )
-                {{--  el valor de mostrala modalidad --}}
+                {{--  el valor de mostrar la modalidad --}}
                     @if( $actividad->mostrar_cv == false )
                        checked
                     @endif
                 @endif    
-                        >
+                        ><span class="lbl"> No</span>
             </label>
 
             

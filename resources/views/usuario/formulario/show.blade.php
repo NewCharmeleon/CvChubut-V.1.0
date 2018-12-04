@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appAce')
 
 @section ('title', 'Usuario : ver')
   
@@ -7,7 +7,10 @@
     
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"> {{ $user->persona->nombre_apellido }} <small> Ver </small> </h3>
+            <h3 class="panel-title"> {{ $user->persona->nombre_apellido }} 
+            <span class="label label-xlg label-success arrowed-right">Ver</span>
+                                    </small>
+                                    </h3>
         </div>
         <div class="panel-body")
                 <form action="" class="form-horizontal">

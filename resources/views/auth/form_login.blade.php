@@ -2,7 +2,7 @@
 
            
 
-<form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+<form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}" style="margin-top:10%;">
     {{ csrf_field() }}
 
 
@@ -37,14 +37,16 @@
 
     <div class="form-group">
         <div class="col-md-8 col-md-offset-3">
+        <label class="control-label bolder blue">Recuerdame</label>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" name="recuerdame" {{ old('recuerdame') ? 'checked' : '' }}> Recuerdame
+                    <input name="recuerdame" type="checkbox" class="ace" {{ old('recuerdame') ? 'checked' : '' }}> 
+                <span class="lbl" style="bottom: 31px; left: 119px;"></span>
                 </label>
             </div>
         </div>            
     </div>  
-
+    
     <div class="form-group">
         <div class="col-md-8 col-md-offset-2">
             <button type="submit" class="btn btn-primary">

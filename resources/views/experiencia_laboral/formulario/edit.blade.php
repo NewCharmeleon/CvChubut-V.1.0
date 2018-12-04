@@ -1,11 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.appAce')
 @section('title','Experiencia Laboral: editar')
 
 @section('content')
 <form action="{{ route('experiencias.laborales.update',$experiencia_laboral->id )}}" method="POST" class="form-horizontal">
     <div class="panel panel-default">
         <div class="panel-heading">
-           <h3 class="panel-title">  Experiencia Laboral de <b>  {{ $persona->nombre_apellido  }}  </b>  puesto <b> {{ $experiencia_laboral->puesto }}    </b><small>  editar  </small> </h3>
+           <h3 class="panel-title">  Experiencia Laboral de <b>  {{ $persona->nombre_apellido  }}  </b>  puesto <b> {{ $experiencia_laboral->puesto }}    </b>
+           <i class="ace-icon fa fa-angle-double-right"></i>
+									<span class="label label-xlg label-warning arrowed-right">Editar</span>
+                                    </small>
+                                    </h3>
         </div>
         <div class="panel-body">
             <input type="hidden" name="_method" value="PUT">

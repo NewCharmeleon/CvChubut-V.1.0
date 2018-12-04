@@ -1,5 +1,5 @@
 
-@extends('layouts.app')
+@extends('layouts.appAce')
 @section('title', 'Estudiantes Nuevos')
 @section('mis_estilos')
 <style class="cp-pen-styles">/* Fonts */
@@ -237,7 +237,9 @@
 @section('content')
 
 <div id="cargar" >
-    <h3> Estudiantes nuevos </h3>
+    <h3> Estudiantes nuevos <i class="ace-icon fa fa-angle-double-right"></i><span class="label label-xlg label-warning arrowed-right">Agregar por Archivo</span>
+                                    </small>
+                                    </h3>
 
     <div class="alert alert-info" role="alert">
         Cargar archivo (Temporalmente, si es formato CSV, previamente convertirlo a Json usando el siguiente link, subir el archivo en el Paso 1 de la pagina "Choose File", continuar con el paso 5 presionando la opcion "CSV To JSON Array", posteriorrmente ponerle un nombre en "Save your result" y finalizando presionando la opcion "Download Result" para descargar el archivo formateado ),

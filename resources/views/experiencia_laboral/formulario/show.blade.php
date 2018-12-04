@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appAce')
 @section('title','Experiencias Laborales: ver')
 
 @section('content')
@@ -6,7 +6,10 @@
     <div class="panel panel-default">
 
         <div class="panel-heading">
-             <h3 class="panel-title">  Experiencia Laboral de <b>{{ $persona->nombre_apellido  }} </b>  puesto <b> {{ $experiencia_laboral->puesto }} </b>  <small>  ver  </small> </h3>
+             <h3 class="panel-title">  Experiencia Laboral de <b>{{ $persona->nombre_apellido  }} </b>  puesto <b> {{ $experiencia_laboral->puesto }} </b>  
+             <span class="label label-xlg label-success arrowed-right">Ver</span>
+                                    </small>
+                                    </h3>
         </div>
 
         <div class="panel-body">

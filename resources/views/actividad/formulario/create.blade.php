@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appAce')
 
 @section ('title', 'Actividades: nueva')
   
@@ -7,7 +7,11 @@
     <form action="{{ route('actividades.store') }}" method="POST" lang="es" class="form-horizontal">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"> Actividades <small> Nueva </small> </h3>
+                <h3 class="panel-title"> Actividades <small>
+									<i class="ace-icon fa fa-angle-double-right"></i>
+									<span class="label label-xlg label-primary arrowed-right">Nueva</span>
+                                    </small>
+                                    </h3>
             </div>
             <div class="panel-body")
                

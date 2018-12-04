@@ -1,5 +1,5 @@
 
-@extends("layouts.app")
+@extends("layouts.appAce")
 @section ('title', 'Modalidades: Nueva')
   
 @section ('content')
@@ -7,7 +7,10 @@
 
          <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"> Modalidades <small> Nueva </small></h3>
+                <h3 class="panel-title"> Modalidades <i class="ace-icon fa fa-angle-double-right"></i>
+									<span class="label label-xlg label-primary arrowed-right">Nueva</span>
+                                    </small>
+                                    </h3>
             </div>
             <div class="panel-body")
                 @include('modalidad.partials.form')

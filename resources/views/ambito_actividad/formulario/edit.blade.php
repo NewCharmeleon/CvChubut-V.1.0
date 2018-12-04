@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("layouts.appAce")
 @section ('title', 'Ambitos de Actividades: Editar')
   
 @section ('content')
@@ -6,7 +6,11 @@
 
          <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"> {{ $ambito_actividad->nombre }} <small> Editar </small></h3>
+                <h3 class="panel-title"> {{ $ambito_actividad->nombre }} 
+                <i class="ace-icon fa fa-angle-double-right"></i>
+									<span class="label label-xlg label-warning arrowed-right">Editar</span>
+                                    </small>
+                                    </h3>
             </div>
             <div class="panel-body")
                 <input type="hidden" name="_method" value="PUT">

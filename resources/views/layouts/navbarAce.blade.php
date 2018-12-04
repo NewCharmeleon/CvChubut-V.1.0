@@ -47,7 +47,7 @@
                             </div>
 
                             <div>
-                                <b>Sistema de Gesti&oacute;n de Actividades no Promocionables</b>
+                                <b>Sistema de Gesti&oacute;n de Actividades No Formales</b>
                             </div>
 
                         </div>

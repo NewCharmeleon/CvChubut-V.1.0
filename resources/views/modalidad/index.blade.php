@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appAce')
 
 @section ('title', 'Modalidades')
 
@@ -84,6 +84,9 @@ $(document).ready(function() {
             ],
             "processing": true,
             "serverSide": true,
+            "bScrollCollapse" : true,
+            "scrollY": 300,
+            "scrollX": true,
             "ajax": "{{ url('api/modalidades') }}", 
             "columns": [
             { data: 'nombre', name: 'nombre'  },
@@ -124,7 +127,7 @@ $(document).ready(function() {
 
   
     
-    <div class="row col-xs-12" id="table-ace">
+    <div class="row col-xs-12">
         <div class="col-xs-12">
                 
             <h2 class="header smaller lighter blue ">Listado de Modalidades

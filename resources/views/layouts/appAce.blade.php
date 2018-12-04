@@ -21,20 +21,34 @@
 		<link type="text/css" rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     
         <link rel="stylesheet" href="{{ asset('assets/font-awesome/font-awesome-4-5-0.min.css') }}" />
-
+    
 		<!-- page specific plugin styles -->
+         <!-- Bootstrap CSS -->
+    
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/font-awesome/font-awesome.min.css') }}" />
+    <!-- Fonts -->
+    
+    <!-- Plugins -->
+     <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}">
+    
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/template/picnic.min.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/template/plugins.min.css') }}" >
+    
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/bootstrap-switch.css') }}">
+    
+    
 
 		<!-- text fonts -->
-		<link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<!-- ace styles -->
-		<link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+		<link rel="stylesheet" href="{{ asset('assets/css/ace.min.css') }}" class="ace-main-stylesheet" id="main-ace-style" />
 
 		<!--[if lte IE 9]>
 			<link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
 		<![endif]-->
-		<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
-		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="{{ asset('assets/css/ace-skins.min.css') }}" />
+		<link rel="stylesheet" href="{{ asset('assets/css/ace-rtl.min.css') }}" />
 
 		<!--[if lte IE 9]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
@@ -43,7 +57,8 @@
 		<!-- inline styles related to this page -->
 
 		<!-- ace settings handler -->
-		<script src="assets/js/ace-extra.min.js"></script>
+    
+		<script src="{{ asset('assets/js/ace-extra.min.js') }}"></script>
 
 		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
@@ -62,6 +77,39 @@
             border: 0px !important;
             border-width: 0 !important;
         }    
+        .label, [data-tooltip]::after, button, .button, [type="submit"], .dropimage {
+            display: inline-block;
+            text-align: center;
+            margin: 0;
+            padding: .3em .9em;
+            vertical-align: middle;
+            background-color: #2fc9d580;
+            border: 0;
+            border-radius: .2em;
+            width: auto;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        footer{
+            position: absolute;
+            top:93%;
+            clear: both;
+        }
+        /*.main-content, body, html {
+            min-height: 100%;
+        }*/
+        html,body{
+
+            margin:0px;
+
+            height:100%;
+
+        }
+        
        </style>
 	</head>
 
@@ -72,7 +120,7 @@
         </header>
     
     
-		<div class="main-container ace-save-state" id="main-container">
+		<div class="main-container ace-save-state" id="main-container style="width:100%; height:100%;position:absolute;">
 			<script type="text/javascript">
 				//try{ace.settings.loadState('main-container')}catch(e){}
 			</script>
@@ -124,8 +172,9 @@
                             @yield('content')
                         
                     </div>
-                </div>  
-            <div class="footer">
+            </div> 
+                <br>
+            <div class="footer" style="position: absolute;bottom: -20%;width: 100%;" >
                       
                 <div class="footer-inner">
 					<div class="footer-content">
@@ -162,41 +211,11 @@
 				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
 			</a>
         </div>
-        <!-- /.main-container -->
-
-		
-        <!--[endif]-->
-		<script type="text/javascript">
-			//if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		</script>
-		
+        		
 
 		
 
-		
-
-		<!-- inline scripts related to this page -->
-		<script type="text/javascript">
-			/*jQuery(function($) {
-			   $('#sidebar2').insertBefore('.page-content');
-			   
-			   $('.navbar-toggle[data-target="#sidebar2"]').insertAfter('#menu-toggler');
-			   
-			   
-			   $(document).on('settings.ace.two_menu', function(e, event_name, event_val) {
-				 if(event_name == 'sidebar_fixed') {
-					 if( $('#sidebarAce').hasClass('sidebar-fixed') ) {
-						$('#sidebar2').addClass('sidebar-fixed');
-						$('#navbar').addClass('h-navbar');
-					 }
-					 else {
-						$('#sidebar2').removeClass('sidebar-fixed')
-						$('#navbar').removeClass('h-navbar');
-					 }
-				 }
-			   }).triggerHandler('settings.ace.two_menu', ['sidebar_fixed' ,$('#sidebar').hasClass('sidebar-fixed')]);
-			})*/
-		</script>
+	</body>	
 	<!-- Yandex.Metrika counter -->
 <script type="text/javascript">
 	(function (d, w, c) {
@@ -383,7 +402,7 @@
             
             
         });
-        
+       
         
      
 

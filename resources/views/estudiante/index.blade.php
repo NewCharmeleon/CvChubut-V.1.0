@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appAce')
 
 @section('styles')
     <link rel="stylesheet"  href="{{  asset('assets/css/bootstrap3-3-7.min.css')  }}">
@@ -81,6 +81,9 @@
             ],
             "processing": true,
             "serverSide": true,
+            "bScrollCollapse" : true,
+            "scrollY": 300,
+            "scrollX": true,
             "ajax": "{{ url('api/estudiantes') }}", 
             "columns": [
             { data: 'persona.nombre_apellido', name: 'persona.nombre_apellido'  },
@@ -124,7 +127,7 @@
 
   
     
-    <div class="row col-xs-12" id="table-ace">
+    <div class="row col-xs-12">
         <div class="col-xs-12">
                 
             <h2 class="header smaller lighter blue ">Listado de Estudiantes

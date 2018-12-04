@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appAce')
 
 @section ('title', 'Instituciones')
 
@@ -83,6 +83,9 @@
             ],
             "processing": true,
             "serverSide": true,
+            "bScrollCollapse" : true,
+            "scrollY": 300,
+            "scrollX": true,
             "ajax": "{{ url('api/instituciones') }}", 
             "columns": [
             { data: 'nombre', name: 'nombre'  },
@@ -123,7 +126,7 @@
 @endsection    
 @section ('content')
 
-    <div class="row col-xs-12" id="table-ace">
+    <div class="row col-xs-12">
         <div class="col-xs-12">
                 
             <h2 class="header smaller lighter blue ">Listado de Instituciones

@@ -25,7 +25,7 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="{{  route('usuarios.index')  }}" class="dropdown-toggle">
+								<a href="{{  route('usuarios.index')  }}">
 									<i class="menu-icon fa fa-caret-right"></i>
 
 									Listado
@@ -341,7 +341,7 @@
                                       
                         <li class="">
                             <a href="#" class="dropdown-toggle">
-                                <i class="material-icons">assignment</i>">
+                                <i class="material-icons">assignment</i>
     
                                 <span class="menu-text">
                                         Tus Actividades

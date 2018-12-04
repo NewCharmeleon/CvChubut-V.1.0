@@ -1,5 +1,5 @@
 
-    
+    <div>
     <h4><b><u>Tus Actividades:</u></b></h4>
     @role(['Estudiante'])
         <div class="" style="margin:10px 0px 0px 0px">
@@ -63,7 +63,7 @@
     
     </div>
 
-            
+    </div>        
     
 
             

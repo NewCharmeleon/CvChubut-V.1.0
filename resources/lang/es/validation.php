@@ -87,6 +87,12 @@ return [
     'unique' => ':attribute ya ha sido registrado.',
     'uploaded' => 'Subir :attribute ha fallado.',
     'url' => 'El formato :attribute es inválido.',
+    'solo_letras' => 'El campo :attribute debe ser una cadena de caracteres.',
+    'dni_unique'  => 'El campo :attribute  ya esta en uso',
+    'mayor_de_edad' => "Deber ser mayor de edad",
+    "nacionalidad_exist" => "el campo :attribute de existir en el listado",
+    "telefono_valid"     => "el campo :attribute no es un telefono valido",
+    "email_udc_valid"    => 'el campo :attribute no correspode a un email de la UDC',
 
     /*
     |--------------------------------------------------------------------------
@@ -150,5 +156,15 @@ return [
         'time' => 'hora',
         'subject' => 'asunto',
         'message' => 'mensaje',
+        'nombre_apellido' => 'nombre y apellido',
+        'carrera_id'      => 'carrera',
+        'descripcion_de_tareas'=> 'descripción de la/s tareas realizadas',
+        'fecha_ini'=> 'fecha de inicio',
+        'fecha_fin'=> 'fecha de finalización',
+        'actividad_tipo_id' => 'tipo de actividad',
+        'ambito_actividad_id' => 'ambito de actividad',
+        'tipo_participacion_id' => 'tipo de partición',
+        'modalidad_id' => 'modalidad',
+        'mostrar_cv' => 'mostrar en el curriculum',
     ],
 ];

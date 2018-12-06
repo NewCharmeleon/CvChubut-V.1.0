@@ -102,7 +102,7 @@
     <div class="form-group   {{ ( $errors->has('telefono') )?   'has-error' : ''}}   ">  
         <label for="telefono" class="control-label col-sm-3"> Telefono </label>
         <div class="col-sm-6">
-            <input type="text" class="form-control telefono" name="telefono" id="telefono" placeholder="Telefono" value="{{ (Session::has('errors')) ? old('telefono', '') : ( isset($persona)? $persona->telefono : null ) }}" pattern="^[(]\d{3}[)]\d{4}[-]\d{4}$">
+            <input type="text" class="form-control telefono" name="telefono" id="telefono" placeholder="Telefono" value="{{ (Session::has('errors')) ? old('telefono', '') : ( isset($persona)? $persona->telefono : null ) }}" pattern="^[(]\d{3}[)]\d{3}[-]\d{4}$">
              @if ($errors->has('telefono')) 
                 @foreach ( $errors->get('telefono') as $error )
                     <p class="help-block"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>

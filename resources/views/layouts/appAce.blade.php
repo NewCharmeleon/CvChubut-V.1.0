@@ -416,7 +416,7 @@
                 //Mascaras de Formato
                 $('.dni').mask('99.999.999', { placeholder: '99.999.999'});
                 
-                $('.telefono').mask('(999)9999-999', {placeholder: '(999)9999-9999' });
+                $('.telefono').mask('(999)999-9999', {placeholder: '(999)999-9999' });
             
                 $('#email-udc').mask('#@udc.edu.ar', {reverse: true, selectOnFocus: true});
 

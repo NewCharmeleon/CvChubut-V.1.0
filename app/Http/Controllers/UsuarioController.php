@@ -110,7 +110,7 @@ class UsuarioController extends Controller
     //Metodo para actualizar persona determinada
     public function update($id, Request $request)
     {
-        //validamos datos desde el servidor
+        //validacion del servidor
         /*
         'nombre_apellido',
         'dni',
@@ -118,107 +118,91 @@ class UsuarioController extends Controller
         'fecha_nac',
         'telefono',
         'carrera_id',
-        */
-        
+         */
+
         $rules = [
             'nombre_apellido' => 'required|min:4|max:50|solo_letras',
             'dni' => 'required|min:8|max:10|dni_unique:' . $id,
-            'nacionalidad' => 'nullable|nacionalidad_exist',
             'fecha_nac' => 'required|date_format:d-m-Y|mayor_de_edad',
+            'nacionalidad' => 'nullable|nacionalidad_exist',
             'telefono' => 'nullable|min:13|max:15|telefono_valid',
-            
         ];
-        if (!$request->exists('perfil')){
+
+        if (!$request->exists('perfil')) {
             $rules['email'] = 'required|min:4|max:50|email|unique:users,email,' . $id;
         }
-        
+
         $validaciones = \Validator::make($request->all(), $rules);
 
-        if ($validaciones->fails()){
+        if ($validaciones->fails()) {
             return redirect()
                 ->back()
                 ->withErrors($validaciones->errors())
                 ->withInput(Input::all());
-
         }
 
         $user = User::findOrFail($id);
 
-        if (!$request->exists('perfil')){
+        if (!$request->exists('perfil')) {
 
-            $user->update($request->only('email'));
-            //asignamos el Rol al Usuario
-            $user->roles()->sync([$request->rol_id]);
+          $user->update($request->only('email'));
+          $user->roles()->sync([$request->rol_id]); //asignacion de rol a usuario
+
+
         }
-        
         $persona = $user->persona;
         $persona->update($request->except('email'));
 
-        //Si existe la bandera Perfil redirecciona al Perfil del Usuario logueado
-        if ($request->exists('perfil')){
-
-            return redirect()->route('usuarios.index');
-
+        // si existe la bandera perfil redirecciona al perfil del usuario logueado
+        if ($request->exists('perfil')) {
+            return redirect()->route('perfil');
         }
 
         return redirect()->route('usuarios.index');
- 
     }
+
     //Metodo para Guardar los datos de la persona determinada
     public function store(Request $request)
     {
         $id = null;
-        //validamos datos desde el servidor
-        /*
-        'nombre_apellido',
-        'dni',
-        'nacionalidad',
-        'fecha_nac',
-        'telefono',
-        'carrera_id',
-        */
-        
         $rules = [
             'nombre_apellido' => 'required|min:4|max:50|solo_letras',
-            'dni' => 'required|min:8|max:10|dni_unique:' . $id,
-            'nacionalidad' => 'nullable|nacionalidad_exist',
+            'dni' => 'required|min:8|max:10|dni_unique:'.$id,
             'fecha_nac' => 'required|date_format:d-m-Y|mayor_de_edad',
+            'nacionalidad' => 'nullable|nacionalidad_exist',
             'telefono' => 'nullable|min:13|max:15|telefono_valid',
-            'email' => 'required|min:4|max:50|email|unique:users, email',
-            'rol_id' => 'required|exists:roles.id' 
-            
+            'email' => 'required|min:4|max:50|email|unique:users,email',
+            'rol_id'  => 'required|exists:roles,id'
         ];
-                
+
         $validaciones = \Validator::make($request->all(), $rules);
 
-        if ($validaciones->fails()){
+        if ($validaciones->fails()) {
             return redirect()
                 ->back()
                 ->withErrors($validaciones->errors())
                 ->withInput(Input::all());
-
         }
-        //Se crea un Usuario
+
+
+        //se crea un usuario
         $user = User::create(['username' => 'alumno', 'password' => '123456', 'email' => $request->email]);
 
-        //usamos una variable temporal de los datos de la Persona con el Usuario asociado
-        $data_persona = $request->except('email', 'rol_id');
+        //se actualiza temporal de persona con el usuario asociado
+        $data_persona = $request->except('email','rol_id');
         $data_persona['user_id'] = $user->id;
-        
-        //Se crea una Persona
+
+        //creamos persona
         $persona = Persona::create($data_persona);
 
-        //Hasheamos la contraseña del Usuario
-        $user->hashPassword();
-        //Generamos el Username del Usuario
-        $user->updateUsername();
-
-        //asignamos el Rol al Usuario
-        $user->attachRole( $request->rol_id );
-
+        $user->hashPassword(); //se hace hash de la contraseña con el dni de persona
+        $user->updateUsername(); //se genera el username correspodiente
+        //se asigna el rol estudiante
+        $user->attachRole( $request->rol_id ); //asignacion de rol a usuario
         return redirect()->route('usuarios.index');
- 
-     }
+
+    }
+
     
      //Metodo para eliminar un usuario
      public function destroy($id)

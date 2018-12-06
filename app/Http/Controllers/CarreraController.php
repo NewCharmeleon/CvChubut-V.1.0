@@ -151,7 +151,7 @@ class CarreraController extends Controller
         [
             'nombre' => 'required|max:250|min:3|unique:carreras,nombre,' .$id,
             'cantidad_materias' => 'required|min:1|numeric',
-            'materias_aprobadas' => 'min:1|numeric',
+            
         ]);
 
         var_dump($request);
@@ -201,7 +201,7 @@ class CarreraController extends Controller
         [
             'nombre' => 'required|max:250|min:3|unique:carreras,nombre,' .$id,
             'cantidad_materias' => 'required|max:255|min:1|numeric',
-            'materias_aprobadas' => 'min:1|max:cantidad_materias|numeric',
+            
         ]);
 
         

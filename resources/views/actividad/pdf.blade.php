@@ -7,6 +7,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <style>
+        @page 
+        {
+            size: auto portrait;
+            margin-top:5%;
+            margin-bottom:10%;
+            page-break-before: always;
+             
+        } 
+        
+        table 
+        {
+             
+            page-break-before: top;
+        } 
+        @page:left 
+        { @bottom-left 
+        { content: counter(pagina); } 
+        } 
+        @page:right {
+             @bottom-right 
+        { content: counter(pagina); }
+         }
+        @media all {
+        .page-break { display:none; }
+        }
+
+        @media print {
+        .page-break { display:block; page-break-before:always; }
+        }
             .texto-primario {
             color:#008bd0;
             text-transform: uppercase;
@@ -16,6 +45,10 @@
             }
             .mayuscula {
                 text-transform: uppercase;
+            }
+            .columna-entera{
+                /*width:80%;*/
+                text-align: left;
             }
             .columna-derecha {
                 width: 50%;
@@ -203,13 +236,19 @@
             <h4 class="texto-primario"><u>Actividades</u></h4>
             @foreach ($actividades as $actividad)
 
-                <table style="color:rgb(17, 8, 8)">
+                <table style="color:rgb(17, 8, 8); ">
 
                     <thead>
 
                         <tr>
+                            <th colspan="2" class="texto-secundario"><u>{{ $actividad->ambito_actividad->nombre }}:</u> {{ $actividad->ambito_actividad->descripcion }}</th>
+                            
+                        </tr>
+                        
+                        <tr>
+                                            
                             <th class="texto-primario mayuscula columna-izquierda">&nbsp;&nbsp;{{ $actividad->nombre }} </th>
-                            <th class="columna-derecha">{{ $actividad->fecha_inicio_show }}&nbsp;&nbsp;-&nbsp;&nbsp;{{ $actividad->fecha_fin_show }}</th>
+                            <th class="columna-derecha">{{ $actividad->fecha_inicio_show }}&nbsp;-&nbsp;{{ $actividad->fecha_fin_show }}</th>
                         </tr>
 
                     </thead>
@@ -219,15 +258,10 @@
                                     &nbsp;&nbsp;<u class="texto-secundario mayuscula">Lugar: </u> &nbsp; {{ $actividad->lugar}}
                             </td>
                             <td class="columna-derecha">
-                                <u class="texto-secundario mayuscula">Tipo de Participaci&oacute;n:</u> {{ $actividad->tipo_participacion->nombre }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="columna-izquierda">
-                                &nbsp;&nbsp;<u class="texto-secundario mayuscula">Modalidad: </u> &nbsp; {{ $actividad->modalidad->nombre }}
-                            </td>
-                            <td class="columna-derecha">
-                                &nbsp;{{ $actividad->modalidad->descripcion }}
+                                <u class="texto-secundario mayuscula">Instituci&oacute;n: </u> {{ $actividad->institucion->nombre }} 
+                                &nbsp;&nbsp;{{ $actividad->institucion->localidad }} -&nbsp;{{ $actividad->institucion->provincia }} -&nbsp;{{ $actividad->institucion->pais }}
+                                
+                                
                             </td>
                         </tr>
                         <tr>
@@ -235,37 +269,43 @@
                                 &nbsp;&nbsp;<u class="texto-secundario mayuscula">Tipo: </u> &nbsp; {{ $actividad->actividad_tipo->nombre }}
                             </td>
                             <td class="columna-derecha">
-                                &nbsp;{{ $actividad->actividad_tipo->descripcion }}
+                                <u class="texto-secundario mayuscula">Frecuencia: </u>&nbsp;{{ $actividad->frecuencia }}
                             </td>
                         </tr>
                         <tr>
                             <td class="columna-izquierda">
-                                &nbsp;&nbsp;<u class="texto-secundario mayuscula">&Aacute;mbito:</u> &nbsp; {{ $actividad->ambito_actividad->nombre }}
+                                &nbsp;&nbsp;<u class="texto-secundario mayuscula">Tipo de Participaci&oacute;n:</u> {{ $actividad->tipo_participacion->nombre }}
                             </td>
                             <td class="columna-derecha">
-                                &nbsp;{{ $actividad->ambito_actividad->descripcion }}
+                                <u class="texto-secundario mayuscula">Duraci&oacute;n: </u>&nbsp;{{ $actividad->duracion }}
+                                                     {{ $actividad->duracion_tipo }}
                             </td>
                         </tr>
                         <tr>
-                                <td class="columna-izquierda">
-                                    &nbsp;&nbsp;<u class="texto-secundario mayuscula">Instituci&oacute;n: </u> &nbsp; {{ $actividad->institucion->nombre }}
-                                </td>
-                                <td class="columna-derecha">
-                                    &nbsp;{{ $actividad->institucion->localidad }} &nbsp;&nbsp;{{ $actividad->institucion->provincia }} &nbsp;&nbsp;{{ $actividad->institucion->pais }}
-                                </td>
-                            </tr>
+                            <td class="columna-izquierda">
+                                &nbsp;&nbsp;<u class="texto-secundario mayuscula">Modalidad:</u> {{ $actividad->modalidad->nombre }}
+                            </td>
+                            <td class="columna-derecha">
+                                <u class="texto-secundario mayuscula"> <u class="texto-secundario mayuscula">Observaciones:</u>&nbsp;{{ $actividad->observacion }}
+                            
+                            </td>
+                        </tr>
+                       
                     </tbody>
 
                 </table>
-                <br>
+                
             @endforeach
             
             @if( count( $actividades ) == 0 )
                 <p>No posee Actividades Registradas </p>
             @endif
+            
             <hr>
+            <br><br><br>
                 
         </div>
+        
 
         <div style="margin-top:10px;">
             <h4 class="texto-primario"><u>Experiencias Laborales</u></h4>
@@ -276,7 +316,7 @@
                     <thead>
 
                         <tr>
-                            <th class="texto-primario mayuscula columna-izquierda">&nbsp;&nbsp;{{ $experiencia_laboral->puesto }} </th>
+                            <th class="texto-primario mayuscula columna-izquierda"><u>Puesto:</u>&nbsp;&nbsp;{{ $experiencia_laboral->puesto }} </th>
                             <th class="columna-derecha">{{ $experiencia_laboral->fecha_ini_show }}&nbsp;&nbsp;-&nbsp;&nbsp;{{ $experiencia_laboral->fecha_fin_show }}</th>
                         </tr>
 
@@ -284,35 +324,41 @@
                     <tbody>
                         <tr>
                             <td class="columna-izquierda">
-                                <u class="texto-secundario mayuscula">Empleador </u> &nbsp; {{ $experiencia_laboral->empleador}}
+                                <u class="texto-secundario mayuscula">Tarea Realizada: </u> &nbsp; {{ $experiencia_laboral->descripcion_de_tareas }}
                             </td>
                             <td class="columna-derecha">
-                                <u class="texto-secundario mayuscula">Referencia</u> &nbsp; {{ $experiencia_laboral->referencia }}
+                                <u class="texto-secundario mayuscula">Referencia:</u> &nbsp; {{ $experiencia_laboral->referencia }}
                             </td>
                         </tr>
                         <tr>
                             <td class="columna-izquierda">
-                                <u class="texto-secundario mayuscula">Tarea Realizada </u> &nbsp; {{ $experiencia_laboral->descripcion_de_tareas }}
+                                <u class="texto-secundario mayuscula">Lugar </u> &nbsp; {{ $experiencia_laboral->localidad }} &nbsp;- {{ $experiencia_laboral->provincia }}
+                            
                             </td>
                             <td class="columna-derecha">
                                 <u class="texto-secundario mayuscula">Rentado</u>&nbsp;{{ $experiencia_laboral->rentado_show }}
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">
-                                <u class="texto-secundario mayuscula">Lugar </u> &nbsp; {{ $experiencia_laboral->localidad }} &nbsp; {{ $experiencia_laboral->provincia }}
+                            <td class="columna-izquierda">
+                                <u class="texto-secundario mayuscula">Empleador: </u> &nbsp; {{ $experiencia_laboral->empleador}}
+                            </td>
+                            <td class="columna-derecha">
+                                <u class="texto-secundario mayuscula"></u>&nbsp;
                             </td>
                         </tr>
                         
                     </tbody>
 
                 </table>
-                <br>
+                
             @endforeach
             
             @if( count( $experiencias_laborales ) == 0 )
                 <p>No posee Experiencia Laboral Registrada </p>
             @endif
+            
+
             <hr>
                 
         </div>

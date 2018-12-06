@@ -109,6 +109,7 @@ class EstudianteController extends Controller
             'fecha_nac' => 'required|date_format:d-m-Y|mayor_de_edad',
             'nacionalidad' => 'nullable|nacionalidad_exist',
             'carrera_id' => 'required|exists:carreras,id',
+            'materias_aprobadas' => 'min:1|max:carreras, cantidad_materias|numeric',
             'telefono' => 'nullable|min:13|max:15|telefono_valid',
             
         
@@ -160,6 +161,7 @@ class EstudianteController extends Controller
             'fecha_nac' => 'required|date_format:d-m-Y|mayor_de_edad',
             'nacionalidad' => 'nullable|nacionalidad_exist',
             'carrera_id' => 'required|exists:carrera,id',
+            'materias_aprobadas' => 'min:1|max:carreras, cantidad_materias|numeric',
             'telefono' => 'nullable|min:13|max:15|telefono_valid',
             
         

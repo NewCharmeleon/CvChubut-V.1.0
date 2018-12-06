@@ -19,7 +19,7 @@ class Carrera extends Model
     protected $fillable = [
         'nombre',
         'cantidad_materias',
-        'materias_aprobadas',
+        
     ];
     
     //atributos que no se devuelven en las consultas
@@ -58,13 +58,7 @@ class Carrera extends Model
         $this->attributes['nombre'] = $value;
 
     }
-    public function getMateriasAprobadasAttribute()
-    {
-        //tratamiento del valor
-        $value = $this->attributes['materias_aprobadas'];
-        //sin materias aprobadas
-        return   (  empty($value)      )? 'No posee materias aprobadas' :$value;
-    }
+    
 
 
 

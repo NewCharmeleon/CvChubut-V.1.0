@@ -25,6 +25,7 @@ class Persona extends Model
         'telefono',
         'user_id',
         'carrera_id',
+        'materias_aprobadas',
         
     ];
 
@@ -108,6 +109,13 @@ class Persona extends Model
         $value = $value->format('d-m-Y');
 
         return $value;
+    }
+    public function getMateriasAprobadasAttribute()
+    {
+        //tratamiento del valor
+        $value = $this->attributes['materias_aprobadas'];
+        //sin materias aprobadas
+        return   (  empty($value)      )? 'No posee materias aprobadas Registradas' :$value;
     }
 
     

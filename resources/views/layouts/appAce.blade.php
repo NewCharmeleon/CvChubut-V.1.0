@@ -99,6 +99,8 @@
             top:120%;
             /*clear: both;*/
         }
+        thead:before, thead:after { display: none; } 
+        tbody:before, tbody:after { display: none; } 
         /*.main-content, body, html {
             min-height: 100%;
         }*/

@@ -55,7 +55,11 @@ class CreatePersonasTable extends Migration
                 ->foreign('carrera_id')
                 ->references('id')
                 ->on('carreras');
-           
+            
+            $table
+                ->string('materias_aprobadas')
+                ->default('n/c');   
+            
             $table
             ->softDeletes(); //Columna para soft delete
           

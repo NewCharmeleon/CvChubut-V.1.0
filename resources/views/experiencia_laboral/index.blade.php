@@ -7,6 +7,7 @@
    
    <link rel="stylesheet"  href="{{  asset('assets/css/dataTables1-10-19.bootstrap.min.css')  }}">
    <link rel="stylesheet"  href="{{  asset('assets/css/buttons.dataTables.min.css')  }}">
+   <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/bootstrap-switch.css') }}">
 @endsection   
 @section('scripts')
    <script src="{{  asset('assets/js/jquery-3.3.1.js')  }}"></script>
@@ -18,7 +19,11 @@
     <script src="{{  asset('assets/ajax/libs/vfs_fonts.js')  }}"></script>
     <script src="{{  asset('assets/js/buttons.html5.min.js')  }}"></script>
     <script src="{{  asset('assets/js/buttons.print.min.js')  }}"></script>
-        
+    <script src="{{ asset('assets/js/bootstrap-switch.js')  }}"></script>
+    
+    <script>
+        $('.btn-td .mostrar_ocultar').bootstrapSwitch();
+    </script>
  
         
     
@@ -27,8 +32,11 @@
        
 @section ('content')
 
-    <div class="row col-xs-12" id="table-ace">
+    <div class="row col-xs-12" >
         <div class="col-xs-12">
+                <script>
+                        $('.btn-td .mostrar_ocultar').bootstrapSwitch();
+                    </script>
               
             <h2 class="header smaller lighter blue ">Listado de Experiencias Laborales de {{ $persona->nombre_apellido}}
             <small>
@@ -43,7 +51,8 @@
                         <a href="{{ route('curriculum.pdf')  }}" class="btn btn-primary" target="_blank">  Exportar a PDF  </a>
                     
                     </div>
-                @endrole </div>&nbsp;&nbsp;
+                @endrole    
+            </div>&nbsp;&nbsp;
             <br>
 
             <!-- div.table-responsive -->  
@@ -53,6 +62,8 @@
                         <th>Puesto </th>
                         <th>Descripci&oacute;n de Tareas </th>
                         <th>Empleador </th>
+                        <th>Fecha de Inicio </th>
+                        <th>Fecha de Fin </th>
                         <th>Acciones </th>
                         <th>Mostrar en Cv </th>
                     </tr>
@@ -64,6 +75,8 @@
                         <td>{{ $experiencia_laboral->puesto }}</td>
                         <td>{{ $experiencia_laboral->descripcion_de_tareas }}</td>
                         <td>{{ $experiencia_laboral->empleador }}</td>
+                        <td>{{ $experiencia_laboral->fecha_ini_show }}</td>
+                        <td>{{ $experiencia_laboral->fecha_fin_show }}</td>
                         <td >
               
                           
@@ -81,18 +94,17 @@
                             <input type="hidden" name="_method" value="delete">
                             {{ csrf_field() }}
                         </form>
-
-                   
-                   
+         
                 
               
                 
                         </td>
+                        
                         <td class="btn-td" id="{{ $experiencia_laboral->id }}">
-                            {!!    $experiencia_laboral->btn_mostrar()    !!}
-                        </td>
-                    </tr>  
-                    @endforeach
+                                {!!    $experiencia_laboral->btn_mostrar()    !!}
+                            </td>
+                          </tr>
+                        @endforeach
                     @if ( $experiencias_laborales->count() == 0 )
                         <tr>
                             <td colspan="5" align="center">
@@ -102,9 +114,9 @@
                     @endif          
                 </tbody>
             </table>
-      <!--div class="center">
+      <div class="center">
         {{ $experiencias_laborales->links() }}
-      </div-->
+      </div>
       
    </div>
 
@@ -112,74 +124,81 @@
 
 @endsection
 
- @section('scripts')
+@section('scripts')
  
     <script>
-            $(document).ready(function() {
-                var id = $(this).data('id');
-        $('#data-table').DataTable( {
+        
+        $(document).ready(function() {
+                //var id = $(this).data('id');
+            $('#data-table').DataTable( {
             
-            //"dom": '<"top"i>rt<"bottom"flp><"clear">',
-            dom: 'Bfrtip',
+             //"dom": '<"top"i>rt<"bottom"flp><"clear">',
+                dom: 'Bfrtip',
 
-            buttons: [
-            {
-                extend:    'copyHtml5',
-                text:      '<i class="fa fa-copy bigger-110 pink"></i>',
-                titleAttr: 'Copiar al Portapapeles'
-            },
-            {
-                extend:    'excelHtml5',
-                text:      '<i class="fa fa-file-excel-o green"></i>',
-                titleAttr: 'Exportar a Excel'
-            },
-            {
-                extend:    'csvHtml5',
-                text:      '<i class="fa fa-database bigger-110 orange">',
-                titleAttr: 'Exportar a CSV'
-            },
-            {
-                extend:    'pdfHtml5',
-                text:      '<i class="fa fa-file-pdf-o red"></i>',
-                titleAttr: 'Exportar a PDF'
-            },
-            ,
-            {
-                extend:    'print',
-                text:      '<i class="fa fa-print bigger-110 grey"></i>',
-                titleAttr: 'Imprimir'
-            }
-                
-
-            ],
-            "ordering": true,
-            "pagingType": "full_numbers",
-            "language": {
-                "search": "Búsqueda",
-                "lengthMenu": "Mostrando _MENU_ items por página",
-                "zeroRecords": "No hay datos para mostrar",
-                "info": "Mostrando página _PAGE_ de _PAGES_",
-                "infoEmpty": "No existen datos disponibles",
-                "infoFiltered": "(filtrando datos de un _MAX_ total de items)",
-                "paginate": {
-                    "first": "Primera página",
-                    "previous": "Previa",
-                    "next": "Siguiente",
-                    "last": "Última página",
+                buttons: [
+                {
+                    extend:    'copyHtml5',
+                    text:      '<i class="fa fa-copy bigger-110 pink"></i>',
+                    titleAttr: 'Copiar al Portapapeles'
                 },
-                "columnDefs": [ 
-                    { targets: 3, searchable: false },
-                    { targets: 3, orderable: false }, 
-                    { targets: 3, exportable: false }, 
-                    { targets: 3, searchable: false },
-                    { targets: 3, orderable: false }, 
-                    { targets: 3, exportable: false }, 
-                   /* { targets: [1,2], searchable: true }, 
-                    { targets: '_all', searchable: false } */
-                ],
+                {
+                    extend:    'excelHtml5',
+                    text:      '<i class="fa fa-file-excel-o green"></i>',
+                    titleAttr: 'Exportar a Excel'
+                },
+                {
+                    extend:    'csvHtml5',
+                    text:      '<i class="fa fa-database bigger-110 orange">',
+                    titleAttr: 'Exportar a CSV'
+                },
+                {
+                    extend:    'pdfHtml5',
+                    text:      '<i class="fa fa-file-pdf-o red"></i>',
+                    titleAttr: 'Exportar a PDF'
+                },
+                ,
+                {
+                    extend:    'print',
+                    text:      '<i class="fa fa-print bigger-110 grey"></i>',
+                    titleAttr: 'Imprimir'
+                }
+                    
 
-            },
-            "fnDrawCallback": function() {
+                ],
+                
+                "info":     true,
+                "ordering": true,
+                "bScrollCollapse" : true,
+                "scrollY": 300,
+                "scrollX": true,
+                "pagingType": "full_numbers",
+                "language": {
+                    "search": "Búsqueda",
+                    "lengthMenu": "Mostrando _MENU_ items por página",
+                    "zeroRecords": "No hay datos para mostrar",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No existen datos disponibles",
+                    "infoFiltered": "(filtrando datos de un _MAX_ total de items)",
+                    "paginate": {
+                        "first": "Primera página",
+                        "previous": "Previa",
+                        "next": "Siguiente",
+                        "last": "Última página",
+                    },
+                    "columnDefs": [ {
+                        targets: [ 0 ],
+                        orderData: [ 0, 1 ]
+                    }, {
+                        targets: [ 1 ],
+                        orderData: [ 1, 0 ]
+                    }, {
+                        targets: [ 4 ],
+                        orderData: [ 4, 0 ]
+                    } ],
+                    
+
+                },
+                "fnDrawCallback": function() {
                     $('.btn-td .mostrar_ocultar').bootstrapSwitch({
                        // size: 'small',
                        // onText: 'YES',
@@ -249,11 +268,11 @@
                            
                         }
                     });
-            }
+                }   
              
    
-        });
-    }); 
+            });
+         }); 
             /*$('#data-table').DataTable({
                 processing: true,
                 serverSide: true,
@@ -316,6 +335,6 @@
                     }
                 });
             });*/           
-        </script>
+    </script>
 
 @endsection 

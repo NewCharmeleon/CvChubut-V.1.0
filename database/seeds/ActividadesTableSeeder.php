@@ -33,6 +33,18 @@ class ActividadesTableSeeder extends Seeder
         $cuantos3=AmbitoActividad::all()->count();
         $cuantos4=TipoParticipacion::all()->count();
         $cuantos5=Modalidad::all()->count();*/
+        $nombres = 
+            ['Ferias de Ciencia y Tecnología','Regata del Rio Negro','Exploradores de Don Bosco','Hackaton de Android','Turismo Científico','Maraton Dia del Trabajo','Posicionamiento Ceo',
+            'Hacking Ético', 'Campeonato de Futbol del Sur', 'Copa Libertadores de America' 
+            ];
+        $frecuencias = 
+        ['Unica vez','Diaria','Semanal','Mensual','Anual' 
+        ];
+        $duraciones = 
+        ['Hs.','Dia','Semana','Mes','Año'
+        ];        
+            
+
         //Segundo metodo mejorado
         $instituciones = Institucion::all()->pluck('id')->toArray();
         $persona = User::whereHas('roles', function($query){
@@ -49,7 +61,7 @@ class ActividadesTableSeeder extends Seeder
             //llamamos al Metodo Create del Modelo
             Actividad::create(
             [
-                'nombre' =>$faker->catchPhrase(),
+                'nombre' =>$faker->randomElement( $nombres ),
                 //'nombre' =>$faker->name(),
                 'lugar' => $faker->streetAddress(),
                 'fecha_inicio' => $faker->date('d-m-Y', $max = 'now'),
@@ -60,8 +72,13 @@ class ActividadesTableSeeder extends Seeder
                 'actividad_tipo_id' => $faker->randomElement( $actividadesTipo ),
                 'ambito_actividad_id' => $faker->randomElement( $ambitoActividades ),
                 'tipo_participacion_id' => $faker->randomElement( $tiposParticipaciones ),
-                'modalidad_id' => $faker->randomElement( $modalidades ),                
-                //'duracion' => $faker->numberBetween(2,10),
+                'modalidad_id' => $faker->randomElement( $modalidades ), 
+                'frecuencia' =>$faker->randomElement( $frecuencias ),
+                'duracion' =>$faker->numberBetween(0,100),
+                'duracion_tipo' =>$faker->randomElement( $duraciones ),
+                'observacion' =>null,
+                                   
+                //'duracion' => 
                 //'referente' => $faker->realText($maxNBChars = 50),
                 
                 

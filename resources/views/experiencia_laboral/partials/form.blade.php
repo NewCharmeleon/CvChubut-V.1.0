@@ -124,12 +124,13 @@
         <label for="rentado" class="control-label col-sm-3"> Rentado <sup>*</sup> </label>
         <div class="">
             
-            <label for="rentado_true" class="control-label col-xs-2" style="text-align: left;">Si
-                <input type="radio" name="rentado" id="rentado_true" value="1"
-                @if ($errors->has('rentado') )
-                    @if( old('rentado') == true) checked 
-                    @endif 
-                {{--  si hay experiencia laboral y no error --}}
+            <label for="rentado_true"  class="control-label col-xs-2" style="text-align: left;" >
+            
+                <input name="rentado" type="radio" class="ace" id="rentado_true" value="1"
+                    @if ($errors->has('rentado') )
+                        @if( old('rentado') == true) checked 
+                        @endif 
+                    {{--  si hay experiencia laboral y no error --}}
                 @elseif(  isset($experiencia_laboral  ) )
                 {{--  el valor de mostrar si es Rentado --}}
                     @if( $experiencia_laboral->rentado == true )
@@ -138,11 +139,13 @@
                 @else
                     checked
                 @endif
-                    >
-            </label>
+                    ><span class="lbl"> Si</span>
+                </label>
 
-            <label for="rentado_false" class="control-label col-xs-2" style="text-align: left;">No
-                <input type="radio" name="rentado" id="rentado_false" value="0"
+                
+
+            <label for="rentado_false" class="control-label col-xs-2" style="text-align: left;">
+                <input name="rentado" type="radio" class="ace"  id="rentado_false" value="0"
                 @if ($errors->has('rentado') )
                     @if( old('rentado') == false) checked 
                     @endif 
@@ -153,9 +156,8 @@
                        checked
                     @endif
                 @endif    
-                        >
+                        ><span class="lbl"> No</span>
             </label>
-
             
             @if ($errors->has('rentado'))
                 @foreach ( $errors->get('rentado') as $error )
@@ -172,36 +174,41 @@
         <label for="mostrar_cv" class="control-label col-sm-3"> Mostrar en Cv? <sup>*</sup> </label>
         <div class="">
             
-            <label for="mostrar_true" class="control-label col-xs-2" style="text-align: left;">Si
-                <input type="radio" name="mostrar_cv" id="mostrar_true" value="1"
-                @if ($errors->has('mostrar_cv') )
-                    @if( old('mostrar_cv') == true) checked 
-                    @endif 
-                {{--  si hay experiencia laboral y no error --}}
-                @elseif(  isset($experiencia_laboral  ) )
-                {{--  el valor de mostrar la Experiencia Laboral --}}
-                    @if( $experiencia_laboral->mostrar_cv == true )
-                       checked
-                    @endif
-                @else
-                    checked
-                @endif
-                    >
-            </label>
+           
 
-            <label for="mostrar_cv_false" class="control-label col-xs-2" style="text-align: left;">No
-                <input type="radio" name="mostrar_cv" id="mostrar_cv_false" value="0"
+            <label for="mostrar_true"  class="control-label col-xs-2" style="text-align: left;" >
+            
+                <input name="mostrar_cv" type="radio" class="ace" id="mostrar_true" value="1"
+                    @if ($errors->has('mostrar_cv') )
+                        @if( old('mostrar_cv') == true) checked 
+                        @endif 
+                    {{--  si hay experiencia laboral y no error --}}
+                    @elseif(  isset($experiencia_laboral  ) )
+                    {{--  el valor de mostrar la modalidad --}}
+                        @if( $experiencia_laboral->mostrar_cv == true )
+                        checked
+                        @endif
+                    @else
+                        checked
+                    @endif
+                    ><span class="lbl"> Si</span>
+                </label>
+
+                
+
+            <label for="mostrar_cv_false" class="control-label col-xs-2" style="text-align: left;">
+                <input name="mostrar_cv" type="radio" class="ace"  id="mostrar_cv_false" value="0"
                 @if ($errors->has('mostrar_cv') )
                     @if( old('mostrar_cv') == false) checked 
                     @endif 
                 {{--  si hay experiencia laboral y no error --}}
                 @elseif(  isset($experiencia_laboral  ) )
-                {{--  el valor de mostrala modalidad --}}
+                {{--  el valor de mostrar la modalidad --}}
                     @if( $experiencia_laboral->mostrar_cv == false )
                        checked
                     @endif
                 @endif    
-                        >
+                        ><span class="lbl"> No</span>
             </label>
 
             

@@ -95,7 +95,7 @@
             "ajax": "{{ url('api/usuarios') }}", 
             "columns": [
             { data: 'persona.nombre_apellido', name: 'persona.nombre_apellido'  },
-            { data: 'roles[0].display_name', name: 'roles[0].display_name'  },
+            { data: 'Roles', name: 'roles.display_name'  },
             { data: 'btn'},
             ],
             "ordering": true,
@@ -104,9 +104,7 @@
                     { targets: 2, searchable: false },
                     { targets: 2, orderable: false }, 
                     { targets: 2, exportable: false },
-                    { targets: 1, searchable: false },
-                    { targets: 1, orderable: false }, 
-                    { targets: 1, exportable: false },  
+                     
                    /* { targets: [1,2], searchable: true }, 
                     { targets: '_all', searchable: false } */
             ],
@@ -154,7 +152,7 @@
                 <thead>
                     <tr>
                         <th>Apellido y Nombre</th>
-                        <th>Rol</th>
+                        <th>Roles</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>

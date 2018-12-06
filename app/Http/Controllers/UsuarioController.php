@@ -12,6 +12,7 @@ use App\User;
 //con la cabecera de localizacion en el metodo Store()
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use App\Http\Controllers\DB;
 
 class UsuarioController extends Controller
 {
@@ -33,8 +34,10 @@ class UsuarioController extends Controller
             return $query->where('id', '!=', $rol);
 
         })->with('persona')->orderBy('username')->paginate(10);
-        //dd($usuarios);
+       
         return view('usuario.index', compact('usuarios'));
+        
+            
     }
     //Metodo para crear un usuario
     public function create()

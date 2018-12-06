@@ -88,15 +88,22 @@
             "columns": [
             { data: 'persona.nombre_apellido', name: 'persona.nombre_apellido'  },
             { data: 'persona.dni', name: 'persona.dni'  },
-            { data: 'persona.carrera.nombre', name: 'persona.carrera.nombre'  },
-            { data: 'persona.carrera.cantidad_materias', name: 'persona.carrera_cantidad_materias'  },
-            { data: 'persona.carrera.materias_aprobadas', name: 'persona.materias_aprobadas'  },
+            { data: 'persona.carrera.nombre', name: 'persona.carrera.nombre',"defaultContent": "<i>Sin Datos</i>"  },
+            { data: 'persona.carrera.cantidad_materias', name: 'persona.carrera.cantidad_materias',"defaultContent": "<i>Sin Datos</i>"  },
+            { data: 'persona.carrera.materias_aprobadas', name: 'persona.carrera.materias_aprobadas',"defaultContent": "<i>Sin Datos</i>"  },
             { data: 'btn' },
             ],
             "columnDefs": [ 
+                    { targets: 2, orderable: false },
+                    { targets: 3, orderable: false }, 
+                    { targets: 4, orderabla: false }, 
+                    
                     { targets: 5, searchable: false },
                     { targets: 5, orderable: false }, 
                     { targets: 5, exportable: false }, 
+
+                   // "data": "first_name", // can be null or undefined
+                    //"defaultContent": "<i>Not set</i>"
                    /* { targets: [1,2], searchable: true }, 
                     { targets: '_all', searchable: false } */
             ],

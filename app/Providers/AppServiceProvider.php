@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
 
             $actividades = Actividad::ActividadesDelUsuario();
 
-            return $view->with(['actividades' => $actividades->paginate(5) ]);
+            return $view->with(['actividades' => $actividades->paginate(2) ]);
 
         });
         // Call to Entrust::getRole

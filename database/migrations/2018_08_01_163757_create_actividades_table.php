@@ -33,6 +33,24 @@ class CreateActividadesTable extends Migration
                 ->date('fecha_fin')
                 ->nullable()
                 ->default( null );
+            
+            $table
+                ->string('frecuencia')
+                ->default(null);
+            
+            
+            $table
+                ->string('duracion')
+                ->default(null);
+               
+            $table
+                ->string('duracion_tipo')
+                ->default(null); 
+                
+            $table
+                ->string('observacion')
+                ->nullable()
+                ->default(null);     
 
             $table
                 ->boolean('mostrar_cv')

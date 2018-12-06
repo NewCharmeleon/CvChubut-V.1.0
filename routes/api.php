@@ -21,19 +21,7 @@ use App\User;
 /*Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');*/
-/*Route::get('carreras', function (){
-  /*return datatables()
-  ->eloquent(App\Carrera::query())
-  ->toJson();*//* $carreras = Carreras::all();
-        return Datatables::of($carreras)->make();*/
-      /*  $model = App\Carrera::query();
 
-    return Datatables::of($model)
-    ->addColumn('btn','acciones')
-    //->removeColumn(['btn'])
-    ->make(true);
-    
-});*/
 Route::get('actividadesTipos', function (){
   
   $model = App\ActividadTipo::query();
@@ -74,50 +62,39 @@ Route::get('estudiantes', function (){
   //Buscamos el Rol Estudiante
   $rol = Role::where('name', 'LIKE', 'Estudiante')->get()->first();
   //Buscamos los Usuarios con Rol Estudiante
-  $model = User::whereHas('roles', function ($query) use ($rol){
-      return $query->where('id', $rol->id);
-  })->with('persona.carrera');
-  /*if ($model->user->persona->carrera_id == null ){
-  //temporal de los datos de un usuario
-        $model->user->persona->carrera_id == "no posee Carrera Registrada";
-  };*/
-  //$model = App\Carrera::query();
-  return Datatables::of($model)
-    //->addColumn('btn', @include('carrera.partials.acciones'))
-    ->addColumn('btn', function ($estudiante) {
+  $estudiante = User::whereHas('roles', function ($query) use ($rol){
+    return $query->where('id', $rol->id);
+})->with('persona.carrera');
+
+  return Datatables::of($estudiante)
+    /*->editColumn('persona.carrera.nombre', function($estudiante){
+       if('persona.carrera.nombre' == null)
+       { 
+         return "Sin Datos";
+       }else
+       { return ($estudiante->persona->carrera->nombre); 
+      } })
+      ->editColumn('persona.carrera.cantidad_materias', function($estudiante){
+        if('persona.carrera.cantidad_materias' == null)
+        { 
+          return "Sin Datos";
+        }else
+        { return ($estudiante->persona->carrera->cantidad_materias); 
+       } })
+       ->editColumn('persona.carrera.materias_aprobadas', function($estudiante){
+        if('persona.carrera.materias_aprobadas' == null)
+        { 
+          return "Sin Datos";
+        }else
+        { return ($estudiante->persona->carrera->nombre); 
+       } })*/
+      ->addColumn('btn', function ($estudiante) {
       return view( 'estudiante.partials.acciones', compact('estudiante'));
       })
-    //->removeColumn(['btn'])
+   
     ->make(true);
+    
 });
-
-/*Route::get('experienciasLaborales', function (){
-  /*$user = 'user';
-  if( $user->hasRole(['Estudiante'])  ){ 
-    //\Auth::user()->hasRole(['Estudiante'])  ){
-    //usuario logueado
-    $persona = $user()->persona;
-    //persona del usuario
-     $persona_id = $persona->id;
-}*/
-/*$experiencias=ExperienciaLaboral::where('persona_id','!=','null')->get();
-//$model = ExperienciaLaboral::where('persona_id', $persona_id);
-$model = ExperienciaLaboral::whereHas('experiencias', function ($query) use ($experiencias){
-  return $query->where('persona_id', $persona->id);
-});
-  //$model = App\ExperienciaLaboral::query();
-  return Datatables::of($model)
-    //->addColumn('btn', @include('carrera.partials.acciones'))
-    ->addColumn('mostrar_cv', function ($experiencia_laboral) {
-      return view( 'experiencia_laboral.partials.accionesbtn', compact('experiencia_laboral'));
-      })
-    ->addColumn('btn', function ($experiencia_laboral) {
-      return view( 'experiencia_laboral.partials.acciones', compact('experiencia_laboral'));
-      })
-    //->removeColumn(['btn'])
-    ->make(true);
-});*/
-
 
 
 Route::get('instituciones', function (){
@@ -168,25 +145,30 @@ Route::get('usuarios', function (){
       return $query->where('id', '!=', $rol);
 
   })->with('persona', 'roles');
-  //var_dump($model);
+  //->with('roles');
+  
 
   return Datatables::of($model)
     //->addColumn('btn', @include('carrera.partials.acciones'))
-    ->addColumn('btn', function ($usuario) {
+    
+    ->addColumn('Nombre', function ($usuario) {
+      return $usuario->persona->nombre_apellido;
+      })
+    ->addColumn('Roles', function ($usuario) {
+      return $usuario->roles->first()->display_name;
+      })
+      ->addColumn('btn', function ($usuario) {
       return view( 'usuario.partials.acciones', compact('usuario'));
       })
-    //->removeColumn(['btn'])
+      
+       
+    //->removeColumn(['id'])
     ->make(true);
 });
 
 
 
-/*
-Route::get('carreras', function(Datatables $datatables) {
-    $model = App\Carrera::query();
 
-    return $datatables->eloquent($model)->make(true);
-});*/
 //versionado del Api
 /*Route::group(array('prefix'=>'/v1.0'),function(){
   Route::get('/form', ['as' => 'form', 'uses' => 'FormController@index']);

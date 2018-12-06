@@ -18,6 +18,14 @@ class ExperienciasLaboralesTableSeeder extends Seeder
 
         //Creamos instancia de Faker
         $faker = Faker::create('es_ES');
+        $puestos = 
+            ['Cajero','Tesorero','Ejecutivo de cuenta','Albañil','Jefe de Personal','Director','Empleada domestica',
+            'Empleado Publica' 
+            ];
+        $descripciones = 
+        ['Gestión de Cobranzas al publico','Limpieza de Hogares','Construcción de viviendas','Gestión de Personal','Gestión de Escuelas','Gestión de Clientes','Reposición de Mercaderia',
+        'Tareas Administrativas' 
+        ];    
         //Averiguamos cuantas Personas tenemos
         $cuantos=Persona::all()->count();
         //Creamos bucle para cubrir N Experiencias Laborales
@@ -27,8 +35,8 @@ class ExperienciasLaboralesTableSeeder extends Seeder
             ExperienciaLaboral::create(
             [
 
-                'puesto' => $faker->jobTitle(),
-                'descripcion_de_tareas' => $faker->realText($maxNBChars = 100),
+                'puesto' => $faker->randomElement( $puestos ),
+                'descripcion_de_tareas' => $faker->randomElement( $descripciones ),
                 'fecha_ini' => $faker->date($format = 'Y-m-d', $max = 'now'),
                 'fecha_fin' => $faker->date($format = 'Y-m-d', $max = 'fecha_ini'),
                 'empleador' => $faker->company(),

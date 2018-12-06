@@ -29,17 +29,18 @@ class ActividadController extends Controller
     public function index(){
       
         if(  auth()->user()->hasRole(['Estudiante'])  ){
-            /*//usuario logueado
-            $user = \Auth::user();
+            //usuario logueado
+            /*$user = \Auth::user();
             //persona del usuario
-             $persona = $user->persona;*/
+             $persona = $user->persona;
 
+             $actividad = Actividad::findOrFail($id);*/
              return view('actividad.index');
         }
         abort(403);
       }
 
-    //Metodo para crear un usuario
+    //Metodo para crear una Actividad
     public function create()
     {
         $instituciones = Institucion::OrderBy('nombre')->get()->pluck('nombre', 'id')->toArray();
@@ -55,6 +56,70 @@ class ActividadController extends Controller
         abort(403);
 
     }
+    //Metodo para guardar una Actividad
+    function store(Request $request)
+    {
+
+      $hoy = Carbon::now();
+
+      $validaciones = \Validator::make($request->all(), [
+        'nombre' => 'required|max:250|min:3',
+        'lugar' => 'required|max:250|min:3',
+        'fecha_inicio' => 'required|date_format:d-m-Y|before_or_equal:' . $hoy->format('d-m-Y'),
+        'fecha_fin' => 'nullable|date_format:d-m-Y|after:fecha_inicio|before_or_equal:' . $hoy->format('d-m-Y'),
+        'actividad_tipo_id' => 'required|exists:actividades_tipos,id',
+        'ambito_actividad_id' => 'required|exists:ambitos_actividades,id',
+        'tipo_participacion_id' => 'required|exists:tipos_participaciones,id',
+        'modalidad_id' => 'required|exists:modalidades,id',
+        'frecuencia' => 'required',
+        'duracion' => 'required|min:0|numeric',
+        'duracion_tipo' => 'required',
+        'observacion' => 'nullable|max:250',
+        'mostrar_cv' => 'boolean',
+        'institucion_id'  => 'nullable|exists:instituciones,id|required_without:institucion_check',
+        'nombre_institucion'    => 'required_with:institucion_check|min:3|max:250|nullable',
+        'localidad_institucion' => 'min:3|max:250', 
+        'provincia_institucion' => 'min:3|max:250',
+        'pais_institucion'      => 'min:3|max:250',
+      ]);
+
+
+      if ($validaciones->fails()) {
+        return redirect()
+          ->back()
+          ->withErrors( $validaciones->errors() )
+          ->withInput(Input::all());
+      }
+
+
+      $request->merge(['persona_id' => auth()->user()->persona->id]);
+
+
+
+      if( $request->exists('institucion_check')   ){
+        //si existe el campo activado de nuevo registro de institucion 
+        //se crea
+        $institucion = Institucion::create(   [
+          'nombre' => $request->nombre_institucion,
+          'localidad' => $request->localidad_institucion,
+          'provincia' => $request->provincia_institucion,
+          'pais' => $request->pais_institucion,
+        ]);
+          //se rellena el request con la nueva institucion
+        $request->merge(['institucion_id' => $institucion->id]);
+      }
+
+      $actividad = Actividad::create($request->except('nombre_institucion',
+                                                      'localidad_institucion',
+                                                      'provincia_institucion',
+                                                      'pais_institucion')
+                                  );
+
+      return redirect()->route('actividades.index');
+
+
+    }
+
 
     
 
@@ -104,142 +169,80 @@ class ActividadController extends Controller
     }
 
     //Metodo para actualizar una Actividad determinada
-    public function update($id, Request $request)
+    function update(Request $request, $id)
     {
-       $user = auth()->user();
-       $actividad = Actividad::findOrFail($id);
-
-       //si no es una Actividad del usuario logueado o no es estudiante
-       //mostramos 403
-       if ($user->persona->id != $actividad->persona_id || $user->hasRole(['Estudiante']) == false){
-           abort(403);
-       }
-       
-        $hoy = Carbon::now();
-
-        $validaciones = \Validator::make($request->all(),[
-
-            'nombre' => 'required|max:250|min:3',
-            'lugar' => 'required|max:250|min:3',
-            'fecha_inicio' => 'required|date_format:d-m-Y|before_or_equal:' . $hoy->format('d-m-Y'),
-            'fecha_fin' => 'nullable|date_format:d-m-Y|after:fecha_inicio|before_or_equal:' . $hoy->format('d-m-Y'),
-            'actividad_tipo_id' => 'required|exists:actividades_tipo,id',
-            'ambito_actividad_id' => 'required|exists:ambitos_actividades,id',
-            'tipo_participacion_id' => 'required|exists:tipos_participaciones,id',
-            'modalidad_id' => 'required|exists:modalidades,id',
-            'mostrar_cv' => 'boolean',
-            'institucion_id'  => 'nullable|exists:instituciones,id|required_without:institucion_check',
-            'nombre_institucion'    => 'required_with:institucion_check|min:3|max:250|nullable',
-            'localidad_institucion' => 'min:3|max:250', 
-            'provincia_institucion' => 'min:3|max:250',
-            'pais_institucion'      => 'min:3|max:250',
-        
-        
-        
+  
+      $user = auth()->user();
+      $actividad = Actividad::findOrFail($id);
+     
+  
+  
+      //si no es una actividad del usuario logueado o no es estudiante
+      if ($user->persona->id != $actividad->persona_id || $user->hasRole(['Estudiante']) == false){  abort(403); }
+  
+      $hoy = Carbon::now();
+  
+      $validaciones = \Validator::make($request->all(), [
+        'nombre' => 'required|max:250|min:3',
+        'lugar' => 'required|max:250|min:3',
+        'fecha_inicio' => 'required|date_format:d-m-Y|before_or_equal:' . $hoy->format('d-m-Y'),
+        'fecha_fin' => 'nullable|date_format:d-m-Y|after:fecha_inicio|before_or_equal:' . $hoy->format('d-m-Y'),
+        'actividad_tipo_id' => 'required|exists:actividades_tipos,id',
+        'ambito_actividad_id' => 'required|exists:ambitos_actividades,id',
+        'tipo_participacion_id' => 'required|exists:tipos_participaciones,id',
+        'modalidad_id' => 'required|exists:modalidades,id',
+        'frecuencia' => 'required',
+        'duracion' => 'required|min:0|numeric',
+        'duracion_tipo' => 'required',
+        'observacion' => 'nullable|max:250',
+        'mostrar_cv' => 'boolean',
+        'institucion_id' => 'nullable|exists:instituciones,id|required_without:institucion_check',
+        'nombre_institucion' => 'required_with:institucion_check|min:3|max:250|nullable',
+        'localidad_institucion' => 'min:3|max:250',
+        'provincia_institucion' => 'min:3|max:250',
+        'pais_institucion' => 'min:3|max:250',
+      ]);
+  
+  
+      if ($validaciones->fails()) {
+        return redirect()
+          ->back()
+          ->withErrors($validaciones->errors())
+          ->withInput(Input::all());
+      }
+  
+  
+      //$request->merge(['persona_id' => auth()->user()->persona->id]);
+  
+  
+  
+      if ($request->exists('institucion_check')) {
+          //si existe el campo activado de nuevo registro de institucion 
+          //se crea
+        $institucion = Institucion::create([
+          'nombre' => $request->nombre_institucion,
+          'localidad' => $request->localidad_institucion,
+          'provincia' => $request->provincia_institucion,
+          'pais' => $request->pais_institucion,
         ]);
-
-        if ($validaciones->fails()){
-            return redirect()
-                ->back()
-                ->withErrors($validaciones->errors())
-                ->withInput(Input::all());
-
-        }
-
-        if( $request->exists('instituciones_check')){
-            //Si el campo de Nuevo registro de Institucion esta activo
-            //creamos una nueva
-            $institucion = Institucion::create([
-                
-                'nombre' => $request->nombre_institucion,
-                'localidad' => $request->localidad_institucion,
-                'provincia' => $request->provincia_institucion,
-                'pais' => $request->pais_institucion,
-
-            ]);
-
-            //rellenamos el request con el id de la Nueva Institucion
-            $request->merge(['institucion_id' => $institucion->id]);
-        }
-
-
-
-        //Actualizamos la Actividad
-        $actividad->update($request->except(
-            'nombre_institucion',
-            'localidad_institucion',
-            'provincia_institucion',
-            'pais_institucion')
-        );
-
-        return redirect()->route('actividades.index');
- 
+            //se rellena el request con la nueva institucion
+        $request->merge(['institucion_id' => $institucion->id]);
+      }
+  
+      
+  
+      $actividad->update( $request->except(
+        'nombre_institucion',
+        'localidad_institucion',
+        'provincia_institucion',
+        'pais_institucion'
+      ));
+  
+      return redirect()->route('actividades.index');
+  
+  
     }
 
-    //Metodo para Guardar los datos de la persona determinada
-    public function store(Request $request)
-    {
-        $hoy = Carbon::now;
-        
-        
-        $validaciones = \Validator::make($request->all(),[
-
-            'nombre' => 'required|max:250|min:3',
-            'lugar' => 'required|max:250|min:3',
-            'fecha_inicio' => 'required|date_format:d-m-Y|before_or_equal:' . $hoy->format('d-m-Y'),
-            'fecha_fin' => 'nullable|date_format:d-m-Y|after:fecha_inicio|before_or_equal:' . $hoy->format('d-m-Y'),
-            'actividad_tipo_id' => 'required|exists:actividades_tipo,id',
-            'ambito_actividad_id' => 'required|exists:ambitos_actividades,id',
-            'tipo_participacion_id' => 'required|exists:tipos_participaciones,id',
-            'modalidad_id' => 'required|exists:modalidades,id',
-            'mostrar_cv' => 'boolean',
-            'institucion_id'  => 'nullable|exists:instituciones,id|required_without:institucion_check',
-            'nombre_institucion'    => 'required_with:institucion_check|min:3|max:250|nullable',
-            'localidad_institucion' => 'min:3|max:250', 
-            'provincia_institucion' => 'min:3|max:250',
-            'pais_institucion'      => 'min:3|max:250',
-        
-        
-        
-        ]);
-
-        if ($validaciones->fails()){
-            return redirect()
-                ->back()
-                ->withErrors($validaciones->errors())
-                ->withInput(Input::all());
-
-        }
-
-        $request->merge(['persona_id' => auth()->user()->persona->id]);
-        
-        if( $request->exists('instituciones_check')){
-            //Si el campo de Nuevo registro de Institucion esta activo
-            //creamos una nueva
-            $institucion = Institucion::create([
-                
-                'nombre' => $request->nombre_institucion,
-                'localidad' => $request->localidad_institucion,
-                'provincia' => $request->provincia_institucion,
-                'pais' => $request->pais_institucion,
-
-            ]);
-
-            //rellenamos el request con el id de la Nueva Institucion
-            $request->merge(['institucion_id' => $institucion->id]);
-        }
-
-        //Se crea una Actividad
-        $actividad = Actividad::create($request->except(
-            'nombre_institucion',
-            'localidad_institucion',
-            'provincia_institucion',
-            'pais_institucion')
-        );
-
-        return redirect()->route('actividades.index');
- 
-     }
     
      //Metodo para eliminar una Actividad
      public function destroy($id)

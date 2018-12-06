@@ -4,7 +4,7 @@
   
 @section ('content')
 
-    <form action="{{ route('actividades.store') }}" method="POST" lang="es" class="form-horizontal">
+    <form action="{{ route('actividades.store') }}" method="POST" lang="es" class="col-lg-12 col-offset-lg-1 form-horizontal">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"> Actividades <small>
@@ -23,6 +23,7 @@
                 <a class="btn btn-primary" href="{{ route('actividades.index') }}"> Volver</a>  
             </div>
         </div>
+        
     </form>
        
 @endsection  

@@ -26,6 +26,10 @@ class Actividad extends Model
         'lugar',
         'fecha_inicio',
         'fecha_fin',
+        'frecuencia',
+        'duracion',
+        'duracion_tipo',
+        'observacion',
         'mostrar_cv',
         'institucion_id',
         'persona_id',
@@ -99,7 +103,20 @@ class Actividad extends Model
         //devolvemos el valor del attributo ya tratado
         return empty($lugar)? '--': $lugar;
    }
-   /*//Accesor de atributo Duracion automatico cuando llamamos a $experiencialaboral->nombre;
+   //Accesor de atributo Observacion automatico cuando llamamos a $actividades_tipo->descripcion;
+   public function getObservacionAttribute(){
+        
+    //guardamos el valor del atributo en una variable
+    $observacion = $this->attributes['observacion'];
+    //reemplazamos los guiones por espacios para una mejor lectura del dato
+    $observacion = str_replace('_', ' ', $observacion);
+    
+    //devolvemos el valor del attributo ya tratado
+    return $observacion;
+}
+
+
+  /* //Accesor de atributo Duracion automatico cuando llamamos a $actividad->duracion;
    public function getDuracionAttribute(){
        
     //guardamos el valor del atributo en una variable
@@ -108,7 +125,8 @@ class Actividad extends Model
     $duracion = str_replace('_', ' ', $duracion);
     //convertimos la primera letra del valor en mayuscula
     //devolvemos el valor del attributo ya tratado
-    return ucfirst($duracion);
+    //devolvemos el valor del attributo ya tratado
+    return empty($duracion)? '--': $duracion;
     }*/
     
     //Accesor de atributo Fecha_Ini en Show automatico cuando llamamos a $experiencialaboral->fecha_ini;
@@ -156,7 +174,7 @@ class Actividad extends Model
             $fecha_de_finalizacion = Carbon::parse($fecha_de_finalizacion);
             $fecha_de_finalizacion = $fecha_de_finalizacion->format('d-m-Y');
         }else{
-            $fecha_de_finalizacion = "Actualmente Trabajando";
+            $fecha_de_finalizacion = "Actualmente en Curso";
         }
               
         
@@ -181,6 +199,20 @@ class Actividad extends Model
         return $fecha_de_finalizacion;
     }
     
+    //Mutator de atributo Observacion a utilizar automaticamente
+    //cuando se usan los metodos create()-update()-save()
+    public function setObservacionAttribute( $value = "")
+    {
+        
+        //sacamos los espacios del valor recibido
+        $value = trim( $value );
+        //reemplazamos los espacios en guiones del valor recibido
+        $value = str_replace( ' ','_', $value);
+        //convertimos el valor recibido a minusculas
+        $value = strtolower( $value );
+        //asignamos el valor al atributo del Modelo
+        $this->attributes['observacion'] = $value;
+    }
     
     /*Accesors a verificar
     //Accesor de atributo Referente automatico cuando llamamos a $experiencialaboral->empleador;
@@ -300,9 +332,16 @@ class Actividad extends Model
             $value = Carbon::parse($value);
             $value = $value->format('Y-m-d');
         }
+        //Si es vacio el valor ponemos por defecto null
+        if(empty($value)){
+            $value = null;
+        }
         //asignamos el valor formateado al atributo del Modelo
         $this->attributes['fecha_fin'] = $value;    
     }
+
+    
+    
     /*Mutator a verificar
     //Mutator de atributo Referente a utilizar automaticamente
    //cuando se usan los metodos create()-update()-save()

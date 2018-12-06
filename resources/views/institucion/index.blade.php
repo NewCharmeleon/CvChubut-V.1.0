@@ -97,6 +97,8 @@
             "ordering": true,
             "pagingType": "full_numbers",
             "columnDefs": [ 
+                    { targets: 2, searchable: true },
+                    { targets: 3, searchable: true },
                     { targets: 4, searchable: false },
                     { targets: 4, orderable: false }, 
                     { targets: 4, exportable: false }, 

@@ -205,7 +205,7 @@
                             </span>
 					</div>
 				</div>
-			</div-->>
+			</div-->
 
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
 				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
@@ -403,8 +403,11 @@
                     
                     
                 });
-            
-                
+                $(document).ready(function(){
+                   // $('#help-pop').popover();
+                   $("[data-toggle=popover]").popover();
+                });
+                               
             
 
                 $('.close-error').click(function( e ){

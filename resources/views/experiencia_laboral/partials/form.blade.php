@@ -47,6 +47,10 @@
 <div class="row">
     <div class="form-group   {{ ( $errors->has('fecha_fin') )?   'has-error' : ''}}   ">  
         <label for="fecha_fin" class="control-label col-sm-3"> Fecha de Finalizaci&oacute;n </label>
+        <a id="help-pop" tabindex="0" class="btn btn-white btn-xs btn-info btn-bold" role="button" data-toggle="popover" 
+            data-placement="bottom" data-trigger="focus" title="Ayuda" data-content="Selecciona la Fecha de Finalización si la Experiencia Laboral 
+            fue finalizada. En caso contrario, deja el campo vacio.(Haz Click fuera de la Ayuda para cerrarme.)">
+            <span class="help-button" >?</span></a>
         <div class="col-sm-6">
             <input type="text" class="form-control date" name="fecha_fin" id="fecha_fin" placeholder="dd-mm-aaaa" value="" pattern="^[0-3]?[0-9].[0-3]?[0-9].(?:[0-9]{2})?[0-9]{2}$"  >
             @if ($errors->has('fecha_fin')) 
@@ -107,6 +111,10 @@
 <div class="row">
     <div class="form-group has-feedback  {{ ( $errors->has('referencia') )?   'has-error' : ''}}   ">  
         <label for="referencia" class="control-label col-sm-3"> Referencia <sup>*</sup> </label>
+        <a id="help-pop" tabindex="0" class="btn btn-white btn-xs btn-info btn-bold" role="button" data-toggle="popover" 
+            data-placement="bottom" data-trigger="focus" title="Ayuda" data-content="Agrega aqui el nombre de la Persona que te contrató o alguna otra Persona que te haya supervisado y pueda dar fe del buen cumplimiento de las Tareas Asignadas.
+            (Haz Click fuera de la Ayuda para cerrarme.)">
+            <span class="help-button" >?</span></a>
         <div class="col-sm-6">
             <input type="text" class="form-control" name="referencia" id="referencia"  placeholder="Referencia" value="{{ (Session::has('errors')) ? old('referencia', null) :  ( isset($experiencia_laboral)?  $experiencia_laboral->referencia : null ) }}" required>
             @if ($errors->has('referencia')) 
@@ -122,6 +130,10 @@
 <div class="row">
     <div class="form-group has-feedback   {{ ( $errors->has('rentado') )?   'has-error' : ''}}   ">  
         <label for="rentado" class="control-label col-sm-3"> Rentado <sup>*</sup> </label>
+        <a id="help-pop" tabindex="0" class="btn btn-white btn-xs btn-info btn-bold" role="button" data-toggle="popover" 
+            data-placement="top" data-trigger="focus" title="Ayuda" data-content="Selecciona si las Tareas realizadas fueron compensadas con dinero, 
+            o si fueron ''Ad-Honorem''(Haz Click fuera de la Ayuda para cerrarme.)">
+            <span class="help-button" >?</span></a>
         <div class="">
             
             <label for="rentado_true"  class="control-label col-xs-2" style="text-align: left;" >
@@ -172,6 +184,10 @@
 <div class="row">
     <div class="form-group has-feedback   {{ ( $errors->has('mostrar_cv') )?   'has-error' : ''}}   ">  
         <label for="mostrar_cv" class="control-label col-sm-3"> Mostrar en Cv? <sup>*</sup> </label>
+        <a id="help-pop" tabindex="0" class="btn btn-white btn-xs btn-info btn-bold" role="button" data-toggle="popover" 
+            data-placement="top" data-trigger="focus" title="Ayuda" data-content="Haz click en uno de los botones, si deseas que la Experiencia Laboral
+            figure o no en tu Cv.(Haz Click fuera de la Ayuda para cerrarme.)">
+            <span class="help-button" >?</span></a>
         <div class="">
             
            

@@ -54,7 +54,7 @@ class Institucion extends Model
         //convertimos la primera letra del valor en mayuscula
         $localidad = ucwords($localidad);
         //devolvemos el valor del attributo ya tratado
-        return empty($localidad) ? '--' : $localidad;
+        return empty($localidad) ? 'Sin Datos' : $localidad;
     }
      //Accesor de atributo Provincia automatico cuando llamamos a $experiencialaboral->nombre;
    public function getProvinciaAttribute(){
@@ -66,7 +66,7 @@ class Institucion extends Model
         //convertimos la primera letra del valor en mayuscula
         $provincia = ucwords($provincia);
         //devolvemos el valor del attributo ya tratado
-        return empty($provincia) ? '--' : $provincia;
+        return empty($provincia) ? 'Sin Datos' : $provincia;
     }
      //Accesor de atributo Pais automatico cuando llamamos a $experiencialaboral->nombre;
    public function getPaisAttribute(){
@@ -78,7 +78,7 @@ class Institucion extends Model
         //convertimos la primera letra del valor en mayuscula
         $pais = ucwords($pais);
         //devolvemos el valor del attributo ya tratado
-        return empty($pais) ? '--' : $pais;
+        return empty($pais) ? 'Sin Datos' : $pais;
     }
      
 

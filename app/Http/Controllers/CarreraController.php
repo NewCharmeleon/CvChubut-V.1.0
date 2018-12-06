@@ -85,7 +85,7 @@ class CarreraController extends Controller
             return view('carrera.formulario.perfil_edit', compact('user', 'persona', 'carrera'));
         //return view ('home', compact('user', 'persona', 'nacionalidades', 'carreras'));
         }
-}
+    }
 
     //Metodo para crear una Carrera
     public function create()
@@ -149,11 +149,12 @@ class CarreraController extends Controller
         //Definimos las reglas de validacion
         $validaciones = \Validator::make($request->all(),
         [
-            'nombre' => 'required|max:250|min:3|unique:carreras,nombre,' . $id,
+            'nombre' => 'required|max:250|min:3|unique:carreras,nombre,' .$id,
             'cantidad_materias' => 'required|min:1|numeric',
+            'materias_aprobadas' => 'min:1|numeric',
         ]);
 
-       // dd($request);
+        var_dump($request);
         //actualizamos el dato del request con la variable original ya validada correctamente
         $request->merge(['nombre' => $nombre_original]);
          //preguntamos si hay errores
@@ -165,7 +166,7 @@ class CarreraController extends Controller
                 ->withInput(Input::all());
 
         }
-        //dd($request);
+        dd($request);
 
         //Actualizamos la Carrera
         $carrera = Carrera::findOrFail($id);
@@ -173,7 +174,7 @@ class CarreraController extends Controller
        // dd($carrera);
         //Finalizada la actualizacion con el Request
         //volvemos al Index
-        
+        dd($carrera);
         return redirect()->route('carreras.index');
  
     }
@@ -198,8 +199,9 @@ class CarreraController extends Controller
         //Definimos las reglas de validacion
         $validaciones = \Validator::make($request->all(),
         [
-            'nombre' => 'required|max:250|min:3|unique:carreras,nombre,' . $id,
+            'nombre' => 'required|max:250|min:3|unique:carreras,nombre,' .$id,
             'cantidad_materias' => 'required|max:255|min:1|numeric',
+            'materias_aprobadas' => 'min:1|max:cantidad_materias|numeric',
         ]);
 
         

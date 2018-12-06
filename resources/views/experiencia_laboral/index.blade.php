@@ -105,18 +105,21 @@
                             </td>
                           </tr>
                         @endforeach
-                    @if ( $experiencias_laborales->count() == 0 )
-                        <tr>
-                            <td colspan="5" align="center">
-                                <strong> No posee Experiencia Laboral Registrada </strong>
-                            </td>
-                        </tr>
-                    @endif          
+                        @if ( $experiencias_laborales->count() == 0 )
+                        <div style="text-align: center;">
+                            
+                            <h2><strong><span class="label label-lg label-warning">
+                                    <i class="ace-icon fa fa-exclamation-triangle bigger-120"></i>
+                                    A&uacute;n No tienes Experiencias Laborales Registradas 
+                                </span> </strong>
+                            </h2>    
+                        </div> 
+                    @endif         
                 </tbody>
             </table>
-      <div class="center">
+      <!--div class="center">
         {{ $experiencias_laborales->links() }}
-      </div>
+      </div-->
       
    </div>
 

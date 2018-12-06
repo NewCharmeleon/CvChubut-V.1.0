@@ -27,11 +27,12 @@ class ExperienciaLaboralController extends Controller
       
         if(  auth()->user()->hasRole(['Estudiante'])  ){
             //usuario logueado
-            $persona = \Auth::user()->persona;
+           $persona = \Auth::user()->persona;
             //persona del usuario
-             $persona_id = $persona->id;
+             //$persona_id = $persona->id;
+             $experiencias_laborales = ExperienciaLaboral::ExperienciasDelUsuario($persona);
         }
-        $experiencias_laborales = ExperienciaLaboral::where('persona_id', $persona_id)->orderBy('fecha_ini')->paginate(10);
+       // $experiencias_laborales = ExperienciaLaboral::where('persona_id', $persona_id)->orderBy('fecha_ini')->paginate(10);
              return view('experiencia_laboral.index', compact('experiencias_laborales', 'persona'));
      
         //abort(403);

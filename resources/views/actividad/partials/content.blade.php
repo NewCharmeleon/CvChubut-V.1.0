@@ -16,7 +16,7 @@
         <br>
         <table id="example" class="display nowrap" style="width:100%">
                 <thead>
-                    <tr><th>Actividades</th></tr>
+                    <tr><th>Actividades de  {{ Auth::user()->persona->nombre_apellido }}</th></tr>
                 </thead>
                 <tbody>
                         @foreach ($actividades as $actividad) 
@@ -28,28 +28,33 @@
                                     <div class="testimonials-caption col-lg-10 col-md-8">
                                         <div class="user_text">
                                             <p class="mbr-fonts-style  display-7" style="background-color: #007bff !important;">
-                                                <em><label for=""> Nombre:   </label> {{ $actividad->nombre }}</em>
+                                                <em><label for=""> <b><u>Nombre:</u></b>   </label> {{ $actividad->nombre }}</em>
                                             </p>
                                         </div>
+
                                         <div class="user_name mbr-bold mbr-fonts-style align-left pt-3 display-7 col-sm-6" style="color: black; margin-left: -1.3%;">
-                                            <label for="">&Aacute;mbito:  </label> {{ $actividad->ambito_actividad->nombre }}</h5>
-                        
-                                    
+                                            <label for=""><b><u>&Aacute;mbito:</u></b>  </label> {{ $actividad->ambito_actividad->nombre }}</h5><br>
+                                            <label for=""><b><u>Tipo:</u></b>  </label> {{ $actividad->actividad_tipo->nombre }}</h5><br>
+                                            <p> <label for=""><b><u> Modalidad</u></b>   </label> {{ $actividad->modalidad->nombre }}</p>
+                                            <p> <label for=""><b><u> Tipo de Participaci&oacute;n:</u></b>   </label> {{ $actividad->tipo_participacion->nombre }}</p>
+                                            <p> <label for=""><b><u> Fecha:</u></b>   </label> {{ $actividad->fecha_inicio_show }}
+                                                - {{ $actividad->fecha_fin_show }}</p>    
                                                 {{--dd($actividad->modalidad)--}}
                                                 {{--dd($actividad->ambito_actividad)--}}
                                                 {{--dd($actividad->institucion)--}}
                                             
-                                            <p> <label for=""> Fecha de Inicio:   </label> {{ $actividad->fecha_inicio_show }}</p>
-                                            <p> <label for=""> Fecha de Fin:   </label> {{ $actividad->fecha_fin_show }}</p>
-                                            <p> <label for=""> Instituci&oacute;n:   </label> {{ $actividad->institucion->nombre }}<br>
-                                                {{ $actividad->institucion->localidad }} - {{ $actividad->institucion->provincia }} - {{ $actividad->institucion->pais }}</p>
                                             <br>
                                         </div>
                                         <div class="col-sm-6" style="margin-left: -1.3%; color: black;">
-                        
-                                            <p> <label for=""> Modalidad:   </label> {{ $actividad->modalidad->nombre }}</p>
-                                            <p> <label for=""> Tipo de Participaci&oacute;n:   </label> {{ $actividad->tipo_participacion->nombre }}</p>
-                                        </div>
+                                                <p> <label for=""><b><u>Instituci&oacute;n:</u></b>   </label> {{ $actividad->institucion->nombre }}<br>
+                                                    <label for=""><b><u> Direcci&oacute;n:</u></b>   </label> {{ $actividad->institucion->localidad }} - {{ $actividad->institucion->provincia }} - {{ $actividad->institucion->pais }}</p>
+                                                    
+                                                    <p> <label for=""><b><u>Frecuencia:</u></b>   </label> {{ $actividad->frecuencia }}</p>
+                                                    <p> <label for=""><b><u> Duraci&oacute;n:</u></b>   </label> {{ $actividad->duracion }}
+                                                    - {{ $actividad->duracion_tipo }}</p>
+                                            <p> <label for=""><b><u> Observaciones:</u></b></label> {{ $actividad->observacion }}</p>
+                                        
+                                            </div>
                                     </div>
 
                                     <div class="user_desk mbr-light mbr-fonts-style align-left pt-2 display-7">
@@ -88,7 +93,11 @@
         @if ( $actividades->count() == 0 )
             <div style="text-align: center;">
                 
-                <strong> A&uacute;n No tienes Actividades Registradas </strong>
+                <h2><strong><span class="label label-lg label-warning">
+                        <i class="ace-icon fa fa-exclamation-triangle bigger-120"></i>
+                        A&uacute;n No tienes Actividades Registradas 
+                    </span> </strong>
+                </h2>    
             </div> 
         @endif
     

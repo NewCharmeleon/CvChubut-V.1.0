@@ -222,7 +222,7 @@ class EstudianteController extends Controller
             $cuantos=Carrera::all()->count();
             //Creamos instancia de Faker designando el lenguaje a utilizar
             $faker = Faker::create('es_ES'); 
-           ini_set('max_execution_time', '300');
+           ini_set('max_execution_time', '150');
            
            $validaciones = \Validator::make($request->all(), ['estudiante' => 'required']);
         

@@ -8,7 +8,7 @@
     <div class="form-group">  
         <label for="" class="control-label col-sm-3"> Cantidad de Materias Aprobadas </label>
         <div class="col-sm-6">
-           <p class="text-show"> {{  $carrera->materias_aprobadas  }}  </p> 
+           <p class="text-show"> {{  $persona->carrera->materias_aprobadas  }}  </p> 
         </div>
     </div>
 </div>

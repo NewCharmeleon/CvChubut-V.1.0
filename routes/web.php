@@ -113,6 +113,18 @@ Route::group(['middleware' => ['role:Estudiante']], function (){
   Route::get('carrera/agregar', 'CarreraController@agregar_materias_aprobadas_show')->name('agregar.materias_aprobadas.show');
   Route::post('carrera/agregar', 'CarreraController@agregar_materias_aprobadas_store')->name('agregar.materias_aprobadas.store');
   
+   //Rutas de Experiencias Laborales del Estudiante
+   Route::resource('carreras', 'CarreraController',
+   [
+     'names' => [
+       
+       'edit'=> 'carreras.edit',
+       'store'=> 'carreras.store',
+       'update'=> 'carreras.update',
+       
+     ],
+   ]); 
+
   //Ruta para mostrar las actividades del Estudiante
   //actividades
   Route::resource('actividades', 'ActividadController');

@@ -48,6 +48,10 @@
 <div class="row">
     <div class="form-group   {{ ( $errors->has('fecha_fin') )?   'has-error' : ''}}   ">  
         <label for="fecha_fin" class="control-label col-sm-3"> Fecha de Finalizaci&oacute;n </label>
+        <a id="help-pop" tabindex="0" class="btn btn-white btn-xs btn-info btn-bold" role="button" data-toggle="popover" 
+            data-placement="bottom" data-trigger="focus" title="Ayuda" data-content="Selecciona la Fecha de Finalización si la Actividad 
+            fue finalizada. En caso contrario, deja el campo vacio.(Haz Click fuera de la Ayuda para cerrarme.)">
+            <span class="help-button" >?</span></a>
         <div class="col-sm-6">
             <input type="text" class="form-control date" name="fecha_fin" id="fecha_fin" placeholder="dd-mm-aaaa" value="" pattern="^[0-3]?[0-9].[0-3]?[0-9].(?:[0-9]{2})?[0-9]{2}$"  >
             @if ($errors->has('fecha_fin')) 
@@ -59,12 +63,19 @@
         </div>
     </div>
 </div>
-
+      
+    
 
 
   <div class="row">
         <div class="form-group   {{ ( $errors->has('institucion_id') )?   'has-error' : ''}}   ">  
             <label for="institucion_id" class="control-label col-sm-3"> Instituci&oacute;n <sup>*</sup></label>
+            <a id="help-pop" tabindex="0" class="btn btn-white btn-xs btn-info btn-bold" role="button" data-toggle="popover" 
+            data-placement="bottom" data-trigger="focus" title="Ayuda" data-content="Selecciona la Institución en este campo, sino existe 
+            no dudes en agregarla clickeando la opcion que se encuentra debajo. (Haz Click fuera de la Ayuda para cerrarme.)">
+            <span class="help-button" >?</span></a>
+        
+     
             <div class="col-sm-6">
 
                 <div id="select-institucion">
@@ -193,7 +204,7 @@
 
   <div class="row">
         <div class="form-group   {{ ( $errors->has('ambito_actividad_id') )?   'has-error' : ''}}   ">  
-            <label for="ambito_actividad_id" class="control-label col-sm-3"> Ambito Actividad <sup>*</sup></label>
+            <label for="ambito_actividad_id" class="control-label col-sm-3"> Ámbito de Actividad <sup>*</sup></label>
             <div class="col-sm-6">
 
                
@@ -378,6 +389,10 @@
     <div class="row">
         <div class="form-group   {{ ( $errors->has('duracion') )?   'has-error' : ''}}   ">  
             <label for="duracion" class="control-label col-sm-3">Duraci&oacute;n </label>
+            <a id="help-pop" tabindex="0" class="btn btn-white btn-xs btn-info btn-bold" role="button" data-toggle="popover" 
+            data-placement="top" data-trigger="focus" title="Ayuda" data-content="Selecciona la Duración de la Actividad en 
+            Hs., Dias, Semanas, Meses o Años según la opción elegida en el campo siguiente.(Haz Click fuera de la Ayuda para cerrarme.)">
+            <span class="help-button" >?</span></a>
             <div class="col-sm-6">
                 <input type="number" min="0" max="100" class="form-control" name="duracion" id="duracion" placeholder="--" value="{{ (Session::has('errors')) ? old('duracion', '') : ( isset($actividad)? $actividad->duracion : null ) }}" required >
                 @if ($errors->has('duracion')) 
@@ -396,11 +411,11 @@
             <div class="col-sm-6">
                  <select  class="form-control" name="duracion_tipo" id="frecuencia" placeholder="--" required>
                 
-                    <option value="Hora" selected>Hs.</option> 
-                    <option value="Dia">Dia/s</option> 
-                    <option value="Semana">Semana/s</option> 
-                    <option value="Mes">Mes/es</option> 
-                    <option value="Año">Año/s</option> 
+                    <option value="Hora/s" selected>Hs.</option> 
+                    <option value="Dia/s">Dia/s</option> 
+                    <option value="Semana/s">Semana/s</option> 
+                    <option value="Mes/s">Mes/es</option> 
+                    <option value="Año/s">Año/s</option> 
                        
                 
                 
@@ -420,7 +435,11 @@
 
     <div class="row">
     <div class="form-group has-feedback  {{ ( $errors->has('observacion') )?   'has-error' : ''}}   ">  
-        <label for="observacion" class="control-label col-sm-3"> Observaci&oacute;n </label>
+        <label for="observacion" class="control-label col-sm-3"> Observaciones: </label>
+        <a id="help-pop" tabindex="0" class="btn btn-white btn-xs btn-info btn-bold" role="button" data-toggle="popover" 
+            data-placement="bottom" data-trigger="focus" title="Ayuda" data-content="Completa este campo si quieres brindar información mas detallada
+            sobre la duración de la Actividad. Ej: Cuatrimestral participando 2 veces por semana.(Haz Click fuera de la Ayuda para cerrarme.)">
+            <span class="help-button" >?</span></a>
         <div class="col-sm-6">
            <textarea name="observacion" id="observacion" class="form-control" placeholder="Observaciones" pattern="^[a-zA-Z_áéíóúñ\s]*$" >
                 {{  ( Session::has('errors') ) ?  old('descripcion', null ) : ( isset($actividad)?  $actividad->observacion: null )   }}
@@ -449,6 +468,11 @@
 <div class="row">
     <div class="form-group has-feedback  {{ ( $errors->has('mostrar_cv') )?   'has-error' : ''}}   ">  
         <label for="rentado" class="control-label col-sm-3"> Mostrar en el CV ? <sup>*</sup>  </label>
+        <a id="help-pop" tabindex="0" class="btn btn-white btn-xs btn-info btn-bold" role="button" data-toggle="popover" 
+            data-placement="top" data-trigger="focus" title="Ayuda" data-content="Haz click en uno de los botones, si deseas que la Actividad
+            figure o no en tu Cv.(Haz Click fuera de la Ayuda para cerrarme.)">
+            <span class="help-button" >?</span></a>
+        <div class="">
         <div class="">
         
 

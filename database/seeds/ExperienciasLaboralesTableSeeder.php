@@ -38,7 +38,7 @@ class ExperienciasLaboralesTableSeeder extends Seeder
                 'puesto' => $faker->randomElement( $puestos ),
                 'descripcion_de_tareas' => $faker->randomElement( $descripciones ),
                 'fecha_ini' => $faker->date($format = 'Y-m-d', $max = 'now'),
-                'fecha_fin' => $faker->date($format = 'Y-m-d', $max = 'fecha_ini'),
+                'fecha_fin' => $faker->date($format = 'Y-m-d', $min = 'fecha_ini'),
                 'empleador' => $faker->company(),
                 'localidad' => $faker->city(),
                 'provincia' => $faker->state(),

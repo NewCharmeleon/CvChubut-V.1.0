@@ -7,7 +7,7 @@
 
          <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"> Carrera <i class="ace-icon fa fa-angle-double-right"></i>
+                <h3 class="panel-title"> Carrera <small><i class="ace-icon fa fa-angle-double-right"></i>
 									<span class="label label-xlg label-primary arrowed-right">Nueva</span>
                                     </small>
                                     </h3>

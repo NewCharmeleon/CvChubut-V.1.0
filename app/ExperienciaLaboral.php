@@ -195,6 +195,14 @@ class ExperienciaLaboral extends Model
     public function scopeMostrarExperienciasLaboralesUsuario ( $query, $persona ){
         return $query->where('mostrar_cv', true)->where('persona_id', $persona->id)->orderBy('fecha_ini')->get();
     }
+    //Scopes de querys que se solicitan muchas veces
+    function scopeExperienciasDelUsuario($query, $persona)
+    {
+        return $query
+        ->orderBy('fecha_ini', 'desc')
+        ->where('persona_id', $persona->id)
+        ->paginate(10);
+    }
 
 
 
@@ -319,6 +327,7 @@ class ExperienciaLaboral extends Model
         $this->attributes['rentado'] = boolval( $value );
     
     }
+     
         
 
 }

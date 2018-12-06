@@ -37,7 +37,7 @@
            
         </div>
         <div class="panel-footer">
-            <a class="btn btn-primary" href="{{ url('/') }}"> Volver</a>
+             <a class="btn btn-primary" href="{{ route('carreras.index')}}"> Volver </a>  
             <button type="submit" class="btn btn-success"> Guardar </button>
             <a class="btn btn-warning" href="{{ route('carrera.perfil') }}"> Ver</a>
         </div>

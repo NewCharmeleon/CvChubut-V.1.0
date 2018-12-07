@@ -126,10 +126,11 @@ class UsuarioController extends Controller
             'fecha_nac' => 'required|date_format:d-m-Y|mayor_de_edad',
             'nacionalidad' => 'nullable|nacionalidad_exist',
             'telefono' => 'nullable|min:13|max:15|telefono_valid',
+            
         ];
 
         if (!$request->exists('perfil')) {
-            $rules['email'] = 'required|min:4|max:50|email|unique:users,email,' . $id;
+            $rules['email'] = 'email|required|unique:users,email|email_udc_valid' .$id;
         }
 
         $validaciones = \Validator::make($request->all(), $rules);
@@ -171,7 +172,7 @@ class UsuarioController extends Controller
             'fecha_nac' => 'required|date_format:d-m-Y|mayor_de_edad',
             'nacionalidad' => 'nullable|nacionalidad_exist',
             'telefono' => 'nullable|min:13|max:15|telefono_valid',
-            'email' => 'required|min:4|max:50|email|unique:users,email',
+            'email' => 'email|required|unique:users,email|email_udc_valid',
             'rol_id'  => 'required|exists:roles,id'
         ];
 

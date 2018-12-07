@@ -155,12 +155,12 @@ class EstudianteController extends Controller
         //Definimos las reglas de validacion
         $rules = [
 
-            'email' => 'email|required|unique:users, email|email_udc_valid',
+            'email' => 'email|required|unique:users,email|email_udc_valid',
             'nombre_apellido' => 'required|max:255|min:4|solo_letras',
             'dni' => 'required|max:10|min:8|dni_unique:' . '',
             'fecha_nac' => 'required|date_format:d-m-Y|mayor_de_edad',
             'nacionalidad' => 'nullable|nacionalidad_exist',
-            'carrera_id' => 'required|exists:carrera,id',
+            'carrera_id' => 'required|exists:carreras,id',
             'materias_aprobadas' => 'min:1|max:carreras, cantidad_materias|numeric',
             'telefono' => 'nullable|min:13|max:15|telefono_valid',
             

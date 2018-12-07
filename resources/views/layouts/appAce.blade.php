@@ -420,7 +420,7 @@
                 
                 $('.telefono').mask('(999)999-9999', {placeholder: '(999)999-9999' });
             
-                $('#email-udc').mask('#@udc.edu.ar', {reverse: true, selectOnFocus: true});
+                $('.email-udc').mask('*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]'.'@udc.edu.ar', {reverse: true, selectOnFocus: true});
 
                 $('integer-positivo').mask('9999');
 

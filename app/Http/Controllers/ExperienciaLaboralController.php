@@ -38,6 +38,19 @@ class ExperienciaLaboralController extends Controller
         //abort(403);
     }  
 
+    public function index_show(){
+      
+        if(  auth()->user()->hasRole(['Estudiante'])  ){
+            //usuario logueado
+            return view('index');
+     
+            }
+       // $experiencias_laborales = ExperienciaLaboral::where('persona_id', $persona_id)->orderBy('fecha_ini')->paginate(10);
+             
+       $experiencias_laborales = ExperienciaLaboral::all();
+       return view('experiencia_laboral.index_show', compact('experiencias_laborales'));
+    }  
+
     //Metodo para crear una Experiencia Laboral
     public function create()
     {

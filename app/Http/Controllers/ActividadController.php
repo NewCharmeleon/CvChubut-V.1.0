@@ -35,9 +35,21 @@ class ActividadController extends Controller
              $persona = $user->persona;
 
              $actividad = Actividad::findOrFail($id);*/
-             return view('actividad.index');
+             return view('index');
         }
-        abort(403);
+        //$actividades = App\Actividad::all();
+        return view('index_show');
+        
+      }
+
+      public function index_show(){
+      
+        $actividades=Actividad::all();
+        //$actividades = Actividad::OrderBy('nombre')->get()->pluck('nombre','lugar','fecha_inicio','fecha_fin','frecuencia',
+        //'duracion', 'duracion_tipo','observacion')->toArray();
+        
+        return view('actividad.index_show', compact('actividades'));
+        
       }
 
     //Metodo para crear una Actividad

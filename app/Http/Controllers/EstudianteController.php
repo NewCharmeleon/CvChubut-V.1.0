@@ -216,14 +216,16 @@ class EstudianteController extends Controller
         abort(403);    
     }
 
-    //Metodo especial para guardar los Estudiantes creado
+    //Metodo especial para guardar los Estudiantes mediante Json ya creado
     public function agregar_estudiantes_store(Request $request)
     {
         
         if( auth()->user()->hasRole(['Administrador','Secretaria'])){
+            //Agregado para rellenar las Carreras que no estaban
             $cuantos=Carrera::all()->count();
             //Creamos instancia de Faker designando el lenguaje a utilizar
             $faker = Faker::create('es_ES'); 
+
            ini_set('max_execution_time', '150');
            
            $validaciones = \Validator::make($request->all(), ['estudiante' => 'required']);
@@ -299,6 +301,186 @@ class EstudianteController extends Controller
         }
          abort(403);
 
+    }
+    //Metodo para especial para guardar los Estudiantes mediante Excel ya creado
+    public function importExcel()
+    {
+        if( auth()->user()->hasRole(['Administrador','Secretaria'])){
+            //Agregado para rellenar las Carreras que no estaban
+            $cuantos=Carrera::all()->count();
+            //Creamos instancia de Faker designando el lenguaje a utilizar
+            $faker = Faker::create('es_ES'); 
+
+            /** El método load permite cargar el archivo definido como primer parámetro */
+            Excel::load($archivo.'.xlsx', function ($reader) {
+                /**
+                 * $reader->get() nos permite obtener todas las filas de nuestro archivo
+                 */
+                $rol_estudiante = Role::where('name', 'LIKE', 'Estudiante')->get()->first()->id;
+
+                foreach ($reader->get() as $key => $row) {
+                    $persona = [
+                        'nombre_apellido' => $row['apellido' . " " .'nombre'],
+                        'dni' => $row['dni'],
+                        'email' => $row['email'],
+                        'fecha_registro' => $row['fecha_registro'],
+                        'status' => $row['status'],
+                    ];
+                    //alumno
+                    
+                    $usuario = [
+                        'email' => $row['email'],
+                        'password' => "123456",
+                        'username' => "alumno",
+                       
+                    ];
+
+                    /** Una vez obtenido los datos de la fila procedemos a registrarlos */
+                    if (!empty($archivo)) {
+                         //temporal de los datos de un usuario
+                         $data_user = $estudiante['usuario'];
+                         //temporal de los datos de una persona
+                         $data_persona = $estudiante['persona'];
+ 
+                         //Creamos un Usuario con los datos del temporal
+                         $user = User::create($data_user);
+ 
+                         //Actualizamos el temporal de los datos con el id del Usuario que referencia
+                         $data_persona['user_id'] = $user->id;
+ 
+                         //Creamos una Persona con los datos del temporal
+                         $persona = Persona::create($data_persona);
+ 
+                         //Hasheamos el Password del Usuario
+                         $user->hashPassword();
+                         //Actualizamos el Username del Usuario
+                         $user->updateUsername();
+                         //Asignamos el Rol del Estudiante
+                         $user->attachRole($rol_estudiante);
+ 
+                    }
+                }
+
+            
+                echo 'Los Alumnos han sido importadas exitosamente';
+            });
+        } 
+        abort(403);   
+    }
+    //Metodo para especial para guardar los Estudiantes mediante Excel ya creado
+    public function importCsv()
+    {
+        if( auth()->user()->hasRole(['Administrador','Secretaria'])){
+            //Agregado para rellenar las Carreras que no estaban
+            $cuantos=Carrera::all()->count();
+            //Creamos instancia de Faker designando el lenguaje a utilizar
+            $faker = Faker::create('es_ES'); 
+
+            
+            /** El método load permite cargar el archivo definido como primer parámetro */
+            //Metodo para archivo Csv
+            /** Carga del documento*/
+            Excel::load($archivo.'.csv', function ($reader) {
+                        /**
+                 * $reader->get() nos permite obtener todas las filas de nuestro archivo
+                 */
+                $rol_estudiante = Role::where('name', 'LIKE', 'Estudiante')->get()->first()->id;
+                foreach ($reader->get() as $key => $row) {
+                    $persona = [
+                        'nombre_apellido' => $row['apellido' . " " .'nombre'],
+                        'dni' => $row['dni'],
+                        'email' => $row['email'],
+                        'fecha_registro' => $row['fecha_registro'],
+                        'status' => $row['status'],
+                    ];
+                    //alumno
+                    
+                    $usuario = [
+                        'email' => $row['email'],
+                        'password' => "123456",
+                        'username' => "alumno",
+                       
+                    ];
+
+                    /** Una vez obtenido los datos de la fila procedemos a registrarlos */
+                    if (!empty($archivo)) {
+                         //temporal de los datos de un usuario
+                         $data_user = $estudiante['usuario'];
+                         //temporal de los datos de una persona
+                         $data_persona = $estudiante['persona'];
+ 
+                         //Creamos un Usuario con los datos del temporal
+                         $user = User::create($data_user);
+ 
+                         //Actualizamos el temporal de los datos con el id del Usuario que referencia
+                         $data_persona['user_id'] = $user->id;
+ 
+                         //Creamos una Persona con los datos del temporal
+                         $persona = Persona::create($data_persona);
+ 
+                         //Hasheamos el Password del Usuario
+                         $user->hashPassword();
+                         //Actualizamos el Username del Usuario
+                         $user->updateUsername();
+                         //Asignamos el Rol del Estudiante
+                         $user->attachRole($rol_estudiante);
+ 
+                    }
+                }
+
+            
+                echo 'Los Alumnos han sido importadas exitosamente';
+            });
+        } 
+        abort(403);   
+    }
+
+
+
+
+    //Metodos Anexos de la libreria
+    public function exportExcel()
+    {
+        /** Fuente de Datos Eloquent */
+        $data = User::all();
+
+        /** Creamos nuestro archivo Excel */
+        Excel::create('usuarios', function ($excel) use ($data) {
+
+            /** Creamos una hoja */
+            $excel->sheet('Hoja Uno', function ($sheet) use ($data) {
+                /**
+                 * Insertamos los datos en la hoja con el método with/fromArray
+                 * Parametros: (
+                 * Datos,
+                 * Valores del encabezado de la columna,
+                 * Celda de Inicio,
+                 * Comparación estricta de los valores del encabezado
+                 * Impresión de los encabezados
+                 * )*/
+                $sheet->with($data, null, 'A1', false, false);
+            });
+
+            /** Descargamos nuestro archivo pasandole la extensión deseada (xls, xlsx) */
+        })->download('xlsx');///** Descarga del documento en csv ->download('csv');
+    }
+
+
+    public function bladeToExcel()
+    {
+        /** Creamos un archivo llamado fromBlade.xlsx */
+        Excel::create('fromBlade', function ($excel) {
+            
+            /** La hoja se llamará Usuarios */
+            $excel->sheet('Usuarios', function ($sheet) {
+                /** El método loadView nos carga la vista blade a utilizar */
+                $sheet->loadView('usuarios');
+            });
+            /** Agregará una segunda hoja y se llamará Productos */
+            $excel->sheet('Productos', function ($sheet) {
+                $sheet->loadView('productos');
+            });
+        })->download('xlsx');
     }
     //Metodo especial para mostrar la vista para agregar Estudiantes
     public function update_materias_show(){

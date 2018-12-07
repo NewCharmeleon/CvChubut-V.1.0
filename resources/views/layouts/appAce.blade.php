@@ -286,7 +286,10 @@
         <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js')  }}"></script>
 
         <script src="{{ asset('assets/js/bootstrap-switch.js')  }}"></script>
-
+        <script src="{{ asset('assets/js/highcharts.js')  }}"></script>
+        <script src="{{ asset('assets/js/modules/no-data-to-display.js')  }}"></script>
+        
+        
         <script>
         
             $(function($){
@@ -294,49 +297,7 @@
                    // $('#help-pop').popover();
                    $("[data-toggle=popover]").popover();
                 });
-            /*@role(['Secretaria','Administrador'])
-                        
-                    
-                        $('#toggle-menu').show();
-                        
-                    
-            @endrole
-                @role(['Estudiante'])
-                    
-            @endrole*/
-            /* $('#sidebar2').insertBefore('.page-content');
-                    
-                $('.navbar-toggle[data-target="#sidebar2"]').insertAfter('#menu-toggler');
-                
-                
-                $(document).on('settings.ace.two_menu', function(e, event_name, event_val) {
-                    if(event_name == 'sidebar_fixed') {
-                        if( $('#sidebarAce').hasClass('sidebar-fixed') ) {
-                        $('#sidebar2').addClass('sidebar-fixed');
-                        $('#navbar').addClass('h-navbar');
-                        }
-                        else {
-                        $('#sidebar2').removeClass('sidebar-fixed')
-                        $('#navbar').removeClass('h-navbar');
-                        }
-                    }
-                }).triggerHandler('settings.ace.two_menu', ['sidebar_fixed' ,$('#sidebarAce').hasClass('sidebar-fixed')]);
-            
-        */
-            /* $('#menu-minimizado').click(function(){
-                    if( $('#sidebar').hasClass('active') ){
-                        $('#sidebar').removeClass('active');
-                    
-                        //$('#menu-li').css("display", "block");
-                    // $('#menu-li').removeClass('hide');
-                    }else{
-                        $('#sidebar').addClass('active');
-                        
-                        //$('#menu-li').css("display", "block");
-                        //$('#menu-li').removeClass('hide');
-                
-                    }
-                });*/
+          
                 
                 $('#menu-minimizado').click(function(){
                 

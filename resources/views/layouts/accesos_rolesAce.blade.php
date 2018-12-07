@@ -49,6 +49,62 @@
 
 						</ul>
                     </li>
+                     <li class="">
+                            <a href="#" class="dropdown-toggle">
+                                <i class="material-icons">assignment</i>
+    
+                                <span class="menu-text">
+                                        Actividades
+    
+                                    <!--span class="badge badge-primary">5</span-->
+                                </span>
+    
+                                <b class="arrow fa fa-angle-down"></b>
+                            </a>
+    
+                            <b class="arrow"></b>
+    
+                            <ul class="submenu">
+                                <li class="">
+                                    <a href="{{  route('actividades.index.show')  }}">
+                                        <i class="menu-icon fa fa-caret-right"></i>
+                                        Listado
+                                    </a>
+    
+                                    <b class="arrow"></b>
+                                </li>
+                                    
+                            </ul>
+                        </li>
+                        
+                        <li class="">
+                            <a href="#" class="dropdown-toggle">
+                                <i class="material-icons">work</i>
+    
+                                <span class="menu-text">
+                                       Experiencias Laborales
+    
+                                    <!--span class="badge badge-primary">5</span-->
+                                </span>
+    
+                                <b class="arrow fa fa-angle-down"></b>
+                            </a>
+    
+                            <b class="arrow"></b>
+    
+                            <ul class="submenu">
+                                <li class="">
+                                    <a href="{{  route('experiencias.laborales.index.show')  }}">
+                                        <i class="menu-icon fa fa-caret-right"></i>
+                                        Listado
+                                    </a>
+    
+                                    <b class="arrow"></b>
+                                </li>
+    
+                               
+                            </ul>
+                        </li>
                     @endrole
                     @role(['Secretaria','Administrador'])
 

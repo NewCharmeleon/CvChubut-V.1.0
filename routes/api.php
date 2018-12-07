@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use App\Role;
 use App\User;
+use App\Actividad;
+use App\ExperienciaLaboral;
 //use Datatables;
 //use App\Carrera;
 //use Yajra\Datatables\Facades\Datatables;
@@ -21,6 +23,26 @@ use App\User;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
+
+//Rutas para estadisticas
+Route::get('actividades', function (){
+  
+  //$model = App\Actividad::all()->OrderBy('nombre');
+  
+  return datatables()
+    ->eloquent(App\Actividad::query())
+    ->toJson();
+  });
+
+Route::get('experienciasLaborales', function (){
+  
+  $model = App\ExperienciaLaboral::OrderBy('nombre');
+  return Datatables::of($model)
+    
+  ->make(true);
+  dd($model);
+});
+
 
 Route::get('actividadesTipos', function (){
   

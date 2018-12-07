@@ -43,12 +43,23 @@ Route::group(['middleware' => ['role:Administrador|Secretaria|Estudiante']], fun
 Route::group(['middleware' => ['role:Administrador']], function (){
   //Rutas para el acceso a los Metodos del Controlador de Usuarios
   //para el manejo del Crud exceptuando el Metodo update que es propio del mismo.
+ 
   Route::resource('usuarios', 'UsuarioController', ['except'=> ['update']]);
-});
+  Route::get('actividades/ver/todos', 'ActividadController@index_show')->name('actividades.index.show');
+  Route::get('experiencias/laborales/ver/todos', 'ExperienciaLaboralController@index_show')->name('experiencias.laborales.index.show');
+  });
 
 //Rutas para el grupo Administrador y Secretaria filtradas por middleware
 Route::group(['middleware' => ['role:Administrador|Secretaria']], function (){
   
+
+//Rutas especiales para importar o exportar Excel o Csv
+Route::get('/exportExcel', 'EstudianteController@exportExcel');
+Route::get('/importExcel', 'EstudianteController@importExcel');
+Route::get('/exportCsv', 'EstudianteController@exportExcel');
+Route::get('/importCsv', 'EstudianteController@importExcel');
+Route::get('/bladeToExcel', 'EstudianteController@bladeToExcel');
+
 
   //Estudiantes
   Route::get('estudiantes/agregar', 'EstudianteController@agregar_estudiantes_show')->name('agregar.estudiantes.show');

@@ -62,9 +62,9 @@
                                         <a href="{{ route('actividades.show',$actividad->id) }}" > <i class="glyphicon glyphicon-eye-open model-acction"></i> </a>
                                         <a href="{{ route('actividades.edit',$actividad->id) }}" > <i class="glyphicon glyphicon-edit model-acction"></i> </a>
                                     
-                                        <a href="#" onclick="event.preventDefault();document.getElementById('form-experiencia-laboral-{{ $actividad->id }}').submit();">
+                                        <!--a href="#" onclick="event.preventDefault();document.getElementById('form-experiencia-laboral-{{ $actividad->id }}').submit();">
                                         <i class="glyphicon glyphicon-trash model-acction"></i>
-                                        </a>
+                                        </a-->
                             
                         
                                         <form action="{{ route('actividades.destroy',$actividad->id) }}" method="POST" id="form-experiencia-laboral-{{ $actividad->id }}" style="display:none">

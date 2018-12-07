@@ -90,7 +90,7 @@
                 @else
                 <li class="light-blue dropdown-modal" >
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="{{ asset('avatars/default-avatar.png') }}" alt="Jason's Photo" />
+                        <img class="nav-user-photo" src="{{ asset('avatars/avatar4.png') }}" alt="Jason's Photo" />
                         <span class="user-info" style="max-width: 100%;">
                             <small>Bienvenido,</small>
                             {{ Auth::user()->username }}

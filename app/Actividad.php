@@ -116,18 +116,7 @@ class Actividad extends Model
 }
 
 
-  /* //Accesor de atributo Duracion automatico cuando llamamos a $actividad->duracion;
-   public function getDuracionAttribute(){
-       
-    //guardamos el valor del atributo en una variable
-    $duracion = $this->attributtes['duracion'];
-    //reemplazamos los guiones por espacios para una mejor lectura del dato
-    $duracion = str_replace('_', ' ', $duracion);
-    //convertimos la primera letra del valor en mayuscula
-    //devolvemos el valor del attributo ya tratado
-    //devolvemos el valor del attributo ya tratado
-    return empty($duracion)? '--': $duracion;
-    }*/
+  
     
     //Accesor de atributo Fecha_Ini en Show automatico cuando llamamos a $experiencialaboral->fecha_ini;
     public function getFechaInicioShowAttribute(){
@@ -214,19 +203,7 @@ class Actividad extends Model
         $this->attributes['observacion'] = $value;
     }
     
-    /*Accesors a verificar
-    //Accesor de atributo Referente automatico cuando llamamos a $experiencialaboral->empleador;
-    public function getReferenteAttribute(){
-       
-    //guardamos el valor del atributo en una variable
-    $referente = $this->attributes['referente'];
-    //reemplazamos los guiones por espacios para una mejor lectura del dato
-    $referente = str_replace('_', ' ', $referente);
-    //convertimos la primera letra del valor en mayuscula
-    //devolvemos el valor del attributo ya tratado
-    return ucwords($referente);
-    }
-    */
+   
     
     //Boton Mostrar Cv
     public function btn_mostrar(){
@@ -292,22 +269,7 @@ class Actividad extends Model
         $this->attributes['lugar'] = $value;
 
     }
-   /*
-   //Mutator de atributo Duracion a utilizar automaticamente
-   //cuando se usan los metodos create()-update()-save()
-   public function setEmpleadorAttribute( $value = ""){
-       
-    //sacamos los espacios en el valor recibido
-    $value = trim( $value );
-    //reemplazamos los espacios en guiones del valor recibido
-    $value = str_replace( ' ','_', $value);
-    //convertimos el valor recibido a minusculas
-    $value = strtolower( $value );
-    //asignamos el valor al atributo del Modelo
-    $this->attributes['puesto'] = $value;
-
-    }
-    */
+   
     
     
     //Mutator de atributo Fecha de Inicio a utilizar automaticamente
@@ -342,20 +304,6 @@ class Actividad extends Model
 
     
     
-    /*Mutator a verificar
-    //Mutator de atributo Referente a utilizar automaticamente
-   //cuando se usan los metodos create()-update()-save()
-    public function setReferenteAttribute( $value = ""){
-       
-        //sacamos los espacios en el valor recibido
-        $value = trim( $value );
-        //reemplazamos los espacios en guiones del valor recibido
-        $value = str_replace( ' ','_', $value);
-        //convertimos el valor recibido a minusculas
-        $value = strtolower( $value );
-        //asignamos el valor al atributo del Modelo
-        $this->attributes['referente'] = $value;
- 
-    }*/
+   
     
 }

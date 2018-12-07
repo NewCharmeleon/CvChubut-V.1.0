@@ -5,7 +5,7 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/bootstrap4-1-3.min.css') }}">
     <style>
     .main-content, body, html {
-    min-height: 266vh !important;
+   /* min-height: 266vh !important;*/
     }
     </style>
     

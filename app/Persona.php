@@ -101,6 +101,17 @@ class Persona extends Model
         $nombre_apellido = ucwords($nombre_apellido);
          return $nombre_apellido;
     }
+    //dni
+    public function  getDniAttribute(){
+        //tratamiento del valor
+        $dni = $this->attributes['dni'];
+       
+        $dni = str_replace('_', '.', $dni); //cambia los puntos por nada
+        $dni = str_replace('', ' ', $dni); //cambia los puntos por nada
+
+        return $dni;
+
+    }
     // fecha naciemiento 
     public function getFechaNacimientoAttribute()
     {
@@ -110,6 +121,19 @@ class Persona extends Model
 
         return $value;
     }
+    //telefono
+    public function getTelefonoAttribute()
+    {
+        //tratamiento del valor
+        $telefono = $this->attributes['telefono'];
+        $telefono = str_replace('', ')', $telefono); //cambia los parentesis por nada
+        $telefono = str_replace('', '(', $telefono); //cambia los parentesis por nada
+        $telefono = str_replace('', '.', $telefono); //cambia los puntos por nada
+        $telefono = str_replace('', '_', $telefono); //cambia los guion por nada
+        $telefono = str_replace('', ' ', $telefono); //cambia los espacios por nada
+
+        return $telefono;
+    }    
     public function getMateriasAprobadasAttribute()
     {
         //tratamiento del valor

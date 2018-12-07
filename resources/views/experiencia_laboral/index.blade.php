@@ -2,42 +2,12 @@
 
 @section ('title', 'Experiencias Laborales')
 
-@section('styles')
-    <link rel="stylesheet"  href="{{  asset('assets/css/bootstrap3-3-7.min.css')  }}">
-   
-   <link rel="stylesheet"  href="{{  asset('assets/css/dataTables1-10-19.bootstrap.min.css')  }}">
-   <link rel="stylesheet"  href="{{  asset('assets/css/buttons.dataTables.min.css')  }}">
-   <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/bootstrap-switch.css') }}">
-@endsection   
-@section('scripts')
-   <script src="{{  asset('assets/js/jquery-3.3.1.js')  }}"></script>
-    <script src="{{  asset('assets/js/jquery.dataTables1-10-19.min.js')  }}"></script>
-    <script src="{{  asset('assets/js/dataTables1-10-19.bootstrap.min.js')  }}"></script>
-    <script src="{{  asset('assets/js/dataTables.buttons.min.js')  }}"></script>
-    <script src="{{  asset('assets/ajax/libs/jzip.min.js')  }}"></script>
-    <script src="{{  asset('assets/ajax/libs/pdfmake.min.js')  }}"></script>
-    <script src="{{  asset('assets/ajax/libs/vfs_fonts.js')  }}"></script>
-    <script src="{{  asset('assets/js/buttons.html5.min.js')  }}"></script>
-    <script src="{{  asset('assets/js/buttons.print.min.js')  }}"></script>
-    <script src="{{ asset('assets/js/bootstrap-switch.js')  }}"></script>
-    
-    <script>
-        $('.btn-td .mostrar_ocultar').bootstrapSwitch();
-    </script>
- 
-        
-    
-@endsection 
-        
        
 @section ('content')
 
     <div class="row col-xs-12" >
         <div class="col-xs-12">
-                <script>
-                        $('.btn-td .mostrar_ocultar').bootstrapSwitch();
-                    </script>
-              
+                              
             <h2 class="header smaller lighter blue ">Listado de Experiencias Laborales de {{ $persona->nombre_apellido}}
             <small>
                     <i class="ace-icon fa fa-angle-double-right"></i>
@@ -98,246 +68,86 @@
                 
               
                 
-                        </td>
-                        
-                        <td class="btn-td" id="{{ $experiencia_laboral->id }}">
-                                {!!    $experiencia_laboral->btn_mostrar()    !!}
-                            </td>
-                          </tr>
-                        @endforeach
-                        @if ( $experiencias_laborales->count() == 0 )
-                        <div style="text-align: center;">
-                            
-                            <h2><strong><span class="label label-lg label-warning">
-                                    <i class="ace-icon fa fa-exclamation-triangle bigger-120"></i>
-                                    A&uacute;n No tienes Experiencias Laborales Registradas 
-                                </span> </strong>
-                            </h2>    
-                        </div> 
-                    @endif         
-                </tbody>
-            </table>
-      <!--div class="center">
-        {{ $experiencias_laborales->links() }}
-      </div-->
-      
-   </div>
-
-  </div>
-
-@endsection
-
-@section('scripts')
- 
-    <script>
+                    </td>
+                    <td class="btn-td" id="{{ $experiencia_laboral->id }}">
+                        {!!    $experiencia_laboral->btn_mostrar()    !!}
+                    </td>
+                  </tr>
+                @endforeach
         
-       /* $(document).ready(function() {
-                //var id = $(this).data('id');
-            $('#data-table').DataTable( {
-            
-             //"dom": '<"top"i>rt<"bottom"flp><"clear">',
-                dom: 'Bfrtip',
-
-                buttons: [
-                {
-                    extend:    'copyHtml5',
-                    text:      '<i class="fa fa-copy bigger-110 pink"></i>',
-                    titleAttr: 'Copiar al Portapapeles'
-                },
-                {
-                    extend:    'excelHtml5',
-                    text:      '<i class="fa fa-file-excel-o green"></i>',
-                    titleAttr: 'Exportar a Excel'
-                },
-                {
-                    extend:    'csvHtml5',
-                    text:      '<i class="fa fa-database bigger-110 orange">',
-                    titleAttr: 'Exportar a CSV'
-                },
-                {
-                    extend:    'pdfHtml5',
-                    text:      '<i class="fa fa-file-pdf-o red"></i>',
-                    titleAttr: 'Exportar a PDF'
-                },
-                ,
-                {
-                    extend:    'print',
-                    text:      '<i class="fa fa-print bigger-110 grey"></i>',
-                    titleAttr: 'Imprimir'
+        
+                  @if(  $experiencias_laborales->count() == 0   )
+                    <tr>
+                      <td colspan="5" align="center">
+                      <strong>  No tiene experiencias laborales registradas  </strong>
+                      </td>
+                    </tr>
+                  @endif
+        
+              </tbody>
+            </table>
+            <div class="center">
+              {{ $experiencias_laborales->links() }}
+            </div>
+        
+           </div>
+        
+        
+          </div>
+        
+        @endsection
+        
+        
+        @section('scripts')
+        
+        <script>
+          $(function($){
+            $('.btn-td .mostrar_ocultar').bootstrapSwitch();
+        
+            $('.btn-td .mostrar_ocultar').on('switchChange.bootstrapSwitch', function (event, state) {
+              //se previene el evento
+              event.preventDefault();
+              var error = false; //por defecto no hay error en el ajax
+        
+              //se obtine el id de la td previamente registrado
+              var id = $(event.target).parents('td').attr('id');
+              var url = "{{  route('experiencias.laborales.mostrar.cv','#')  }}"; //por defecto de la ruta es mostrar cv
+              
+              if(  state != true ){ //si el status de la operacion el false se reemplaza por ocultar
+                url ="{{  route('experiencias.laborales.ocultar.cv','#')  }}";
+              }
+              
+              //se agrega el id al la ruta reemplazando el comodin
+              url = url.replace('#',id);
+        
+                 //peticion ajax asyncronica para obtener los cambios 
+              $.ajax({
+                url: url,
+                async: false,
+                method: "POST",
+                success: function(json){
+        
+                  if( json.update == true){  //si se actualizo
+                    alert('se actualizo');
+                  }else if(  json.igual == true  ){ //sino se actualizo porque es igual al estado actual
+                    return -1;
+                  }
+                  else{ //si no se actualizo 
+                    alert('no se actualizo');
+                    error = true;
+                  }
+                  return -1;
                 }
-                    
-
-                ],
-                
-                "info":     true,
-                "ordering": true,
-                "bScrollCollapse" : true,
-                "scrollY": 300,
-                "scrollX": true,
-                "pagingType": "full_numbers",
-                "language": {
-                    "search": "Búsqueda",
-                    "lengthMenu": "Mostrando _MENU_ items por página",
-                    "zeroRecords": "No hay datos para mostrar",
-                    "info": "Mostrando página _PAGE_ de _PAGES_",
-                    "infoEmpty": "No existen datos disponibles",
-                    "infoFiltered": "(filtrando datos de un _MAX_ total de items)",
-                    "paginate": {
-                        "first": "Primera página",
-                        "previous": "Previa",
-                        "next": "Siguiente",
-                        "last": "Última página",
-                    },
-                    "columnDefs": [ {
-                        targets: [ 0 ],
-                        orderData: [ 0, 1 ]
-                    }, {
-                        targets: [ 1 ],
-                        orderData: [ 1, 0 ]
-                    }, {
-                        targets: [ 4 ],
-                        orderData: [ 4, 0 ]
-                    } ],
-                    
-
-                },
-                "fnDrawCallback": function() {
-                    $('.btn-td .mostrar_ocultar').bootstrapSwitch({
-                       // size: 'small',
-                       // onText: 'YES',
-                       // offText: 'NO',
-                       // onColor: 'primary',
-                       // offColor: 'default',
-                        onSwitchChange: function (event, state) {
-
-                             //Se previene el evento
-                            event.preventDefault();
-                            //ponemos que por defecto no tengamos Error en el Ajax
-                            var error = false;
-                            //Obtenemos el id de la Actividad Registrada
-                            var id = $(event.target).parent().parent().parent('td').attr('id');
-                            
-                            //por defecto la Url esta activada en Mostrar Actividad
-                            //y Agregamos un comodin para el id
-                            var url = "{{ route('experiencias.laborales.mostrar.cv','#') }}";
-                            //verificamos el estado de la operacion
-                            if (state != true ){
-                                url = "{{ route('experiencias.laborales.ocultar.cv','#' ) }}";
-                            }
-                            //reemplazamos en la ruta el comodin por el Id de la Actividad
-                            url = url.replace('#',id);
-                            //Realizamos una Peticion Asincronica para obtener los cambios
-                            $.ajax({
-                                url: url,
-                                async: false,
-                                method: "POST",
-                                success: function(json){
-                                    //si actualiza
-                                    if (json.update == true){
-                                        alert('Haz actualizado una Experiencia Laboral');
-                                        console.log( 'error',error);
-                                        console.log( 'json',json);
-                                        console.log( 'stado',state);
-                                        console.log( 'url',url);
-                                        console.log( 'id', id);
-                                        console.log( 'target',event.target);
-                                    }
-                                    //si se mantiene
-                                    else if (json.igual == true ){
-                                        
-                                        return -1;
-                                    }
-                                    //sino se Actualizo
-                                    else{
-                                        alert('No Actualizada');
-                                        error = true;
-                                        console.log( 'error',error);
-                                        console.log( 'json',json);
-                                        console.log( 'stado',state);
-                                        console.log( 'url',url);
-                                        console.log( 'id', id);
-                                        console.log( 'target',event.target);
-                                        
-                                    }
-                                    return -1;
-                                }
-                            });
-                            //Si se genera Error en el Ajax
-                            if ( error == true ){
-                                //Se mantiene el Estado del Boton antes del cambio
-                                $(this).bootstrapSwitch('state', state);
-                                return -1;
-                            }
-                           
-                        }
-                    });
-                }   
-             
-   
+              });
+          
+              if(   error == true  ){ //si se genero un error en el ajax
+                $(this).bootstrapSwitch('state', state ); //matiene el estado antes del cambio
+                return -1;
+              }
+              
             });
-         }); */
-            /*$('#data-table').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: "/api/carreras", 
-                columns: [
-                { data: 'nombre' },
-                { data: 'cantidad_materias ' },
-                { data: 'acciones' }
-            ]
-            });
-           
-        });*/
-        //} );
-           $(function($){
-                $('.btn-td .mostrar_ocultar').bootstrapSwitch();
-                $('.btn-td .mostrar_ocultar').on('switchChange.bootstrapSwitch', function (event, state) {
-                    //Se previene el evento
-                    event.preventDefault();
-                    //ponemos que por defecto no tengamos Error en el Ajax
-                    var error = false;
-                    //Obtenemos el id de la Actividad Registrada
-                    var id = $(event.target).parent().parent().parent('div').attr('id');
-                    //por defecto la Url esta activada en Mostrar Actividad
-                    //y Agregamos un comodin para el id
-                    var url = "{{ route('experiencias.laborales.mostrar.cv','#') }}";
-                    //verificamos el estado de la operacion
-                    if (state != true ){
-                        url = "{{ route('experiencias.laborales.ocultar.cv','#' ) }}";
-                    }
-                    //reemplazamos en la ruta el comodin por el Id de la Actividad
-                    url = url.replace('#',id);
-                    //Realizamos una Peticion Asincronica para obtener los cambios
-                    $.ajax({
-                        url: url,
-                        async: false,
-                        method: "POST",
-                        success: function(json){
-                            //si actualiza
-                            if (json.update == true){
-                                alert('Haz actualizado una Experiencia Laboral');
-                            }
-                            //si se mantiene
-                            else if (json.igual == true ){
-                                
-                                return -1;
-                            }
-                            //sino se Actualizo
-                            else{
-                                alert('No Actualizada');
-                                error = true;
-                            }
-                            return -1;
-                        }
-                    });
-                    //Si se genera Error en el Ajax
-                    if ( error == true ){
-                        //Se mantiene el Estado del Boton antes del cambio
-                        $(this).bootstrapSwitch('state', status);
-                        return -1;
-                    }
-                });
-            });           
-    </script>
-
-@endsection 
+         
+          });
+        </script>
+        
+        @endsection

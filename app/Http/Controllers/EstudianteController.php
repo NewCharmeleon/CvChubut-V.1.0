@@ -301,20 +301,20 @@ class EstudianteController extends Controller
 
     }
     //Metodo especial para mostrar la vista para agregar Estudiantes
-   /* public function agregar_materias_aprobadas_show(){
+    public function update_materias_show(){
         
         if( auth()->user()->hasRole(['Estudiante'])){
             
-           return view('carrera.materias_aprobadas.agregar');
+           return view('update.materias_edit');
         }
         abort(403);    
-    }*/
+    }
     
     
     //Metodo especial para guardar los Estudiantes creado
     public function update_materias($id, Request $request)
     {
-        dd("hola");
+        
         if( auth()->user()->hasRole(['Estudiante']))
         {
             $user = User::findOrFail($id);
@@ -341,14 +341,16 @@ class EstudianteController extends Controller
         //Asignamos la persona del Usuario
         $persona = $user->persona;
         //Actualizamos a la Persona con los datos restantes del Request
-        $persona->update( $request );
+        $persona->materias_aprobadas = $request->get('materias_aprobadas');
+
+        $persona->save();
                
         
 
         //Finalizada la Creacion con el Request
         //volvemos al Index
         
-        return redirect()->route('carreras.index');
+        return redirect()->route('carrera.perfil');
  
            
            

@@ -6,7 +6,7 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"> {{ $user->persona->nombre_apellido}} <small> Perfil </small> 
+        <h3> {{ $user->persona->nombre_apellido}} <small>  Perfil 
         <span class="label label-xlg label-warning arrowed-right">Ver</span>
                                     </small>
                                     </h3>

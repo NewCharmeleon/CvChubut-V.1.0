@@ -19,7 +19,7 @@
     <div class="form-group   {{ ( $errors->has('dni') )?   'has-error' : ''}}   ">  
         <label for="dni" class="control-label col-sm-3"> D.N.I <sup>*</sup></label>
         <div class="col-sm-6">
-            <input type="text" class="form-control dni" name="dni" id="dni"  placeholder="99.999.99" value="{{ (Session::has('errors')) ? old('dni', '') : ( isset($persona)? $persona->dni: null ) }}" required pattern="\d{2}[.]\d{3}[.]\d{3}">
+            <input type="text" class="form-control dni" name="dni" id="dni"  placeholder="99.999.999" value="" required pattern="\d{2}[.]\d{3}[.]\d{3}">
             @if ($errors->has('dni')) 
                 @foreach ( $errors->get('dni') as $error )
                     <p class="help-block"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -102,7 +102,7 @@
     <div class="form-group   {{ ( $errors->has('telefono') )?   'has-error' : ''}}   ">  
         <label for="telefono" class="control-label col-sm-3"> Telefono </label>
         <div class="col-sm-6">
-            <input type="text" class="form-control telefono" name="telefono" id="telefono" placeholder="Telefono" value="{{ (Session::has('errors')) ? old('telefono', '') : ( isset($persona)? $persona->telefono : null ) }}" pattern="^[(]\d{3}[)]\d{3}[-]\d{4}$">
+            <input type="text" class="form-control telefono" name="telefono" id="telefono" placeholder="(999)999-9999" value="" pattern="^[(]\d{3}[)]\d{3}[-]\d{4}$">
              @if ($errors->has('telefono')) 
                 @foreach ( $errors->get('telefono') as $error )
                     <p class="help-block"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>

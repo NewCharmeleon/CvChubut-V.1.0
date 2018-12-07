@@ -94,16 +94,30 @@
             -ms-user-select: none;
             user-select: none;
         }
-        footer{
-            position: relative;
-            top:120%;
-            /*clear: both;*/
-        }
+        /*.footer .footer-inner .footer-content {
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            bottom: 4px;
+            padding: 8px;
+            line-height: 36px;
+            border-top: 3px double #E5E5E5;
+            margin-top: 10%;
+        }*/
         thead:before, thead:after { display: none; } 
         tbody:before, tbody:after { display: none; } 
-        /*.main-content, body, html {
-            min-height: 100%;
-        }*/
+        .main-content {
+            min-height: 80%;
+            /* igual al largo del footer */
+            margin-bottom: -150px;
+            }
+
+        /*footer {
+        height: 150px;
+        background-color: #08B;
+        }*//*.main-content, body, html {
+                    min-height: 100%;
+                }*/
         html,body{
 
             margin:0px;
@@ -122,7 +136,7 @@
         </header>
     
     
-		<div class="main-container ace-save-state" id="main-container" style="width:100%; height:100%;position:absolute;">
+		<section class="main-container ace-save-state" id="main-container" style="width:100%; height:100%;position:absolute;">
 			<script type="text/javascript">
 				//try{ace.settings.loadState('main-container')}catch(e){}
 			</script>
@@ -134,20 +148,20 @@
 
 				<div class="sidebar-shortcuts" id="sidebar-shortcuts">
 					<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-						<button class="btn btn-success">
-							<i class="ace-icon fa fa-signal"></i>
+						<button class="btn btn-success" disabled>
+							<i class="ace-icon fa fa-signal" ></i>
 						</button>
 
-						<button class="btn btn-info">
-							<i class="ace-icon fa fa-pencil"></i>
+						<button class="btn btn-info" disabled>
+							<i class="ace-icon fa fa-pencil" ></i>
 						</button>
 
-						<button class="btn btn-warning">
+						<button class="btn btn-warning" disabled>
 							<i class="ace-icon fa fa-users"></i>
 						</button>
 
-						<button class="btn btn-danger">
-							<i class="ace-icon fa fa-cogs"></i>
+						<button class="btn btn-danger" disabled>
+							<i class="ace-icon fa fa-cogs" ></i>
 						</button>
 					</div>
 
@@ -175,18 +189,17 @@
                         
                     </div>
             </div> 
-            <br>
-            <!--div class="footer responsive" style="position: absolute;bottom: -20%;width: 100%;" >
+        
+            <br><br><br><br><br><br>
+            <footer class="footer responsive" style="/*! float:left; */ margin-left:0%; width:100%;/*! vertical-align: bottom; *//*! left: 40%; */" >
                       
-                <div class="footer-inner">
-					<div class="footer-content">
-                            <div style="position: absolute;margin-left:15px;">
+                <div>
+					<div>
+                            <div style="float:left;position:absolute;margin-left:15px;">
                                 <img src="{{ asset('imagenes/logoGobierno.png') }}" alt="logo-gobierno">
                             </div>
-                            <div style="float:right; margin-right:15px;">
-                                <img src="{{ asset('imagenes/direccionUdc.png') }}" alt="direccion-Udc">
-                            </div>
-                            <span class="bigger-120" style="float:left; margin-left:282px;">
+                            
+                            <span class="bigger-120" style="float:initial; vertical-align:bottom;margin-left: 35%;">
                                 <span class="blue bolder" >Udc</span>
                                 Applicaci&oacute;n &copy; 2018
                             </span>
@@ -205,14 +218,17 @@
                                     <i class="ace-icon fa fa-rss-square orange bigger-150"></i>
                                 </a>
                             </span>
+                            <div style="float:right; margin-right:15px;">
+                                <img src="{{ asset('imagenes/direccionUdc.png') }}" alt="direccion-Udc">
+                            </div>
 					</div>
 				</div>
-			</div-->
+			</footer>
 
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
 				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
 			</a>
-        </div>
+        </section>
         		
 
 		
@@ -274,7 +290,10 @@
         <script>
         
             $(function($){
-                
+                $(document).ready(function(){
+                   // $('#help-pop').popover();
+                   $("[data-toggle=popover]").popover();
+                });
             /*@role(['Secretaria','Administrador'])
                         
                     
@@ -358,15 +377,7 @@
                         {
                             console.log("jdkljkdlf");
                             $('#sidebarAce').addClass('menu-min');
-                            //$('#sidebarAce').removeClass('sidebar');
-                        // $('#sidebarAce').addClass('menu-min');
-                        // $('#sidebarAce').addClass('sidebar');
-                            //$('#sidebarAce').addClass('sidebar');
-                            //$('#sidebarAce').addClass('sidebar responsive menu-min');
-                            //$('.sidebar.menu-min').css({'width': '43px'});
-                        /* $('.nav-list > li').hover(function(){
-                                $(this).addClass('hover-show hover-shown');
-                            });*/
+                            
                         };
                         }); 
                     }    
@@ -390,17 +401,8 @@
                         {
                             console.log("no se no se");
                         
-                            
-                            //$('#sidebarAce').addClass('sidebar');
-                        // $('#sidebarAce').addClass('menu-min');
-                        // $('#sidebarAce').addClass('sidebar');
-                            //$('#sidebarAce').addClass('sidebar');
-                            //$('#sidebarAce').addClass('sidebar responsive menu-min');
-                            //$('.sidebar.menu-min').css({'width': '43px'});
-                        /* $('.nav-list > li').hover(function(){
-                                $(this).addClass('hover-show hover-shown');
-                            });*/
-                        };//$('#sidebarAce').addClass('sidebar');
+                         
+                        };
                     }
                     
                     
@@ -409,6 +411,7 @@
                    // $('#help-pop').popover();
                    $("[data-toggle=popover]").popover();
                 });
+                
                                
             
 
@@ -420,7 +423,7 @@
                 
                 $('.telefono').mask('(999)999-9999', {placeholder: '(999)999-9999' });
             
-                $('.email-udc').mask('*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]'.'@udc.edu.ar', {reverse: true, selectOnFocus: true});
+                $('.email-udc').mask('*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]'+'@udc.edu.ar', {reverse: true, selectOnFocus: true});
 
                 $('integer-positivo').mask('9999');
 

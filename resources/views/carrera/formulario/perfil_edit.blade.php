@@ -1,27 +1,25 @@
 @extends('layouts.appAce')
-@section('title','Perfil de Carrera')
+
+@section('title','Perfil de Carrera')                   
+                  
+
+@section('title','Perfil')
 
 @section('content')
- <form action="{{ route('update.materias',$user->id ) }}" method="POST" lang="es" class="form-horizontal">
-    {{ csrf_field() }}
-  {{ method_field('PUT') }}
+ <form action="{{  route('update.materias',$user->id  ) }}" method="POST" lang="es" class="form-horizontal">
     <div class="panel panel-default">
         <div class="panel-heading">
-           <h3 class="panel-title">  {{ $user->persona->nombre_apellido }} <h3>  Perfil de Carrera 
-            </i>
-									<span class="label label-xlg label-warning arrowed-right">Editar</span>
+           <h3 class="panel-title">  {{ $user->persona->nombre_apellido }} <small>  Editar 
+        <span class="label label-xlg label-warning arrowed-right">Ver</span>
                                     </small>
                                     </h3>
         </div>
         <div class="panel-body">
            
-                 <input type="hidden" name="_method" value="PUT">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <!-- bandera que sirve para redirigir al perfil -->
-                <input type="hidden" name="perfil" value="true">
                 
-                    
-                   @role(['Secretaria','Administrador'])
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                
+                 @role(['Secretaria','Administrador'])
                    
                         @include('carrera.partials.form')
                         
@@ -45,3 +43,4 @@
     </div>    
  </form>
 @endsection
+                    

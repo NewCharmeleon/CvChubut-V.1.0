@@ -191,6 +191,7 @@ class ExperienciaLaboral extends Model
         return "<input type='checkbox' ". $check . " class='mostrar_ocultar' data-size='small'/>";
     }
 
+ 
     //Query que se va a solicitar repetidas veces
     public function scopeMostrarExperienciasLaboralesUsuario ( $query, $persona ){
         return $query->where('mostrar_cv', true)->where('persona_id', $persona->id)->orderBy('fecha_ini')->get();

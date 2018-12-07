@@ -5,8 +5,8 @@
  <form action="{{  route('usuarios.update', $user->id )      }}" method="POST" lang="es" class="form-horizontal">
     <div class="panel panel-default">
         <div class="panel-heading">
-           <h3 class="panel-title">  {{ $user->persona->nombre_apellido }} <small>  Perfil  </small>
-            <span class="label label-xlg label-warning arrowed-right">Editar</span>
+           <h3 class="panel-title">  {{ $user->persona->nombre_apellido }} <small>  Editar 
+        <span class="label label-xlg label-warning arrowed-right">Ver</span>
                                     </small>
                                     </h3>
         </div>

@@ -104,15 +104,27 @@ Route::group(['middleware' => ['role:Administrador|Secretaria']], function (){
 //Rutas para el Rol Estudiante
 Route::group(['middleware' => ['role:Estudiante']], function (){
   
+  //Ruta para obtener el Curriculum en PDF
+  Route::get('curriculum/pdf','ActividadController@generar_pdf')->name('curriculum.pdf');
+ 
+
+    
+    Route::post('experiencias/laborales/{id}/mostrar/cv', 'ExperienciaLaboralController@mostrar_cv')->name('experiencias.laborales.mostrar.cv');
+    Route::post('experiencias/laborales/{id}/ocultar/cv', 'ExperienciaLaboralController@ocultar_cv')->name('experiencias.laborales.ocultar.cv');
+    
+    //Rutas para mostrar o no mostrar las actividades realizadas por el Estudiante
+    Route::post('actividades/{id}/mostrar/cv', 'ActividadController@mostrar_cv')->name('actividades.mostrar.cv');
+    Route::post('actividades/{id}/ocultar/cv', 'ActividadController@ocultar_cv')->name('actividades.ocultar.cv');
+  
   //Ruta para ver la propia Carrera
   
-
+  //Rutas para mostrar o no mostrar las experiencias laborales en el Cv
   Route::get('carrera/perfil', 'CarreraController@carrera_perfil')->name('carrera.perfil');
   Route::get('carrera/perfil/edit', 'CarreraController@carrera_perfil_edit')->name('carrera.perfil.edit');
   //Ruta para Agregar Materias Aprobadas para los Estudiantes
-  //Route::get('estudiante/{id}/materias/aprobadas/agregar', 'EstudianteController@agregar_materias_aprobadas_show')->name('agregar.materias_aprobadas.show');
   
-  Route::post('estudiante/{id}/materias/edit', 'EstudianteController@update_materias')->name('update.materias');
+  //Route::get('estudiante/{id}/update/materias', 'EstudianteController@update_materias')->name('update.materias');
+  Route::post('estudiante/materias/{id}/edit', 'EstudianteController@update_materias')->name('update.materias');
   
    /*//Rutas de Experiencias Laborales del Estudiante
    Route::resource('estudiantes', 'CarreraController',
@@ -127,22 +139,11 @@ Route::group(['middleware' => ['role:Estudiante']], function (){
    ]); */
 
   
-
-  //Ruta para obtener el Curriculum en PDF
-  Route::get('curriculum/pdf','ActividadController@generar_pdf')->name('curriculum.pdf');
- 
-
-  //Rutas para mostrar o no mostrar las actividades realizadas por el Estudiante
-  Route::post('actividades/{id}/mostrar/cv', 'ActividadController@mostrar_cv')->name('actividades.mostrar.cv');
-  Route::post('actividades/{id}/ocultar/cv', 'ActividadController@ocultar_cv')->name('actividades.ocultar.cv');
-  
   //Rutas de Actividades del Estudiante
   Route::resource('actividades', 'ActividadController');
 
-  //Rutas para mostrar o no mostrar las experiencias laborales en el Cv
-  Route::post('experiencias/laborales/{id}/mostrar/cv', 'ExperienciaLaboralController@mostrar_cv')->name('experiencias.laborales.mostrar.cv');
-  Route::post('experiencias/laborales/{id}/ocultar/cv', 'ExperienciaLaboralController@ocultar_cv')->name('experiencias.laborales.ocultar.cv');
-  //Ruta para mostrar las actividades del Estudiante
+  
+ //Ruta para mostrar las actividades del Estudiante
   //actividades
   Route::resource('actividades', 'ActividadController');
   //Rutas de Experiencias Laborales del Estudiante

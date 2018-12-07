@@ -100,12 +100,12 @@
                     </a>
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                        <li>
+                        <!--li>
                             <a href="#">
                                 <i class="ace-icon fa fa-cog"></i>
                                 Configuraci&oacute;n
                             </a>
-                        </li>
+                        </li-->
 
                         <li>
                         
@@ -129,7 +129,7 @@
                             {{ csrf_field() }}
                         </form>
                         </li>
-                        <li class="divider"></li>
+                        <!--li class="divider"></li>
 
                         <li><a href="/">Inicio</a></li>
                         <li>
@@ -139,7 +139,7 @@
                                 <li><a href="#">Pagina</a></li>
                                 <li><a href="#">Pagina</a></li>
                             </ul>
-                        </li>
+                        </li-->
                         </ul>
                     </li>
                 @endif

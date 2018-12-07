@@ -111,7 +111,7 @@
                 "infoEmpty": "No existen datos disponibles",
                 "infoFiltered": "(filtrando datos de un _MAX_ total de items)",
                 "emptyTable": "No existen Usuarios para mostrar",
-                "zeroRecords": "No existen Usuarios para mostrar con ese parámetro de búsqueda",
+                "zeroRecords": "No existen Ámbitos de Actividades para mostrar con ese parámetro de búsqueda",
                 "paginate": {
                     "first": "Primera página",
                     "previous": "Previa",

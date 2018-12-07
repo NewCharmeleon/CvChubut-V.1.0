@@ -87,16 +87,16 @@
             "ajax": "{{ url('api/estudiantes') }}", 
             "columns": [
             { data: 'persona.nombre_apellido', name: 'persona.nombre_apellido'  },
-            { data: 'persona.dni', name: 'persona.dni'  },
+            { data: 'dni', name: 'persona.dni'  },
             { data: 'persona.carrera.nombre', name: 'persona.carrera.nombre',"defaultContent": "<i>Sin Datos</i>"  },
             { data: 'persona.carrera.cantidad_materias', name: 'persona.carrera.cantidad_materias',"defaultContent": "<i>Sin Datos</i>"  },
-            { data: 'persona.carrera.materias_aprobadas', name: 'persona.carrera.materias_aprobadas',"defaultContent": "<i>Sin Datos</i>"  },
+            { data: 'persona.materias_aprobadas', name: 'persona.materias_aprobadas',"defaultContent": "<i>Sin Datos</i>"  },
             { data: 'btn' },
             ],
             "columnDefs": [ 
                     { targets: 2, orderable: false },
                     { targets: 3, orderable: false }, 
-                    { targets: 4, orderabla: false }, 
+                    { targets: 4, orderable: false }, 
                     
                     { targets: 5, searchable: false },
                     { targets: 5, orderable: false }, 
@@ -117,8 +117,8 @@
                 "info": "Mostrando página _PAGE_ de _PAGES_",
                 "infoEmpty": "No existen datos disponibles",
                 "infoFiltered": "(filtrando datos de un _MAX_ total de items)",
-                "emptyTable": "No existen Usuarios para mostrar",
-                "zeroRecords": "No existen Usuarios para mostrar con ese parámetro de búsqueda",
+                "emptyTable": "No existen Estudiantes para mostrar",
+                "zeroRecords": "No existen Estudiantes para mostrar con ese parámetro de búsqueda",
                 "paginate": {
                     "first": "Primera página",
                     "previous": "Previa",
@@ -153,7 +153,7 @@
              <table id="data-table" class="table table-striped table-bordered table-hover dataTable no-footer" style="width:100%">
                     <thead>
          <tr>
-             <th>Nombre y Apellido </th>
+             <th>Apellido y Nombre </th>
              <th>D.N.I. </th>
              <th>Carrera </th>
              <th>Cantidad de Materias</th>

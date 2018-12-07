@@ -88,6 +88,7 @@ Route::get('estudiantes', function (){
         }else
         { return ($estudiante->persona->carrera->nombre); 
        } })*/
+       
       ->addColumn('btn', function ($estudiante) {
       return view( 'estudiante.partials.acciones', compact('estudiante'));
       })

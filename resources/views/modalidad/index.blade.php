@@ -110,8 +110,8 @@ $(document).ready(function() {
                 "info": "Mostrando página _PAGE_ de _PAGES_",
                 "infoEmpty": "No existen datos disponibles",
                 "infoFiltered": "(filtrando datos de un _MAX_ total de items)",
-                "emptyTable": "No existen Usuarios para mostrar",
-                "zeroRecords": "No existen Usuarios para mostrar con ese parámetro de búsqueda",
+                "emptyTable": "No existen Modalidades para mostrar",
+                "zeroRecords": "No existen Modalidades para mostrar con ese parámetro de búsqueda",
                 "paginate": {
                     "first": "Primera página",
                     "previous": "Previa",

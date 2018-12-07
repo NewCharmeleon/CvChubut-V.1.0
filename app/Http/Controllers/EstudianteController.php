@@ -109,7 +109,7 @@ class EstudianteController extends Controller
             'fecha_nac' => 'required|date_format:d-m-Y|mayor_de_edad',
             'nacionalidad' => 'nullable|nacionalidad_exist',
             'carrera_id' => 'required|exists:carreras,id',
-            'materias_aprobadas' => 'min:1|max:carreras, cantidad_materias|numeric',
+            'materias_aprobadas' => 'min:1|max:carreras,cantidad_materias|numeric',
             'telefono' => 'nullable|min:13|max:15|telefono_valid',
             
         
@@ -161,7 +161,7 @@ class EstudianteController extends Controller
             'fecha_nac' => 'required|date_format:d-m-Y|mayor_de_edad',
             'nacionalidad' => 'nullable|nacionalidad_exist',
             'carrera_id' => 'required|exists:carreras,id',
-            'materias_aprobadas' => 'min:1|max:carreras, cantidad_materias|numeric',
+            'materias_aprobadas' => 'min:1|max:carreras,cantidad_materias|numeric',
             'telefono' => 'nullable|min:13|max:15|telefono_valid',
             
         
@@ -296,6 +296,62 @@ class EstudianteController extends Controller
            
            //devolvemos la respuesta del metodo
            return response()->json(['procesado' => true]);
+        }
+         abort(403);
+
+    }
+    //Metodo especial para mostrar la vista para agregar Estudiantes
+   /* public function agregar_materias_aprobadas_show(){
+        
+        if( auth()->user()->hasRole(['Estudiante'])){
+            
+           return view('carrera.materias_aprobadas.agregar');
+        }
+        abort(403);    
+    }*/
+    
+    
+    //Metodo especial para guardar los Estudiantes creado
+    public function update_materias($id, Request $request)
+    {
+        dd("hola");
+        if( auth()->user()->hasRole(['Estudiante']))
+        {
+            $user = User::findOrFail($id);
+                      
+        
+
+        //Definimos las reglas de validacion
+        $validaciones = \Validator::make($request->all(),
+        [
+            'materias_aprobadas' => 'min:1|max:carreras,cantidad_materias|numeric',
+            
+        ]);
+
+        
+         //preguntamos si hay errores
+         if ($validaciones->fails()) {
+            //volvemos al formulario con los errorres cargados
+            return redirect()
+                ->back()
+                ->withErrors($validaciones->errors())
+                ->withInput(Input::all());
+
+        }
+        //Asignamos la persona del Usuario
+        $persona = $user->persona;
+        //Actualizamos a la Persona con los datos restantes del Request
+        $persona->update( $request );
+               
+        
+
+        //Finalizada la Creacion con el Request
+        //volvemos al Index
+        
+        return redirect()->route('carreras.index');
+ 
+           
+           
         }
          abort(403);
 

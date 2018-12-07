@@ -131,7 +131,7 @@
  
     <script>
         
-        $(document).ready(function() {
+       /* $(document).ready(function() {
                 //var id = $(this).data('id');
             $('#data-table').DataTable( {
             
@@ -275,7 +275,7 @@
              
    
             });
-         }); 
+         }); */
             /*$('#data-table').DataTable({
                 processing: true,
                 serverSide: true,
@@ -289,7 +289,7 @@
            
         });*/
         //} );
-         /*   $(function($){
+           $(function($){
                 $('.btn-td .mostrar_ocultar').bootstrapSwitch();
                 $('.btn-td .mostrar_ocultar').on('switchChange.bootstrapSwitch', function (event, state) {
                     //Se previene el evento
@@ -337,7 +337,7 @@
                         return -1;
                     }
                 });
-            });*/           
+            });           
     </script>
 
 @endsection 

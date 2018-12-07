@@ -21,7 +21,7 @@ class AmbitoActividadController extends Controller
         
             return view('ambito_actividad.index', compact("ambitos_actividades"));
         }
-        dd("hola");
+        
         abort(403);
 
         
@@ -74,7 +74,7 @@ class AmbitoActividadController extends Controller
         //Definimos las reglas de validacion
         $rules = [
 
-            'nombre' => 'required|solo_letras|max:250|min:3|unique:ambitos_actividades,nombre,' . $id,
+            'nombre' => 'required|solo_letras|max:250|min:3|unique:ambitos_actividades,nombre,' .$id,
             'descripcion' => 'max:250|min:3',
             
         
@@ -128,7 +128,7 @@ class AmbitoActividadController extends Controller
         //Definimos las reglas de validacion
         $rules = [
 
-            'nombre' => 'required|solo_letras|max:250|min:3|unique:ambitos_actividades,nombre,' . $id,
+            'nombre' => 'required|solo_letras|max:250|min:3|unique:ambitos_actividades,nombre,',
             'descripcion' => 'max:250|min:3',
             
         

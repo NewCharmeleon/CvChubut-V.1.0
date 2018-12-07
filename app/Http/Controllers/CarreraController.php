@@ -154,7 +154,7 @@ class CarreraController extends Controller
             
         ]);
 
-        var_dump($request);
+       
         //actualizamos el dato del request con la variable original ya validada correctamente
         $request->merge(['nombre' => $nombre_original]);
          //preguntamos si hay errores
@@ -166,15 +166,15 @@ class CarreraController extends Controller
                 ->withInput(Input::all());
 
         }
-        dd($request);
+        
 
         //Actualizamos la Carrera
         $carrera = Carrera::findOrFail($id);
         $carrera->update($request->all());
-       // dd($carrera);
+       
         //Finalizada la actualizacion con el Request
         //volvemos al Index
-        dd($carrera);
+        
         return redirect()->route('carreras.index');
  
     }
@@ -199,7 +199,7 @@ class CarreraController extends Controller
         //Definimos las reglas de validacion
         $validaciones = \Validator::make($request->all(),
         [
-            'nombre' => 'required|max:250|min:3|unique:carreras,nombre,' .$id,
+            'nombre' => 'required|max:250|min:3|unique:carreras,nombre,',
             'cantidad_materias' => 'required|max:255|min:1|numeric',
             
         ]);
@@ -229,94 +229,7 @@ class CarreraController extends Controller
  
  
      }
-     //Metodo especial para mostrar la vista para agregar Estudiantes
-    public function agregar_materias_aprobadas_show(){
-        
-        if( auth()->user()->hasRole(['Estudiante'])){
-            
-           return view('carrera.materias_aprobadas.agregar');
-        }
-        abort(403);    
-    }
-
-    //Metodo especial para guardar los Estudiantes creado
-    public function agregar_materias_aprobadas_store(Request $request)
-    {
-        
-        if( auth()->user()->hasRole(['Administrador','Secretaria'])){
-            
-           ini_set('max_execution_time', '300');
-           
-           $validaciones = \Validator::make($request->all(), ['estudiante' => 'required']);
-        
-           if( $validaciones->fails()   ){
-              return response()->json(  $validaciones->errors()->toArray()   );
-           }
-
-           //Leemos el fichero en una variable y convertimos
-           //su contenido en una estructura de datos
-           $str_datos = file_get_contents($request->file('estudiante') );
-           //var_dump($str_datos);
-           $datos = json_decode($str_datos, true);
-
-           $rol_estudiante = Role::where('name', 'LIKE', 'Estudiante')->get()->first()->id;
-           
-           foreach ($datos as $index => $dato){
-
-                if ($index >=1 )
-                {
-                    $nombre_apellido = $dato[0] . " " . $dato[1];
-                    $dni = $dato[2];
-                    $email = $dato[3];
-
-                    if (User::where('email', 'LIKE', $email)->get()->count() == 0 )
-                    {
-                            $estudiante = [
-
-                            //alumno
-                            "usuario" => [
-                                "email" => $email,
-                                "password" => "123456",
-                                "username" => "alumno"
-                            ], 
-                            //persona
-                            "persona" => [
-                                "nombre_apellido" => $nombre_apellido, 
-                                "dni" => $dni
-                            ]
-                        ];
-                        //temporal de los datos de un usuario
-                        $data_user = $estudiante['usuario'];
-                        //temporal de los datos de una persona
-                        $data_persona = $estudiante['persona'];
-
-                        //Creamos un Usuario con los datos del temporal
-                        $user = User::create($data_user);
-
-                        //Actualizamos el temporal de los datos con el id del Usuario que referencia
-                        $data_persona['user_id'] = $user->id;
-
-                        //Creamos una Persona con los datos del temporal
-                        $persona = Persona::create($data_persona);
-
-                        //Hasheamos el Password del Usuario
-                        $user->hashPassword();
-                        //Actualizamos el Username del Usuario
-                        $user->updateUsername();
-                        //Asignamos el Rol del Estudiante
-                        $user->attachRole($rol_estudiante);
-
-                    }
-                }
-
-            }
-           
-           //devolvemos la respuesta del metodo
-           return response()->json(['procesado' => true]);
-        }
-         abort(403);
-
-    }
+     
 
      //Metodo para eliminar un Tipo de Carrera
      public function destroy($id){
